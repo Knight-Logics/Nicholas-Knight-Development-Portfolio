@@ -869,21 +869,70 @@ function initVideoPlayer() {
     const videoItems = document.querySelectorAll('.video-item');
     const mainVideo = document.getElementById('main-video');
 
+    if (!mainVideo) {
+        console.error('Main video element not found');
+        return;
+    }
+
     videoItems.forEach(item => {
         item.addEventListener('click', () => {
             const videoSrc = item.getAttribute('data-src');
+            const posterImg = item.querySelector('img');
+            const posterSrc = posterImg ? posterImg.src : null;
             
             // Update active state
             videoItems.forEach(vi => vi.classList.remove('active'));
             item.classList.add('active');
             
-            // Change video source
-            if (mainVideo && videoSrc) {
+            // Change video source and poster
+            if (videoSrc) {
+                // Update poster to show the related logo while loading
+                if (posterSrc) {
+                    mainVideo.poster = posterSrc;
+                }
+                
+                // Find the source element and update it
+                const sourceElement = mainVideo.querySelector('source');
+                if (sourceElement) {
+                    sourceElement.src = videoSrc;
+                } else {
+                    // If no source element, create one
+                    const newSource = document.createElement('source');
+                    newSource.src = videoSrc;
+                    newSource.type = 'video/mp4';
+                    mainVideo.appendChild(newSource);
+                }
+                
+                // Also set the main video src as fallback
                 mainVideo.src = videoSrc;
-                mainVideo.load(); // Reload the video element
+                
+                // Reload the video element to pick up new source
+                mainVideo.load();
+                
+                // Add event listener for when video can play
+                const handleCanPlay = () => {
+                    // Wait 1.5 seconds to display the logo, then auto-play
+                    setTimeout(() => {
+                        mainVideo.play().catch(error => {
+                            console.log('Autoplay prevented by browser:', error);
+                            // Fallback: show play button or user interaction required message
+                        });
+                    }, 1500);
+                    mainVideo.removeEventListener('canplay', handleCanPlay);
+                };
+                
+                mainVideo.addEventListener('canplay', handleCanPlay);
+                
+                console.log('Video source changed to:', videoSrc);
+                console.log('Poster updated to:', posterSrc);
+                console.log('Will auto-play after 1.5 second delay');
             }
         });
     });
+
+    // Add some debug logging
+    console.log('Video player initialized with', videoItems.length, 'video items');
+    console.log('Main video element:', mainVideo);
 }
 
 // Skill Bars Animation
