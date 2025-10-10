@@ -1,0 +1,23 @@
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://knightlogics.com/sitemap.xml
+
+# Disallow specific files
+Disallow: /images/
+Disallow: /*.ps1$
+Disallow: /*.py$
+Disallow: /*.sql$
+
+# Allow important directories
+Allow: /CRM-Management-System/
+Allow: /Employee-Management-System/
+Allow: /Project-Management-System/
+Allow: /Ecommerce-Management-System/
+Allow: /Invoice-Management-System/
+Allow: /Chess-Game-main/
+Allow: /JavaScript-Tic-Tac-Toe-master/
+
+# Crawl-delay (optional, remove if causing issues)
+Crawl-delay: 1
