@@ -1206,12 +1206,33 @@ function initBusinessContactForm() {
         const data = Object.fromEntries(formData);
         
         try {
-            // For now, we'll simulate form submission
-            // In production, this would connect to your backend/email service
-            await new Promise(resolve => setTimeout(resolve, 2000));
+            // Create email content from form data
+            const emailSubject = `New Consultation Request from ${data.businessName}`;
+            const emailBody = `
+Business/Organization: ${data.businessName}
+Contact Name: ${data.contactName}
+Email: ${data.email}
+Service Type: ${data.serviceType}
+Timeline: ${data.timeline || 'Not specified'}
+Budget: ${data.budget || 'Not specified'}
+
+Project Details:
+${data.projectDetails}
+
+---
+This message was sent from the Knight Logics contact form on knightlogics.com
+            `.trim();
             
-            // Show success message
-            showBusinessNotification('Thank you! Your consultation request has been received. We\'ll contact you within 24 hours.', 'success');
+            // Create mailto link
+            const mailtoLink = `mailto:nickknight488@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+            
+            // Open email client
+            window.location.href = mailtoLink;
+            
+            // Show success message after a brief delay
+            setTimeout(() => {
+                showBusinessNotification('Email client opened! Please send the email to complete your consultation request.', 'success');
+            }, 500);
             
             // Reset form
             form.reset();

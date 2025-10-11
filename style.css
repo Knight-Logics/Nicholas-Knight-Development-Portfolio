@@ -1158,6 +1158,62 @@ section::before {
     transition: all 0.3s ease;
 }
 
+/* Specific select dropdown styling */
+.form-group select {
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2364ffda' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 40px;
+}
+
+/* Select option styling */
+.form-group select option {
+    background: #1a1a1a;
+    color: #ffffff;
+    padding: 8px 12px;
+    border: none;
+}
+
+.form-group select option:hover,
+.form-group select option:focus,
+.form-group select option:checked {
+    background: #64ffda;
+    color: #0a0a0a;
+}
+
+/* Placeholder option styling */
+.form-group select option[value=""] {
+    color: rgba(255, 255, 255, 0.6);
+    background: #1a1a1a;
+}
+
+/* Additional browser-specific styling */
+.form-group select::-ms-expand {
+    display: none; /* Remove default arrow in IE */
+}
+
+.form-group select::-webkit-scrollbar {
+    width: 8px;
+}
+
+.form-group select::-webkit-scrollbar-track {
+    background: #1a1a1a;
+}
+
+.form-group select::-webkit-scrollbar-thumb {
+    background: #64ffda;
+    border-radius: 4px;
+}
+
+.form-group select::-webkit-scrollbar-thumb:hover {
+    background: #4ecdc4;
+}
+
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
@@ -2297,6 +2353,91 @@ section::before {
     gap: 40px;
 }
 
+/* Skills Grid Responsive Design */
+/* Large Desktop (1200px+) - Auto-fit with 300px minimum */
+@media (min-width: 1200px) {
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+        gap: 40px;
+    }
+}
+
+/* Medium Desktop/Laptop (768px - 1199px) - Auto-fit */
+@media (max-width: 1199px) and (min-width: 768px) {
+    .skills-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+    }
+}
+
+/* Tablet and Medium Mobile (481px - 767px) - 2 columns */
+@media (max-width: 767px) and (min-width: 481px) {
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .skill-category {
+        padding: 20px;
+        border-radius: 12px;
+    }
+    
+    .skill-category h3 {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+    }
+    
+    .skill-item {
+        margin-bottom: 15px;
+    }
+    
+    .skill-name {
+        font-size: 0.9rem;
+    }
+    
+    .skill-bar {
+        height: 6px;
+    }
+}
+
+/* Small Mobile (480px and below) - 2 columns */
+@media (max-width: 480px) {
+    .skills-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 8px;
+        padding: 0 10px;
+    }
+    
+    .skill-category {
+        padding: 12px;
+        border-radius: 8px;
+    }
+    
+    .skill-category h3 {
+        font-size: 0.85rem !important;
+        margin-bottom: 8px !important;
+        margin-top: 0 !important;
+        line-height: 1.1 !important;
+        padding: 0 !important;
+        color: #64ffda;
+        word-wrap: break-word;
+    }
+    
+    .skill-item {
+        margin-bottom: 8px;
+    }
+    
+    .skill-name {
+        font-size: 0.7rem;
+        line-height: 1.1;
+        margin-bottom: 3px;
+    }
+    
+    .skill-bar {
+        height: 4px;
+    }
+}
+
 .skill-category {
     background: rgba(255, 255, 255, 0.05);
     padding: 30px;
@@ -2462,14 +2603,16 @@ section::before {
 
 .social-links {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     margin-top: 20px;
+    width: 100%;
 }
 
 .social-link {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 15px;
     padding: 20px;
     background: rgba(255, 255, 255, 0.05);
@@ -2478,6 +2621,7 @@ section::before {
     color: #ffffff;
     transition: all 0.3s ease;
     border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
 }
 
 .social-link:hover {
@@ -2490,6 +2634,72 @@ section::before {
     width: 30px;
     height: 30px;
     object-fit: contain;
+}
+
+/* Social Links Responsive Design */
+/* Large Desktop (1200px+) - 4 columns */
+@media (min-width: 1200px) {
+    .social-links {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 25px;
+    }
+}
+
+/* Medium Desktop/Laptop (992px - 1199px) - 4 columns */
+@media (max-width: 1199px) and (min-width: 992px) {
+    .social-links {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 20px;
+    }
+}
+
+/* Tablet Landscape (768px - 991px) - 2 columns */
+@media (max-width: 991px) and (min-width: 768px) {
+    .social-links {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+/* Tablet Portrait (576px - 767px) - 2 columns */
+@media (max-width: 767px) and (min-width: 576px) {
+    .social-links {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+    
+    .social-link {
+        padding: 15px;
+        gap: 12px;
+    }
+    
+    .social-link img {
+        width: 28px;
+        height: 28px;
+    }
+}
+
+/* Mobile (575px and below) - 1 column */
+@media (max-width: 575px) {
+    .social-links {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+    
+    .social-link {
+        padding: 15px;
+        gap: 15px;
+        justify-content: flex-start;
+    }
+    
+    .social-link img {
+        width: 24px;
+        height: 24px;
+    }
+    
+    .social-link span {
+        font-size: 0.9rem;
+    }
 }
 
 .footer {
@@ -2636,6 +2846,65 @@ section::before {
         -webkit-line-clamp: 3;
         line-clamp: 3;
         margin-bottom: 12px;
+    }
+}
+
+/* Fix work-grid overlap on screens below 660px */
+@media (max-width: 660px) {
+    .work-grid,
+    .professional-grid {
+        grid-template-columns: repeat(2, 1fr) !important;
+        gap: 15px !important;
+        margin-top: 40px;
+    }
+    
+    .professional-item {
+        min-height: 300px !important;
+        max-height: none !important; /* Remove max-height to prevent button cutoff */
+        padding: 12px !important;
+        box-sizing: border-box;
+        width: 100%;
+        overflow: visible;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .professional-item .item-image {
+        height: 50px !important;
+        object-fit: contain;
+        margin-bottom: 8px;
+        flex-shrink: 0;
+    }
+    
+    .professional-item .item-content {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 8px;
+    }
+    
+    .professional-item h3 {
+        font-size: 0.9rem !important;
+        line-height: 1.2;
+        margin-bottom: 6px;
+        flex-shrink: 0;
+    }
+    
+    .professional-item p {
+        font-size: 0.8rem !important;
+        line-height: 1.3;
+        margin-bottom: 8px;
+        flex-grow: 1;
+    }
+    
+    .project-link {
+        font-size: 0.75rem !important;
+        padding: 8px 12px !important;
+        border-radius: 6px;
+        margin-top: auto;
+        flex-shrink: 0;
+        text-align: center;
+        display: block;
     }
 }
 
@@ -3114,10 +3383,6 @@ section::before {
         display: none !important;
     }
     
-    .social-links {
-        grid-template-columns: 1fr;
-    }
-    
     .filter-buttons {
         justify-content: flex-start;
         overflow-x: auto;
@@ -3329,31 +3594,79 @@ section::before {
         text-align: center;
         margin-top: auto;
     }
-    
-    .skills-grid {
-        grid-template-columns: 1fr;
-    }
 }
 
-/* Medium mobile screens - Fix project button visibility */
+/* Medium mobile screens - Enhanced button visibility */
 @media (max-width: 650px) and (min-width: 481px) {
-    .professional-grid,
-    .work-grid {
-        gap: 12px;
-    }
-    
     .professional-item {
-        min-height: 300px !important;
-        max-height: 340px !important;
-        padding: 12px !important;
+        min-height: 320px !important;
+        max-height: none !important; /* Allow dynamic height */
+        padding: 14px !important;
         display: flex;
         flex-direction: column;
     }
     
-    .professional-item .item-image {
-        height: 60px;
-        flex-shrink: 0;
+    .professional-item .item-content {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
+    
+    .professional-item h3 {
+        font-size: 0.95rem !important;
         margin-bottom: 8px;
+        line-height: 1.2;
+        flex-shrink: 0;
+    }
+    
+    .professional-item p {
+        font-size: 0.82rem !important;
+        line-height: 1.35;
+        margin-bottom: 10px;
+        flex-grow: 1;
+        overflow: visible;
+    }
+    
+    .project-link {
+        font-size: 0.8rem !important;
+        padding: 10px 14px !important;
+        border-radius: 6px;
+        margin-top: auto;
+        flex-shrink: 0;
+        text-align: center;
+        display: block;
+        white-space: nowrap;
+        overflow: visible;
+    }
+}
+
+/* Extra small mobile screens - Ultra compact layout */
+@media (max-width: 480px) {
+    .professional {
+        padding: 40px 0;
+    }
+    
+    .professional-grid,
+    .work-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+        padding: 0 10px;
+    }
+    
+    .professional-item {
+        padding: 8px;
+        min-height: 200px;
+        max-height: 240px;
+        aspect-ratio: 0.8;
+        background: rgba(30, 30, 62, 0.9);
+        border: 1px solid rgba(100, 255, 218, 0.15);
+    }
+    
+    .professional-item .item-image {
+        height: 40px !important;
+        flex-shrink: 0;
+        margin-bottom: 4px;
     }
     
     .professional-item .item-content {

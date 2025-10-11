@@ -111,7 +111,7 @@
         },
         "potentialAction": {
             "@type": "SearchAction",
-            "target": "https://knightlogics.com/projects.html?search={search_term_string}",
+            "target": "https://knightlogics.com/projects?search={search_term_string}",
             "query-input": "required name=search_term_string"
         }
     }
@@ -631,9 +631,11 @@
                                 <label for="budget">Budget Range (USD)</label>
                                 <select id="budget" name="budget">
                                     <option value="">Select budget...</option>
-                                    <option value="small">$1,000 - $5,000</option>
-                                    <option value="medium">$5,000 - $15,000</option>
-                                    <option value="large">$15,000+</option>
+                                    <option value="micro">$100 - $500</option>
+                                    <option value="small">$500 - $2,000</option>
+                                    <option value="medium">$2,000 - $10,000</option>
+                                    <option value="large">$10,000 - $25,000</option>
+                                    <option value="enterprise">$25,000+</option>
                                     <option value="discuss">Prefer to discuss</option>
                                 </select>
                             </div>
