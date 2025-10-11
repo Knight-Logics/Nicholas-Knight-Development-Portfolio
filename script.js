@@ -1206,7 +1206,36 @@ function initBusinessContactForm() {
         const data = Object.fromEntries(formData);
         
         try {
-            // Create email content from form data
+            // Send form data to Formspree
+            const response = await fetch('https://formspree.io/f/xnnggyzp', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    businessName: data.businessName,
+                    contactName: data.contactName,
+                    email: data.email,
+                    serviceType: data.serviceType,
+                    timeline: data.timeline || 'Not specified',
+                    budget: data.budget || 'Not specified',
+                    projectDetails: data.projectDetails,
+                    _replyto: data.email,
+                    _subject: `New Consultation Request from ${data.businessName}`
+                })
+            });
+
+            if (response.ok) {
+                showBusinessNotification('Thank you! Your consultation request has been sent successfully. We\'ll contact you within 24 hours.', 'success');
+                form.reset();
+            } else {
+                throw new Error('Network response was not ok');
+            }
+            
+        } catch (error) {
+            console.error('Formspree submission error:', error);
+            
+            // Fallback to mailto if Formspree fails
             const emailSubject = `New Consultation Request from ${data.businessName}`;
             const emailBody = `
 Business/Organization: ${data.businessName}
@@ -1223,23 +1252,10 @@ ${data.projectDetails}
 This message was sent from the Knight Logics contact form on knightlogics.com
             `.trim();
             
-            // Create mailto link
             const mailtoLink = `mailto:nickknight488@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-            
-            // Open email client
             window.location.href = mailtoLink;
             
-            // Show success message after a brief delay
-            setTimeout(() => {
-                showBusinessNotification('Email client opened! Please send the email to complete your consultation request.', 'success');
-            }, 500);
-            
-            // Reset form
-            form.reset();
-            
-        } catch (error) {
-            console.error('Form submission error:', error);
-            showBusinessNotification('There was an error submitting your request. Please try again or contact us directly.', 'error');
+            showBusinessNotification('Opening your email client as backup. Please send the email to complete your request.', 'info');
         } finally {
             // Reset button state
             submitBtn.disabled = false;
