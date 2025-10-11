@@ -67,6 +67,9 @@ function initLayeredParallax() {
     let scrollActionCount = 0;
     let lastScrollY = 0;
     let lastScrollPosition = 0; // Track scroll position for re-entry detection
+    let scrollBarActionCount = 0; // Track scrollbar usage separately
+    let lastScrollbarPosition = 0;
+    let isScrollbarScrolling = false;
     const maxLandingScrolls = 3; // Stay on landing screen for 3 scroll actions
     
     // Prevent default scrolling during landing mode
@@ -222,6 +225,9 @@ function initLayeredParallax() {
     function exitLandingModeFunction() {
         isInLandingMode = false;
         scrollActionCount = 0; // Reset for next time
+        scrollBarActionCount = 0; // Reset scrollbar tracking
+        lastScrollbarPosition = 0;
+        isScrollbarScrolling = false;
         // Mobile now uses same scrollActionCount reset as desktop
         
         // Transition to About section (first content section)
@@ -307,6 +313,9 @@ function initLayeredParallax() {
     
     function enterLandingMode() {
         scrollActionCount = 0;
+        scrollBarActionCount = 0; // Reset scrollbar tracking
+        lastScrollbarPosition = 0;
+        isScrollbarScrolling = false;
         isInLandingMode = true;
         
         if (heroSection) {
@@ -330,16 +339,65 @@ function initLayeredParallax() {
         console.log('Re-entered landing mode');
     }
     
+    function handleScrollBarScroll() {
+        if (!isInLandingMode) return;
+        
+        const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollDelta = currentScrollTop - lastScrollbarPosition;
+        
+        // Ignore tiny movements and initial position resets
+        if (Math.abs(scrollDelta) > 10 && currentScrollTop > 5) {
+            console.log('📜 Scrollbar movement detected:', scrollDelta, 'Current position:', currentScrollTop);
+            
+            if (scrollDelta > 0) { // Scrolling down with scrollbar
+                scrollBarActionCount++;
+                isScrollbarScrolling = true;
+                
+                console.log('📜 Scrollbar action count:', scrollBarActionCount, '/', maxLandingScrolls);
+                
+                // Use the same visual effect as wheel scrolling
+                scrollActionCount = Math.min(scrollBarActionCount, maxLandingScrolls);
+                updateForestEffect();
+                
+                // Exit landing mode after max scrollbar actions
+                if (scrollBarActionCount >= maxLandingScrolls) {
+                    console.log('📜 Scrollbar exit threshold reached');
+                    exitLandingModeFunction();
+                    return;
+                }
+                
+                // Prevent further scrolling by resetting position after effect update
+                setTimeout(() => {
+                    if (isInLandingMode) {
+                        window.scrollTo({ top: 0, behavior: 'auto' });
+                        isScrollbarScrolling = false;
+                    }
+                }, 50);
+                
+            } else if (scrollDelta < 0) { // Scrolling up with scrollbar
+                scrollBarActionCount = Math.max(scrollBarActionCount - 1, 0);
+                scrollActionCount = scrollBarActionCount;
+                updateForestEffect();
+            }
+            
+            lastScrollbarPosition = currentScrollTop;
+        }
+    }
+
     function resetToLanding() {
         const currentScroll = window.pageYOffset;
         const aboutSection = document.querySelector('#about');
         const aboutSectionTop = aboutSection ? aboutSection.offsetTop : 0;
         
-        // Allow re-entry when in blank space above About or at About header
+        // Reset scrollbar tracking when returning to landing
         if (currentScroll <= aboutSectionTop + 150 && !isInLandingMode) {
             // Only trigger on upward scroll motion
             if (currentScroll < (lastScrollPosition || 0)) {
                 console.log('🔄 resetToLanding triggered - returning to hero');
+                scrollBarActionCount = 0;
+                scrollActionCount = 0;
+                lastScrollbarPosition = 0;
+                isScrollbarScrolling = false;
                 enterLandingMode();
             }
         }
@@ -359,6 +417,9 @@ function initLayeredParallax() {
     document.addEventListener('touchstart', handleTouchStart, { passive: false });
     document.addEventListener('touchmove', handleTouchMove, { passive: false });
     document.addEventListener('keydown', preventKeyScroll);
+
+    // Add scrollbar support for landing mode
+    window.addEventListener('scroll', handleScrollBarScroll, { passive: true });
     
     // Allow reset when scrolling back to top (keep this listener always active)
     window.addEventListener('scroll', resetToLanding, { passive: true });
