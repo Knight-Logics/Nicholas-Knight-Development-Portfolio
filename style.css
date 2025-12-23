@@ -154,6 +154,22 @@ body {
     font-size: 1.8rem;
 }
 
+/* Brand tagline under logo */
+.brand-text-wrap {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+.nav-tagline {
+    font-size: 0.9rem;
+    color: #a0a0a0;
+    letter-spacing: 0.4px;
+    margin-top: 2px;
+}
+.navbar.scrolled .nav-tagline {
+    font-size: 0.85rem;
+}
+
 @keyframes shimmer {
     0%, 100% {
         background-position: 0% 50%;
@@ -168,6 +184,50 @@ body {
     gap: 40px;
     justify-content: center;
     align-items: center;
+}
+
+/* Overview (Why Choose) section */
+.overview-section {
+    padding: 80px 40px;
+    background: rgba(12,12,12,0.85);
+}
+.overview-section .section-title {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 30px;
+}
+.overview-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+.overview-card {
+    background: rgba(20,20,20,0.9);
+    border: 1px solid rgba(100,255,218,0.2);
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+}
+.overview-card h3 {
+    margin: 0 0 8px 0;
+    font-size: 1.2rem;
+}
+.overview-card p {
+    color: #cfcfcf;
+    font-size: 0.95rem;
+}
+.overview-cta {
+    display: flex;
+    justify-content: center;
+    margin-top: 28px;
+}
+
+@media (max-width: 1024px) {
+    .overview-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+    .overview-grid { grid-template-columns: 1fr; }
+    .overview-section { padding: 60px 20px; }
 }
 
 /* Hide mobile-only elements on desktop */
