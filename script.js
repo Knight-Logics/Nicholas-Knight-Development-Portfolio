@@ -7,8 +7,10 @@ let exitLandingMode = null;
 async function loadHeaderFooter() {
     try {
         // Load header
-        const headerResponse = await fetch('./header.html');
-        if (headerResponse.ok) {
+        const headerResponse = await fetch('/header.html');
+        if (!headerResponse.ok) {
+            console.warn('Header fetch failed:', headerResponse.status);
+        } else {
             const headerContent = await headerResponse.text();
             const headerContainer = document.getElementById('header-container');
             if (headerContainer) {
@@ -17,8 +19,10 @@ async function loadHeaderFooter() {
         }
         
         // Load footer
-        const footerResponse = await fetch('./footer.html');
-        if (footerResponse.ok) {
+        const footerResponse = await fetch('/footer.html');
+        if (!footerResponse.ok) {
+            console.warn('Footer fetch failed:', footerResponse.status);
+        } else {
             const footerContent = await footerResponse.text();
             const footerContainer = document.getElementById('footer-container');
             if (footerContainer) {
