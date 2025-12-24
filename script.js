@@ -3,18 +3,38 @@
 let isInLandingMode = true;
 let exitLandingMode = null;
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Hide loading screen after page loads
-    setTimeout(() => {
-        const loadingScreen = document.getElementById('loading-screen');
-        loadingScreen.style.opacity = '0';
-        setTimeout(() => {
-            loadingScreen.style.display = 'none';
-            // Start main animations after loading screen disappears
-            initMainAnimations();
-        }, 500);
-    }, 1000);
+// Dynamic Header and Footer Loading
+async function loadHeaderFooter() {
+    try {
+        // Load header
+        const headerResponse = await fetch('./header.html');
+        if (headerResponse.ok) {
+            const headerContent = await headerResponse.text();
+            const headerContainer = document.getElementById('header-container');
+            if (headerContainer) {
+                headerContainer.innerHTML = headerContent;
+            }
+        }
+        
+        // Load footer
+        const footerResponse = await fetch('./footer.html');
+        if (footerResponse.ok) {
+            const footerContent = await footerResponse.text();
+            const footerContainer = document.getElementById('footer-container');
+            if (footerContainer) {
+                footerContainer.innerHTML = footerContent;
+            }
+        }
+    } catch (error) {
+        console.error('Error loading header/footer:', error);
+    }
+}
 
+// Load header and footer on page load, then initialize everything
+document.addEventListener('DOMContentLoaded', async function() {
+    // Load header and footer first
+    await loadHeaderFooter();
+    
     // Initialize all functionality
     initNavigation();
     initScrollEffects();
@@ -27,6 +47,19 @@ document.addEventListener('DOMContentLoaded', function() {
     initMagneticButtons();
     initAdvancedParallax();
     initMobileReadMore();
+    
+    // Hide loading screen after page loads
+    setTimeout(() => {
+        const loadingScreen = document.getElementById('loading-screen');
+        if (loadingScreen) {
+            loadingScreen.style.opacity = '0';
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+                // Start main animations after loading screen disappears
+                initMainAnimations();
+            }, 500);
+        }
+    }, 1000);
 });
 
 // Fixed Hero Landing Screen with Code Forest Exit Effect

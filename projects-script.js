@@ -1,13 +1,16 @@
 // Projects Page JavaScript
 document.addEventListener('DOMContentLoaded', function() {
-    // Initialize fade-in animations
-    initScrollEffects();
-    
-    // Initialize project filtering
-    initProjectFilters();
-    
-    // Initialize navigation
-    initNavigation();
+    // Load header and footer components
+    loadHeaderFooter().then(() => {
+        // Initialize fade-in animations
+        initScrollEffects();
+        
+        // Initialize project filtering
+        initProjectFilters();
+        
+        // Initialize navigation
+        initNavigation();
+    });
 });
 
 // Navigation functionality for projects page

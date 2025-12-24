@@ -2915,10 +2915,20 @@ section::before {
     color: #64ffda;
 }
 
+.footer-section-center {
+    text-align: center;
+}
+
 .footer-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px 48px;
+}
+
+.footer-contact {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
 }
 
 .footer .footer-links {
