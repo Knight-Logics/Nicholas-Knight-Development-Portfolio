@@ -2,6 +2,7 @@
 // Global variables for landing mode
 let isInLandingMode = true;
 let exitLandingMode = null;
+let suppressLandingReentry = false; // Prevent immediate hero re-entry after nav clicks
 
 // Dynamic Header and Footer Loading
 async function loadHeaderFooter() {
@@ -52,25 +53,50 @@ document.addEventListener('DOMContentLoaded', async function() {
     initAdvancedParallax();
     initMobileReadMore();
     
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    // Smooth scrolling for anchor links (same-page and index.html#section)
+    document.querySelectorAll('a[href*="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
             const href = this.getAttribute('href');
-            
-            // Skip if empty hash or not on the same page
-            if (href === '#' || href.startsWith('#') === false) return;
-            
-            const target = document.querySelector(href);
-            if (target) {
-                e.preventDefault();
-                target.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-                
-                // Update URL hash without jumping
-                history.pushState(null, null, href);
+            if (!href || href === '#') return;
+
+            const isSamePageHash = href.startsWith('#');
+            const isIndexHash = /(^|\/)index\.html#/.test(href);
+            const onIndexPage = /(^|\/)index\.html$/.test(window.location.pathname) || window.location.pathname === '/';
+
+            // Determine target hash for same-page scrolling
+            const hash = isSamePageHash ? href : (isIndexHash && onIndexPage ? href.substring(href.indexOf('#')) : null);
+
+            if (hash) {
+                const target = document.querySelector(hash);
+                if (target) {
+                    e.preventDefault();
+
+                    const scrollWithOffset = () => {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        const navbar = document.querySelector('.navbar');
+                        const offset = navbar ? navbar.offsetHeight : 0;
+                        if (offset) {
+                            // Apply a small delay so offset adjusts after scrollIntoView completes
+                            setTimeout(() => { window.scrollBy(0, -offset); }, 250);
+                        }
+                        history.pushState(null, null, hash);
+                    };
+
+                    // Exit landing overlay first if active, then scroll
+                    if (isInLandingMode && typeof exitLandingMode === 'function') {
+                        suppressLandingReentry = true;
+                        exitLandingMode();
+                        setTimeout(() => {
+                            scrollWithOffset();
+                            // Clear suppression shortly after scroll completes
+                            setTimeout(() => { suppressLandingReentry = false; }, 1000);
+                        }, 900);
+                    } else {
+                        scrollWithOffset();
+                    }
+                }
             }
+            // Otherwise, allow normal navigation (e.g., projects.html)
         });
     });
     
@@ -188,7 +214,7 @@ function initLayeredParallax() {
             // Enhanced scroll-up detection for blank space and About section
             if (e.deltaY < 0) { // Scrolling up
                 // Trigger if in the blank space above About or at the very top of About section
-                if (currentScroll <= aboutSectionTop + 200) { // Include blank space + top portion of About
+                if (!suppressLandingReentry && currentScroll <= aboutSectionTop + 200) { // Include blank space + top portion of About
                     e.preventDefault();
                     console.log('🔄 Scroll up detected at position:', currentScroll, 'About section at:', aboutSectionTop);
                     enterLandingMode();
@@ -449,7 +475,7 @@ function initLayeredParallax() {
         const aboutSectionTop = aboutSection ? aboutSection.offsetTop : 0;
         
         // Reset scrollbar tracking when returning to landing
-        if (currentScroll <= aboutSectionTop + 150 && !isInLandingMode) {
+        if (currentScroll <= aboutSectionTop + 150 && !isInLandingMode && !suppressLandingReentry) {
             // Only trigger on upward scroll motion
             if (currentScroll < (lastScrollPosition || 0)) {
                 console.log('🔄 resetToLanding triggered - returning to hero');
@@ -491,7 +517,7 @@ function initLayeredParallax() {
             const aboutSectionTop = aboutSection ? aboutSection.offsetTop : 0;
             
             // Trigger when scrolling up in blank space or at About section header
-            if (currentScroll <= aboutSectionTop + 200) {
+            if (!suppressLandingReentry && currentScroll <= aboutSectionTop + 200) {
                 e.preventDefault();
                 console.log('🔄 Secondary wheel handler triggered at:', currentScroll);
                 enterLandingMode();

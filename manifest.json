@@ -1,0 +1,32 @@
+{
+  "name": "Knight Logics - AI, Automation & Development Solutions",
+  "short_name": "Knight Logics",
+  "description": "Professional software development and business automation services specializing in custom CRM, e-commerce, and enterprise solutions.",
+  "start_url": "https://knightlogics.com/",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#64ffda",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "./images/KnightLogicsLogo2.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./images/KnightLogicsLogo2.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["business", "technology"],
+  "screenshots": [
+    {
+      "src": "./images/KnightLogicsLogo2.png",
+      "sizes": "540x720",
+      "type": "image/png"
+    }
+  ]
+}
