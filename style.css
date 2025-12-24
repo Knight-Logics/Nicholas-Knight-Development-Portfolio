@@ -158,13 +158,13 @@ body {
 .brand-text-wrap {
     display: flex;
     flex-direction: column;
-    line-height: 1.1;
+    line-height: 1.3;
 }
 .nav-tagline {
     font-size: 0.9rem;
     color: #a0a0a0;
     letter-spacing: 0.4px;
-    margin-top: 2px;
+    margin-top: 6px;
 }
 .navbar.scrolled .nav-tagline {
     font-size: 0.85rem;
