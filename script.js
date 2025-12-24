@@ -52,6 +52,28 @@ document.addEventListener('DOMContentLoaded', async function() {
     initAdvancedParallax();
     initMobileReadMore();
     
+    // Smooth scrolling for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            
+            // Skip if empty hash or not on the same page
+            if (href === '#' || href.startsWith('#') === false) return;
+            
+            const target = document.querySelector(href);
+            if (target) {
+                e.preventDefault();
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+                
+                // Update URL hash without jumping
+                history.pushState(null, null, href);
+            }
+        });
+    });
+    
     // Hide loading screen after page loads
     setTimeout(() => {
         const loadingScreen = document.getElementById('loading-screen');
