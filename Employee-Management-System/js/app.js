@@ -15,6 +15,8 @@ class EmployeeManagementSystem {
     }
     
     init() {
+        this.injectSiteChrome();
+        this.setupNoticeBanner();
         this.showLoadingScreen();
         this.generateSampleData();
         this.setupEventListeners();
@@ -27,6 +29,39 @@ class EmployeeManagementSystem {
         this.populatePerformanceData();
         this.populateBenefitsData();
         this.populateReportsData();
+    }
+
+    async injectSiteChrome() {
+        try {
+            const headerEl = document.getElementById('siteHeader');
+            const footerEl = document.getElementById('siteFooter');
+            if (headerEl) {
+                const h = await fetch('../header.html', { cache: 'no-store' });
+                if (h.ok) headerEl.innerHTML = await h.text();
+            }
+            if (footerEl) {
+                const f = await fetch('../footer.html', { cache: 'no-store' });
+                if (f.ok) footerEl.innerHTML = await f.text();
+                footerEl.style.display = 'block';
+            }
+            document.body.classList.add('has-site-header');
+        } catch (e) {
+            // ignore
+        }
+    }
+
+    setupNoticeBanner() {
+        const banner = document.getElementById('demoBanner');
+        const closeBtn = document.getElementById('demoBannerClose');
+        if (!banner) return;
+        const dismissed = localStorage.getItem('emsDemoBannerDismissed') === '1';
+        if (dismissed) banner.style.display = 'none';
+        if (closeBtn) {
+            closeBtn.addEventListener('click', () => {
+                banner.style.display = 'none';
+                localStorage.setItem('emsDemoBannerDismissed', '1');
+            });
+        }
     }
     
     showLoadingScreen() {

@@ -78,6 +78,45 @@ body {
     line-height: 1.6;
     min-height: 100vh;
     overflow-x: hidden;
+    overflow-y: auto;
+}
+
+.has-site-header {
+    padding-top: 120px;
+}
+
+@media (max-width: 768px) {
+    .has-site-header { padding-top: 90px; }
+}
+
+.app-container {
+    padding-bottom: 140px;
+    position: relative;
+    z-index: 1;
+    min-height: auto;
+}
+
+#siteFooter {
+    position: relative;
+    z-index: 20;
+    margin-top: 40px;
+}
+
+#siteFooter .footer {
+    color: #e5e7eb;
+    background: #0a0a0a;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    opacity: 1;
+    transform: none;
+    transition: none;
+}
+
+#siteFooter .footer a {
+    color: #64ffda;
+}
+
+#siteFooter .footer a:hover {
+    color: #ffffff;
 }
 
 /* Loading Screen */
@@ -204,6 +243,56 @@ body {
     box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
 }
 
+/* Demo Banner */
+.demo-banner {
+    background: rgba(99, 102, 241, 0.15);
+    border-bottom: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    padding: var(--spacing-sm) var(--spacing-xl);
+}
+
+.demo-banner .banner-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: var(--spacing-md);
+    align-items: center;
+}
+
+.demo-banner .banner-tag {
+    color: var(--text-primary);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.demo-banner .banner-tag i {
+    color: var(--warning-color);
+}
+
+.demo-banner .banner-close {
+    margin-left: auto;
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    padding: 2px 10px;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.demo-banner .banner-close:hover {
+    color: var(--text-primary);
+    border-color: var(--primary-color);
+}
+
+.site-header-placeholder,
+.site-footer-placeholder {
+    z-index: 1100;
+}
+
 .header-right {
     display: flex;
     align-items: center;
@@ -284,7 +373,8 @@ body {
 /* Main Content */
 .main-content {
     display: flex;
-    min-height: calc(100vh - 70px);
+    min-height: auto;
+    flex: 1 1 auto;
 }
 
 /* Sidebar */
@@ -294,6 +384,7 @@ body {
     border-right: 1px solid var(--border-color);
     padding: var(--spacing-xl);
     overflow-y: auto;
+    max-height: none;
 }
 
 .nav-menu ul {

@@ -60,7 +60,7 @@ class InvoiceManagementSystem {
   
   initializeDOMElements() {
     // Navigation elements
-    this.navLinks = document.querySelectorAll('.nav-link');
+    this.navLinks = document.querySelectorAll('.sidebar .nav-link');
     this.contentSections = document.querySelectorAll('.content-section');
     
     // Dashboard elements

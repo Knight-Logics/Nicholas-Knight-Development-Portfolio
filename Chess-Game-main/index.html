@@ -39,9 +39,18 @@
     </script>
     <title>Knight Logics Chess | Nicholas Knight Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <div id="siteHeader" class="site-header-placeholder"></div>
+    <div id="demoBanner" class="demo-banner" role="region" aria-label="Demonstration notice">
+        <div class="banner-content">
+            <span class="banner-tag"><i class="fas fa-info-circle"></i> Demo</span>
+            <span>This page is an interactive Chess game demo. All gameplay is for demonstration purposes.</span>
+            <button id="demoBannerClose" class="banner-close" aria-label="Dismiss notice">Dismiss</button>
+        </div>
+    </div>
     <div class="game-container">
         <header class="game-header">
             <div class="logo-section">
@@ -237,6 +246,43 @@
     </div>
 
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js'></script>
+    <div id="siteFooter" class="site-footer-placeholder"></div>
     <script src="script.js"></script>
+    <script>
+        (function() {
+            async function injectChrome() {
+                try {
+                    const headerEl = document.getElementById('siteHeader');
+                    const footerEl = document.getElementById('siteFooter');
+                    if (headerEl) {
+                        const h = await fetch('../header.html', { cache: 'no-store' });
+                        if (h.ok) headerEl.innerHTML = await h.text();
+                    }
+                    if (footerEl) {
+                        const f = await fetch('../footer.html', { cache: 'no-store' });
+                        if (f.ok) footerEl.innerHTML = await f.text();
+                        footerEl.style.display = 'block';
+                    }
+                    document.body.classList.add('has-site-header');
+                } catch (e) {}
+            }
+
+            function setupBanner() {
+                const banner = document.getElementById('demoBanner');
+                const closeBtn = document.getElementById('demoBannerClose');
+                if (!banner) return;
+                if (localStorage.getItem('chessDemoBannerDismissed') === '1') banner.style.display = 'none';
+                if (closeBtn) {
+                    closeBtn.addEventListener('click', () => {
+                        banner.style.display = 'none';
+                        localStorage.setItem('chessDemoBannerDismissed', '1');
+                    });
+                }
+            }
+
+            injectChrome();
+            setupBanner();
+        })();
+    </script>
 </body>
 </html>

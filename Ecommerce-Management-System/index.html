@@ -38,11 +38,20 @@
     </script>
     <title>Knight Logics - E-commerce Management System</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
+    <div id="siteHeader" class="site-header-placeholder"></div>
+    <div id="demoBanner" class="demo-banner" role="region" aria-label="Demonstration notice">
+        <div class="banner-content">
+            <span class="banner-tag"><i class="fas fa-info-circle"></i> Demo</span>
+            <span>This page is an interactive demonstration of an E-commerce Management System. All data is sample to showcase capabilities. Use the sidebar to explore: Dashboard, Products, Orders, Customers, Inventory, Marketing, and Reports.</span>
+            <button id="demoBannerClose" class="banner-close" aria-label="Dismiss notice">Dismiss</button>
+        </div>
+    </div>
     <!-- Loading Screen -->
     <div id="loadingScreen" class="loading-screen">
         <div class="loading-container">
@@ -641,6 +650,45 @@
         </div>
     </div>
 
-    <script src="js/app.js"></script>
+        <div id="siteFooter" class="site-footer-placeholder"></div>
+        <script src="js/app.js"></script>
+        <script>
+            (function() {
+                async function injectChrome() {
+                    try {
+                        const headerEl = document.getElementById('siteHeader');
+                        const footerEl = document.getElementById('siteFooter');
+                        if (headerEl) {
+                            const h = await fetch('../header.html', { cache: 'no-store' });
+                            if (h.ok) headerEl.innerHTML = await h.text();
+                        }
+                        if (footerEl) {
+                            const f = await fetch('../footer.html', { cache: 'no-store' });
+                            if (f.ok) footerEl.innerHTML = await f.text();
+                            footerEl.style.display = 'block';
+                        }
+                        document.body.classList.add('has-site-header');
+                    } catch (e) {}
+                }
+
+                function setupBanner() {
+                    const banner = document.getElementById('demoBanner');
+                    const closeBtn = document.getElementById('demoBannerClose');
+                    if (!banner) return;
+                    if (localStorage.getItem('ecomDemoBannerDismissed') === '1') {
+                        banner.style.display = 'none';
+                    }
+                    if (closeBtn) {
+                        closeBtn.addEventListener('click', () => {
+                            banner.style.display = 'none';
+                            localStorage.setItem('ecomDemoBannerDismissed', '1');
+                        });
+                    }
+                }
+
+                injectChrome();
+                setupBanner();
+            })();
+        </script>
 </body>
 </html>

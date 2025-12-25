@@ -38,10 +38,19 @@
     </script>
     <title>Knight Logics Invoice Manager | Professional Invoicing System</title>
     <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
+    <div id="siteHeader" class="site-header-placeholder"></div>
+    <div id="demoBanner" class="demo-banner" role="region" aria-label="Demonstration notice">
+        <div class="banner-content">
+            <span class="banner-tag"><i class="fas fa-info-circle"></i> Demo</span>
+            <span>This page is an interactive demonstration of an Invoice Management System. All data is sample to showcase capabilities. Use the navigation to explore: Dashboard, Invoices, Clients, Payments, and Reports.</span>
+            <button id="demoBannerClose" class="banner-close" aria-label="Dismiss notice">Dismiss</button>
+        </div>
+    </div>
     <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen">
         <div class="loader">
@@ -555,6 +564,45 @@
 
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="js/app.js"></script>
+        <div id="siteFooter" class="site-footer-placeholder"></div>
+        <script src="js/app.js"></script>
+        <script>
+            (function() {
+                async function injectChrome() {
+                    try {
+                        const headerEl = document.getElementById('siteHeader');
+                        const footerEl = document.getElementById('siteFooter');
+                        if (headerEl) {
+                            const h = await fetch('../header.html', { cache: 'no-store' });
+                            if (h.ok) headerEl.innerHTML = await h.text();
+                        }
+                        if (footerEl) {
+                            const f = await fetch('../footer.html', { cache: 'no-store' });
+                            if (f.ok) footerEl.innerHTML = await f.text();
+                            footerEl.style.display = 'block';
+                        }
+                        document.body.classList.add('has-site-header');
+                    } catch (e) {}
+                }
+
+                function setupBanner() {
+                    const banner = document.getElementById('demoBanner');
+                    const closeBtn = document.getElementById('demoBannerClose');
+                    if (!banner) return;
+                    if (localStorage.getItem('invoiceDemoBannerDismissed') === '1') {
+                        banner.style.display = 'none';
+                    }
+                    if (closeBtn) {
+                        closeBtn.addEventListener('click', () => {
+                            banner.style.display = 'none';
+                            localStorage.setItem('invoiceDemoBannerDismissed', '1');
+                        });
+                    }
+                }
+
+                injectChrome();
+                setupBanner();
+            })();
+        </script>
 </body>
 </html>
