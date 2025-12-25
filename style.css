@@ -1205,7 +1205,7 @@ section::before {
     display: grid;
     grid-template-columns: 2fr 1fr;
     gap: 4rem;
-    align-items: start;
+    align-items: stretch;
 }
 
 /* Contact Form Styling */
@@ -1220,10 +1220,20 @@ section::before {
     border-radius: 20px;
     padding: 3rem;
     backdrop-filter: blur(15px);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .form-group {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
     margin-bottom: 1.5rem;
+}
+
+#businessNameGroup {
+    margin-top: 2rem;
 }
 
 .form-row {
@@ -1321,6 +1331,7 @@ section::before {
 .form-group textarea {
     resize: vertical;
     min-height: 120px;
+    flex-grow: 1;
 }
 
 .form-submit-btn {
@@ -1336,6 +1347,8 @@ section::before {
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
     overflow: hidden;
+    margin-top: auto;
+    margin-bottom: 2rem;
 }
 
 .form-submit-btn:hover {
@@ -1354,6 +1367,9 @@ section::before {
 .contact-info-sidebar {
     position: relative;
     z-index: 10;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .contact-item {
