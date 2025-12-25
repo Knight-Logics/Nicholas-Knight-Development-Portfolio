@@ -1,6 +1,9 @@
 # Enable URL rewriting
 RewriteEngine On
 
+# Redirect old Tic-Tac-Toe folder to new location
+RewriteRule ^JavaScript-Tic-Tac-Toe-master/(.*) /Tic-Tac-Toe/$1 [R=301,L]
+
 # Remove .html extension from URLs
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
