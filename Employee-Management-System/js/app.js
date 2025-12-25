@@ -45,9 +45,56 @@ class EmployeeManagementSystem {
                 footerEl.style.display = 'block';
             }
             document.body.classList.add('has-site-header');
+            // Initialize dropdown after header is injected
+            this.initializeDropdown();
         } catch (e) {
             // ignore
         }
+    }
+
+    initializeDropdown() {
+        const navDropdowns = document.querySelectorAll('.nav-dropdown');
+        if (navDropdowns.length === 0) return;
+        
+        navDropdowns.forEach(dropdown => {
+            const toggle = dropdown.querySelector('.nav-dropdown-toggle');
+            const menu = dropdown.querySelector('.nav-dropdown-menu');
+            
+            if (toggle && menu) {
+                // Desktop: Show on hover
+                dropdown.addEventListener('mouseenter', () => {
+                    dropdown.classList.add('active');
+                });
+                
+                dropdown.addEventListener('mouseleave', () => {
+                    dropdown.classList.remove('active');
+                });
+                
+                // Mobile: Show on click
+                toggle.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    dropdown.classList.toggle('active');
+                });
+                
+                // Close dropdown when clicking a dropdown item
+                const items = dropdown.querySelectorAll('.nav-dropdown-item');
+                items.forEach(item => {
+                    item.addEventListener('click', () => {
+                        dropdown.classList.remove('active');
+                    });
+                });
+            }
+        });
+        
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.nav-dropdown')) {
+                navDropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+            }
+        });
     }
 
     setupNoticeBanner() {
