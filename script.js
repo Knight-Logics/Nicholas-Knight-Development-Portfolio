@@ -695,6 +695,8 @@ function initNavigation() {
 
     // Enhanced hamburger menu toggle with overlay
     function toggleMobileMenu() {
+        if (!navMenu || !hamburger || !navMenuOverlay) return;
+        
         const isActive = navMenu.classList.contains('active');
         
         if (isActive) {
@@ -713,10 +715,14 @@ function initNavigation() {
     }
 
     // Hamburger click handler
-    hamburger.addEventListener('click', toggleMobileMenu);
+    if (hamburger) {
+        hamburger.addEventListener('click', toggleMobileMenu);
+    }
 
     // Overlay click handler - close menu when clicking overlay
-    navMenuOverlay.addEventListener('click', toggleMobileMenu);
+    if (navMenuOverlay) {
+        navMenuOverlay.addEventListener('click', toggleMobileMenu);
+    }
 
     // Dropdown menu handling
     const navDropdowns = document.querySelectorAll('.nav-dropdown');
@@ -747,12 +753,14 @@ function initNavigation() {
                 item.addEventListener('click', () => {
                     dropdown.classList.remove('active');
                     // Close mobile menu if open
-                    setTimeout(() => {
-                        navMenu.classList.remove('active');
-                        hamburger.classList.remove('active');
-                        navMenuOverlay.classList.remove('active');
-                        document.body.style.overflow = '';
-                    }, 150);
+                    if (navMenu && hamburger && navMenuOverlay) {
+                        setTimeout(() => {
+                            navMenu.classList.remove('active');
+                            hamburger.classList.remove('active');
+                            navMenuOverlay.classList.remove('active');
+                            document.body.style.overflow = '';
+                        }, 150);
+                    }
                 });
             });
         }
@@ -776,17 +784,24 @@ function initNavigation() {
             // Add click ripple effect
             link.style.transform = 'translateX(4px) scale(0.95)';
             
-            setTimeout(() => {
-                navMenu.classList.remove('active');
-                hamburger.classList.remove('active');
-                navMenuOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-                
-                // Reset link transform
+            if (navMenu && hamburger && navMenuOverlay) {
+                setTimeout(() => {
+                    navMenu.classList.remove('active');
+                    hamburger.classList.remove('active');
+                    navMenuOverlay.classList.remove('active');
+                    document.body.style.overflow = '';
+                    
+                    // Reset link transform
+                    setTimeout(() => {
+                        link.style.transform = '';
+                    }, 200);
+                }, 150);
+            } else {
+                // Reset link transform even if menu elements don't exist
                 setTimeout(() => {
                     link.style.transform = '';
                 }, 200);
-            }, 150);
+            }
         });
     });
 
