@@ -1,10 +1,10 @@
 # Nicholas Knight Development Portfolio
 
-A modern, responsive portfolio website showcasing full-stack development skills, interactive games, automation scripts, and professional experience.
+Knight Logics is the portfolio and proof layer for Nicholas Knight's AI-assisted automation, workflow integration, media pipeline, and business tooling work.
 
 ## 🌟 Live Demo
 
-Visit the live portfolio: [Your Portfolio URL] (to be added after deployment)
+Visit the live portfolio: https://knightlogics.com
 
 ## 📋 Table of Contents
 
@@ -20,53 +20,51 @@ Visit the live portfolio: [Your Portfolio URL] (to be added after deployment)
 
 ## 📖 About
 
-This portfolio website represents my journey as a Full-Stack Developer and Business Management Professional. It features a collection of web applications, interactive games, automation scripts, SQL databases, and professional projects that demonstrate my technical skills and problem-solving abilities.
+This portfolio site is positioned around practical delivery: AI-assisted automation systems, API integrations, FFmpeg/media workflows, business tooling, and client-facing implementation work. It also includes supporting demos and sample applications that show front-end range, workflow design, and problem-solving depth.
 
 ## ✨ Features
 
 - **Responsive Design**: Optimized for all devices and screen sizes
-- **Interactive Games**: Chess game, Tic-Tac-Toe, and other JavaScript games
-- **Automation Scripts**: Python scripts for various automation tasks
-- **SQL Projects**: Database queries and data analysis projects
-- **Video Demonstrations**: Project showcases and tutorials
-- **Professional Portfolio**: Complete overview of skills and experience
-- **Contact Integration**: Easy ways to get in touch
-- **Modern UI/UX**: Clean, professional design with smooth animations
+- **Automation Proof**: Python workflows, media processing pipelines, and implementation-focused systems
+- **Business Application Demos**: CRM, project, employee, invoice, and e-commerce management interfaces
+- **Interactive Projects**: Chess, Tic-Tac-Toe, and browser-based JavaScript demos
+- **Script Libraries**: Python, PowerShell, and SQL samples that support operations and automation use cases
+- **Client-Facing Positioning**: Portfolio copy designed to align with LinkedIn, GitHub, and Upwork messaging
+- **Modern UI/UX**: Clean presentation, responsive layouts, and polished project pages
 
 ## 🛠️ Technologies Used
 
 ### Frontend
-- **HTML5**: Semantic markup and accessibility
-- **CSS3**: Modern styling with flexbox and grid
-- **JavaScript (ES6+)**: Interactive functionality and game logic
-- **Responsive Design**: Mobile-first approach
+- **HTML5 / CSS3 / JavaScript**: Static sites, demo applications, interactive UI, and portfolio presentation
 
-### Backend & Databases
-- **SQL**: Database design and complex queries
-- **Python**: Automation scripts and data processing
+### Automation & Integration
+- **Python**: Workflow scripting, API orchestration, and operational automation
+- **FFmpeg**: Media processing and content pipeline automation
+- **PowerShell**: Windows automation and utility scripting
+- **SQL**: Querying, reporting, and data support work
 
-### Tools & Platforms
-- **Git/GitHub**: Version control and collaboration
-- **VS Code**: Development environment
-- **PowerShell**: Automation and scripting
+### Platforms & Workflow
+- **Git/GitHub**: Source control and public proof of work
+- **VS Code**: Primary development environment
+- **GitHub Pages / Custom Domain**: Deployment for public-facing portfolio assets
 
 ## 🎮 Projects Showcase
 
-### Interactive Games
-- **Chess Game**: Full-featured chess implementation with move validation
-- **Tic-Tac-Toe**: Classic game with AI opponent option
+### Automation and Pipeline Work
+- **Media / Content Workflows**: AI-assisted pipelines, FFmpeg processing, and automation-oriented scripting
+- **Operational Tooling**: Utility scripts and repeatable workflow helpers
 
-### Automation Scripts
-- **Python Automation**: Various scripts for task automation
-- **PowerShell Scripts**: System administration and configuration
+### Business Application Demos
+- **CRM Management System**: Contact and pipeline demo
+- **Employee Management System**: HR and staffing interface demo
+- **Project Management System**: Task and milestone management demo
+- **Invoice Management System**: Billing and payment tracking demo
+- **E-commerce Management System**: Store operations demo
 
-### Database Projects
-- **SQL Queries**: Complex data analysis and reporting
-- **Data Visualization**: Tableau dashboards and insights
-
-### Web Applications
-- **Portfolio Website**: This responsive portfolio site
-- **Business Management Tools**: Professional project implementations
+### Interactive and Supporting Projects
+- **Chess Game**: Browser-based chess implementation
+- **Tic-Tac-Toe Variants**: Lightweight JavaScript game demos
+- **SQL Queries / Tableau Work**: Data support and reporting examples
 
 ## 🚀 Installation
 
@@ -176,10 +174,10 @@ While this is a personal portfolio, I welcome feedback and suggestions:
 ## 📬 Contact
 
 **Nicholas Knight**
-- **GitHub**: [Your GitHub Profile]
-- **LinkedIn**: [Your LinkedIn Profile]
-- **Email**: [Your Email]
-- **Portfolio**: [Your Portfolio URL]
+- **GitHub**: https://github.com/Nicholasjknight
+- **LinkedIn**: https://www.linkedin.com/in/nicholasknight87/
+- **Email**: support@knightlogics.com
+- **Portfolio**: https://knightlogics.com
 
 ## 📄 License
 
