@@ -186,6 +186,39 @@ body {
     align-items: center;
 }
 
+.nav-cta {
+    position: absolute;
+    right: 40px;
+    display: flex;
+    align-items: center;
+}
+
+.nav-hire-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 22px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(100, 255, 218, 0.25), rgba(100, 255, 218, 0.12));
+    border: 1px solid rgba(100, 255, 218, 0.45);
+    color: #d8fff4;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    transition: all 0.25s ease;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(100, 255, 218, 0.12) inset;
+}
+
+.nav-hire-btn:hover {
+    transform: translateY(-2px);
+    color: #ffffff;
+    border-color: rgba(100, 255, 218, 0.75);
+    background: linear-gradient(135deg, rgba(100, 255, 218, 0.35), rgba(100, 255, 218, 0.18));
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45), 0 0 30px rgba(100, 255, 218, 0.18);
+}
+
 /* Overview (Why Choose) section */
 .overview-section {
     padding: 80px 40px;
@@ -3285,6 +3318,10 @@ section::before {
     
     .navbar.scrolled {
         padding: 15px 20px;
+    }
+
+    .nav-cta {
+        display: none;
     }
     
     .nav-brand {
