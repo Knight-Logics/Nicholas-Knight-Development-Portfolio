@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Display Control+ by Knight Logics: Windows app for multi-monitor burn-in protection with tray controls, idle detection, and media overlays.">
-    <meta name="keywords" content="Display Control Plus, OLED burn-in protection, Windows tray app, multi-monitor utility, idle detection, Knight Logics">
+    <meta name="description" content="Display Control+ by Knight Logics: professional Windows utility for per-monitor OLED/LCD protection with tray controls, idle detection modes, and persistent overlay workflows.">
+    <meta name="keywords" content="Display Control+, OLED protection app, Windows multi-monitor utility, tray app, idle detection, burn-in prevention, Knight Logics">
     <meta name="author" content="Nicholas Knight">
 
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Display Control+ | Windows Burn-In Protection App">
-    <meta property="og:description" content="Professional Windows utility for OLED/LCD display protection with per-monitor controls, overlays, and automatic startup.">
+    <meta property="og:title" content="Display Control+ | Professional Display Protection for Windows">
+    <meta property="og:description" content="Protect OLED/LCD displays with per-monitor idle rules, tray-first controls, media overlays, and persistent runtime behavior.">
     <meta property="og:url" content="https://knightlogics.com/display-control-plus.html">
     <meta property="og:site_name" content="Knight Logics">
     <meta property="og:image" content="https://knightlogics.com/images/Display-Control-Plus-Logo.png">
@@ -17,8 +17,8 @@
     <meta property="og:image:height" content="630">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Display Control+ | Windows Burn-In Protection App">
-    <meta name="twitter:description" content="Download Display Control+ and protect your OLED/LCD monitors with idle-based overlays and tray controls.">
+    <meta name="twitter:title" content="Display Control+ | Professional Display Protection for Windows">
+    <meta name="twitter:description" content="Windows app for per-monitor overlay protection, idle detection modes, tray controls, and persistent startup behavior.">
     <meta name="twitter:image" content="https://knightlogics.com/images/Display-Control-Plus-Logo.png">
 
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VX36QR7HJW"></script>
@@ -36,7 +36,7 @@
         "name": "Display Control+",
         "operatingSystem": "Windows 10, Windows 11",
         "applicationCategory": "UtilitiesApplication",
-        "softwareVersion": "1.0.0",
+        "softwareVersion": "1.0.x",
         "creator": {
             "@type": "Organization",
             "name": "Knight Logics"
@@ -48,7 +48,8 @@
         },
         "url": "https://knightlogics.com/display-control-plus.html",
         "downloadUrl": "https://github.com/Knight-Logics/display-control-plus/releases/latest",
-        "description": "Windows utility for multi-monitor burn-in protection with tray controls, idle detection, and media overlays.",
+        "softwareHelp": "https://github.com/Knight-Logics/display-control-plus",
+        "description": "Professional Windows utility for per-monitor OLED/LCD burn-in protection with tray controls, idle detection modes, media overlays, and persistent settings.",
         "offers": {
             "@type": "Offer",
             "price": "0",
@@ -59,10 +60,10 @@
 
     <link rel="canonical" href="https://knightlogics.com/display-control-plus.html">
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
-    <link rel="icon" type="image/png" href="./images/KnightLogicsLogo2.png" sizes="32x32">
-    <link rel="apple-touch-icon" href="./images/KnightLogicsLogo2.png">
+    <link rel="icon" type="image/png" href="./images/Display-Control-Plus-Logo.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="./images/Display-Control-Plus-Logo.png">
     <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#64ffda">
+    <meta name="theme-color" content="#6de1ff">
     <meta name="msapplication-TileColor" content="#0a0a0a">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -70,55 +71,258 @@
     <title>Display Control+ | Knight Logics</title>
 </head>
 <body>
-    <div id="loading-screen">
-        <div class="loader">
-            <div class="spinner"></div>
-            <p>Loading Display Control+...</p>
-        </div>
-    </div>
-
     <div id="header-container"></div>
 
-    <section class="policy-section" style="background: linear-gradient(135deg, rgba(10, 10, 10, 0.95) 0%, rgba(26, 26, 46, 0.95) 100%); padding-top: 120px; padding-bottom: 60px;">
+    <section class="displayplus-hero">
         <div class="container">
-            <div class="policy-header">
-                <h1>Display Control+</h1>
-                <p>Windows utility for OLED/LCD burn-in protection and multi-monitor idle overlays.</p>
+            <div class="displayplus-hero-layout">
+                <div class="displayplus-hero-copy fade-in">
+                    <span class="displayplus-eyebrow">Windows Desktop Utility</span>
+                    <div class="product-title-row">
+                        <img src="./images/Display-Control-Plus-Logo.png" alt="Display Control+ logo" class="product-title-logo">
+                        <h1>Display Control+</h1>
+                    </div>
+                    <p class="displayplus-subtitle">A tray-first, professional display protection system for OLED and LCD setups that need per-monitor idle behavior, persistent settings, and practical control without interrupting active screens.</p>
+                    <div class="displayplus-cta-row">
+                        <a href="https://github.com/Knight-Logics/display-control-plus/releases/latest" target="_blank" rel="noopener noreferrer" class="btn-primary">Download Latest Release</a>
+                        <a href="https://github.com/Knight-Logics/display-control-plus" target="_blank" rel="noopener noreferrer" class="btn-secondary">View Repository</a>
+                    </div>
+                    <div class="displayplus-inline-notes">
+                        <span><i class="fas fa-display"></i> Multi-monitor aware</span>
+                        <span><i class="fas fa-clock"></i> Idle detection modes</span>
+                        <span><i class="fas fa-gear"></i> Tray-first startup</span>
+                    </div>
+                </div>
+
+                <div class="displayplus-hero-panel fade-in">
+                    <div class="displayplus-panel-shell">
+                        <div class="displayplus-shell-top">
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                        </div>
+                        <div class="displayplus-shell-body">
+                            <div class="displayplus-shell-headline">
+                                <p class="displayplus-shell-kicker">Display Control+ Runtime</p>
+                                <h2>Protect idle screens. Keep active screens untouched.</h2>
+                            </div>
+                            <div class="displayplus-shell-grid">
+                                <div>
+                                    <strong>Detection</strong>
+                                    <span>Input, Activity, or Both</span>
+                                </div>
+                                <div>
+                                    <strong>Modes</strong>
+                                    <span>Blank, image, slideshow, video playlist</span>
+                                </div>
+                                <div>
+                                    <strong>Startup</strong>
+                                    <span>Tray control + background runtime</span>
+                                </div>
+                                <div>
+                                    <strong>Persistence</strong>
+                                    <span>Saved in %APPDATA% config</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+    </section>
 
-            <div class="policy-content">
-                <p><strong>Built by Knight Logics</strong> for users who need reliable monitor protection with simple controls and persistent settings.</p>
+    <section class="displayplus-video-section">
+        <div class="container">
+            <div class="displayplus-video-shell fade-in">
+                <div class="displayplus-video-copy">
+                    <span class="displayplus-mini-label">YouTube Walkthrough</span>
+                    <h2>Introduction Video Coming Soon</h2>
+                    <p>A full product walkthrough is planned, similar to the PixelForge AI page. This section is already staged so your YouTube embed can be dropped in as soon as the video is published.</p>
+                </div>
+                <div class="displayplus-video-placeholder">
+                    <i class="fab fa-youtube"></i>
+                    <p>Ready for your future Display Control+ demo video embed.</p>
+                    <a href="https://www.youtube.com/@KnightLogics" target="_blank" rel="noopener noreferrer" class="project-link">Subscribe For Release Video</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <h2>Download</h2>
-                <p><a href="https://github.com/Knight-Logics/display-control-plus/releases/latest" target="_blank" rel="noopener">Get Latest Release</a></p>
+    <section class="displayplus-proof-strip">
+        <div class="container displayplus-proof-grid fade-in">
+            <article class="displayplus-proof-card">
+                <span class="displayplus-proof-number">Per-monitor</span>
+                <p>Each display can follow its own protection behavior instead of forcing a single global idle rule.</p>
+            </article>
+            <article class="displayplus-proof-card">
+                <span class="displayplus-proof-number">Tray-first</span>
+                <p>Users run tray.exe and control runtime behavior from the system tray without reopening full setup windows.</p>
+            </article>
+            <article class="displayplus-proof-card">
+                <span class="displayplus-proof-number">Persistent</span>
+                <p>Configuration is saved in AppData, so settings survive restarts and maintain expected behavior over time.</p>
+            </article>
+            <article class="displayplus-proof-card">
+                <span class="displayplus-proof-number">Release-ready</span>
+                <p>Packaged with PyInstaller and distributed through GitHub Releases with update-aware workflow support.</p>
+            </article>
+        </div>
+    </section>
 
-                <h2>Best File for Most Users</h2>
-                <ul>
-                    <li><strong>tray.exe</strong> - recommended startup app with dashboard access and pause/resume controls</li>
-                </ul>
+    <section class="displayplus-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Built For Multi-Display Reality</h2>
+                <p>Display Control+ is designed around real workstation behavior where one monitor can stay active while another needs protection.</p>
+            </div>
+            <div class="displayplus-feature-grid">
+                <article class="displayplus-feature-card fade-in">
+                    <i class="fas fa-layer-group"></i>
+                    <h3>Per-Monitor Profiles</h3>
+                    <p>Apply protection selectively by monitor with configurable idle thresholds and independent overlay behavior.</p>
+                </article>
+                <article class="displayplus-feature-card fade-in">
+                    <i class="fas fa-wave-square"></i>
+                    <h3>Detection Modes</h3>
+                    <p>Choose Input, Activity, or Both depending on whether movement, pixel change, or combined signals should control activation.</p>
+                </article>
+                <article class="displayplus-feature-card fade-in">
+                    <i class="fas fa-photo-film"></i>
+                    <h3>Flexible Overlay Modes</h3>
+                    <p>Use blank overlays, single image assets, slideshow rotation, or video playlists depending on your protection strategy.</p>
+                </article>
+                <article class="displayplus-feature-card fade-in">
+                    <i class="fas fa-hard-drive"></i>
+                    <h3>State Persistence</h3>
+                    <p>Protection settings and selected media paths persist through reboots using AppData-backed configuration.</p>
+                </article>
+            </div>
+        </div>
+    </section>
 
+    <section class="displayplus-section displayplus-section-alt">
+        <div class="container">
+            <div class="displayplus-split-layout">
+                <div class="displayplus-content-column fade-in">
+                    <span class="displayplus-mini-label">Recommended Workflow</span>
+                    <h2>Tray-first for daily use. Dashboard when configuration changes.</h2>
+                    <p>The intended release path starts with tray.exe. Users open the dashboard from the tray only when they want to change monitor selection, timeout behavior, or media mode.</p>
+                    <div class="displayplus-profile-list">
+                        <div class="displayplus-profile-item">
+                            <strong>Primary executable</strong>
+                            <span>tray.exe for startup, pause/resume control, and quick access.</span>
+                        </div>
+                        <div class="displayplus-profile-item">
+                            <strong>Optional dashboard launch</strong>
+                            <span>DisplayControl.exe for direct configuration access when needed.</span>
+                        </div>
+                        <div class="displayplus-profile-item">
+                            <strong>Background runtime</strong>
+                            <span>overlay_bg.exe typically managed by tray behavior.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="displayplus-stack-cards fade-in">
+                    <div class="displayplus-stack-card">
+                        <h3>System Integration Highlights</h3>
+                        <ul>
+                            <li>Windows tray controls for Open Dashboard, Pause/Resume, Exit Completely</li>
+                            <li>Startup automation pattern centered on background protection continuity</li>
+                            <li>Single-instance hardening and process-management improvements in recent releases</li>
+                        </ul>
+                    </div>
+                    <div class="displayplus-stack-card">
+                        <h3>Recent Release Focus</h3>
+                        <ul>
+                            <li>Tray singleton and duplicate-icon prevention improvements</li>
+                            <li>Installer and icon consistency updates for cleaner upgrades</li>
+                            <li>Update flow reliability improvements for restart and process handoff</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="displayplus-section">
+        <div class="container">
+            <div class="section-header fade-in">
                 <h2>Quick Start</h2>
-                <ol>
-                    <li>Download and run <strong>tray.exe</strong>.</li>
-                    <li>Right-click the tray icon and open the dashboard.</li>
-                    <li>Choose displays, timeout, and overlay mode.</li>
-                    <li>Click Apply.</li>
-                </ol>
+                <p>Simple onboarding path designed for non-technical users and production workstations.</p>
+            </div>
+            <div class="displayplus-steps">
+                <article class="displayplus-step fade-in">
+                    <span class="displayplus-step-number">01</span>
+                    <h3>Install from GitHub Releases</h3>
+                    <p>Download the latest build and keep release files together in the same folder when using portable assets.</p>
+                </article>
+                <article class="displayplus-step fade-in">
+                    <span class="displayplus-step-number">02</span>
+                    <h3>Run tray.exe</h3>
+                    <p>Use the tray app as the primary entry point for daily runtime behavior and quick control actions.</p>
+                </article>
+                <article class="displayplus-step fade-in">
+                    <span class="displayplus-step-number">03</span>
+                    <h3>Configure monitors and mode</h3>
+                    <p>Select displays, choose timeout and detection mode, then pick a protection overlay workflow.</p>
+                </article>
+                <article class="displayplus-step fade-in">
+                    <span class="displayplus-step-number">04</span>
+                    <h3>Apply and run in background</h3>
+                    <p>Save settings and let protection continue via tray-managed background behavior across sessions.</p>
+                </article>
+            </div>
+        </div>
+    </section>
 
-                <h2>Core Features</h2>
-                <ul>
-                    <li>Per-monitor idle detection and protection profiles</li>
-                    <li>Overlay modes: blank, single image, slideshow, video playlist</li>
-                    <li>Tray controls: open dashboard, pause/resume, exit</li>
-                    <li>Settings persist through reboots</li>
-                    <li>Auto-update prompt when a newer release is published</li>
-                </ul>
+    <section class="displayplus-section displayplus-section-alt">
+        <div class="container">
+            <div class="displayplus-download-layout">
+                <div class="displayplus-download-copy fade-in">
+                    <span class="displayplus-mini-label">Distribution</span>
+                    <h2>Production Packaging + Ongoing Release Maintenance</h2>
+                    <p>Display Control+ is distributed as a professional Windows desktop product with installer and portable workflows, active release updates, and legal documentation for commercial usage.</p>
+                    <div class="displayplus-note-box">
+                        <strong>Commercial licensing note</strong>
+                        <p>This software follows Knight Logics licensing and terms documentation included in the repository and packaged release assets.</p>
+                    </div>
+                </div>
+                <aside class="displayplus-download-card fade-in">
+                    <h3>Get Display Control+</h3>
+                    <a href="https://github.com/Knight-Logics/display-control-plus/releases/latest" target="_blank" rel="noopener noreferrer" class="project-link">Latest Release</a>
+                    <a href="https://github.com/Knight-Logics/display-control-plus" target="_blank" rel="noopener noreferrer" class="project-link">Source Repository</a>
+                    <a href="./projects.html" class="project-link">Back To Projects</a>
 
-                <h2>Source & Release Notes</h2>
-                <p>
-                    <a href="https://github.com/Knight-Logics/display-control-plus" target="_blank" rel="noopener">View Repository</a><br>
-                    <a href="https://github.com/Knight-Logics/display-control-plus/releases/tag/v1.0.0" target="_blank" rel="noopener">Read v1.0.0 Notes</a>
-                </p>
+                    <div class="displayplus-spec-list">
+                        <div>
+                            <strong>Platform</strong>
+                            <span>Windows 10 / 11 desktop utility</span>
+                        </div>
+                        <div>
+                            <strong>Recommended launcher</strong>
+                            <span>tray.exe</span>
+                        </div>
+                        <div>
+                            <strong>Settings path</strong>
+                            <span>%APPDATA%\\KnightLogics\\DisplayControlPlus\\config.json</span>
+                        </div>
+                        <div>
+                            <strong>Modes</strong>
+                            <span>Blank, image, slideshow, video playlist</span>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <section class="back-to-portfolio">
+        <div class="container">
+            <h2>Need a custom desktop utility for your workflow?</h2>
+            <p>Knight Logics builds practical, production-minded tools for real operational pain points.</p>
+            <div class="cta-buttons">
+                <a href="./projects.html" class="btn-secondary">View More Projects</a>
+                <a href="./index.html#contact" class="btn-primary">Discuss Your Project</a>
             </div>
         </div>
     </section>

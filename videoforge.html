@@ -3,104 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="VideoForge Studio (AutoTop5) by Knight Logics: downloadable Windows installer for generating ranked Top 5 videos locally with FFmpeg processing, optional narration, and export-ready output.">
-    <meta name="keywords" content="AutoTop5, VideoForge Studio, ranked video generator, FFmpeg Windows app, Shorts automation, Knight Logics">
+    <meta name="description" content="VideoForge Studio by Knight Logics: Windows-first local video production app for ranked videos with FFmpeg rendering, overlays, optional narration, and export-ready output.">
+    <meta name="keywords" content="VideoForge Studio, ranked video generator, local rendering app, FFmpeg workflow, Shorts automation, Knight Logics">
     <meta name="author" content="Nicholas Knight">
 
     <meta property="og:type" content="website">
-    <meta property="og:title" content="VideoForge Studio | Knight Logics">
-    <meta property="og:description" content="Download the VideoForge Windows app and generate ranked videos locally on your own machine.">
+    <meta property="og:title" content="VideoForge Studio | Local Video Production by Knight Logics">
+    <meta property="og:description" content="Build ranked videos locally with clip upload, overlays, optional narration, and export workflows in VideoForge Studio.">
     <meta property="og:url" content="https://knightlogics.com/videoforge.html">
+    <meta property="og:site_name" content="Knight Logics">
     <meta property="og:image" content="https://knightlogics.com/images/video-compiler.png">
 
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="VideoForge Studio | Knight Logics">
-    <meta name="twitter:description" content="Downloadable Windows app for ranked video generation on the user's own machine.">
+    <meta name="twitter:title" content="VideoForge Studio | Local Video Production by Knight Logics">
+    <meta name="twitter:description" content="Windows app for local ranked video generation with FFmpeg, optional narration, and export-ready outputs.">
     <meta name="twitter:image" content="https://knightlogics.com/images/video-compiler.png">
 
-    <link rel="canonical" href="https://knightlogics.com/videoforge.html">
-    <link rel="icon" type="image/png" href="./images/KnightLogicsLogo2.png" sizes="32x32">
-    <link rel="apple-touch-icon" href="./images/KnightLogicsLogo2.png">
-    <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#64ffda">
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "VideoForge Studio",
+        "alternateName": "AutoTop5 Showcase App",
+        "operatingSystem": "Windows 10, Windows 11",
+        "applicationCategory": "MultimediaApplication",
+        "softwareVersion": "0.4.x",
+        "creator": {
+            "@type": "Organization",
+            "name": "Knight Logics"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Knight Logics",
+            "url": "https://knightlogics.com"
+        },
+        "url": "https://knightlogics.com/videoforge.html",
+        "downloadUrl": "https://github.com/Knight-Logics/VideoForge-Studio/releases/latest",
+        "softwareHelp": "https://github.com/Knight-Logics/VideoForge-Studio",
+        "description": "Windows-first local video production app for ranked and countdown style exports with FFmpeg processing, optional narration, and browser-based workflow.",
+        "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+        }
+    }
+    </script>
 
-    <title>VideoForge Studio (AutoTop5) - Knight Logics</title>
+    <link rel="canonical" href="https://knightlogics.com/videoforge.html">
+    <link rel="icon" type="image/png" href="./images/video-compiler.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="./images/video-compiler.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#f7b85a">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
+    <title>VideoForge Studio | Knight Logics</title>
 </head>
 <body>
     <div id="header-container"></div>
 
-    <section class="projects-hero">
-        <div class="container">
-            <div class="hero-content fade-in">
-                <h1>VideoForge Studio (AutoTop5)</h1>
-                <p>Downloadable Windows installer for generating ranked Top 5 videos locally on the user's own computer.</p>
-                <div class="project-stats">
-                    <div class="stat-item">
-                        <span class="stat-number">3-10</span>
-                        <span class="stat-label">Clips Per Render</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">FFmpeg</span>
-                        <span class="stat-label">Processing Engine</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">Local</span>
-                        <span class="stat-label">User-Side Rendering</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">Win</span>
-                        <span class="stat-label">Portable Package</span>
-                    </div>
+    <section class="videoforge-hero">
+        <div class="container videoforge-hero-layout">
+            <div class="videoforge-hero-copy fade-in">
+                <span class="videoforge-eyebrow">Windows Production App</span>
+                <div class="product-title-row">
+                    <img src="./images/video-compiler.png" alt="VideoForge Studio logo" class="product-title-logo">
+                    <h1>VideoForge Studio</h1>
                 </div>
-                <div class="cta-buttons" style="margin-top: 24px;">
-                    <a href="https://github.com/Knight-Logics/VideoForge-Studio/releases/download/v0.3.0/VideoForge-Studio-Installer.exe" target="_blank" rel="noopener noreferrer" class="btn-primary">Download Installer</a>
-                    <a href="https://github.com/Knight-Logics/VideoForge-Studio/releases/tag/v0.3.0" target="_blank" rel="noopener noreferrer" class="btn-secondary">View Release</a>
-                    <a href="./projects.html" class="btn-secondary">Back to Projects</a>
+                <p class="videoforge-subtitle">A local-first ranked video production workflow for creators who want direct control over clips, captions, overlays, audio, and final rendering without relying on hosted compute.</p>
+                <div class="videoforge-cta-row">
+                    <a href="https://github.com/Knight-Logics/VideoForge-Studio/releases/latest" target="_blank" rel="noopener noreferrer" class="btn-primary">Download Latest Release</a>
+                    <a href="https://github.com/Knight-Logics/VideoForge-Studio" target="_blank" rel="noopener noreferrer" class="btn-secondary">View Repository</a>
+                </div>
+                <div class="videoforge-inline-notes">
+                    <span><i class="fas fa-video"></i> 3 to 10 clips per render</span>
+                    <span><i class="fas fa-gears"></i> FFmpeg + Pillow workflow</span>
+                    <span><i class="fas fa-computer"></i> User-side local rendering</span>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <section class="detailed-projects">
-        <div class="container">
-            <div class="project-detailed fade-in" data-category="video-processing ai-automation">
-                <div class="project-header">
-                    <img src="./images/video-compiler.png" alt="VideoForge Studio">
-                    <div class="project-title">
-                        <h3>How This Is Packaged</h3>
-                        <span class="project-type">Independent Product + KnightLogics Showcase</span>
+            <div class="videoforge-hero-panel fade-in">
+                <div class="videoforge-panel-shell">
+                    <div class="videoforge-shell-top">
+                        <span></span>
+                        <span></span>
+                        <span></span>
                     </div>
-                </div>
-                <div class="project-content">
-                    <div class="project-description">
-                        <p>VideoForge is packaged as a downloadable Windows application that opens a local browser interface and performs video rendering on the user's own machine. KnightLogics.com acts as the product showcase and download entry point rather than the compute host.</p>
-
-                        <h4>User Flow</h4>
-                        <ul>
-                            <li><strong>Download installer:</strong> Get the Windows setup executable from GitHub Releases</li>
-                            <li><strong>Install once:</strong> Run the installer to place the app and shortcuts on the local machine</li>
-                            <li><strong>Launch locally:</strong> Start the installed app and open the browser UI on the user's own computer</li>
-                            <li><strong>Render on user hardware:</strong> FFmpeg processing runs locally instead of on Knight Logics infrastructure</li>
-                        </ul>
-
-                        <h4>Packaging Summary</h4>
-                        <ul>
-                            <li>Browser UI served locally by Flask + Waitress</li>
-                            <li>Media processing: FFmpeg</li>
-                            <li>Asset generation: Pillow</li>
-                            <li>Inno Setup installer for self-contained Windows installation</li>
-                            <li>Release distributed through GitHub Releases</li>
-                        </ul>
-                    </div>
-                    <div class="project-tech">
-                        <h4>Quick Links</h4>
-                        <div class="project-links">
-                            <a href="https://github.com/Knight-Logics/VideoForge-Studio/releases/download/v0.3.0/VideoForge-Studio-Installer.exe" target="_blank" rel="noopener noreferrer" class="project-link">Download Windows Installer</a>
-                            <a href="https://github.com/Knight-Logics/VideoForge-Studio/releases/tag/v0.3.0" target="_blank" rel="noopener noreferrer" class="project-link">GitHub Release</a>
-                            <a href="https://github.com/Knight-Logics/VideoForge-Studio" target="_blank" rel="noopener noreferrer" class="project-link">Source Repository</a>
-                            <a href="./projects.html" class="project-link">Portfolio Projects</a>
-                            <a href="./index.html#contact" class="project-link">Request Custom Integration</a>
+                    <div class="videoforge-shell-body">
+                        <div class="videoforge-shell-headline">
+                            <p class="videoforge-shell-kicker">VideoForge Studio Pipeline</p>
+                            <h2>Upload, sequence, render, export.</h2>
+                        </div>
+                        <div class="videoforge-shell-grid">
+                            <div>
+                                <strong>Input</strong>
+                                <span>Clip uploads with title/caption control</span>
+                            </div>
+                            <div>
+                                <strong>Processing</strong>
+                                <span>FFmpeg composition + Pillow overlays</span>
+                            </div>
+                            <div>
+                                <strong>Optional voice</strong>
+                                <span>Narration and timed captions workflow</span>
+                            </div>
+                            <div>
+                                <strong>Output</strong>
+                                <span>Portrait, landscape, or custom dimensions</span>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -108,45 +118,204 @@
         </div>
     </section>
 
+    <section class="videoforge-video-section">
+        <div class="container">
+            <div class="videoforge-video-shell fade-in">
+                <div class="videoforge-video-copy">
+                    <span class="videoforge-mini-label">Product Walkthrough</span>
+                    <h2>Official Demo Video Coming Soon</h2>
+                    <p>This section is prepared for a future VideoForge Studio YouTube walkthrough, matching the product-page style used across PixelForge AI and Display Control+.</p>
+                </div>
+                <div class="videoforge-video-placeholder">
+                    <i class="fab fa-youtube"></i>
+                    <p>Embed target is ready for your upcoming VideoForge overview video.</p>
+                    <a href="https://www.youtube.com/@KnightLogics" target="_blank" rel="noopener noreferrer" class="project-link">Follow Knight Logics on YouTube</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="videoforge-proof-strip">
+        <div class="container videoforge-proof-grid fade-in">
+            <article class="videoforge-proof-card">
+                <span class="videoforge-proof-number">Local-first</span>
+                <p>Rendering happens on user hardware in local mode, avoiding dependency on managed cloud compute for core jobs.</p>
+            </article>
+            <article class="videoforge-proof-card">
+                <span class="videoforge-proof-number">Structured</span>
+                <p>Uploads, ordering, captions, overlays, intermissions, and audio are handled in one consolidated production interface.</p>
+            </article>
+            <article class="videoforge-proof-card">
+                <span class="videoforge-proof-number">Optional billing</span>
+                <p>Credit billing, purchase flow, and token recovery can be enabled for hosted usage scenarios when needed.</p>
+            </article>
+            <article class="videoforge-proof-card">
+                <span class="videoforge-proof-number">Deployable</span>
+                <p>Repository includes desktop packaging and container/deployment paths for broader product distribution strategy.</p>
+            </article>
+        </div>
+    </section>
+
+    <section class="videoforge-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Built For Real Production Workflows</h2>
+                <p>VideoForge Studio is designed for repeatable ranked-video output where speed, consistency, and local control matter.</p>
+            </div>
+            <div class="videoforge-feature-grid">
+                <article class="videoforge-feature-card fade-in">
+                    <i class="fas fa-grip-vertical"></i>
+                    <h3>Clip Sequencing</h3>
+                    <p>Build ranked formats from three to ten clips with ordering and per-clip metadata controls.</p>
+                </article>
+                <article class="videoforge-feature-card fade-in">
+                    <i class="fas fa-font"></i>
+                    <h3>Overlay Generation</h3>
+                    <p>Create animated title cards and ranked reveal overlays using Pillow-driven asset generation.</p>
+                </article>
+                <article class="videoforge-feature-card fade-in">
+                    <i class="fas fa-music"></i>
+                    <h3>Audio + Narration</h3>
+                    <p>Blend background music and optionally integrate narration workflows with timed caption support.</p>
+                </article>
+                <article class="videoforge-feature-card fade-in">
+                    <i class="fas fa-sliders"></i>
+                    <h3>Output Control</h3>
+                    <p>Export to portrait, landscape, or custom dimensions based on platform and publishing format.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="videoforge-section videoforge-section-alt">
+        <div class="container">
+            <div class="videoforge-split-layout">
+                <div class="videoforge-content-column fade-in">
+                    <span class="videoforge-mini-label">Recommended Product Path</span>
+                    <h2>Desktop distribution for creators. Optional hosted path for scale.</h2>
+                    <p>The preferred model is user-side local processing via packaged releases, while backend deployment remains available for hosted scenarios that need shared rendering access.</p>
+                    <div class="videoforge-profile-list">
+                        <div class="videoforge-profile-item">
+                            <strong>Desktop user mode</strong>
+                            <span>Install and run locally to render on each user's machine.</span>
+                        </div>
+                        <div class="videoforge-profile-item">
+                            <strong>Backend-ready stack</strong>
+                            <span>Flask + Waitress + FFmpeg + writable workspace for hosted operation.</span>
+                        </div>
+                        <div class="videoforge-profile-item">
+                            <strong>Commercial controls</strong>
+                            <span>Stripe-backed credits and token recovery available when enabled.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="videoforge-stack-cards fade-in">
+                    <div class="videoforge-stack-card">
+                        <h3>Core Stack</h3>
+                        <ul>
+                            <li>Python, Flask, and Waitress for runtime app serving</li>
+                            <li>FFmpeg processing for composition and export</li>
+                            <li>Pillow overlays for visual ranking elements</li>
+                            <li>SSE progress updates for long-running render jobs</li>
+                        </ul>
+                    </div>
+                    <div class="videoforge-stack-card">
+                        <h3>Distribution + Deploy</h3>
+                        <ul>
+                            <li>Windows packaging scripts and release artifacts</li>
+                            <li>Docker and Render deployment path documented in repository</li>
+                            <li>Persistent workspace model for uploads, jobs, and outputs</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="videoforge-section">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Quick Start</h2>
+                <p>A practical setup sequence for creators and operators.</p>
+            </div>
+            <div class="videoforge-steps">
+                <article class="videoforge-step fade-in">
+                    <span class="videoforge-step-number">01</span>
+                    <h3>Download latest release</h3>
+                    <p>Grab the newest package from GitHub Releases and install on your Windows machine.</p>
+                </article>
+                <article class="videoforge-step fade-in">
+                    <span class="videoforge-step-number">02</span>
+                    <h3>Launch local interface</h3>
+                    <p>Open the app and use the production interface from your local environment.</p>
+                </article>
+                <article class="videoforge-step fade-in">
+                    <span class="videoforge-step-number">03</span>
+                    <h3>Build your ranked sequence</h3>
+                    <p>Upload clips, tune titles/captions, choose audio options, and configure export settings.</p>
+                </article>
+                <article class="videoforge-step fade-in">
+                    <span class="videoforge-step-number">04</span>
+                    <h3>Render and export</h3>
+                    <p>Run the FFmpeg pipeline, monitor progress, and ship polished output for publication.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="videoforge-section videoforge-section-alt">
+        <div class="container">
+            <div class="videoforge-download-layout">
+                <div class="videoforge-download-copy fade-in">
+                    <span class="videoforge-mini-label">Get Started</span>
+                    <h2>Download, test locally, then scale distribution</h2>
+                    <p>VideoForge Studio supports creator-side local production today while preserving a clear path to hosted deployments for future growth.</p>
+                    <div class="videoforge-note-box">
+                        <strong>Versioning note</strong>
+                        <p>This page links to the latest release endpoint so visitors always land on the current build without outdated tag URLs.</p>
+                    </div>
+                </div>
+                <aside class="videoforge-download-card fade-in">
+                    <h3>VideoForge Studio Links</h3>
+                    <a href="https://github.com/Knight-Logics/VideoForge-Studio/releases/latest" target="_blank" rel="noopener noreferrer" class="project-link">Latest Release</a>
+                    <a href="https://github.com/Knight-Logics/VideoForge-Studio" target="_blank" rel="noopener noreferrer" class="project-link">Source Repository</a>
+                    <a href="./projects.html" class="project-link">Back To Projects</a>
+
+                    <div class="videoforge-spec-list">
+                        <div>
+                            <strong>Primary platform</strong>
+                            <span>Windows desktop users</span>
+                        </div>
+                        <div>
+                            <strong>Processing engine</strong>
+                            <span>FFmpeg local render pipeline</span>
+                        </div>
+                        <div>
+                            <strong>Optional systems</strong>
+                            <span>Narration, credit billing, token recovery</span>
+                        </div>
+                        <div>
+                            <strong>Repo alias</strong>
+                            <span>AutoTop5 Showcase App / VideoForge Studio</span>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+    </section>
+
+    <section class="back-to-portfolio">
+        <div class="container">
+            <h2>Need custom automation for media production?</h2>
+            <p>Knight Logics designs local-first and deployment-ready workflows for real production pipelines.</p>
+            <div class="cta-buttons">
+                <a href="./projects.html" class="btn-secondary">View More Projects</a>
+                <a href="./index.html#contact" class="btn-primary">Discuss Your Project</a>
+            </div>
+        </div>
+    </section>
+
     <div id="footer-container"></div>
-
-    <script>
-        async function loadHeaderFooter() {
-            try {
-                const headerResponse = await fetch('/header.html');
-                if (headerResponse.ok) {
-                    const headerContent = await headerResponse.text();
-                    const headerContainer = document.getElementById('header-container');
-                    if (headerContainer) {
-                        headerContainer.innerHTML = headerContent;
-                    }
-                }
-
-                const footerResponse = await fetch('/footer.html');
-                if (footerResponse.ok) {
-                    const footerContent = await footerResponse.text();
-                    const footerContainer = document.getElementById('footer-container');
-                    if (footerContainer) {
-                        footerContainer.innerHTML = footerContent;
-                    }
-                }
-            } catch (error) {
-                console.error('Error loading shared layout:', error);
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', async function () {
-            await loadHeaderFooter();
-
-            if (typeof initNavigation === 'function') {
-                initNavigation();
-            }
-
-            if (typeof initScrollEffects === 'function') {
-                initScrollEffects();
-            }
-        });
-    </script>
-    <script src="projects-script.js"></script>
+    <script src="script.js"></script>
 </body>
 </html>
