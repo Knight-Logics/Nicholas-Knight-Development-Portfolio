@@ -5384,17 +5384,17 @@ html {
 }
 
 .product-title-row {
-    display: inline-flex;
+    display: flex;
     align-items: center;
+    flex-wrap: nowrap;
     gap: 14px;
     margin-top: 18px;
     margin-bottom: 18px;
-    white-space: nowrap;
 }
 
 .product-title-logo {
-    width: clamp(44px, 4vw, 62px);
-    height: clamp(44px, 4vw, 62px);
+    width: clamp(132px, 12vw, 186px);
+    height: clamp(132px, 12vw, 186px);
     object-fit: contain;
     border-radius: 10px;
     flex: 0 0 auto;
@@ -5406,6 +5406,8 @@ html {
     line-height: 0.94;
     letter-spacing: -0.05em;
     color: #f8fbff;
+    min-width: 0;
+    white-space: normal;
 }
 
 .pixelforge-subtitle {
@@ -5851,6 +5853,8 @@ html {
     color: #f3f9ff;
     font-size: clamp(2.7rem, 5.2vw, 4.7rem);
     line-height: 0.98;
+    min-width: 0;
+    white-space: normal;
 }
 
 .displayplus-eyebrow {
@@ -6159,6 +6163,8 @@ html {
     color: #fdf6ee;
     font-size: clamp(2.7rem, 5.2vw, 4.7rem);
     line-height: 0.98;
+    min-width: 0;
+    white-space: normal;
 }
 
 .videoforge-eyebrow {
@@ -6531,8 +6537,8 @@ html {
     }
 
     .product-title-logo {
-        width: 40px;
-        height: 40px;
+        width: 120px;
+        height: 120px;
     }
 
     .pixelforge-hero-copy h1 {
