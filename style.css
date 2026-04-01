@@ -557,7 +557,7 @@ body {
 
 /* City background - NEVER MOVES (Darker for better contrast) */
 .parallax-bg-far {
-    background-image: url('./images/city hero.png');
+    background-image: url('./images/city hero.webp');
     z-index: 1;
     opacity: 0.7;
     filter: brightness(0.6) contrast(1.1);
@@ -569,14 +569,14 @@ body {
 
 /* Grunge texture - subtle overlay */
 .parallax-bg-mid {
-    background-image: url('./images/old-black-background-grunge-texture-dark-wallpaper-blackboard-chalkboard-room-wall.jpg');
+    background-image: url('./images/old-black-background-grunge-texture-dark-wallpaper-blackboard-chalkboard-room-wall.webp');
     z-index: 2;
     opacity: 0.2;
 }
 
 /* Code forest - EXPANDS to create exit effect */
 .parallax-bg-near {
-    background-image: url('./images/CircuitBrush.png');
+    background-image: url('./images/CircuitBrush.webp');
     z-index: 3;
     opacity: 0.9;
     background-size: 100vw 100vh;
@@ -1073,7 +1073,7 @@ section::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('./images/Knight Group Logo.png') center/300px no-repeat;
+    background: url('./images/Knight Group Logo.webp') center/300px no-repeat;
     opacity: 0.02;
     transform: translateZ(-100px) scale(2);
     animation: logoFloat 30s linear infinite;
@@ -1363,7 +1363,7 @@ section::before {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url('./images/Knight Group Logo.png') center/200px no-repeat;
+    background: url('./images/Knight Group Logo.webp') center/200px no-repeat;
     opacity: 0.02;
     animation: contactFloat 40s linear infinite;
     z-index: -1;
@@ -3913,7 +3913,7 @@ section::before {
     
     /* Ensure CircuitBrush.png is properly scaled for mobile */
     .parallax-bg-near {
-        background-image: url('./images/CircuitBrush.png');
+        background-image: url('./images/CircuitBrush.webp');
         background-size: 100vw 100vh;
         background-position: center center;
         transform-origin: center center;
