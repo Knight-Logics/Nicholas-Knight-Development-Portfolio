@@ -35,7 +35,7 @@
         "alternateName": "v11b Upscaling App",
         "operatingSystem": "Windows 10, Windows 11",
         "applicationCategory": "MultimediaApplication",
-        "softwareVersion": "1.0.4",
+        "softwareVersion": "1.0.16",
         "creator": {
             "@type": "Organization",
             "name": "Knight Logics"
@@ -48,7 +48,7 @@
         "url": "https://knightlogics.com/pixelforge-ai.html",
         "downloadUrl": "https://github.com/Knight-Logics/v11b-upscaling-app/releases/latest/download/PixelForge-AI.exe",
         "softwareHelp": "https://github.com/Knight-Logics/v11b-upscaling-app",
-        "description": "Windows desktop app for AI-powered video upscaling, restoration, compare previews, ETA estimation, and local processing using Real-ESRGAN based workflows.",
+        "description": "Windows desktop app for AI-powered video upscaling and frame interpolation. Supports Real-ESRGAN, RealSR, and Waifu2x upscaling engines plus RIFE GPU frame interpolation, with compare previews, ETA estimation, credit-based processing, and local ncnn-vulkan rendering.",
         "offers": {
             "@type": "Offer",
             "price": "0",
@@ -85,8 +85,8 @@
                 </div>
                 <div class="pixelforge-inline-notes">
                     <span><i class="fas fa-desktop"></i> Windows 10/11</span>
-                    <span><i class="fas fa-hard-drive"></i> Local processing</span>
-                    <span><i class="fas fa-wand-magic-sparkles"></i> Real-ESRGAN workflow</span>
+                    <span><i class="fas fa-microchip"></i> Vulkan GPU required</span>
+                    <span><i class="fas fa-wand-magic-sparkles"></i> 3 upscaling engines + RIFE</span>
                 </div>
             </div>
 
@@ -103,7 +103,7 @@
                                 <p class="pixelforge-shell-kicker">PixelForge AI Video Enhancer</p>
                                 <h2>Preview first. Commit later.</h2>
                             </div>
-                            <span class="pixelforge-shell-version">v1.0.4</span>
+                            <span class="pixelforge-shell-version">v1.0.16</span>
                         </div>
                         <div class="pixelforge-compare-mock">
                             <div class="pixelforge-before">Before</div>
@@ -112,12 +112,12 @@
                         </div>
                         <div class="pixelforge-shell-stats">
                             <div>
-                                <strong>Profiles</strong>
-                                <span>Quick Preview, Balanced, Max Detail</span>
+                                <strong>Engines</strong>
+                                <span>Real-ESRGAN, RealSR, Waifu2x</span>
                             </div>
                             <div>
-                                <strong>Modes</strong>
-                                <span>Natural Footage, Animation, Restore</span>
+                                <strong>Interpolation</strong>
+                                <span>RIFE GPU + minterpolate CPU fallback</span>
                             </div>
                             <div>
                                 <strong>Estimate</strong>
@@ -170,13 +170,13 @@
             <div class="pixelforge-feature-grid">
                 <article class="pixelforge-feature-card fade-in">
                     <i class="fas fa-expand"></i>
-                    <h3>AI Upscaling Profiles</h3>
-                    <p>Switch between Natural Footage, Animation, and Restore profiles without manually rebuilding every setting from scratch.</p>
+                    <h3>Three AI Upscaling Engines</h3>
+                    <p>Real-ESRGAN for general footage, RealSR (GPU) for photo-realistic DF2K upscaling, and Waifu2x (GPU) for anime and illustration content — all selectable from one interface.</p>
                 </article>
                 <article class="pixelforge-feature-card fade-in">
-                    <i class="fas fa-sliders"></i>
-                    <h3>Speed vs Detail Control</h3>
-                    <p>Quick Preview, Balanced Workflow, and Max Detail presets make tradeoffs explicit instead of burying them inside obscure settings.</p>
+                    <i class="fas fa-film"></i>
+                    <h3>RIFE GPU Frame Interpolation</h3>
+                    <p>Real-time frame interpolation via ncnn-vulkan using RIFE v4.6 (recommended) or RIFE v4 (legacy). CPU fallback via minterpolate available for non-Vulkan setups.</p>
                 </article>
                 <article class="pixelforge-feature-card fade-in">
                     <i class="fas fa-clock"></i>
@@ -216,20 +216,20 @@
                 </div>
                 <div class="pixelforge-stack-cards fade-in">
                     <div class="pixelforge-stack-card">
-                        <h3>Content Modes</h3>
+                        <h3>Upscaling Engines</h3>
                         <ul>
-                            <li>Natural Footage for live-action material</li>
-                            <li>Animation / Anime for stylized linework</li>
-                            <li>Restore for older or rougher source material</li>
+                            <li><strong>Real-ESRGAN</strong> — general footage and restoration</li>
+                            <li><strong>RealSR (GPU)</strong> — photo-realistic upscaling with DF2K and DF2K_JPEG models</li>
+                            <li><strong>Waifu2x (GPU)</strong> — anime and illustration with cunet and upconv_7 models</li>
                         </ul>
                     </div>
                     <div class="pixelforge-stack-card">
-                        <h3>Advanced Controls</h3>
+                        <h3>Interpolation &amp; Advanced Controls</h3>
                         <ul>
-                            <li>Model selection, scale, and thread tuning</li>
-                            <li>Denoise, sharpen, and image cleanup settings</li>
-                            <li>Interpolation, target FPS, CRF, and output dimensions</li>
-                            <li>Clip range control for fast spot-check runs</li>
+                            <li><strong>RIFE GPU</strong> — real-time frame interpolation via ncnn-vulkan (rife-v4.6 recommended)</li>
+                            <li><strong>minterpolate CPU</strong> — fallback for non-Vulkan systems</li>
+                            <li>Model selection, scale, thread tuning, denoise, sharpen</li>
+                            <li>CRF, audio, target FPS, output dimensions, clip range</li>
                         </ul>
                     </div>
                 </div>
@@ -274,16 +274,16 @@
                 <div class="pixelforge-download-copy fade-in">
                     <span class="pixelforge-mini-label">Packaging</span>
                     <h2>Packaged As A Standalone Windows App</h2>
-                    <p>The repository ships a one-file Windows build, bundles the Real-ESRGAN runtime and models into the packaged workflow, and includes direct update support from GitHub Releases.</p>
+                    <p>The repository ships a ZIP containing all four ncnn-vulkan engines and their model folders. A GPU with Vulkan support is required for Real-ESRGAN, RealSR, Waifu2x, and RIFE processing. The in-app updater stages updates through AppData and relaunches cleanly without requiring a manual reinstall.</p>
                     <div class="pixelforge-note-box">
-                        <strong>Important upgrade note</strong>
-                        <p>If you are coming from older builds, install v1.0.4 manually once first. After that, the in-app updater is intended to handle future updates.</p>
+                        <strong>System requirement</strong>
+                        <p>A GPU with Vulkan support is required for GPU-based upscaling and RIFE interpolation. minterpolate is available as a CPU fallback for interpolation only.</p>
                     </div>
                 </div>
                 <aside class="pixelforge-download-card fade-in">
                     <h3>Get PixelForge AI</h3>
                     <a href="https://github.com/Knight-Logics/v11b-upscaling-app/releases/latest/download/PixelForge-AI.exe" target="_blank" rel="noopener noreferrer" class="project-link">Direct Download .exe</a>
-                    <a href="https://github.com/Knight-Logics/v11b-upscaling-app/releases/tag/v1.0.4" target="_blank" rel="noopener noreferrer" class="project-link">All Release Assets</a>
+                    <a href="https://github.com/Knight-Logics/v11b-upscaling-app/releases/tag/v1.0.16" target="_blank" rel="noopener noreferrer" class="project-link">All Release Assets</a>
                     <a href="https://github.com/Knight-Logics/v11b-upscaling-app" target="_blank" rel="noopener noreferrer" class="project-link">Source Repository</a>
                     <a href="./projects.html" class="project-link">Back To Projects</a>
 
@@ -293,12 +293,12 @@
                             <span>Windows desktop app</span>
                         </div>
                         <div>
-                            <strong>Core engine</strong>
-                            <span>Real-ESRGAN based enhancement pipeline</span>
+                            <strong>Core engines</strong>
+                            <span>Real-ESRGAN, RealSR, Waifu2x + RIFE interpolation</span>
                         </div>
                         <div>
-                            <strong>Distribution</strong>
-                            <span>GitHub Releases + in-app updater</span>
+                            <strong>Runtime</strong>
+                            <span>ncnn-vulkan — Vulkan GPU required</span>
                         </div>
                         <div>
                             <strong>Audience</strong>
@@ -349,18 +349,6 @@
                 console.error('Error loading shared layout:', error);
             }
         }
-
-        document.addEventListener('DOMContentLoaded', async function () {
-            await loadHeaderFooter();
-
-            if (typeof initNavigation === 'function') {
-                initNavigation();
-            }
-
-            if (typeof initScrollEffects === 'function') {
-                initScrollEffects();
-            }
-        });
     </script>
     <script src="projects-script.js"></script>
 </body>

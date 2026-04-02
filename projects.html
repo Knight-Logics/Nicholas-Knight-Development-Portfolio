@@ -141,12 +141,12 @@
                 </div>
                 <div class="project-content">
                     <div class="project-description">
-                        <p>Desktop upscaling app for creators who want local processing, practical quality profiles, and a better way to validate settings before a long enhancement run. Built around a Real-ESRGAN workflow with compare previews, ETA estimation, advanced controls, and direct GitHub release updates.</p>
+                        <p>Desktop upscaling app with three AI engines (Real-ESRGAN, RealSR, Waifu2x) and RIFE GPU frame interpolation. Built around an ncnn-vulkan workflow with compare previews, ETA estimation, credit-based processing, and direct GitHub release updates. Requires a Vulkan-capable GPU.</p>
 
                         <h4>What It Does</h4>
                         <ul>
-                            <li><strong>Profile-based workflow:</strong> Quick Preview, Balanced Workflow, and Max Detail modes</li>
-                            <li><strong>Content-aware presets:</strong> Natural Footage, Animation / Anime, and Restore profiles</li>
+                            <li><strong>Three upscaling engines:</strong> Real-ESRGAN (general), RealSR GPU (photo-realistic), Waifu2x GPU (anime/illustration)</li>
+                            <li><strong>RIFE GPU interpolation:</strong> Real-time frame interpolation via ncnn-vulkan; minterpolate CPU available as fallback</li>
                             <li><strong>Practical validation:</strong> Before/after compare view with draggable separator</li>
                             <li><strong>Runtime awareness:</strong> Stage ETA estimation and hardware-aware timing guidance</li>
                         </ul>
@@ -764,7 +764,6 @@
     <!-- Footer will be loaded here -->
     <div id="footer-container"></div>
 
-    <script src="script.js"></script>
     <script src="projects-script.js"></script>
 </body>
 </html>

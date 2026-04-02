@@ -1,4 +1,22 @@
 // Projects Page JavaScript
+
+async function loadHeaderFooter() {
+    try {
+        const headerResponse = await fetch('/header.html');
+        if (headerResponse.ok) {
+            const headerContainer = document.getElementById('header-container');
+            if (headerContainer) headerContainer.innerHTML = await headerResponse.text();
+        }
+        const footerResponse = await fetch('/footer.html');
+        if (footerResponse.ok) {
+            const footerContainer = document.getElementById('footer-container');
+            if (footerContainer) footerContainer.innerHTML = await footerResponse.text();
+        }
+    } catch (error) {
+        console.error('Error loading shared layout:', error);
+    }
+}
+
 document.addEventListener('DOMContentLoaded', function() {
     // Load header and footer components
     loadHeaderFooter().then(() => {
