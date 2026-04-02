@@ -6645,6 +6645,7 @@ html {
     -webkit-text-fill-color: transparent;
     margin: 0 0 1rem;
     line-height: 1.15;
+    padding-bottom: 0.12em;
 }
 
 .contact-page-hero p {
@@ -6738,6 +6739,121 @@ html {
 }
 
 .contact-info-chip a:hover {
+    color: #64ffda;
+}
+
+/* ── Interactive chip enhancements ── */
+.contact-chip-interactive {
+    cursor: pointer;
+    position: relative;
+    user-select: none;
+}
+
+.chip-copy-hint {
+    font-size: 1.7rem !important;
+    color: rgba(100, 255, 218, 0.45) !important;
+    margin-left: auto;
+    align-self: center;
+    flex-shrink: 0;
+    transition: color 0.2s ease;
+}
+
+.chip-copy-hint.copied {
+    color: #64ffda !important;
+}
+
+.chip-ext,
+.chip-chevron {
+    font-size: 0.75rem;
+    color: rgba(100, 255, 218, 0.5);
+    margin-left: auto;
+    align-self: center;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.contact-chip-phone.open .chip-chevron {
+    transform: rotate(180deg);
+}
+
+.chip-phone-menu {
+    display: none !important;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    background: #151f1a;
+    border: 1px solid rgba(100, 255, 218, 0.25);
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 100;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+}
+
+.contact-chip-phone.open .chip-phone-menu {
+    display: block !important;
+}
+
+.chip-phone-menu a {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.85rem 1.2rem;
+    font-size: 0.93rem !important;
+    color: rgba(255,255,255,0.85) !important;
+    text-decoration: none;
+    transition: background 0.15s ease;
+}
+
+.chip-phone-menu a:hover {
+    background: rgba(100, 255, 218, 0.08);
+    color: #64ffda !important;
+}
+
+.chip-phone-menu a i {
+    color: #64ffda;
+    width: 14px;
+}
+
+/* Map modal */
+.chip-map-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.75);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+}
+
+.chip-map-modal.open {
+    display: flex;
+}
+
+.chip-map-inner {
+    position: relative;
+    width: min(680px, 94vw);
+    background: #0d1512;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(100,255,218,0.2);
+    padding: 1rem;
+}
+
+.chip-map-close {
+    position: absolute;
+    top: 10px;
+    right: 14px;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.7);
+    font-size: 1.5rem;
+    cursor: pointer;
+    z-index: 10;
+    line-height: 1;
+}
+
+.chip-map-close:hover {
     color: #64ffda;
 }
 

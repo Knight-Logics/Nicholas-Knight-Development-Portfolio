@@ -848,8 +848,8 @@ function initNavigation() {
         const heroSection = document.querySelector('#hero');
         
         if (!heroSection) {
-            // If hero section not found, just scroll to top
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            // Not on home page — navigate there
+            window.location.href = '/';
             return;
         }
         
@@ -1671,3 +1671,44 @@ window.portfolioFunctions = {
     typeWriter,
     moveTestimonial
 };
+
+// ── Interactive contact chips ──
+
+function copyEmail(chip) {
+    const email = chip.querySelector('.chip-email-addr').textContent.trim();
+    navigator.clipboard.writeText(email).then(() => {
+        const hint = chip.querySelector('.chip-copy-hint');
+        hint.innerHTML = '<i class="fas fa-check"></i>';
+        hint.classList.add('copied');
+        setTimeout(() => {
+            hint.innerHTML = '<i class="fas fa-copy"></i>';
+            hint.classList.remove('copied');
+        }, 2000);
+    });
+}
+
+function togglePhoneMenu(chip) {
+    const isOpen = chip.classList.contains('open');
+    // close any other open phone chips
+    document.querySelectorAll('.contact-chip-phone.open').forEach(c => c.classList.remove('open'));
+    if (!isOpen) chip.classList.add('open');
+}
+
+function openMapModal() {
+    document.getElementById('mapModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeMapModal(e) {
+    if (e.target === e.currentTarget || e.currentTarget.classList.contains('chip-map-close')) {
+        document.getElementById('mapModal').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+}
+
+// Close phone menu when clicking outside
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.contact-chip-phone')) {
+        document.querySelectorAll('.contact-chip-phone.open').forEach(c => c.classList.remove('open'));
+    }
+});

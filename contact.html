@@ -182,26 +182,36 @@
 
             <!-- 4-column quick-info strip -->
             <div class="contact-info-strip">
-                <div class="contact-info-chip">
-                    <i class="fas fa-envelope"></i>
+                <!-- Email chip: copy to clipboard -->
+                <div class="contact-info-chip contact-chip-interactive" onclick="copyEmail(this)" title="Click to copy email">
+                    <i class="fas fa-copy"></i>
                     <div>
                         <strong>Email</strong>
-                        <a href="mailto:support@knightlogics.com">support@knightlogics.com</a>
+                        <span class="chip-email-addr">support@knightlogics.com</span>
                     </div>
+                    <span class="chip-copy-hint"><i class="fas fa-copy"></i></span>
                 </div>
-                <div class="contact-info-chip">
+                <!-- Phone chip: call / text dropdown -->
+                <div class="contact-info-chip contact-chip-interactive contact-chip-phone" onclick="togglePhoneMenu(this)" title="Call or text us">
                     <i class="fas fa-phone"></i>
                     <div>
                         <strong>Phone / Text</strong>
-                        <a href="tel:+18137735553">(813) 773-5553</a>
+                        <span>(813) 773-5553</span>
+                    </div>
+                    <i class="fas fa-chevron-down chip-chevron"></i>
+                    <div class="chip-phone-menu">
+                        <a href="tel:+18137735553" onclick="event.stopPropagation()"><i class="fas fa-phone"></i> Call</a>
+                        <a href="sms:+18137735553" onclick="event.stopPropagation()"><i class="fas fa-comment-sms"></i> Text</a>
                     </div>
                 </div>
-                <div class="contact-info-chip">
-                    <i class="fas fa-globe"></i>
+                <!-- Service Area chip: opens map modal -->
+                <div class="contact-info-chip contact-chip-interactive" onclick="openMapModal()" title="View service area map">
+                    <i class="fas fa-map-location-dot"></i>
                     <div>
                         <strong>Service Area</strong>
                         <span>Remote worldwide &bull; On-site Tampa Bay</span>
                     </div>
+                    <i class="fas fa-arrow-up-right-from-square chip-ext"></i>
                 </div>
                 <div class="contact-info-chip">
                     <i class="fas fa-bolt"></i>
@@ -209,6 +219,14 @@
                         <strong>Response Time</strong>
                         <span>Free consultation within <em style="color:#64ffda;font-style:normal;">24 hours</em></span>
                     </div>
+                </div>
+            </div>
+
+            <!-- Map Modal -->
+            <div id="mapModal" class="chip-map-modal" onclick="closeMapModal(event)">
+                <div class="chip-map-inner">
+                    <button class="chip-map-close" onclick="closeMapModal(event)">&times;</button>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d901796.8024175643!2d-82.53818595!3d28.00479355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x67445fbcc25df4ab%3A0x48644c12a6309a67!2sKnight%20Logics!5e0!3m2!1sen!2sus!4v1775166692857!5m2!1sen!2sus" width="100%" height="400" style="border:0;border-radius:8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
 
