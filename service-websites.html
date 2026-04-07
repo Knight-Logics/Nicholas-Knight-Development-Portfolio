@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Custom website design and development by Knight Logics — technical SEO, schema markup, Google Business optimization, PageSpeed performance, and local search rankings for Tampa Bay businesses.">
+    <meta name="keywords" content="custom website development, technical SEO, Google Business profile, schema markup, local SEO Tampa, PageSpeed optimization, web design Florida, Knight Logics">
+    <meta name="author" content="Nicholas Knight">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Custom Websites &amp; Digital Presence | Knight Logics">
+    <meta property="og:description" content="Fully custom websites with technical SEO, Google Business optimization, analytics setup, and search console integration for businesses in Tampa Bay and beyond.">
+    <meta property="og:url" content="https://knightlogics.com/service-websites.html">
+    <meta property="og:site_name" content="Knight Logics">
+    <meta property="og:image" content="https://knightlogics.com/images/KnightLogicsLogo2.png">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="1024">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Custom Websites &amp; Digital Presence | Knight Logics">
+    <meta name="twitter:description" content="Fully custom websites with technical SEO, Google Business optimization, analytics setup, and search console integration.">
+    <meta name="twitter:image" content="https://knightlogics.com/images/KnightLogicsLogo2.png">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VX36QR7HJW"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-VX36QR7HJW');</script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Custom Websites & Digital Presence",
+        "description": "Fully custom website development with technical SEO, schema markup, Google Business optimization, PageSpeed performance, and local search rankings.",
+        "provider": {
+            "@type": "Person",
+            "name": "Nicholas Knight",
+            "url": "https://knightlogics.com"
+        },
+        "serviceType": "Web Development",
+        "areaServed": { "@type": "Place", "name": "Tampa Bay, Florida" },
+        "url": "https://knightlogics.com/service-websites.html"
+    }
+    </script>
+
+    <link rel="canonical" href="https://knightlogics.com/service-websites.html">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" href="/images/KnightLogicsLogo2.png" sizes="1024x1024">
+    <link rel="apple-touch-icon" href="/images/KnightLogicsLogo2.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#6de1ff">
+    <meta name="msapplication-TileColor" content="#0a0a0a">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://knightlogics.com"},
+            {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://knightlogics.com/#services"},
+            {"@type": "ListItem", "position": 3, "name": "Custom Websites & Digital Presence", "item": "https://knightlogics.com/service-websites.html"}
+        ]
+    }
+    </script>
+
+    <title>Custom Websites &amp; Digital Presence | Knight Logics</title>
+
+    <style>
+        /* ── Service Page Shared Layout ── */
+        .svc-hero {
+            position: relative;
+            min-height: 520px;
+            display: flex;
+            align-items: center;
+            background: url('./images/code hero.webp') center/cover no-repeat;
+            overflow: hidden;
+        }
+        .svc-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(10,10,10,0.90) 0%, rgba(10,10,10,0.60) 100%);
+            z-index: 1;
+        }
+        .svc-hero-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 760px;
+            padding: 120px 0 90px;
+        }
+        .svc-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 14px;
+            border-radius: 999px;
+            background: rgba(100,255,218,0.12);
+            border: 1px solid rgba(100,255,218,0.25);
+            color: #64ffda;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+        }
+        .svc-hero h1 {
+            font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+            font-weight: 700;
+            line-height: 1.12;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, #64ffda, #ffffff, #64ffda);
+            background-size: 200% 200%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        .svc-hero p {
+            font-size: clamp(1rem, 1.4vw, 1.2rem);
+            color: rgba(255,255,255,0.85);
+            line-height: 1.65;
+            margin-bottom: 2rem;
+            max-width: 620px;
+        }
+        .svc-cta-row {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        /* Stats strip */
+        .svc-stats {
+            background: rgba(10,10,10,0.98);
+            border-bottom: 1px solid rgba(100,255,218,0.12);
+            padding: 32px 0;
+        }
+        .svc-stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            text-align: center;
+        }
+        .svc-stat-label {
+            display: block;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #64ffda;
+            margin-bottom: 4px;
+        }
+        .svc-stat-desc {
+            font-size: 0.88rem;
+            color: rgba(255,255,255,0.6);
+        }
+        /* Features grid */
+        .svc-features {
+            padding: 90px 0;
+            background: #0d0d0d;
+        }
+        .svc-features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 52px;
+        }
+        .svc-feature-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(100,255,218,0.13);
+            border-radius: 18px;
+            padding: 28px 24px;
+            transition: all 0.3s ease;
+        }
+        .svc-feature-card:hover {
+            border-color: rgba(100,255,218,0.35);
+            transform: translateY(-6px);
+            box-shadow: 0 16px 40px rgba(100,255,218,0.08);
+        }
+        .svc-card-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: linear-gradient(135deg, #64ffda, #4ecdc4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            color: #0a0a0a;
+            margin-bottom: 18px;
+            transition: all 0.3s ease;
+        }
+        .svc-feature-card:hover .svc-card-icon {
+            transform: rotate(8deg) scale(1.08);
+        }
+        .svc-feature-card h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        .svc-feature-card p {
+            font-size: 0.92rem;
+            color: rgba(255,255,255,0.74);
+            line-height: 1.6;
+            margin: 0;
+        }
+        /* Work examples */
+        .svc-work {
+            padding: 90px 0;
+            background: linear-gradient(135deg, #0a0a0a 0%, #0f1724 100%);
+        }
+        .svc-work-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 28px;
+            margin-top: 52px;
+        }
+        .svc-work-card {
+            border-radius: 20px;
+            overflow: hidden;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(100,255,218,0.12);
+            transition: all 0.3s ease;
+            display: block;
+            text-decoration: none;
+            color: inherit;
+        }
+        .svc-work-card:hover {
+            border-color: rgba(100,255,218,0.3);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+        }
+        .svc-work-thumb {
+            width: 100%;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            background: #111;
+        }
+        .svc-work-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+        .svc-work-card:hover .svc-work-thumb img { transform: scale(1.04); }
+        .svc-work-thumb.logo-thumb { background: #f5f5f5; }
+        .svc-work-thumb.logo-thumb img { object-fit: contain; padding: 2rem; }
+        .svc-work-placeholder {
+            width: 100%;
+            aspect-ratio: 16/9;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(100,255,218,0.06), rgba(10,10,10,0.85));
+            border-bottom: 1px dashed rgba(100,255,218,0.2);
+        }
+        .svc-work-placeholder i {
+            font-size: 2.5rem;
+            color: rgba(100,255,218,0.35);
+            margin-bottom: 12px;
+        }
+        .svc-work-placeholder p {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.4);
+            text-align: center;
+            padding: 0 24px;
+            margin: 0;
+            font-style: italic;
+            line-height: 1.5;
+        }
+        .svc-work-copy { padding: 20px 24px; }
+        .svc-work-label {
+            font-size: 0.72rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #64ffda;
+            margin-bottom: 6px;
+        }
+        .svc-work-copy h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+        .svc-work-copy p {
+            font-size: 0.88rem;
+            color: rgba(255,255,255,0.7);
+            line-height: 1.55;
+            margin: 0;
+        }
+        /* Process steps */
+        .svc-process {
+            padding: 90px 0;
+            background: #0a0a0a;
+        }
+        .svc-process-steps {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+            margin-top: 52px;
+            position: relative;
+        }
+        .svc-process-steps::before {
+            content: '';
+            position: absolute;
+            top: 31px;
+            left: calc(10% + 32px);
+            right: calc(10% + 32px);
+            height: 2px;
+            background: linear-gradient(90deg, #64ffda, #4ecdc4, #64ffda);
+            opacity: 0.25;
+        }
+        .svc-step { text-align: center; position: relative; }
+        .svc-step-num {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(100,255,218,0.15), rgba(100,255,218,0.05));
+            border: 2px solid rgba(100,255,218,0.35);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #64ffda;
+            margin: 0 auto 16px;
+        }
+        .svc-step h4 {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        .svc-step p {
+            font-size: 0.82rem;
+            color: rgba(255,255,255,0.58);
+            line-height: 1.5;
+            margin: 0;
+        }
+        /* CTA section */
+        .svc-cta-section {
+            padding: 90px 0;
+            background: linear-gradient(135deg, #0a0a0a 0%, #0f1724 100%);
+            text-align: center;
+        }
+        .svc-cta-box {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 52px 40px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(100,255,218,0.2);
+            border-radius: 28px;
+            backdrop-filter: blur(10px);
+        }
+        .svc-cta-box h2 {
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 16px;
+            background: linear-gradient(135deg, #64ffda, #ffffff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .svc-cta-box p {
+            font-size: 1.05rem;
+            color: rgba(255,255,255,0.8);
+            line-height: 1.65;
+            margin-bottom: 28px;
+        }
+        /* Responsive */
+        @media (max-width: 900px) {
+            .svc-stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .svc-features-grid { grid-template-columns: repeat(2, 1fr); }
+            .svc-work-grid { grid-template-columns: 1fr; }
+            .svc-process-steps { grid-template-columns: repeat(3, 1fr); }
+            .svc-process-steps::before { display: none; }
+        }
+        @media (max-width: 600px) {
+            .svc-features-grid { grid-template-columns: 1fr; }
+            .svc-process-steps { grid-template-columns: repeat(2, 1fr); }
+            .svc-cta-row { flex-direction: column; }
+            .svc-cta-box { padding: 36px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <!-- ══ HERO ══ -->
+    <section class="svc-hero">
+        <div class="container">
+            <div class="svc-hero-inner fade-in">
+                <span class="svc-eyebrow"><i class="fas fa-globe"></i> Web Development &amp; SEO</span>
+                <h1>Custom Websites &amp;<br>Digital Presence</h1>
+                <p>Fully custom, hand-coded websites built to rank, convert, and grow. Technical SEO, Google Business optimization, schema markup, and performance-first development — no templates, no page builders.</p>
+                <div class="svc-cta-row">
+                    <a href="./contact.html" class="btn-primary">Get a Free Consultation</a>
+                    <a href="./projects.html" class="btn-secondary">See Live Examples</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ STATS STRIP ══ -->
+    <div class="svc-stats">
+        <div class="container">
+            <div class="svc-stats-grid">
+                <div>
+                    <span class="svc-stat-label">100%</span>
+                    <span class="svc-stat-desc">Custom code — no templates</span>
+                </div>
+                <div>
+                    <span class="svc-stat-label">90+</span>
+                    <span class="svc-stat-desc">PageSpeed scores targeted</span>
+                </div>
+                <div>
+                    <span class="svc-stat-label">Local SEO</span>
+                    <span class="svc-stat-desc">Google Business &amp; map pack ready</span>
+                </div>
+                <div>
+                    <span class="svc-stat-label">Full Stack</span>
+                    <span class="svc-stat-desc">Design through live deployment</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ FEATURES / DELIVERABLES ══ -->
+    <section class="svc-features">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>What's Included</h2>
+                <p>Every website project is built from scratch with attention to performance, search visibility, and real-world conversion goals.</p>
+            </div>
+            <div class="svc-features-grid">
+                <article class="svc-feature-card fade-in">
+                    <div class="svc-card-icon"><i class="fas fa-code"></i></div>
+                    <h3>100% Custom Development</h3>
+                    <p>Hand-coded HTML, CSS, and JavaScript — no WordPress, no page builders, no bloated themes. Clean, maintainable code that's yours to own and extend without license fees.</p>
+                </article>
+                <article class="svc-feature-card fade-in">
+                    <div class="svc-card-icon"><i class="fas fa-magnifying-glass"></i></div>
+                    <h3>Technical SEO Foundation</h3>
+                    <p>Canonical tags, schema markup, Open Graph, Twitter card metadata, XML sitemaps, and structured data implemented correctly from day one — not as an afterthought.</p>
+                </article>
+                <article class="svc-feature-card fade-in">
+                    <div class="svc-card-icon"><i class="fas fa-star"></i></div>
+                    <h3>Schema &amp; Rich Snippets</h3>
+                    <p>JSON-LD structured data for Organization, BreadcrumbList, LocalBusiness, FAQ, and Service schemas — helping you stand out in search results with enhanced listings.</p>
+                </article>
+                <article class="svc-feature-card fade-in">
+                    <div class="svc-card-icon"><i class="fas fa-map-location-dot"></i></div>
+                    <h3>Google Business Optimization</h3>
+                    <p>Google Business Profile setup and optimization, local citation consistency, map pack targeting, and review strategy for Tampa Bay and the surrounding metro area.</p>
+                </article>
+                <article class="svc-feature-card fade-in">
+                    <div class="svc-card-icon"><i class="fas fa-gauge-high"></i></div>
+                    <h3>Performance &amp; PageSpeed</h3>
+                    <p>Image compression, lazy loading, font preloading, CSS/JS minification, and Core Web Vitals optimization to achieve 90+ PageSpeed scores across mobile and desktop.</p>
+                </article>
+                <article class="svc-feature-card fade-in">
+                    <div class="svc-card-icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Analytics &amp; Search Console</h3>
+                    <p>Google Analytics 4 integration, Google Search Console setup and sitemap submission, and baseline reporting dashboards so you can track traffic and ranking improvements over time.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ WORK EXAMPLES ══ -->
+    <section class="svc-work">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Real Work, Real Results</h2>
+                <p>These are production websites — not mock-ups. Every project is deployed, indexed by Google, and built to perform.</p>
+            </div>
+            <div class="svc-work-grid">
+                <a class="svc-work-card fade-in" href="https://www.knightgroup.com/" target="_blank" rel="noopener">
+                    <div class="svc-work-thumb logo-thumb">
+                        <img src="./images/knight-group-website.webp" alt="Knight Group — co-owned business logo" width="800" height="450" loading="lazy">
+                    </div>
+                    <div class="svc-work-copy">
+                        <p class="svc-work-label">Co-Owned Business</p>
+                        <h3>Knight Group Website</h3>
+                        <p>Custom multi-page site with full technical SEO stack, Google Business integration, and structured data schema. Built from scratch, optimized for local search.</p>
+                    </div>
+                </a>
+
+                <a class="svc-work-card fade-in" href="https://www.jnsbuilds.com/" target="_blank" rel="noopener">
+                    <div class="svc-work-thumb logo-thumb">
+                        <img src="./images/jnsbuilds-logo.png" alt="JNSBuilds.com logo" width="800" height="450" loading="lazy">
+                    </div>
+                    <div class="svc-work-copy">
+                        <p class="svc-work-label">Client Website</p>
+                        <h3>JNSBuilds.com</h3>
+                        <p>Custom-built website for a construction and home improvement client. Clean, professional design with service pages, contact form, and local SEO structure.</p>
+                    </div>
+                </a>
+
+                <div class="svc-work-card fade-in">
+                    <div class="svc-work-thumb">
+                        <img src="./images/PageSpeedInsights.png" alt="PageSpeed Insights scores for Knight Group website — Performance, Accessibility, Best Practices, SEO" width="1200" height="675" loading="lazy">
+                    </div>
+                    <div class="svc-work-copy">
+                        <p class="svc-work-label">Performance &amp; Core Web Vitals</p>
+                        <h3>Lighthouse Benchmarked</h3>
+                        <p>Sites are benchmarked against Core Web Vitals before launch — Accessibility, SEO, and Best Practices audited and resolved. Performance budgets set per project based on complexity.</p>
+                    </div>
+                </div>
+
+                <div class="svc-work-card fade-in">
+                    <div class="svc-work-thumb">
+                        <img src="./images/Screenshot%202026-04-06%20153452.png" alt="Google Search Console showing knightlogics.com indexed pages" width="1366" height="768" loading="lazy">
+                    </div>
+                    <div class="svc-work-copy">
+                        <p class="svc-work-label">Search Visibility</p>
+                        <h3>Google Search Console</h3>
+                        <p>All sites are submitted to Google Search Console with sitemaps, coverage reports reviewed, and any crawl issues resolved before handoff.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ PROCESS ══ -->
+    <section class="svc-process">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>How It Works</h2>
+                <p>A clear, collaborative process from first call to live site — no surprises, no endless revision cycles.</p>
+            </div>
+            <div class="svc-process-steps fade-in">
+                <div class="svc-step">
+                    <div class="svc-step-num">1</div>
+                    <h4>Discovery</h4>
+                    <p>We discuss goals, competitors, target keywords, and design direction. No charge for the initial consultation.</p>
+                </div>
+                <div class="svc-step">
+                    <div class="svc-step-num">2</div>
+                    <h4>Design &amp; Content</h4>
+                    <p>Wireframes, color direction, and copy outline reviewed together before a single line of code is written.</p>
+                </div>
+                <div class="svc-step">
+                    <div class="svc-step-num">3</div>
+                    <h4>Development</h4>
+                    <p>Custom HTML, CSS, and JavaScript built to spec. Mobile-first and performance-optimized from the start.</p>
+                </div>
+                <div class="svc-step">
+                    <div class="svc-step-num">4</div>
+                    <h4>SEO &amp; QA</h4>
+                    <p>Schema markup, metadata, canonical tags, PageSpeed benchmarking, and cross-browser testing before launch.</p>
+                </div>
+                <div class="svc-step">
+                    <div class="svc-step-num">5</div>
+                    <h4>Launch &amp; Handoff</h4>
+                    <p>Deployment, Search Console submission, GA4 verification, and full documentation of everything built.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ CTA ══ -->
+    <section class="svc-cta-section">
+        <div class="container">
+            <div class="svc-cta-box fade-in">
+                <h2>Ready to Build Something Real?</h2>
+                <p>If you need a website that actually ranks and performs — not a template that blends in — let's have a 20-minute discovery call and scope out what makes sense for your situation.</p>
+                <div class="svc-cta-row" style="justify-content:center;">
+                    <a href="./contact.html" class="btn-primary">Start the Conversation</a>
+                    <a href="./index.html#services" class="btn-secondary">All Services</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer-container"></div>
+    <script src="script.js"></script>
+</body>
+</html>

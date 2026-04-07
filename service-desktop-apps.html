@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Production-ready Windows desktop applications and custom software by Knight Logics — shipped products including PixelForge AI, Display Control+, and VideoForge Studio. Built, packaged, and distributed via GitHub Releases.">
+    <meta name="keywords" content="Windows desktop application development, custom software, Python desktop app, PyInstaller, PixelForge AI, Display Control Plus, VideoForge Studio, GitHub Releases, Knight Logics">
+    <meta name="author" content="Nicholas Knight">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Desktop Applications &amp; Custom Software | Knight Logics">
+    <meta property="og:description" content="Production-ready Windows desktop applications shipped via GitHub Releases. Real software products built from concept to deployment — PixelForge AI, Display Control+, VideoForge Studio.">
+    <meta property="og:url" content="https://knightlogics.com/service-desktop-apps.html">
+    <meta property="og:site_name" content="Knight Logics">
+    <meta property="og:image" content="https://knightlogics.com/images/KnightLogicsLogo2.png">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="1024">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Desktop Applications &amp; Custom Software | Knight Logics">
+    <meta name="twitter:description" content="Production-ready Windows desktop applications shipped via GitHub Releases. Built from concept to deployment.">
+    <meta name="twitter:image" content="https://knightlogics.com/images/KnightLogicsLogo2.png">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VX36QR7HJW"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-VX36QR7HJW');</script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Service",
+        "name": "Desktop Applications & Custom Software",
+        "description": "Production-ready Windows desktop application development — packaged with PyInstaller, distributed via GitHub Releases, with tray integration, auto-updates, and full installer support.",
+        "provider": {
+            "@type": "Person",
+            "name": "Nicholas Knight",
+            "url": "https://knightlogics.com"
+        },
+        "serviceType": "Software Development",
+        "areaServed": { "@type": "Place", "name": "United States" },
+        "url": "https://knightlogics.com/service-desktop-apps.html"
+    }
+    </script>
+
+    <link rel="canonical" href="https://knightlogics.com/service-desktop-apps.html">
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" href="/images/KnightLogicsLogo2.png" sizes="1024x1024">
+    <link rel="apple-touch-icon" href="/images/KnightLogicsLogo2.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#6de1ff">
+    <meta name="msapplication-TileColor" content="#0a0a0a">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://knightlogics.com"},
+            {"@type": "ListItem", "position": 2, "name": "Services", "item": "https://knightlogics.com/#services"},
+            {"@type": "ListItem", "position": 3, "name": "Desktop Applications & Custom Software", "item": "https://knightlogics.com/service-desktop-apps.html"}
+        ]
+    }
+    </script>
+
+    <title>Desktop Applications &amp; Custom Software | Knight Logics</title>
+
+    <style>
+        .svc-hero {
+            position: relative;
+            min-height: 520px;
+            display: flex;
+            align-items: center;
+            background: url('./images/code hero3.webp') center/cover no-repeat;
+            overflow: hidden;
+        }
+        .svc-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(10,10,10,0.92) 0%, rgba(10,10,10,0.58) 100%);
+            z-index: 1;
+        }
+        .svc-hero-inner { position: relative; z-index: 2; max-width: 760px; padding: 120px 0 90px; }
+        .svc-eyebrow {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 6px 14px; border-radius: 999px;
+            background: rgba(100,255,218,0.12);
+            border: 1px solid rgba(100,255,218,0.25);
+            color: #64ffda; font-size: 0.78rem; font-weight: 700;
+            letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 1.2rem;
+        }
+        .svc-hero h1 {
+            font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+            font-weight: 700; line-height: 1.12; margin-bottom: 1rem;
+            background: linear-gradient(135deg, #64ffda, #ffffff, #64ffda);
+            background-size: 200% 200%; background-clip: text;
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        .svc-hero p { font-size: clamp(1rem, 1.4vw, 1.2rem); color: rgba(255,255,255,0.85); line-height: 1.65; margin-bottom: 2rem; max-width: 620px; }
+        .svc-cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+        .svc-stats { background: rgba(10,10,10,0.98); border-bottom: 1px solid rgba(100,255,218,0.12); padding: 32px 0; }
+        .svc-stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; text-align: center; }
+        .svc-stat-label { display: block; font-size: 1.6rem; font-weight: 700; color: #64ffda; margin-bottom: 4px; }
+        .svc-stat-desc { font-size: 0.88rem; color: rgba(255,255,255,0.6); }
+        .svc-features { padding: 90px 0; background: #0d0d0d; }
+        .svc-features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 52px; }
+        .svc-feature-card {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(100,255,218,0.13);
+            border-radius: 18px; padding: 28px 24px; transition: all 0.3s ease;
+        }
+        .svc-feature-card:hover { border-color: rgba(100,255,218,0.35); transform: translateY(-6px); box-shadow: 0 16px 40px rgba(100,255,218,0.08); }
+        .svc-card-icon {
+            width: 52px; height: 52px; border-radius: 14px;
+            background: linear-gradient(135deg, #64ffda, #4ecdc4);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem; color: #0a0a0a; margin-bottom: 18px; transition: all 0.3s ease;
+        }
+        .svc-feature-card:hover .svc-card-icon { transform: rotate(8deg) scale(1.08); }
+        .svc-feature-card h3 { font-size: 1.1rem; font-weight: 600; color: #ffffff; margin-bottom: 10px; }
+        .svc-feature-card p { font-size: 0.92rem; color: rgba(255,255,255,0.74); line-height: 1.6; margin: 0; }
+        /* Product cards for shipped apps */
+        .svc-products { padding: 90px 0; background: linear-gradient(135deg, #0a0a0a 0%, #0f1724 100%); }
+        .svc-products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 52px; }
+        .svc-product-card {
+            border-radius: 22px; overflow: hidden;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(100,255,218,0.12);
+            transition: all 0.3s ease; text-decoration: none; display: block;
+        }
+        .svc-product-card:hover { border-color: rgba(100,255,218,0.32); transform: translateY(-8px); box-shadow: 0 24px 52px rgba(0,0,0,0.38); }
+        .svc-product-thumb {
+            min-height: 180px; display: flex; align-items: center; justify-content: center;
+            padding: 32px; background: radial-gradient(circle at top, rgba(100,255,218,0.12), rgba(8,12,20,0.9) 68%);
+        }
+        .svc-product-thumb img { max-width: 100%; max-height: 110px; object-fit: contain; }
+        .svc-product-copy { padding: 20px 22px; }
+        .svc-product-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #64ffda; margin-bottom: 6px; }
+        .svc-product-copy h3 { font-size: 1.1rem; font-weight: 600; color: #ffffff; margin-bottom: 8px; }
+        .svc-product-copy p { font-size: 0.88rem; color: rgba(255,255,255,0.7); line-height: 1.55; margin: 0 0 14px; }
+        .svc-product-link {
+            display: inline-flex; align-items: center; gap: 6px;
+            color: #64ffda; font-size: 0.85rem; font-weight: 600; text-decoration: none;
+            padding: 6px 14px; border: 1px solid rgba(100,255,218,0.28);
+            border-radius: 999px; transition: all 0.3s ease;
+        }
+        .svc-product-link:hover { background: rgba(100,255,218,0.1); border-color: #64ffda; }
+        /* Work examples */
+        .svc-work { padding: 90px 0; background: #0a0a0a; }
+        .svc-work-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; margin-top: 52px; }
+        .svc-work-card {
+            border-radius: 20px; overflow: hidden;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(100,255,218,0.12); transition: all 0.3s ease;
+        }
+        .svc-work-card:hover { border-color: rgba(100,255,218,0.3); transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.35); }
+        .svc-work-thumb { width: 100%; aspect-ratio: 16/9; overflow: hidden; background: #111; }
+        .svc-work-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.5s ease; }
+        .svc-work-card:hover .svc-work-thumb img { transform: scale(1.04); }
+        .svc-work-thumb.logo-thumb { background: #f5f5f5; }
+        .svc-work-thumb.logo-thumb img { object-fit: contain; padding: 2rem; }
+        .svc-work-placeholder {
+            width: 100%; aspect-ratio: 16/9;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            background: linear-gradient(135deg, rgba(100,255,218,0.06), rgba(10,10,10,0.85));
+            border-bottom: 1px dashed rgba(100,255,218,0.2);
+        }
+        .svc-work-placeholder i { font-size: 2.5rem; color: rgba(100,255,218,0.35); margin-bottom: 12px; }
+        .svc-work-placeholder p { font-size: 0.82rem; color: rgba(255,255,255,0.4); text-align: center; padding: 0 24px; margin: 0; font-style: italic; line-height: 1.5; }
+        .svc-work-copy { padding: 20px 24px; }
+        .svc-work-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #64ffda; margin-bottom: 6px; }
+        .svc-work-copy h3 { font-size: 1.05rem; font-weight: 600; color: #ffffff; margin-bottom: 6px; }
+        .svc-work-copy p { font-size: 0.88rem; color: rgba(255,255,255,0.7); line-height: 1.55; margin: 0; }
+        /* Process */
+        .svc-process { padding: 90px 0; background: #0d0d0d; }
+        .svc-process-steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-top: 52px; position: relative; }
+        .svc-process-steps::before {
+            content: ''; position: absolute; top: 31px;
+            left: calc(10% + 32px); right: calc(10% + 32px);
+            height: 2px; background: linear-gradient(90deg, #64ffda, #4ecdc4, #64ffda); opacity: 0.25;
+        }
+        .svc-step { text-align: center; position: relative; }
+        .svc-step-num {
+            width: 64px; height: 64px; border-radius: 50%;
+            background: linear-gradient(135deg, rgba(100,255,218,0.15), rgba(100,255,218,0.05));
+            border: 2px solid rgba(100,255,218,0.35);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.35rem; font-weight: 700; color: #64ffda; margin: 0 auto 16px;
+        }
+        .svc-step h4 { font-size: 0.95rem; font-weight: 600; color: #ffffff; margin-bottom: 8px; }
+        .svc-step p { font-size: 0.82rem; color: rgba(255,255,255,0.58); line-height: 1.5; margin: 0; }
+        .svc-cta-section { padding: 90px 0; background: linear-gradient(135deg, #0a0a0a 0%, #0f1724 100%); text-align: center; }
+        .svc-cta-box {
+            max-width: 700px; margin: 0 auto; padding: 52px 40px;
+            background: rgba(255,255,255,0.04); border: 1px solid rgba(100,255,218,0.2);
+            border-radius: 28px; backdrop-filter: blur(10px);
+        }
+        .svc-cta-box h2 {
+            font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 700; color: #ffffff; margin-bottom: 16px;
+            background: linear-gradient(135deg, #64ffda, #ffffff);
+            background-clip: text; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .svc-cta-box p { font-size: 1.05rem; color: rgba(255,255,255,0.8); line-height: 1.65; margin-bottom: 28px; }
+        @media (max-width: 900px) {
+            .svc-stats-grid { grid-template-columns: repeat(2, 1fr); }
+            .svc-features-grid { grid-template-columns: repeat(2, 1fr); }
+            .svc-products-grid { grid-template-columns: repeat(2, 1fr); }
+            .svc-work-grid { grid-template-columns: 1fr; }
+            .svc-process-steps { grid-template-columns: repeat(3, 1fr); }
+            .svc-process-steps::before { display: none; }
+        }
+        @media (max-width: 600px) {
+            .svc-features-grid { grid-template-columns: 1fr; }
+            .svc-products-grid { grid-template-columns: 1fr; }
+            .svc-process-steps { grid-template-columns: repeat(2, 1fr); }
+            .svc-cta-row { flex-direction: column; }
+            .svc-cta-box { padding: 36px 20px; }
+        }
+    </style>
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <!-- ══ HERO ══ -->
+    <section class="svc-hero">
+        <div class="container">
+            <div class="svc-hero-inner fade-in">
+                <span class="svc-eyebrow"><i class="fas fa-window-maximize"></i> Desktop Software</span>
+                <h1>Desktop Applications<br>&amp; Custom Software</h1>
+                <p>Production-ready Windows desktop applications, utility software, and specialized tools — built, packaged, and shipped. Not prototype demos. Actual software people download and use daily.</p>
+                <div class="svc-cta-row">
+                    <a href="./contact.html" class="btn-primary">Discuss Your Software Idea</a>
+                    <a href="./projects.html" class="btn-secondary">View Shipped Products</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ STATS STRIP ══ -->
+    <div class="svc-stats">
+        <div class="container">
+            <div class="svc-stats-grid">
+                <div>
+                    <span class="svc-stat-label">3+</span>
+                    <span class="svc-stat-desc">Shipped desktop applications</span>
+                </div>
+                <div>
+                    <span class="svc-stat-label">Windows</span>
+                    <span class="svc-stat-desc">Primary deployment platform</span>
+                </div>
+                <div>
+                    <span class="svc-stat-label">GitHub</span>
+                    <span class="svc-stat-desc">Releases &amp; distribution pipeline</span>
+                </div>
+                <div>
+                    <span class="svc-stat-label">Python</span>
+                    <span class="svc-stat-desc">Primary stack, PyInstaller packaged</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ SHIPPED PRODUCTS ══ -->
+    <section class="svc-products">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Shipped Products</h2>
+                <p>These aren't concept projects — they're live applications with GitHub releases, versioned builds, and real users.</p>
+            </div>
+            <div class="svc-products-grid">
+                <a href="./pixelforge-ai.html" class="svc-product-card fade-in">
+                    <div class="svc-product-thumb">
+                        <img src="./images/pixelforge_logo.webp" alt="PixelForge AI logo" width="1536" height="1024" loading="lazy">
+                    </div>
+                    <div class="svc-product-copy">
+                        <p class="svc-product-label">AI Upscaling Tool</p>
+                        <h3>PixelForge AI</h3>
+                        <p>AI-powered video upscaling and enhancement pipeline for Windows. Multi-stage processing with GPU acceleration and batch mode.</p>
+                        <span class="svc-product-link"><i class="fas fa-arrow-right"></i> View Product Page</span>
+                    </div>
+                </a>
+
+                <a href="./display-control-plus.html" class="svc-product-card fade-in">
+                    <div class="svc-product-thumb">
+                        <img src="./images/Display-Control-Plus-Logo.webp" alt="Display Control+ logo" width="1024" height="1024" loading="lazy">
+                    </div>
+                    <div class="svc-product-copy">
+                        <p class="svc-product-label">Windows Utility</p>
+                        <h3>Display Control+</h3>
+                        <p>Per-monitor OLED protection system with tray-first design, idle detection modes, and persistent settings that survive restarts.</p>
+                        <span class="svc-product-link"><i class="fas fa-arrow-right"></i> View Product Page</span>
+                    </div>
+                </a>
+
+                <a href="./videoforge.html" class="svc-product-card fade-in">
+                    <div class="svc-product-thumb">
+                        <img src="./images/videoforge-app-icon.webp" alt="VideoForge Studio logo" width="590" height="400" loading="lazy">
+                    </div>
+                    <div class="svc-product-copy">
+                        <p class="svc-product-label">Video Production Tool</p>
+                        <h3>VideoForge Studio</h3>
+                        <p>Desktop-first video narration and production app. Script-to-video pipeline with AI narration, clip compilation, and export workflows.</p>
+                        <span class="svc-product-link"><i class="fas fa-arrow-right"></i> View Product Page</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ FEATURES / DELIVERABLES ══ -->
+    <section class="svc-features">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>What's Included</h2>
+                <p>From first prototype to distributable release — the full software development lifecycle handled in one engagement.</p>
+            </div>
+            <div class="svc-features-grid">
+                <article class="svc-feature-card fade-in">
+                    <div class="svc-card-icon"><i class="fas fa-window-restore"></i></div>
+                    <h3>Windows Desktop Development</h3>
+                    <p>Python-based desktop applications with Tkinter, PyQt, or custom UI frameworks. Tray integration, background services, multi-window support, and system-level access.</p>
+                </article>
+                <article class="svc-feature-card fade-in">
+                    <div class="svc-card-icon"><i class="fas fa-box-open"></i></div>
+                    <h3>PyInstaller Packaging</h3>
+                    <p>Self-contained EXE builds with PyInstaller — no Python install required on the end user's machine. Single-file or folder builds depending on app architecture.</p>
+                </article>
+                <article class="svc-feature-card fade-in">
+                    <div class="svc-card-icon"><i class="fab fa-github"></i></div>
+                    <h3>GitHub Releases Distribution</h3>
+                    <p>Versioned releases with changelog, tagged builds, and asset uploads to GitHub Releases. Direct download links for end users without needing a separate distribution platform.</p>
+                </article>
+                <article class="svc-feature-card fade-in">
+                    <div class="svc-card-icon"><i class="fas fa-compact-disc"></i></div>
+                    <h3>Installer (Inno Setup)</h3>
+                    <p>Professional Windows installer with Inno Setup — Start Menu shortcuts, APPDATA config storage, uninstaller, and optional silent install mode for enterprise deployment.</p>
+                </article>
+                <article class="svc-feature-card fade-in">
+                    <div class="svc-card-icon"><i class="fas fa-arrows-rotate"></i></div>
+                    <h3>Update-Aware Architecture</h3>
+                    <p>Apps built with version-checking and GitHub Releases polling so users can be notified of new versions without requiring a separate update service.</p>
+                </article>
+                <article class="svc-feature-card fade-in">
+                    <div class="svc-card-icon"><i class="fas fa-file-code"></i></div>
+                    <h3>Documentation &amp; Spec</h3>
+                    <p>README, CHANGELOG, build commands, and architecture notes — so you understand the project and can hand it to another developer if needed without starting over.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ PROCESS ══ -->
+    <section class="svc-process">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>From Concept to Release</h2>
+                <p>A deliberate path from working prototype to a distributable, maintainable application.</p>
+            </div>
+            <div class="svc-process-steps fade-in">
+                <div class="svc-step">
+                    <div class="svc-step-num">1</div>
+                    <h4>Speccing</h4>
+                    <p>Define what the app does, what it doesn't do, and what "shipped" means — before a prototype is built.</p>
+                </div>
+                <div class="svc-step">
+                    <div class="svc-step-num">2</div>
+                    <h4>Prototype</h4>
+                    <p>Minimal working build to validate core functionality. Fast to make, fast to throw away if the approach is wrong.</p>
+                </div>
+                <div class="svc-step">
+                    <div class="svc-step-num">3</div>
+                    <h4>Production Build</h4>
+                    <p>Error handling, config persistence, tray/installer integration, and edge case coverage added before packaging.</p>
+                </div>
+                <div class="svc-step">
+                    <div class="svc-step-num">4</div>
+                    <h4>Package &amp; Test</h4>
+                    <p>PyInstaller build, installer generation, and clean-install testing on a fresh Windows environment to catch dependency issues.</p>
+                </div>
+                <div class="svc-step">
+                    <div class="svc-step-num">5</div>
+                    <h4>Release</h4>
+                    <p>GitHub Release tagged, asset uploaded, README and CHANGELOG updated. Ready to share or distribute publicly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ CTA ══ -->
+    <section class="svc-cta-section">
+        <div class="container">
+            <div class="svc-cta-box fade-in">
+                <h2>Have a Software Idea?</h2>
+                <p>If you have a workflow that needs a real Windows application — not a web app, not a browser extension, but actual desktop software — let's talk scope. I've shipped real products and know what it takes to get from idea to installer.</p>
+                <div class="svc-cta-row" style="justify-content:center;">
+                    <a href="./contact.html" class="btn-primary">Start the Conversation</a>
+                    <a href="./index.html#services" class="btn-secondary">All Services</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer-container"></div>
+    <script src="script.js"></script>
+</body>
+</html>
