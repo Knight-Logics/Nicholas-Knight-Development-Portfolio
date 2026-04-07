@@ -1091,7 +1091,6 @@ function initVideoPlayer() {
     const mainVideo = document.getElementById('main-video');
 
     if (!mainVideo) {
-        console.error('Main video element not found');
         return;
     }
 

@@ -1,3 +1,12 @@
+/* Font Awesome font-display override to prevent render blocking */
+@font-face {
+    font-family: 'Font Awesome 6 Free';
+    font-display: swap;
+    src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/webfonts/fa-solid-900.woff2') format('woff2');
+    font-weight: 900;
+    font-style: normal;
+}
+
 /* Reset and Base Styles */
 * {
     margin: 0;
