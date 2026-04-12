@@ -200,8 +200,9 @@
     <!-- Preload hero LCP image -->
     <link rel="preload" as="image" href="./images/city%20hero.webp" fetchpriority="high">
     
-    <!-- Google Fonts: Playfair Display for artistic company name -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <!-- Google Fonts: Playfair Display — loaded async to avoid render blocking -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap"></noscript>
     
     <!-- Sitemap reference -->
     <link rel="sitemap" type="application/xml" href="./sitemap.xml">

@@ -57,7 +57,7 @@ body {
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    transition: opacity 0.5s ease-out;
+    transition: opacity 0.4s ease-out;
 }
 
 .loader {
@@ -3415,6 +3415,11 @@ section::before {
     line-height: 1.6;
 }
 
+.footer-section a {
+    display: inline-block;
+    padding: 8px 0;
+}
+
 .footer-section a:hover {
     color: #64ffda;
 }
@@ -3450,6 +3455,8 @@ section::before {
     text-decoration: none;
     font-size: 0.9rem;
     transition: color 0.3s ease;
+    padding: 8px 6px;
+    display: inline-block;
 }
 
 .footer .footer-links a:hover {
@@ -4523,6 +4530,7 @@ section::before {
     
     .footer .footer-links a {
         font-size: 0.85rem;
+        padding: 10px 6px;
     }
 }
 

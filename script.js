@@ -111,18 +111,16 @@ document.addEventListener('DOMContentLoaded', async function() {
         });
     });
     
-    // Hide loading screen after page loads
-    setTimeout(() => {
-        const loadingScreen = document.getElementById('loading-screen');
-        if (loadingScreen) {
-            loadingScreen.style.opacity = '0';
-            setTimeout(() => {
-                loadingScreen.style.display = 'none';
-                // Start main animations after loading screen disappears
-                initMainAnimations();
-            }, 500);
-        }
-    }, 1000);
+    // Hide loading screen immediately after init — no artificial delay
+    const loadingScreen = document.getElementById('loading-screen');
+    if (loadingScreen) {
+        loadingScreen.style.opacity = '0';
+        setTimeout(() => {
+            loadingScreen.style.display = 'none';
+            // Start main animations after loading screen disappears
+            initMainAnimations();
+        }, 400);
+    }
 });
 
 // Fixed Hero Landing Screen with Code Forest Exit Effect
