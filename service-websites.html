@@ -286,7 +286,18 @@
             font-size: 0.88rem;
             color: rgba(255,255,255,0.7);
             line-height: 1.55;
-            margin: 0;
+            margin: 0 0 12px;
+        }
+        .svc-work-cta {
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #64ffda;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .svc-work-grid--3 {
+            grid-template-columns: repeat(3, 1fr);
         }
         /* Process steps */
         .svc-process {
@@ -373,6 +384,7 @@
             .svc-stats-grid { grid-template-columns: repeat(2, 1fr); }
             .svc-features-grid { grid-template-columns: repeat(2, 1fr); }
             .svc-work-grid { grid-template-columns: 1fr; }
+            .svc-work-grid--3 { grid-template-columns: 1fr; }
             .svc-process-steps { grid-template-columns: repeat(3, 1fr); }
             .svc-process-steps::before { display: none; }
         }
@@ -475,50 +487,42 @@
                 <h2>Real Work, Real Results</h2>
                 <p>These are production websites — not mock-ups. Every project is deployed, indexed by Google, and built to perform.</p>
             </div>
-            <div class="svc-work-grid">
-                <a class="svc-work-card fade-in" href="https://www.knightgroup.com/" target="_blank" rel="noopener">
-                    <div class="svc-work-thumb logo-thumb">
-                        <img src="./images/knight-group-website.webp" alt="Knight Group — co-owned business logo" width="800" height="450" loading="lazy">
-                    </div>
-                    <div class="svc-work-copy">
-                        <p class="svc-work-label">Co-Owned Business</p>
-                        <h3>Knight Group Website</h3>
-                        <p>Custom multi-page site with full technical SEO stack, Google Business integration, and structured data schema. Built from scratch, optimized for local search.</p>
-                    </div>
-                </a>
-
-                <a class="svc-work-card fade-in" href="https://www.jnsbuilds.com/" target="_blank" rel="noopener">
-                    <div class="svc-work-thumb logo-thumb">
-                        <img src="./images/jnsbuilds-logo.png" alt="JNSBuilds.com logo" width="800" height="450" loading="lazy">
+            <div class="svc-work-grid svc-work-grid--3">
+                <a class="svc-work-card fade-in" href="./case-study-jns.html">
+                    <div class="svc-work-thumb">
+                        <img src="./images/JNS%20-%20Desktop%20Speed.png" alt="JNSBuilds.com — 99 Desktop Performance, 100 SEO" width="900" height="600" loading="lazy">
                     </div>
                     <div class="svc-work-copy">
                         <p class="svc-work-label">Client Website</p>
                         <h3>JNSBuilds.com</h3>
-                        <p>Custom-built website for a construction and home improvement client. Clean, professional design with service pages, contact form, and local SEO structure.</p>
+                        <p>11-page construction site. 99 Desktop Performance · 100 SEO · FAQPage + LocalBusiness schema · Deployed on GitHub Pages.</p>
+                        <span class="svc-work-cta">View Case Study <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </a>
 
-                <div class="svc-work-card fade-in">
+                <a class="svc-work-card fade-in" href="./case-study-knight-group.html">
                     <div class="svc-work-thumb">
-                        <img src="./images/PageSpeedInsights.png" alt="PageSpeed Insights scores for Knight Group website — Performance, Accessibility, Best Practices, SEO" width="1200" height="675" loading="lazy">
+                        <img src="./images/KnightGroup%20-%20Mobile%20Speed.png" alt="KnightGroup.com — 96 Performance, 100 Accessibility, 100 SEO" width="900" height="600" loading="lazy">
                     </div>
                     <div class="svc-work-copy">
-                        <p class="svc-work-label">Performance &amp; Core Web Vitals</p>
-                        <h3>Lighthouse Benchmarked</h3>
-                        <p>Sites are benchmarked against Core Web Vitals before launch — Accessibility, SEO, and Best Practices audited and resolved. Performance budgets set per project based on complexity.</p>
+                        <p class="svc-work-label">Co-Owned Business</p>
+                        <h3>KnightGroup.com</h3>
+                        <p>Multi-page handyman business site. 96 Performance · 100 Accessibility · 100 SEO · BreadcrumbList + LocalBusiness schema.</p>
+                        <span class="svc-work-cta">View Case Study <i class="fas fa-arrow-right"></i></span>
                     </div>
-                </div>
+                </a>
 
-                <div class="svc-work-card fade-in">
+                <a class="svc-work-card fade-in" href="./case-study-knight-logics.html">
                     <div class="svc-work-thumb">
-                        <img src="./images/Screenshot%202026-04-06%20153452.png" alt="Google Search Console showing knightlogics.com indexed pages" width="1366" height="768" loading="lazy">
+                        <img src="./images/PageSpeedInsights%20(2).png" alt="KnightLogics.com — 95 Performance, 100 Accessibility, 100 SEO" width="900" height="600" loading="lazy">
                     </div>
                     <div class="svc-work-copy">
-                        <p class="svc-work-label">Search Visibility</p>
-                        <h3>Google Search Console</h3>
-                        <p>All sites are submitted to Google Search Console with sitemaps, coverage reports reviewed, and any crawl issues resolved before handoff.</p>
+                        <p class="svc-work-label">Portfolio Website</p>
+                        <h3>KnightLogics.com</h3>
+                        <p>This site. 95 Desktop Performance · 100 Accessibility · 100 SEO · Dynamic architecture · GA4 + Search Console verified.</p>
+                        <span class="svc-work-cta">View Case Study <i class="fas fa-arrow-right"></i></span>
                     </div>
-                </div>
+                </a>
             </div>
         </div>
     </section>

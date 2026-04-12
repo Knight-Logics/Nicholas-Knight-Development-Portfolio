@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Case study: KnightGroup.com — co-owned business website built by Knight Logics with 96 Performance, 100 Accessibility, and full Rich Results validation.">
+    <meta name="author" content="Nicholas Knight">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Case Study: KnightGroup.com | Knight Logics">
+    <meta property="og:description" content="96 Performance · 100 Accessibility · 100 SEO. How Knight Logics built the Knight Group handyman and home improvement website.">
+    <meta property="og:url" content="https://knightlogics.com/case-study-knight-group.html">
+    <meta property="og:site_name" content="Knight Logics">
+    <meta property="og:image" content="https://knightlogics.com/images/KnightLogicsLogo2.png">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Case Study: KnightGroup.com | Knight Logics">
+    <meta name="twitter:image" content="https://knightlogics.com/images/KnightLogicsLogo2.png">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VX36QR7HJW"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-VX36QR7HJW');</script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://knightlogics.com"},
+            {"@type": "ListItem", "position": 2, "name": "Custom Websites", "item": "https://knightlogics.com/service-websites.html"},
+            {"@type": "ListItem", "position": 3, "name": "Case Study: KnightGroup.com", "item": "https://knightlogics.com/case-study-knight-group.html"}
+        ]
+    }
+    </script>
+
+    <link rel="canonical" href="https://knightlogics.com/case-study-knight-group.html">
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" href="/images/KnightLogicsLogo2.png" sizes="1024x1024">
+    <link rel="apple-touch-icon" href="/images/KnightLogicsLogo2.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#6de1ff">
+    <link rel="stylesheet" href="style.css">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
+
+    <title>Case Study: KnightGroup.com | Knight Logics</title>
+
+    <style>
+        /* ── Case Study Shared Layout ── */
+        .cs-hero {
+            position: relative;
+            min-height: 420px;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, #0a0f0a 0%, #0d1a10 50%, #0a1520 100%);
+            overflow: hidden;
+            border-bottom: 1px solid rgba(100,255,218,0.1);
+        }
+        .cs-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 70% 50%, rgba(100,255,218,0.06) 0%, transparent 65%);
+        }
+        .cs-hero-inner {
+            position: relative;
+            z-index: 2;
+            padding: 100px 0 70px;
+            max-width: 820px;
+        }
+        .cs-breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.8rem;
+            color: rgba(255,255,255,0.45);
+            margin-bottom: 24px;
+            flex-wrap: wrap;
+        }
+        .cs-breadcrumb a { color: rgba(100,255,218,0.7); text-decoration: none; }
+        .cs-breadcrumb a:hover { color: #64ffda; }
+        .cs-breadcrumb span { color: rgba(255,255,255,0.3); }
+        .cs-type-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 5px 14px;
+            border-radius: 999px;
+            background: rgba(100,255,218,0.1);
+            border: 1px solid rgba(100,255,218,0.25);
+            color: #64ffda;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+        .cs-hero h1 {
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            font-weight: 700;
+            line-height: 1.12;
+            margin-bottom: 14px;
+            color: #ffffff;
+        }
+        .cs-hero h1 span {
+            background: linear-gradient(135deg, #64ffda, #ffffff, #64ffda);
+            background-size: 200% 200%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        .cs-hero-sub {
+            font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+            color: rgba(255,255,255,0.75);
+            line-height: 1.65;
+            margin-bottom: 28px;
+            max-width: 620px;
+        }
+        .cs-hero-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        .cs-btn-live {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 22px;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #64ffda, #4ecdc4);
+            color: #0a0a0a;
+            font-weight: 700;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .cs-btn-live:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(100,255,218,0.3); }
+        .cs-btn-back {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 11px 20px;
+            border-radius: 999px;
+            border: 1px solid rgba(255,255,255,0.18);
+            color: rgba(255,255,255,0.75);
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .cs-btn-back:hover { border-color: rgba(100,255,218,0.4); color: #64ffda; }
+
+        .cs-scores {
+            background: rgba(10,15,10,0.98);
+            border-bottom: 1px solid rgba(100,255,218,0.1);
+            padding: 28px 0;
+        }
+        .cs-scores-grid {
+            display: flex;
+            gap: 0;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .cs-score-item {
+            text-align: center;
+            padding: 12px 40px;
+            border-right: 1px solid rgba(255,255,255,0.08);
+        }
+        .cs-score-item:last-child { border-right: none; }
+        .cs-score-num {
+            display: block;
+            font-size: 2rem;
+            font-weight: 800;
+            color: #64ffda;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .cs-score-label {
+            font-size: 0.76rem;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .cs-overview {
+            padding: 80px 0;
+            background: #0d0d0d;
+        }
+        .cs-overview-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.6fr;
+            gap: 64px;
+            align-items: start;
+        }
+        .cs-section-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            color: #64ffda;
+            margin-bottom: 12px;
+        }
+        .cs-overview h2 {
+            font-size: clamp(1.5rem, 2.5vw, 2rem);
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        .cs-overview p {
+            font-size: 0.96rem;
+            color: rgba(255,255,255,0.72);
+            line-height: 1.7;
+            margin-bottom: 16px;
+        }
+        .cs-tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 28px;
+        }
+        .cs-tag {
+            padding: 5px 14px;
+            border-radius: 999px;
+            background: rgba(100,255,218,0.08);
+            border: 1px solid rgba(100,255,218,0.2);
+            color: #64ffda;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+        .cs-deliverables {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .cs-deliverables li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            font-size: 0.92rem;
+            color: rgba(255,255,255,0.78);
+            line-height: 1.5;
+        }
+        .cs-deliverables li i {
+            color: #64ffda;
+            font-size: 0.85rem;
+            margin-top: 3px;
+            flex-shrink: 0;
+        }
+
+        .cs-performance {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #0a0a0a 0%, #0f1724 100%);
+        }
+        .cs-section-header { margin-bottom: 48px; }
+        .cs-section-header h2 {
+            font-size: clamp(1.5rem, 2.5vw, 2rem);
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 10px;
+        }
+        .cs-section-header p {
+            font-size: 0.96rem;
+            color: rgba(255,255,255,0.6);
+            max-width: 580px;
+        }
+        .cs-perf-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
+        .cs-perf-card {
+            border-radius: 16px;
+            overflow: hidden;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(100,255,218,0.12);
+        }
+        .cs-perf-label {
+            padding: 14px 20px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.6);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .cs-perf-label i { color: #64ffda; }
+        .cs-perf-card img { width: 100%; display: block; }
+
+        .cs-search {
+            padding: 80px 0;
+            background: #0d0d0d;
+        }
+        .cs-search-img {
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(100,255,218,0.12);
+            max-width: 860px;
+        }
+        .cs-search-img img { width: 100%; display: block; }
+
+        .cs-rich {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #0a0a0a 0%, #0f1724 100%);
+        }
+        .cs-rich-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .cs-rich-header h2 {
+            font-size: clamp(1.5rem, 2.5vw, 2rem);
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+        .cs-rich-header p {
+            font-size: 0.92rem;
+            color: rgba(255,255,255,0.55);
+        }
+        .cs-btn-test {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            border-radius: 999px;
+            border: 1px solid rgba(100,255,218,0.3);
+            color: #64ffda;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .cs-btn-test:hover { background: rgba(100,255,218,0.08); border-color: rgba(100,255,218,0.6); }
+        .cs-rich-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+        .cs-rich-card {
+            border-radius: 14px;
+            overflow: hidden;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(100,255,218,0.1);
+        }
+        .cs-rich-card-label {
+            padding: 12px 18px;
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+            font-size: 0.76rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255,255,255,0.5);
+        }
+        .cs-rich-card img { width: 100%; display: block; }
+
+        .cs-cta {
+            padding: 72px 0;
+            background: #0a0a0a;
+            text-align: center;
+            border-top: 1px solid rgba(100,255,218,0.08);
+        }
+        .cs-cta h2 {
+            font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 12px;
+        }
+        .cs-cta p {
+            font-size: 0.98rem;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 28px;
+            max-width: 520px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cs-cta-row {
+            display: flex;
+            gap: 14px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 860px) {
+            .cs-overview-grid { grid-template-columns: 1fr; gap: 36px; }
+            .cs-perf-grid { grid-template-columns: 1fr; }
+            .cs-rich-grid { grid-template-columns: 1fr; }
+            .cs-score-item { padding: 12px 20px; }
+        }
+        @media (max-width: 600px) {
+            .cs-rich-header { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <!-- ══ HERO ══ -->
+    <section class="cs-hero">
+        <div class="container">
+            <div class="cs-hero-inner fade-in">
+                <nav class="cs-breadcrumb" aria-label="Breadcrumb">
+                    <a href="./index.html">Home</a>
+                    <span>/</span>
+                    <a href="./service-websites.html">Custom Websites</a>
+                    <span>/</span>
+                    <span>KnightGroup.com</span>
+                </nav>
+                <div class="cs-type-badge"><i class="fas fa-building"></i> Co-Owned Business</div>
+                <h1>Case Study: <span>KnightGroup.com</span></h1>
+                <p class="cs-hero-sub">A multi-page business website for Knight Group — a handyman and home improvement company serving Pinellas County, FL. Custom-coded from scratch with photo galleries, LocalBusiness schema, BreadcrumbList, and a full technical SEO stack. 96 Performance. 100 Accessibility. 100 SEO.</p>
+                <div class="cs-hero-actions">
+                    <a href="https://www.knightgroup.com/" class="cs-btn-live" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i> View Live Site</a>
+                    <a href="./service-websites.html" class="cs-btn-back"><i class="fas fa-arrow-left"></i> All Case Studies</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ SCORE STRIP ══ -->
+    <div class="cs-scores">
+        <div class="container">
+            <div class="cs-scores-grid">
+                <div class="cs-score-item">
+                    <span class="cs-score-num">96</span>
+                    <span class="cs-score-label">Desktop Performance</span>
+                </div>
+                <div class="cs-score-item">
+                    <span class="cs-score-num">96</span>
+                    <span class="cs-score-label">Mobile Performance</span>
+                </div>
+                <div class="cs-score-item">
+                    <span class="cs-score-num">100</span>
+                    <span class="cs-score-label">SEO Score</span>
+                </div>
+                <div class="cs-score-item">
+                    <span class="cs-score-num">100</span>
+                    <span class="cs-score-label">Accessibility</span>
+                </div>
+                <div class="cs-score-item">
+                    <span class="cs-score-num">4</span>
+                    <span class="cs-score-label">Rich Result Types</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ OVERVIEW / THE BUILD ══ -->
+    <section class="cs-overview">
+        <div class="container">
+            <div class="cs-overview-grid">
+                <div>
+                    <p class="cs-section-label"><i class="fas fa-wrench"></i> The Build</p>
+                    <h2>Custom Site for a Service Business That Needed to Rank Locally</h2>
+                    <div class="cs-tech-stack" aria-label="Tech stack">
+                        <span class="cs-tag">HTML5</span>
+                        <span class="cs-tag">CSS3</span>
+                        <span class="cs-tag">Vanilla JS</span>
+                        <span class="cs-tag">GitHub Pages</span>
+                        <span class="cs-tag">JSON-LD Schema</span>
+                        <span class="cs-tag">Google Search Console</span>
+                        <span class="cs-tag">Photo Gallery</span>
+                    </div>
+                    <p>Knight Group operates in a competitive local service market where trust, photos, and Google visibility matter. The site needed to convert visitors into calls — not just look good. Every design and SEO decision was made with that goal in mind.</p>
+                    <p>The build is a multi-page static site with a homepage, about page, galleries, services, and contact. Photo galleries provide social proof of real work completed. The contact section is optimized for quick phone calls and form submissions.</p>
+                    <p>The technical SEO stack is comprehensive: LocalBusiness schema with full address and service area data, BreadcrumbList on every page, canonical tags, sitemap, and Google Search Console verification — all working together for maximum local search visibility.</p>
+                </div>
+                <div>
+                    <p class="cs-section-label"><i class="fas fa-list-check"></i> What Was Delivered</p>
+                    <ul class="cs-deliverables">
+                        <li><i class="fas fa-check-circle"></i> Multi-page site: home, about, services, galleries, contact</li>
+                        <li><i class="fas fa-check-circle"></i> Photo gallery showcasing completed work — social proof at scale</li>
+                        <li><i class="fas fa-check-circle"></i> LocalBusiness JSON-LD schema with address, phone, and service area</li>
+                        <li><i class="fas fa-check-circle"></i> BreadcrumbList schema on all pages — included in Rich Results</li>
+                        <li><i class="fas fa-check-circle"></i> Organization schema for entity establishment with Google</li>
+                        <li><i class="fas fa-check-circle"></i> Open Graph + Twitter Card meta on every page</li>
+                        <li><i class="fas fa-check-circle"></i> Sitemap.xml submitted to Google Search Console</li>
+                        <li><i class="fas fa-check-circle"></i> 100/100 Accessibility — full compliance from launch day</li>
+                        <li><i class="fas fa-check-circle"></i> Fully responsive — mobile, tablet, and desktop</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ PERFORMANCE ══ -->
+    <section class="cs-performance">
+        <div class="container">
+            <div class="cs-section-header fade-in">
+                <p class="cs-section-label"><i class="fas fa-gauge-high"></i> Lighthouse Scores</p>
+                <h2>PageSpeed Insights</h2>
+                <p>Tested via PageSpeed Insights (Lighthouse 13.0.1) on April 11, 2026. Scores reflect the homepage at https://knightgroup.com/</p>
+            </div>
+            <div class="cs-perf-grid fade-in">
+                <div class="cs-perf-card">
+                    <div class="cs-perf-label"><i class="fas fa-display"></i> Desktop — 96 / 100 / 100 / 100</div>
+                    <img src="./images/KnightGroup%20-%20Mobile%20Speed.png" alt="Knight Group PageSpeed Insights Desktop — 96 Performance, 100 Accessibility, 100 Best Practices, 100 SEO" loading="lazy" width="900" height="1100">
+                </div>
+                <div class="cs-perf-card">
+                    <div class="cs-perf-label"><i class="fas fa-mobile-screen"></i> Mobile — 96 / 100 / 100 / 100</div>
+                    <img src="./images/KnightGroup-Desktop%20Speed.png" alt="Knight Group PageSpeed Insights Mobile — 96 Performance, 100 Accessibility, 100 Best Practices, 100 SEO" loading="lazy" width="900" height="1100">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ SEARCH CONSOLE ══ -->
+    <section class="cs-search">
+        <div class="container">
+            <div class="cs-section-header fade-in">
+                <p class="cs-section-label"><i class="fas fa-magnifying-glass"></i> Google Search Console</p>
+                <h2>Indexed &amp; Verified</h2>
+                <p>Site submitted to Google Search Console with sitemap. All pages crawled and indexed successfully.</p>
+            </div>
+            <div class="cs-search-img fade-in">
+                <img src="./images/KnightGroup%20-%20Indexed.png" alt="Google Search Console showing KnightGroup.com pages indexed successfully" loading="lazy" width="1200" height="700">
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ RICH RESULTS ══ -->
+    <section class="cs-rich">
+        <div class="container">
+            <div class="cs-rich-header fade-in">
+                <div>
+                    <p class="cs-section-label"><i class="fas fa-code"></i> Structured Data</p>
+                    <h2>Rich Results Validation</h2>
+                    <p>Tested via Google's Rich Results Test. Knight Group passes validation for 4 rich result types.</p>
+                </div>
+                <a href="https://search.google.com/test/rich-results/result?id=c7pNdrJmxPUYamKxxMmB4w" target="_blank" rel="noopener" class="cs-btn-test"><i class="fas fa-arrow-up-right-from-square"></i> View Full Live Test</a>
+            </div>
+            <div class="cs-rich-grid fade-in">
+                <div class="cs-rich-card">
+                    <div class="cs-rich-card-label">Overall — All Schema Types Detected</div>
+                    <img src="./images/Knightgroup%20-%20Rich%20Main.png" alt="Knight Group Rich Results Test — multiple valid schema types detected" loading="lazy" width="900" height="500">
+                </div>
+                <div class="cs-rich-card">
+                    <div class="cs-rich-card-label">Local Business Schema</div>
+                    <img src="./images/KnightGroup%20-%20Rich%20Local.png" alt="Knight Group Rich Results Test — Local Business schema valid" loading="lazy" width="900" height="500">
+                </div>
+                <div class="cs-rich-card">
+                    <div class="cs-rich-card-label">Organization Schema</div>
+                    <img src="./images/KnightGroup%20-%20Rich%20Organization.png" alt="Knight Group Rich Results Test — Organization schema valid" loading="lazy" width="900" height="500">
+                </div>
+                <div class="cs-rich-card">
+                    <div class="cs-rich-card-label">Breadcrumb Schema</div>
+                    <img src="./images/KnightGroup%20-%20Rich%20Breadcrumbs.png" alt="Knight Group Rich Results Test — Breadcrumb schema valid" loading="lazy" width="900" height="500">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ CTA ══ -->
+    <section class="cs-cta">
+        <div class="container">
+            <h2>Want a Site Like This?</h2>
+            <p>Every project is custom-built, performance-optimized, and deployed with a full technical SEO stack from day one.</p>
+            <div class="cs-cta-row">
+                <a href="./contact.html" class="btn-primary">Start a Project</a>
+                <a href="./service-websites.html" class="btn-secondary">See All Case Studies</a>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer-container"></div>
+    <script src="script.js"></script>
+</body>
+</html>
