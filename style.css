@@ -6274,6 +6274,25 @@ html {
     line-height: 1.1;
 }
 
+/* ── BREADCRUMB NAV (shared across all inner pages) ───────────── */
+.kl-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 22px;
+    flex-wrap: wrap;
+    list-style: none;
+}
+.kl-breadcrumb a {
+    color: rgba(100,255,218,0.7);
+    text-decoration: none;
+    transition: color 0.15s;
+}
+.kl-breadcrumb a:hover { color: #64ffda; }
+.kl-breadcrumb span { color: rgba(255,255,255,0.3); }
+
 .videoforge-shell-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);

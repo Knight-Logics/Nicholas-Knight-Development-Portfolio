@@ -40,7 +40,7 @@
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
 
-    <title>Case Study: JNSBuilds.com | Knight Logics</title>
+    <title>JNSBuilds.com | Knight Logics Portfolio</title>
 
     <style>
         /* ── Case Study Shared Layout ── */
@@ -248,6 +248,44 @@
             flex-shrink: 0;
         }
 
+            .cs-preview {
+                padding: 80px 0;
+                background: linear-gradient(135deg, #0a0a0a 0%, #0f1724 100%);
+            }
+            .cs-preview-grid {
+                display: grid;
+                grid-template-columns: 1.35fr 0.7fr;
+                gap: 28px;
+                align-items: start;
+            }
+            .cs-preview-card {
+                border-radius: 16px;
+                overflow: hidden;
+                background: rgba(255,255,255,0.04);
+                border: 1px solid rgba(100,255,218,0.12);
+            }
+            .cs-preview-card--mobile {
+                max-width: 430px;
+                justify-self: center;
+            }
+            .cs-preview-label {
+                padding: 14px 20px;
+                border-bottom: 1px solid rgba(255,255,255,0.06);
+                font-size: 0.8rem;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                color: rgba(255,255,255,0.6);
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+            .cs-preview-label i { color: #64ffda; }
+            .cs-preview-card img {
+                width: 100%;
+                display: block;
+            }
+
         /* Performance section */
         .cs-performance {
             padding: 80px 0;
@@ -422,6 +460,8 @@
         /* Responsive */
         @media (max-width: 860px) {
             .cs-overview-grid { grid-template-columns: 1fr; gap: 36px; }
+            .cs-preview-grid { grid-template-columns: 1fr; }
+            .cs-preview-card--mobile { max-width: 100%; }
             .cs-perf-grid { grid-template-columns: 1fr; }
             .cs-rich-grid { grid-template-columns: 1fr; }
             .cs-score-item { padding: 12px 20px; }
@@ -446,7 +486,7 @@
                     <span>JNSBuilds.com</span>
                 </nav>
                 <div class="cs-type-badge"><i class="fas fa-handshake"></i> Client Website</div>
-                <h1>Case Study: <span>JNSBuilds.com</span></h1>
+                <h1><span>JNSBuilds.com</span></h1>
                 <p class="cs-hero-sub">A full SEO-optimized, 11-page static website for JNS Construction Services LLC in Palm Harbor, FL — built from scratch with hand-coded HTML, CSS, and JavaScript. 99 Desktop Performance. 100 SEO. FAQPage and LocalBusiness schema across every relevant page.</p>
                 <div class="cs-hero-actions">
                     <a href="https://www.jnsbuilds.com/" class="cs-btn-live" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i> View Live Site</a>
@@ -523,6 +563,27 @@
                         <li><i class="fas fa-check-circle"></i> Custom favicon (512px branded icon, dark-bg) for Google Search visibility</li>
                         <li><i class="fas fa-check-circle"></i> 100/100 Accessibility score — heading order, contrast ratios, ARIA labels</li>
                     </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ LIVE PREVIEW ══ -->
+    <section class="cs-preview">
+        <div class="container">
+            <div class="cs-section-header fade-in">
+                <p class="cs-section-label"><i class="fas fa-image"></i> Live Site Preview</p>
+                <h2>What Visitors Actually See</h2>
+                <p>Desktop and mobile homepage captures from the live production site.</p>
+            </div>
+            <div class="cs-preview-grid fade-in">
+                <div class="cs-preview-card">
+                    <div class="cs-preview-label"><i class="fas fa-display"></i> Desktop Homepage</div>
+                    <img src="./images/JNS%20-%20HomeImage.png" alt="JNSBuilds.com homepage on desktop" loading="lazy">
+                </div>
+                <div class="cs-preview-card cs-preview-card--mobile">
+                    <div class="cs-preview-label"><i class="fas fa-mobile-screen"></i> Mobile Homepage</div>
+                    <img src="./images/JNS%20Mobile%20Image.png" alt="JNSBuilds.com homepage on mobile" loading="lazy">
                 </div>
             </div>
         </div>
