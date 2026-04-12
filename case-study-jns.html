@@ -49,15 +49,12 @@
             min-height: 420px;
             display: flex;
             align-items: center;
-            background: linear-gradient(135deg, #0a0f0a 0%, #0d1a10 50%, #0a1520 100%);
+            background: linear-gradient(rgba(0,0,0,0.82), rgba(0,0,0,0.82)), url('./images/jns-hero.webp') center/cover no-repeat;
             overflow: hidden;
             border-bottom: 1px solid rgba(100,255,218,0.1);
         }
-        .cs-hero::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse at 70% 50%, rgba(100,255,218,0.06) 0%, transparent 65%);
+        @media (max-width: 720px) {
+            .cs-hero { background: linear-gradient(rgba(0,0,0,0.82), rgba(0,0,0,0.82)), url('./images/jns-hero-mobile.webp') center/cover no-repeat; }
         }
         .cs-hero-inner {
             position: relative;
