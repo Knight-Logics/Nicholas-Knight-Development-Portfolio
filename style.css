@@ -4867,6 +4867,49 @@ section::before {
     }
 }
 
+/* Case Study Image Lightbox */
+.cs-lightbox-trigger { cursor: zoom-in; transition: opacity 0.2s; display: block; }
+.cs-lightbox-trigger:hover { opacity: 0.82; }
+.cs-lightbox-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.93);
+    z-index: 99999;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+    cursor: zoom-out;
+}
+.cs-lightbox-overlay.active { display: flex; }
+.cs-lightbox-overlay img {
+    max-width: min(95vw, 1200px);
+    max-height: 92vh;
+    object-fit: contain;
+    border-radius: 8px;
+    pointer-events: none;
+    box-shadow: 0 0 80px rgba(0,0,0,0.8);
+}
+.cs-lightbox-close {
+    position: fixed;
+    top: 16px;
+    right: 20px;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.12);
+    border: none;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 1.3rem;
+    cursor: pointer;
+    z-index: 100000;
+    transition: background 0.2s;
+}
+.cs-lightbox-close:hover { background: rgba(255,255,255,0.22); }
+
 /* Animation Classes */
 .fade-in {
     opacity: 0;

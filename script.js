@@ -33,7 +33,7 @@ async function loadHeaderFooter() {
 // Load header and footer on page load, then initialize everything
 document.addEventListener('DOMContentLoaded', function() {
     // Fetch header/footer in parallel — initNavigation runs when ready, doesn't block paint
-    loadHeaderFooter().then(() => { initNavigation(); });
+    loadHeaderFooter().then(() => { initNavigation(); setupIntersectionObserver(); });
 
     // These don't need the header in the DOM — run immediately
     initScrollEffects();
@@ -46,6 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initMagneticButtons();
     initAdvancedParallax();
     initMobileReadMore();
+    initCaseStudyLightbox();
     
     // Smooth scrolling for anchor links (same-page and index.html#section)
     document.querySelectorAll('a[href*="#"]').forEach(anchor => {
@@ -1197,6 +1198,40 @@ function initAnimations() {
             card.classList.add('visible');
         });
     }, 100);
+}
+
+// Case Study Image Lightbox
+function initCaseStudyLightbox() {
+    const csImages = document.querySelectorAll(
+        '.cs-rich-card img, .cs-perf-card img, .cs-search-img img, .cs-preview-card img'
+    );
+    if (!csImages.length) return;
+
+    if (!document.getElementById('cs-lightbox')) {
+        const overlay = document.createElement('div');
+        overlay.id = 'cs-lightbox';
+        overlay.className = 'cs-lightbox-overlay';
+        overlay.innerHTML = '<button class="cs-lightbox-close" aria-label="Close">&times;</button><img src="" alt="">';
+        document.body.appendChild(overlay);
+        overlay.addEventListener('click', function() { overlay.classList.remove('active'); });
+        overlay.querySelector('.cs-lightbox-close').addEventListener('click', function(e) {
+            e.stopPropagation(); overlay.classList.remove('active');
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') overlay.classList.remove('active');
+        });
+    }
+
+    const overlay = document.getElementById('cs-lightbox');
+    const overlayImg = overlay.querySelector('img');
+    csImages.forEach(function(img) {
+        img.classList.add('cs-lightbox-trigger');
+        img.addEventListener('click', function() {
+            overlayImg.src = img.src;
+            overlayImg.alt = img.alt;
+            overlay.classList.add('active');
+        });
+    });
 }
 
 // Intersection Observer Setup
