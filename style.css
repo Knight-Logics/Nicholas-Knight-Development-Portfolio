@@ -3663,6 +3663,7 @@ section::before {
         padding: 18px 24px 26px 24px;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
         margin-top: auto;
+        text-align: center;
     }
 
     .nav-menu .nav-link {
@@ -4004,6 +4005,7 @@ section::before {
         padding: 20px 30px 30px 30px;
         border-top: 1px solid rgba(255, 255, 255, 0.1);
         margin-top: auto;
+        text-align: center;
     }
     
     .mobile-menu-footer p {
