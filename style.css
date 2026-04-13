@@ -696,14 +696,8 @@ body {
 }
 
 @keyframes underline-shimmer {
-    0%, 100% {
-        opacity: 0.6;
-        box-shadow: 0 0 8px rgba(100, 255, 218, 0.4);
-    }
-    50% {
-        opacity: 1;
-        box-shadow: 0 0 16px rgba(100, 255, 218, 0.8);
-    }
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
 }
 
 .hero-subtitle {
@@ -927,18 +921,17 @@ body {
     opacity: 0;
     transform: translateY(50px) scale(0.8);
     animation: subtitleReveal 1s ease-out 1.6s forwards;
+    transition: none;
 }
 
 @keyframes subtitleReveal {
     0% {
         opacity: 0;
         transform: translateY(50px) scale(0.8);
-        filter: blur(10px);
     }
     100% {
         opacity: 1;
         transform: translateY(0) scale(1);
-        filter: blur(0px);
     }
 }
 

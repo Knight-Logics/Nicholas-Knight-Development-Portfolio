@@ -19,13 +19,18 @@
     <meta name="twitter:title" content="Custom Development & AI Specialist | Knight Logics">
     <meta name="twitter:description" content="AI implementation and API integration for websites, apps, automation, e-commerce, and Stripe checkout systems. Built from concept to deployment.">
     
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VX36QR7HJW"></script>
+    <!-- Google Analytics — deferred until after page paint to avoid blocking render -->
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-VX36QR7HJW');
+        window.addEventListener('load', function() {
+            var s = document.createElement('script');
+            s.async = true;
+            s.src = 'https://www.googletagmanager.com/gtag/js?id=G-VX36QR7HJW';
+            document.head.appendChild(s);
+        });
     </script>
     
     <!-- Breadcrumb Schema -->

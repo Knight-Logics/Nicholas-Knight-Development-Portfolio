@@ -4,31 +4,26 @@ let isInLandingMode = true;
 let exitLandingMode = null;
 let suppressLandingReentry = false; // Prevent immediate hero re-entry after nav clicks
 
-// Dynamic Header and Footer Loading
+// Dynamic Header and Footer Loading — parallel fetches to minimise round-trips
 async function loadHeaderFooter() {
     try {
-        // Load header
-        const headerResponse = await fetch('/header.html');
-        if (!headerResponse.ok) {
-            console.warn('Header fetch failed:', headerResponse.status);
-        } else {
+        const [headerResponse, footerResponse] = await Promise.all([
+            fetch('/header.html'),
+            fetch('/footer.html')
+        ]);
+        if (headerResponse.ok) {
             const headerContent = await headerResponse.text();
             const headerContainer = document.getElementById('header-container');
-            if (headerContainer) {
-                headerContainer.innerHTML = headerContent;
-            }
-        }
-        
-        // Load footer
-        const footerResponse = await fetch('/footer.html');
-        if (!footerResponse.ok) {
-            console.warn('Footer fetch failed:', footerResponse.status);
+            if (headerContainer) headerContainer.innerHTML = headerContent;
         } else {
+            console.warn('Header fetch failed:', headerResponse.status);
+        }
+        if (footerResponse.ok) {
             const footerContent = await footerResponse.text();
             const footerContainer = document.getElementById('footer-container');
-            if (footerContainer) {
-                footerContainer.innerHTML = footerContent;
-            }
+            if (footerContainer) footerContainer.innerHTML = footerContent;
+        } else {
+            console.warn('Footer fetch failed:', footerResponse.status);
         }
     } catch (error) {
         console.error('Error loading header/footer:', error);
@@ -36,12 +31,11 @@ async function loadHeaderFooter() {
 }
 
 // Load header and footer on page load, then initialize everything
-document.addEventListener('DOMContentLoaded', async function() {
-    // Load header and footer first
-    await loadHeaderFooter();
-    
-    // Initialize all functionality
-    initNavigation();
+document.addEventListener('DOMContentLoaded', function() {
+    // Fetch header/footer in parallel — initNavigation runs when ready, doesn't block paint
+    loadHeaderFooter().then(() => { initNavigation(); });
+
+    // These don't need the header in the DOM — run immediately
     initScrollEffects();
     initLayeredParallax();
     initProjectFilters();
@@ -111,15 +105,14 @@ document.addEventListener('DOMContentLoaded', async function() {
         });
     });
     
-    // Hide loading screen immediately after init — no artificial delay
+    // Dismiss loading screen — header/footer parallel fetch is usually done well before this
     const loadingScreen = document.getElementById('loading-screen');
     if (loadingScreen) {
         loadingScreen.style.opacity = '0';
         setTimeout(() => {
             loadingScreen.style.display = 'none';
-            // Start main animations after loading screen disappears
             initMainAnimations();
-        }, 400);
+        }, 300);
     }
 });
 
