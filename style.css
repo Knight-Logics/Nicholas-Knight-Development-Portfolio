@@ -533,7 +533,7 @@ body {
 .hamburger.active {
     background: rgba(30, 30, 30, 1);
     border-color: rgba(100, 255, 218, 0.6);
-    transform: translateY(-50%) rotate(90deg);
+    transform: translateY(-50%);
 }
 
 /* Hero Section - FIXED Landing Screen */
@@ -4230,9 +4230,9 @@ section::before {
 
     .mobile-menu-header {
         display: block;
-        padding: 36px 24px 16px 24px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        margin-bottom: 16px;
+        padding: 28px 24px 20px 24px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        margin-bottom: 12px;
     }
 
     .mobile-menu-footer {
@@ -4246,18 +4246,20 @@ section::before {
     .nav-menu .nav-link {
         display: flex !important;
         align-items: center;
-        padding: 16px 22px;
-        margin: 0 16px 8px 16px;
-        border-radius: 12px;
+        width: calc(100% - 32px);
+        padding: 16px 20px;
+        margin: 0 16px 6px 16px;
+        border-radius: 10px;
         font-size: 15px !important;
         font-weight: 600;
         color: #ffffff !important;
         text-decoration: none;
-        background: linear-gradient(135deg, #3a3a5a 0%, #2d2d4a 100%) !important;
-        border: 1px solid rgba(100, 255, 218, 0.35) !important;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+        background: rgba(255, 255, 255, 0.06) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
+        box-shadow: none !important;
         transform: none !important;
         text-shadow: none !important;
+        box-sizing: border-box;
     }
 
     .nav-menu-overlay {
@@ -4442,6 +4444,7 @@ section::before {
         position: relative;
         left: auto;
         gap: 12px;
+        max-width: calc(100% - 70px); /* clear 40px hamburger + 20px right gap + 10px buffer */
     }
     
     .nav-logo {
@@ -4554,25 +4557,30 @@ section::before {
     /* Mobile Menu Header - Only visible on mobile */
     .mobile-menu-header {
         display: block;
-        padding: 40px 30px 20px 30px;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        margin-bottom: 20px;
+        padding: 28px 24px 20px 24px;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        margin-bottom: 12px;
     }
     
-    .mobile-menu-header h3 {
-        color: #64ffda;
-        font-size: 24px;
+    .mobile-menu-brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .mobile-menu-logo {
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
+        object-fit: contain;
+    }
+
+    .mobile-menu-brand-name {
+        font-size: 1.15rem;
         font-weight: 700;
-        margin: 0 0 8px 0;
+        color: #ffffff;
+        letter-spacing: 0.5px;
         font-family: 'Inter', sans-serif;
-        text-shadow: 0 0 20px rgba(100, 255, 218, 0.5);
-    }
-    
-    .mobile-menu-header p {
-        color: rgba(255, 255, 255, 0.9);
-        font-size: 14px;
-        margin: 0;
-        font-weight: 400;
     }
     
     /* Mobile Nav Links Container */
@@ -4658,39 +4666,59 @@ section::before {
         .nav-menu .nav-link {
             display: flex !important;
             align-items: center;
-            padding: 18px 30px;
-            margin: 0 20px 8px 20px;
-            border-radius: 12px;
-            font-size: 16px !important;
+            width: calc(100% - 32px);
+            padding: 16px 20px;
+            margin: 0 16px 6px 16px;
+            border-radius: 10px;
+            font-size: 15px !important;
             font-weight: 600;
             color: #ffffff !important;
             text-decoration: none;
-            background: linear-gradient(135deg, #3a3a5a 0%, #2d2d4a 100%) !important;
-            border: 1px solid rgba(100, 255, 218, 0.4) !important;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
-            position: relative;
-            overflow: hidden;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
+            background: rgba(255, 255, 255, 0.06) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
+            box-shadow: none !important;
+            transition: background 0.2s ease, border-color 0.2s ease !important;
+            letter-spacing: 0.2px;
+            text-transform: none;
             font-family: 'Inter', sans-serif;
             cursor: pointer !important;
             pointer-events: auto !important;
             transform: none !important;
             text-shadow: none !important;
+            box-sizing: border-box;
         }
 
-        /* Mobile Dropdown Toggle */
+        /* Suppress ::after chevron on non-toggle dropdown links */
+        .nav-menu .nav-dropdown .nav-link::after {
+            display: none !important;
+        }
+
+        /* Mobile Dropdown Toggle arrow — right side, using ::after */
         .nav-dropdown-toggle::before {
-            content: '⋮';
-            display: inline-block;
-            margin-left: auto;
-            font-size: 16px;
-            font-weight: bold;
-            transition: transform 0.3s ease;
+            content: none !important;  /* hide the desktop CSS triangle */
+            display: none !important;
         }
 
-        .nav-dropdown.active .nav-dropdown-toggle::before {
+        /* Override suppression for toggle specifically — same specificity, placed later */
+        .nav-menu .nav-dropdown .nav-dropdown-toggle::after {
+            content: '›' !important;
+            display: inline-block !important;
+            position: static !important;
+            margin-left: auto;
+            font-size: 22px;
+            font-weight: 300;
+            line-height: 1;
+            width: auto;
+            height: auto;
+            background: none;
+            color: rgba(100, 255, 218, 0.6);
+            transition: transform 0.25s ease;
+            opacity: 1;
+            bottom: auto;
+            left: auto;
+        }
+
+        .nav-dropdown.active .nav-dropdown-toggle::after {
             transform: rotate(90deg);
         }
 
@@ -4701,7 +4729,7 @@ section::before {
             backdrop-filter: none;
             border: none;
             min-width: auto;
-            margin: 0 20px 8px 40px !important;
+            margin: 0 16px 6px 32px !important;
             padding: 0;
             opacity: 1 !important;
             visibility: visible !important;
@@ -4718,78 +4746,61 @@ section::before {
 
         /* Mobile Dropdown Items */
         .nav-dropdown-item {
-            padding: 12px 20px;
+            padding: 12px 18px;
             margin: 4px 0;
             font-size: 14px;
-            background: linear-gradient(135deg, #2d2d4a 0%, #25254a 100%);
-            border: 1px solid rgba(100, 255, 218, 0.3);
+            background: rgba(100, 255, 218, 0.04);
+            border: 1px solid rgba(100, 255, 218, 0.15);
             border-radius: 8px;
             display: block;
+            color: rgba(255,255,255,0.85);
         }
 
         .nav-dropdown-item:hover {
-            background: linear-gradient(135deg, #64ffda20 0%, #64ffda10 100%);
-            border-left-color: transparent;
-            padding-left: 20px;
+            background: rgba(100, 255, 218, 0.1);
+            border-color: rgba(100, 255, 218, 0.4);
+            color: #64ffda;
+            padding-left: 18px;
         }
     }
     
     @media (max-width: 768px) {
-        /* Add pseudo-icons to nav links */
-        .nav-menu .nav-link::after {
-            content: '→';
+        /* Chevron indicator on plain nav links only (not dropdown toggles) */
+        .nav-menu > .nav-link::after,
+        .nav-menu .nav-link:not(.nav-dropdown-toggle)::after {
+            content: '›';
+            position: static;
             margin-left: auto;
-            font-size: 18px;
-            opacity: 0;
-            transform: translateX(-10px);
-            transition: all 0.3s ease;
+            font-size: 22px;
+            font-weight: 300;
+            width: auto;
+            height: auto;
+            background: none;
+            opacity: 0.4;
             color: #64ffda;
-        }
-        
-        .nav-menu .nav-link:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, 
-                transparent, 
-                rgba(100, 255, 218, 0.2), 
-                transparent);
-            transition: left 0.6s ease;
+            bottom: auto;
+            left: auto;
+            transition: none;
         }
     }
     
     @media (max-width: 768px) {
         .nav-menu .nav-link:hover {
-            background: linear-gradient(135deg, #64ffda20 0%, #64ffda10 100%) !important;
-            border-color: rgba(100, 255, 218, 0.6) !important;
-            transform: translateX(8px) !important;
-            box-shadow: 0 8px 25px rgba(100, 255, 218, 0.3) !important;
+            background: rgba(100, 255, 218, 0.1) !important;
+            border-color: rgba(100, 255, 218, 0.4) !important;
             color: #64ffda !important;
-        }
-        
-        .nav-menu .nav-link:hover::after {
-            opacity: 1 !important;
-            transform: translateX(0) !important;
-        }
-        
-        .nav-menu .nav-link:hover:before {
-            left: 100% !important;
+            transform: none !important;
+            box-shadow: none !important;
         }
         
         .nav-menu .nav-link:active {
-            transform: translateX(4px) scale(0.98) !important;
-            background: linear-gradient(135deg, #64ffda30 0%, #64ffda20 100%) !important;
-            border-color: #64ffda !important;
+            background: rgba(100, 255, 218, 0.15) !important;
+            border-color: rgba(100, 255, 218, 0.6) !important;
         }
         
-        /* Focus state for accessibility */
         .nav-menu .nav-link:focus {
-            outline: 2px solid #64ffda !important;
+            outline: 2px solid rgba(100, 255, 218, 0.5) !important;
             outline-offset: 2px;
-            background: linear-gradient(135deg, #64ffda15 0%, #64ffda08 100%) !important;
         }
     }
     
