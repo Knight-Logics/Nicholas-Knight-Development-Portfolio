@@ -4,16 +4,25 @@ Allow: /
 # Sitemaps
 Sitemap: https://knightlogics.com/sitemap.xml
 
-# Disallow scripts and sensitive files
-Disallow: /*.ps1$
-Disallow: /*.py$
-Disallow: /*.sql$
+# Disallow scripts, raw data files, and sensitive files
+Disallow: /*.ps1
+Disallow: /*.py
+Disallow: /*.sql
+Disallow: /*.json
+Disallow: /*.csv
+Disallow: /manifest.json
 
-# Allow important directories
-Allow: /CRM-Management-System/
-Allow: /Employee-Management-System/
-Allow: /Project-Management-System/
-Allow: /Ecommerce-Management-System/
-Allow: /Invoice-Management-System/
-Allow: /Chess-Game-main/
-Allow: /Tic-Tac-Toe/
+# Noindex portfolio demo apps — keep crawlers out to preserve crawl budget
+Disallow: /CRM-Management-System/
+Disallow: /Employee-Management-System/
+Disallow: /Project-Management-System/
+Disallow: /Ecommerce-Management-System/
+Disallow: /Invoice-Management-System/
+Disallow: /Chess-Game-main/
+Disallow: /Tic-Tac-Toe/
+Disallow: /projects.html
+
+# Allow core site assets
+Allow: /images/
+Allow: /style.css
+Allow: /script.js
