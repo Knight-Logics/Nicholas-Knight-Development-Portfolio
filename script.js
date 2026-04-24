@@ -4,6 +4,39 @@ let isInLandingMode = true;
 let exitLandingMode = null;
 let suppressLandingReentry = false; // Prevent immediate hero re-entry after nav clicks
 
+// Keep verbose landing logs disabled in production to reduce main-thread work on mobile.
+const DEBUG_LANDING = false;
+
+function landingLog(...args) {
+    if (DEBUG_LANDING) {
+        console.log(...args);
+    }
+}
+
+function scheduleNonCriticalInit(fn, delay = 0) {
+    const run = () => {
+        try {
+            fn();
+        } catch (error) {
+            console.warn('Deferred init failed:', error);
+        }
+    };
+
+    const enqueue = () => {
+        if ('requestIdleCallback' in window) {
+            window.requestIdleCallback(run, { timeout: 1500 });
+        } else {
+            setTimeout(run, 0);
+        }
+    };
+
+    if (delay > 0) {
+        setTimeout(enqueue, delay);
+    } else {
+        enqueue();
+    }
+}
+
 // Dynamic Header and Footer Loading — parallel fetches to minimise round-trips
 async function loadHeaderFooter() {
     try {
@@ -11,8 +44,8 @@ async function loadHeaderFooter() {
         const footerUrl = new URL('/footer.html', window.location.origin);
 
         const [headerResponse, footerResponse] = await Promise.all([
-            fetch(headerUrl, { cache: 'no-store' }),
-            fetch(footerUrl, { cache: 'no-store' })
+            fetch(headerUrl),
+            fetch(footerUrl)
         ]);
         if (headerResponse.ok) {
             const headerContent = await headerResponse.text();
@@ -38,18 +71,20 @@ document.addEventListener('DOMContentLoaded', function() {
     // Fetch header/footer in parallel — initNavigation runs when ready, doesn't block paint
     loadHeaderFooter().then(() => { initNavigation(); setupIntersectionObserver(); });
 
-    // These don't need the header in the DOM — run immediately
-    initScrollEffects();
+    // Keep only above-the-fold essentials immediate.
     initLayeredParallax();
-    initProjectFilters();
-    initVideoPlayer();
-    initSkillBars();
-    initAnimations();
-    initCursorTrail();
-    initMagneticButtons();
-    initAdvancedParallax();
     initMobileReadMore();
-    initCaseStudyLightbox();
+
+    // Push non-critical effects after first paint / idle time.
+    scheduleNonCriticalInit(initScrollEffects, 120);
+    scheduleNonCriticalInit(initAnimations, 120);
+    scheduleNonCriticalInit(initProjectFilters, 220);
+    scheduleNonCriticalInit(initVideoPlayer, 220);
+    scheduleNonCriticalInit(initSkillBars, 280);
+    scheduleNonCriticalInit(initCaseStudyLightbox, 280);
+    scheduleNonCriticalInit(initAdvancedParallax, 380);
+    scheduleNonCriticalInit(initMagneticButtons, 450);
+    scheduleNonCriticalInit(initCursorTrail, 550);
     
     // Smooth scrolling for anchor links (same-page and index.html#section)
     document.querySelectorAll('a[href*="#"]').forEach(anchor => {
@@ -115,8 +150,8 @@ document.addEventListener('DOMContentLoaded', function() {
         loadingScreen.style.opacity = '0';
         setTimeout(() => {
             loadingScreen.style.display = 'none';
-            initMainAnimations();
-        }, 300);
+            scheduleNonCriticalInit(initMainAnimations);
+        }, 120);
     }
 });
 
@@ -131,26 +166,26 @@ function initLayeredParallax() {
     const grungeLayer = document.querySelector('.parallax-bg-mid');
     
     // Debug element selection
-    console.log('🔍 Element selection:');
-    console.log('🌲 codeForest (.parallax-bg-near):', codeForest);
-    console.log('🏙️ cityBg (.parallax-bg-far):', cityBg);
-    console.log('🌫️ grungeLayer (.parallax-bg-mid):', grungeLayer);
+    landingLog('🔍 Element selection:');
+    landingLog('🌲 codeForest (.parallax-bg-near):', codeForest);
+    landingLog('🏙️ cityBg (.parallax-bg-far):', cityBg);
+    landingLog('🌫️ grungeLayer (.parallax-bg-mid):', grungeLayer);
     
     if (!heroSection || !codeForest) {
-        console.log('Hero elements not found');
+        landingLog('Hero elements not found');
         return;
     }
     
     // Check if mobile device
     const isMobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    console.log('📱 Mobile detection: width=', window.innerWidth, 'isMobile=', isMobile, 'userAgent=', navigator.userAgent);
+    landingLog('📱 Mobile detection: width=', window.innerWidth, 'isMobile=', isMobile, 'userAgent=', navigator.userAgent);
     
     // Check if user navigated to a specific section (has hash in URL)
     const hasHash = window.location.hash && window.location.hash.length > 1;
     
     // Mobile should also use landing mode - just like desktop!
     if (isMobile) {
-        console.log('📱 Mobile device detected - using SAME landing mode as desktop');
+        landingLog('📱 Mobile device detected - using SAME landing mode as desktop');
         // Keep isInLandingMode = true for mobile too!
         // Mobile will use touch events that simulate wheel events
     }
@@ -197,7 +232,7 @@ function initLayeredParallax() {
     }
     
     function handleTouchMove(e) {
-        console.log('📱 Touch move detected, isInLandingMode:', isInLandingMode);
+        landingLog('📱 Touch move detected, isInLandingMode:', isInLandingMode);
         if (!isInLandingMode) return;
         
         e.preventDefault();
@@ -205,11 +240,11 @@ function initLayeredParallax() {
         const touchY = e.touches[0].clientY;
         const deltaY = touchStartY - touchY;
         
-        console.log('📱 Touch deltaY:', deltaY, 'Threshold check:', Math.abs(deltaY) > 20);
+        landingLog('📱 Touch deltaY:', deltaY, 'Threshold check:', Math.abs(deltaY) > 20);
         
         // Simulate wheel events for mobile - use SAME logic as desktop
         if (Math.abs(deltaY) > 20) {
-            console.log('📱 Creating fake wheel event with deltaY:', deltaY > 0 ? 100 : -100);
+            landingLog('📱 Creating fake wheel event with deltaY:', deltaY > 0 ? 100 : -100);
             
             // Create fake wheel event and use same handler
             const fakeWheelEvent = {
@@ -218,7 +253,7 @@ function initLayeredParallax() {
             };
             
             // Use the SAME wheel handler as desktop
-            console.log('📱 Calling handleWheelScroll with fake event');
+            landingLog('📱 Calling handleWheelScroll with fake event');
             handleWheelScroll(fakeWheelEvent);
             
             touchStartY = touchY; // Reset for next move
@@ -236,7 +271,7 @@ function initLayeredParallax() {
                 // Trigger if in the blank space above About or at the very top of About section
                 if (!suppressLandingReentry && currentScroll <= aboutSectionTop + 200) { // Include blank space + top portion of About
                     e.preventDefault();
-                    console.log('🔄 Scroll up detected at position:', currentScroll, 'About section at:', aboutSectionTop);
+                    landingLog('🔄 Scroll up detected at position:', currentScroll, 'About section at:', aboutSectionTop);
                     enterLandingMode();
                     return;
                 }
@@ -267,7 +302,7 @@ function initLayeredParallax() {
         const currentProgress = scrollActionCount / maxLandingScrolls; // Unified progress tracking
         const progress = Math.min(currentProgress, 1);
         
-        console.log(`🌲 updateForestEffect - Mobile: ${isMobile}, ScrollActions: ${scrollActionCount}/${maxLandingScrolls}, Progress: ${progress}`);
+        landingLog(`🌲 updateForestEffect - Mobile: ${isMobile}, ScrollActions: ${scrollActionCount}/${maxLandingScrolls}, Progress: ${progress}`);
         
         if (codeForest) {
             // EXPAND the code forest - this creates the "exiting forest" illusion
@@ -277,8 +312,8 @@ function initLayeredParallax() {
             const scale = baseScale + (progress * (maxScale - baseScale));
             const opacity = Math.max(0.9 - (progress * 0.6), 0.1); // Gradually fade
             
-            console.log(`🌲 Forest transform: scale(${scale.toFixed(2)}), opacity: ${opacity.toFixed(2)}`);
-            console.log(`🌲 Forest element:`, codeForest);
+            landingLog(`🌲 Forest transform: scale(${scale.toFixed(2)}), opacity: ${opacity.toFixed(2)}`);
+            landingLog('🌲 Forest element:', codeForest);
             
             // Use 3D transform for better mobile performance and force hardware acceleration
             codeForest.style.transform = `translate3d(0, 0, 0) scale(${scale})`;
@@ -286,9 +321,9 @@ function initLayeredParallax() {
             codeForest.style.willChange = 'transform, opacity';
             
             // Check if transform was applied
-            console.log(`🌲 Applied transform result:`, codeForest.style.transform);
+            landingLog('🌲 Applied transform result:', codeForest.style.transform);
         } else {
-            console.log('❌ codeForest element not found! Selector: .parallax-bg-near');
+            landingLog('❌ codeForest element not found! Selector: .parallax-bg-near');
         }
         
         // City background stays COMPLETELY STATIC (never moves)
@@ -326,7 +361,7 @@ function initLayeredParallax() {
             scrollIndicator.style.opacity = Math.max(1 - (progress * 1.5), 0);
         }
         
-        console.log(`Forest exit progress: ${(progress * 100).toFixed(1)}% (${scrollActionCount}/${maxLandingScrolls} scrolls)`);
+        landingLog(`Forest exit progress: ${(progress * 100).toFixed(1)}% (${scrollActionCount}/${maxLandingScrolls} scrolls)`);
     }
     
     function exitLandingModeFunction() {
@@ -359,7 +394,7 @@ function initLayeredParallax() {
                     });
                 }
                 
-                console.log('Exited landing mode - scrolled to About section');
+                landingLog('Exited landing mode - scrolled to About section');
             }, 800);
         }
         
@@ -373,7 +408,7 @@ function initLayeredParallax() {
     
     // Handle hash navigation - automatically exit landing mode and scroll to target
     if (hasHash) {
-        console.log('Hash detected in URL - auto-exiting landing mode and scrolling to:', window.location.hash);
+        landingLog('Hash detected in URL - auto-exiting landing mode and scrolling to:', window.location.hash);
         setTimeout(() => {
             if (isInLandingMode) {
                 // Use a modified exit that doesn't auto-scroll to about
@@ -396,7 +431,7 @@ function initLayeredParallax() {
                                 top: offsetTop,
                                 behavior: 'smooth'
                             });
-                            console.log('Scrolled to hash target:', window.location.hash);
+                            landingLog('Scrolled to hash target:', window.location.hash);
                         }
                     }, 800);
                 }
@@ -443,7 +478,7 @@ function initLayeredParallax() {
         // Scroll to top smoothly
         window.scrollTo({ top: 0, behavior: 'smooth' });
         
-        console.log('Re-entered landing mode');
+        landingLog('Re-entered landing mode');
     }
     
     function handleScrollBarScroll() {
@@ -454,13 +489,13 @@ function initLayeredParallax() {
         
         // Ignore tiny movements and initial position resets
         if (Math.abs(scrollDelta) > 10 && currentScrollTop > 5) {
-            console.log('📜 Scrollbar movement detected:', scrollDelta, 'Current position:', currentScrollTop);
+            landingLog('📜 Scrollbar movement detected:', scrollDelta, 'Current position:', currentScrollTop);
             
             if (scrollDelta > 0) { // Scrolling down with scrollbar
                 scrollBarActionCount++;
                 isScrollbarScrolling = true;
                 
-                console.log('📜 Scrollbar action count:', scrollBarActionCount, '/', maxLandingScrolls);
+                landingLog('📜 Scrollbar action count:', scrollBarActionCount, '/', maxLandingScrolls);
                 
                 // Use the same visual effect as wheel scrolling
                 scrollActionCount = Math.min(scrollBarActionCount, maxLandingScrolls);
@@ -468,7 +503,7 @@ function initLayeredParallax() {
                 
                 // Exit landing mode after max scrollbar actions
                 if (scrollBarActionCount >= maxLandingScrolls) {
-                    console.log('📜 Scrollbar exit threshold reached');
+                    landingLog('📜 Scrollbar exit threshold reached');
                     exitLandingModeFunction();
                     return;
                 }
@@ -500,7 +535,7 @@ function initLayeredParallax() {
         if (currentScroll <= aboutSectionTop + 150 && !isInLandingMode && !suppressLandingReentry) {
             // Only trigger on upward scroll motion
             if (currentScroll < (lastScrollPosition || 0)) {
-                console.log('🔄 resetToLanding triggered - returning to hero');
+                landingLog('🔄 resetToLanding triggered - returning to hero');
                 scrollBarActionCount = 0;
                 scrollActionCount = 0;
                 lastScrollbarPosition = 0;
@@ -541,7 +576,7 @@ function initLayeredParallax() {
             // Trigger when scrolling up in blank space or at About section header
             if (!suppressLandingReentry && currentScroll <= aboutSectionTop + 200) {
                 e.preventDefault();
-                console.log('🔄 Secondary wheel handler triggered at:', currentScroll);
+                landingLog('🔄 Secondary wheel handler triggered at:', currentScroll);
                 enterLandingMode();
             }
         }
@@ -550,7 +585,7 @@ function initLayeredParallax() {
     // Initial forest effect
     updateForestEffect();
     
-    console.log('Fixed hero landing screen initialized - 4 scrolls to exit, scroll up at top to re-enter');
+    landingLog('Fixed hero landing screen initialized - 3 scrolls to exit, scroll up near top to re-enter');
 }
 
 // Main Animations
