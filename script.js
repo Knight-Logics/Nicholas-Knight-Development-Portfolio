@@ -382,10 +382,16 @@ function initLayeredParallax() {
                 document.body.classList.remove('landing-mode');
                 document.body.style.overflow = 'auto';
                 
-                // Just restore scroll to top — don't force-jump to About.
-                // The user's own swipe/scroll gesture already moved them past the hero;
-                // let them land naturally and scroll where they want.
-                window.scrollTo({ top: 0, behavior: 'instant' });
+                // Scroll to About section (first after hero) with proper positioning
+                const aboutSection = document.querySelector('.about') || document.querySelector('#about');
+                if (aboutSection) {
+                    const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 80;
+                    const offsetTop = aboutSection.offsetTop - navbarHeight + 30;
+                    window.scrollTo({
+                        top: Math.max(0, offsetTop),
+                        behavior: 'smooth'
+                    });
+                }
                 
                 landingLog('Exited landing mode - scrolled to About section');
             }, 800);
