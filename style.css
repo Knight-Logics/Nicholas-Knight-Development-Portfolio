@@ -594,7 +594,7 @@ body {
 
 /* Code forest - EXPANDS to create exit effect */
 .parallax-bg-near {
-    background-image: url('./images/CircuitBrush3.png');
+    background-image: url('./images/CircuitBrush3.webp');
     z-index: 3;
     opacity: 0.9;
     background-size: 100vw 100vh;
@@ -3943,7 +3943,7 @@ section::before {
     padding: 50px 40px 30px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     background: rgba(10,10,10,0.95);
-    color: #888;
+    color: #aaa;
 }
 
 .footer-content {
@@ -4009,7 +4009,7 @@ section::before {
 }
 
 .footer .footer-links a {
-    color: #888;
+    color: #aaa;
     text-decoration: none;
     font-size: 0.92rem;
     transition: color 0.3s ease;
@@ -4024,7 +4024,7 @@ section::before {
 .footer-copyright {
     margin: 20px 0 0;
     font-size: 0.9rem;
-    color: #666;
+    color: #aaa;
 }
 
 @media (max-width: 768px) {
@@ -4508,7 +4508,7 @@ section::before {
     
     /* Ensure CircuitBrush.png is properly scaled for mobile */
     .parallax-bg-near {
-        background-image: url('./images/CircuitBrush3.png');
+        background-image: url('./images/CircuitBrush3.webp');
         background-size: 100vw 100vh;
         background-position: center center;
         transform-origin: center center;
