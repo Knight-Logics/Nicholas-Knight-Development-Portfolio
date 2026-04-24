@@ -7902,18 +7902,19 @@ html {
     .mobile-sheet-backdrop {
         display: block;
         opacity: 0;
+        pointer-events: none;
         position: fixed;
         inset: 0;
         z-index: 950;
         background: rgba(0, 0, 0, 0.6);
         backdrop-filter: blur(4px);
-        opacity: 0;
         transition: opacity 0.28s ease;
     }
 
     .mobile-sheet-backdrop.is-open {
         display: block;
         opacity: 1;
+        pointer-events: auto;
     }
 
     /* Sheet */
