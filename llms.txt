@@ -1,0 +1,75 @@
+# Knight Logics
+> Custom website design, local SEO, business automation, and desktop app development studio. Based in Safety Harbor, FL (Tampa Bay metro). Serving small businesses locally and worldwide.
+
+## Contact
+- Website: https://knightlogics.com
+- Email: support@knightlogics.com
+- Phone: +1-813-773-5553
+- Location: Safety Harbor, FL 34695 (Tampa Bay, FL)
+- Founder: Nicholas Knight
+
+## Services
+
+### Custom Website Design & Local SEO
+Hand-coded, fast-loading business websites paired with Google Business Profile optimization and local SEO for the Tampa Bay area. No page builders, no recurring platform fees.
+URL: https://knightlogics.com/service-websites.html
+
+### AI & Business Automation
+Workflow automation, API integrations, webhook pipelines, and internal tooling to reduce manual work and improve operational reliability for small businesses.
+URL: https://knightlogics.com/service-ai-automation.html
+
+### E-Commerce Development
+Shopify store development, custom Firebase + Stripe checkout systems, Snipcart integration, inventory automation, and dropshipping pipeline tooling.
+URL: https://knightlogics.com/service-ecommerce.html
+
+### Custom Desktop Applications
+Windows desktop apps built with Python + PyInstaller. Shipped products include AI video upscaling, automated video narration/production tools, and display management utilities.
+URL: https://knightlogics.com/service-desktop-apps.html
+
+## Products
+
+### PixelForge AI
+AI-powered video upscaling desktop application for Windows. Uses Real-ESRGAN and FFMPEG for 4× upscaling with noise reduction. Free download.
+URL: https://knightlogics.com/pixelforge-ai.html
+Download: https://github.com/Knight-Logics/v11b-upscaling-app/releases/latest/download/PixelForge-AI.exe
+
+### VideoForge Studio
+Automated YouTube video narration and production app. Flask-based hybrid desktop tool for AI-assisted Top 5 listicle video creation.
+URL: https://knightlogics.com/videoforge.html
+Download: https://github.com/Knight-Logics/VideoForge-Studio/releases/download/v0.4.4/VideoForge-Studio-Installer.exe
+
+### Display Control+
+Windows multi-monitor display configuration switcher with system tray integration. Instantly switch between monitor layouts without digging into Windows settings.
+URL: https://knightlogics.com/display-control-plus.html
+Download: https://github.com/Knight-Logics/display-control-plus/releases/download/v1.0.16/DisplayControlSetup_v1.0.16.exe
+
+### Auto Vid Compiler
+Automated video clip gathering and compilation tool. Watches folders, assembles clips, and optionally uploads to platforms.
+URL: https://knightlogics.com/auto-vid-compiler.html
+Download: https://github.com/Knight-Logics/Auto-Video-Editor-and-Compiler/releases/download/v1.0/BMagic_AutoVidCompiler_PERFECT.exe
+
+## Case Studies
+
+### JNS Construction Services (jnsbuilds.com)
+Full static site build for a Florida construction LLC. Custom branding, schema markup, sitemap, and local SEO targeting Pinellas County.
+URL: https://knightlogics.com/case-study-jns.html
+
+### Knight Group Real Estate (knightgroup.com)
+Custom real estate agency website for a Tampa Bay residential real estate team. Gallery pages, service area targeting, inquiry forms.
+URL: https://knightlogics.com/case-study-knight-group.html
+
+### Knight Logics Portfolio Site (knightlogics.com)
+Self-built portfolio and service website. Hand-coded HTML/CSS/JS, structured data, IndexNow, Bing/Google Search Console, and GA4 analytics.
+URL: https://knightlogics.com/case-study-knight-logics.html
+
+## Key Pages
+- Homepage: https://knightlogics.com/
+- Services overview: https://knightlogics.com/#services
+- Projects gallery: https://knightlogics.com/projects.html
+- Contact / free consultation: https://knightlogics.com/contact.html
+- Privacy Policy: https://knightlogics.com/privacy-policy.html
+- Terms of Service: https://knightlogics.com/terms-of-service.html
+
+## GitHub
+- Organization: https://github.com/Knight-Logics
+- Personal: https://github.com/Nicholasjknight

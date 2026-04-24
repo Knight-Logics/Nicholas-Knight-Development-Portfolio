@@ -4,6 +4,10 @@ Allow: /
 # Sitemaps
 Sitemap: https://knightlogics.com/sitemap.xml
 
+# AI agent index (llms.txt protocol)
+# https://llmstxt.org
+LLMs: https://knightlogics.com/llms.txt
+
 # Disallow scripts, raw data files, and sensitive files
 Disallow: /*.ps1
 Disallow: /*.py
