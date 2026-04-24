@@ -1,4 +1,4 @@
-// Loading Screen and Initial Setup
+﻿// Loading Screen and Initial Setup
 // Global variables for landing mode
 let isInLandingMode = true;
 let exitLandingMode = null;
@@ -1887,3 +1887,68 @@ document.addEventListener('click', function(e) {
         });
     }
 })();
+
+// PWA Install Banner — intercepts native prompt and shows custom dismissible banner
+(function initPWABanner() {
+    const STORAGE_KEY = 'kl_pwa_dismissed';
+    let deferredPrompt = null;
+    let bannerEl = null;
+
+    function buildBanner() {
+        const banner = document.createElement('div');
+        banner.className = 'pwa-install-banner';
+        banner.setAttribute('role', 'complementary');
+        banner.setAttribute('aria-label', 'Install Knight Logics app');
+        banner.innerHTML = `
+            <img class="pwa-install-icon" src="./images/KnightLogicsLogo2.png" alt="Knight Logics" width="40" height="40">
+            <div class="pwa-install-text">
+                <strong>Knight Logics</strong>
+                <span>Add to your home screen</span>
+            </div>
+            <button class="pwa-install-btn" aria-label="Install app">Install</button>
+            <button class="pwa-dismiss-btn" aria-label="Dismiss">&times;</button>
+        `;
+
+        banner.querySelector('.pwa-install-btn').addEventListener('click', () => {
+            hideBanner();
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                deferredPrompt.userChoice.then(() => { deferredPrompt = null; });
+            }
+        });
+
+        banner.querySelector('.pwa-dismiss-btn').addEventListener('click', () => {
+            hideBanner(true);
+        });
+
+        document.body.appendChild(banner);
+        return banner;
+    }
+
+    function showBanner() {
+        if (localStorage.getItem(STORAGE_KEY)) return;
+        if (!bannerEl) bannerEl = buildBanner();
+        // Small delay so the CSS transition fires
+        setTimeout(() => bannerEl.classList.add('pwa-visible'), 50);
+    }
+
+    function hideBanner(persist) {
+        if (bannerEl) {
+            bannerEl.classList.remove('pwa-visible');
+            setTimeout(() => {
+                if (bannerEl && bannerEl.parentNode) bannerEl.parentNode.removeChild(bannerEl);
+                bannerEl = null;
+            }, 450);
+        }
+        if (persist) localStorage.setItem(STORAGE_KEY, '1');
+    }
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+        e.preventDefault(); // suppress native banner
+        deferredPrompt = e;
+        // Show after 4s - give the user time to settle on the page
+        setTimeout(showBanner, 4000);
+    });
+
+    // iOS does not fire beforeinstallprompt - skip (Safari handles its own sheet)
+}());
