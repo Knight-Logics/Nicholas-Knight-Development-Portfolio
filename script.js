@@ -1724,38 +1724,11 @@ function checkBrowserSupport() {
 
 checkBrowserSupport();
 
-// Testimonial Carousel
-let currentTestimonial = 0;
-
-function moveTestimonial(direction) {
-    const track = document.querySelector('.testimonial-track');
-    const items = document.querySelectorAll('.testimonial-item');
-    
-    if (!track || items.length === 0) return;
-    
-    currentTestimonial += direction;
-    
-    // Loop around
-    if (currentTestimonial < 0) {
-        currentTestimonial = items.length - 1;
-    } else if (currentTestimonial >= items.length) {
-        currentTestimonial = 0;
-    }
-    
-    track.style.transform = `translateX(-${currentTestimonial * 100}%)`;
-}
-
-// Auto-advance testimonials every 5 seconds
-setInterval(() => {
-    moveTestimonial(1);
-}, 5000);
-
 // Export functions for potential external use
 window.portfolioFunctions = {
     scrollToTop,
     showNotification,
-    typeWriter,
-    moveTestimonial
+    typeWriter
 };
 
 // ── Interactive contact chips ──
