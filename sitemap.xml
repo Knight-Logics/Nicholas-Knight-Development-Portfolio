@@ -9,7 +9,7 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://knightlogics.com/contact.html</loc>
+    <loc>https://knightlogics.com/contact</loc>
     <lastmod>2026-04-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -17,25 +17,25 @@
 
   <!-- Service Pages -->
   <url>
-    <loc>https://knightlogics.com/service-websites.html</loc>
+    <loc>https://knightlogics.com/service-websites</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
-    <loc>https://knightlogics.com/service-ecommerce.html</loc>
+    <loc>https://knightlogics.com/service-ecommerce</loc>
     <lastmod>2026-04-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://knightlogics.com/service-ai-automation.html</loc>
+    <loc>https://knightlogics.com/service-ai-automation</loc>
     <lastmod>2026-04-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.82</priority>
   </url>
   <url>
-    <loc>https://knightlogics.com/service-desktop-apps.html</loc>
+    <loc>https://knightlogics.com/service-desktop-apps</loc>
     <lastmod>2026-04-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.75</priority>
@@ -43,19 +43,19 @@
 
   <!-- Case Studies -->
   <url>
-    <loc>https://knightlogics.com/case-study-jns.html</loc>
+    <loc>https://knightlogics.com/case-study-jns</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://knightlogics.com/case-study-knight-group.html</loc>
+    <loc>https://knightlogics.com/case-study-knight-group</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
-    <loc>https://knightlogics.com/case-study-knight-logics.html</loc>
+    <loc>https://knightlogics.com/case-study-knight-logics</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
@@ -63,7 +63,7 @@
 
   <!-- Projects -->
   <url>
-    <loc>https://knightlogics.com/projects.html</loc>
+    <loc>https://knightlogics.com/projects</loc>
     <lastmod>2026-04-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
@@ -71,25 +71,25 @@
 
   <!-- Product Pages -->
   <url>
-    <loc>https://knightlogics.com/display-control-plus.html</loc>
+    <loc>https://knightlogics.com/display-control-plus</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
-    <loc>https://knightlogics.com/videoforge.html</loc>
+    <loc>https://knightlogics.com/videoforge</loc>
     <lastmod>2026-04-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
-    <loc>https://knightlogics.com/pixelforge-ai.html</loc>
+    <loc>https://knightlogics.com/pixelforge-ai</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.65</priority>
   </url>
   <url>
-    <loc>https://knightlogics.com/auto-vid-compiler.html</loc>
+    <loc>https://knightlogics.com/auto-vid-compiler</loc>
     <lastmod>2026-04-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.55</priority>
@@ -97,31 +97,31 @@
 
   <!-- Legal / Policy Pages -->
   <url>
-    <loc>https://knightlogics.com/privacy-policy.html</loc>
+    <loc>https://knightlogics.com/privacy-policy</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://knightlogics.com/terms-of-service.html</loc>
+    <loc>https://knightlogics.com/terms-of-service</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://knightlogics.com/cookie-policy.html</loc>
+    <loc>https://knightlogics.com/cookie-policy</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
   <url>
-    <loc>https://knightlogics.com/refund-policy.html</loc>
+    <loc>https://knightlogics.com/refund-policy</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
   </url>
   <url>
-    <loc>https://knightlogics.com/disclaimer.html</loc>
+    <loc>https://knightlogics.com/disclaimer</loc>
     <lastmod>2026-03-31</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.2</priority>
