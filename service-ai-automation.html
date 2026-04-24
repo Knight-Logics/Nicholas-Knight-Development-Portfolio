@@ -99,6 +99,47 @@
     }
     </script>
 
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How much does AI automation or workflow automation cost?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Simple single-task automations (email triggers, form routing, report generation) generally start in the mid three figures. Multi-step workflows with API integrations, data pipelines, or scheduled jobs run higher depending on complexity and the number of systems involved. Every project gets a scoped quote upfront."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What kinds of tasks can actually be automated?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Repetitive data entry, report generation, lead routing, email follow-up sequences, invoice processing, file organization, API-to-spreadsheet syncs, Slack or email alerts, and scheduled data pulls are all strong candidates. If your team does the same thing manually more than a few times a week, it can likely be automated."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do I need a developer on staff to maintain the automation after it's built?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "No. Knight Logics builds automations with full documentation and, where possible, configurable settings you can adjust yourself. For more complex systems, an annual check-in or retainer arrangement keeps everything running cleanly without requiring a full-time technical hire."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What tools and platforms do you build automations with?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Python scripts, REST APIs, Google Workspace (Sheets, Gmail, Drive), Zapier-compatible webhooks, cron/Task Scheduler jobs, and custom-built pipelines depending on what fits the situation. The right tool is whatever runs reliably for your use case — not whatever is trendy."
+                }
+            }
+        ]
+    }
+    </script>
+
     <link rel="canonical" href="https://knightlogics.com/service-ai-automation.html">
     <link rel="preload" as="image" href="./images/code hero2.webp" fetchpriority="high">
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
@@ -363,6 +404,12 @@
         }
         .svc-step h3 { font-size: 0.95rem; font-weight: 600; color: #ffffff; margin-bottom: 8px; }
         .svc-step p { font-size: 0.82rem; color: rgba(255,255,255,0.58); line-height: 1.5; margin: 0; }
+        .svc-faq { padding: 80px 0; background: #0a0a0a; }
+        .svc-faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
+        .svc-faq-item { background: rgba(255,255,255,0.04); border: 1px solid rgba(100,255,218,0.15); border-radius: 16px; padding: 28px 28px 24px; }
+        .svc-faq-item h3 { font-size: 1rem; font-weight: 600; color: #64ffda; margin-bottom: 10px; }
+        .svc-faq-item p { font-size: 0.88rem; color: rgba(255,255,255,0.65); line-height: 1.65; margin: 0; }
+        @media (max-width: 720px) { .svc-faq-grid { grid-template-columns: 1fr; } }
         .svc-cta-section { padding: 90px 0; background: linear-gradient(135deg, #0a0a0a 0%, #0f1724 100%); text-align: center; }
         .svc-cta-box {
             max-width: 700px; margin: 0 auto; padding: 52px 40px;
@@ -631,6 +678,33 @@
                     <h3>Deploy &amp; Hand Off</h3>
                     <p>Live deployment, monitoring setup, and full documentation so you can understand, run, and modify the system yourself.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="svc-faq">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Automation FAQs</h2>
+                <p>Common questions from businesses before starting an automation project.</p>
+            </div>
+            <div class="svc-faq-grid">
+                <article class="svc-faq-item fade-in">
+                    <h3>How much does AI or workflow automation cost?</h3>
+                    <p>Simple single-task automations start in the mid three figures. Multi-step workflows with API integrations, data pipelines, or scheduled jobs run higher depending on complexity. Every project gets a scoped quote upfront — no surprises.</p>
+                </article>
+                <article class="svc-faq-item fade-in">
+                    <h3>What kinds of tasks can actually be automated?</h3>
+                    <p>Repetitive data entry, report generation, lead routing, email follow-up, invoice processing, file organization, API syncs, scheduled alerts — if your team does the same thing manually more than a few times a week, it's a candidate.</p>
+                </article>
+                <article class="svc-faq-item fade-in">
+                    <h3>Do I need a developer on staff to maintain it after launch?</h3>
+                    <p>No. Every automation ships with full documentation and, where possible, configurable settings you can adjust yourself. For more complex systems, an annual check-in keeps everything running without a full-time hire.</p>
+                </article>
+                <article class="svc-faq-item fade-in">
+                    <h3>What tools do you build automations with?</h3>
+                    <p>Python scripts, REST APIs, Google Workspace, webhook-based pipelines, cron/Task Scheduler jobs, and custom-built systems depending on what fits the situation. The right tool is whatever runs reliably — not whatever is trendy.</p>
+                </article>
             </div>
         </div>
     </section>

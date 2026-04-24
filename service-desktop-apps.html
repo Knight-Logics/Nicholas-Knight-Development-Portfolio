@@ -86,6 +86,47 @@
     }
     </script>
 
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How much does a custom desktop application cost?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Simple single-purpose Windows tools (file processors, automation launchers, local dashboards) tend to start in the mid four figures. Applications with databases, multi-user access, installer packaging, and auto-update systems run higher depending on feature scope. A detailed quote is provided after a discovery call."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What technology do you use to build desktop apps?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Python with PyInstaller for Windows executables, Flask or Electron for hybrid desktop-web apps, and PowerShell for system-level automation tools. The stack is chosen based on what ships fastest, runs most reliably, and is easiest for the client to maintain."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Will the app run without an internet connection?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes, if that's a requirement. Offline-capable desktop apps with local SQLite or file-based storage are a strength of custom-built executables versus web apps. Internet connectivity can be optional or fully required depending on what the app needs to do."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can the app be distributed to multiple machines or users?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Builds are packaged with Inno Setup or NSIS into a standard installer (.exe) that can be distributed, deployed via network share, or put on GitHub Releases. Licensing, activation, and auto-update logic can also be built in if required."
+                }
+            }
+        ]
+    }
+    </script>
+
     <link rel="canonical" href="https://knightlogics.com/service-desktop-apps.html">
     <link rel="preload" as="image" href="./images/code hero3.webp" fetchpriority="high">
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
@@ -239,6 +280,12 @@
         }
         .svc-step h3 { font-size: 0.95rem; font-weight: 600; color: #ffffff; margin-bottom: 8px; }
         .svc-step p { font-size: 0.82rem; color: rgba(255,255,255,0.58); line-height: 1.5; margin: 0; }
+        .svc-faq { padding: 80px 0; background: #0a0a0a; }
+        .svc-faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
+        .svc-faq-item { background: rgba(255,255,255,0.04); border: 1px solid rgba(100,255,218,0.15); border-radius: 16px; padding: 28px 28px 24px; }
+        .svc-faq-item h3 { font-size: 1rem; font-weight: 600; color: #64ffda; margin-bottom: 10px; }
+        .svc-faq-item p { font-size: 0.88rem; color: rgba(255,255,255,0.65); line-height: 1.65; margin: 0; }
+        @media (max-width: 720px) { .svc-faq-grid { grid-template-columns: 1fr; } }
         .svc-cta-section { padding: 90px 0; background: linear-gradient(135deg, #0a0a0a 0%, #0f1724 100%); text-align: center; }
         .svc-cta-box {
             max-width: 700px; margin: 0 auto; padding: 52px 40px;
@@ -444,6 +491,33 @@
                     <h3>Release</h3>
                     <p>GitHub Release tagged, asset uploaded, README and CHANGELOG updated. Ready to share or distribute publicly.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="svc-faq">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>Desktop App FAQs</h2>
+                <p>Common questions from businesses before commissioning a custom Windows application.</p>
+            </div>
+            <div class="svc-faq-grid">
+                <article class="svc-faq-item fade-in">
+                    <h3>How much does a custom desktop app cost?</h3>
+                    <p>Simple single-purpose Windows tools start in the mid four figures. Applications with databases, multi-user access, installer packaging, and auto-update systems run higher. A scoped quote is provided after a discovery call — no surprises.</p>
+                </article>
+                <article class="svc-faq-item fade-in">
+                    <h3>What technology do you use to build desktop apps?</h3>
+                    <p>Python with PyInstaller for Windows executables, Flask or Electron for hybrid desktop-web apps, and PowerShell for system-level automation tools. The stack is chosen for reliability and maintainability — not trend chasing.</p>
+                </article>
+                <article class="svc-faq-item fade-in">
+                    <h3>Will the app run without an internet connection?</h3>
+                    <p>Yes, if that's a requirement. Offline-capable apps with local SQLite or file-based storage are a core strength of custom executables versus web apps. Internet connectivity can be optional or required depending on what the app does.</p>
+                </article>
+                <article class="svc-faq-item fade-in">
+                    <h3>Can it be distributed to multiple machines or users?</h3>
+                    <p>Yes. Builds are packaged with Inno Setup into a standard installer (.exe) that can be distributed, deployed via network share, or put on GitHub Releases. Licensing, activation, and auto-update logic can be built in as needed.</p>
+                </article>
             </div>
         </div>
     </section>

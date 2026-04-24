@@ -99,6 +99,47 @@
     }
     </script>
 
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {
+                "@type": "Question",
+                "name": "How much does an e-commerce website cost?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "A clean, custom-coded storefront with Snipcart or Stripe integration, product catalog, and mobile-optimized checkout typically starts in the mid four figures. Larger catalogs, inventory automation, Firebase authentication, and CJ Dropshipping integrations add scope and cost accordingly. Every build gets a detailed quote after a discovery call."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Do you build on Shopify or custom code?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Both, depending on what fits. Shopify is a strong choice for larger catalogs where you need their ecosystem. For lean, fast, hosted storefronts without monthly platform fees, a custom-coded static site with Snipcart or Stripe Checkout often performs better and costs less to run long-term."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "Can you migrate an existing store?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Yes. Product data, customer records, URLs, and SEO equity can all be migrated with proper redirects and data mapping. The migration is planned before a single line is written to make sure nothing gets lost."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What payment processors do you integrate with?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Stripe and Snipcart on the custom-code side. Shopify Payments, PayPal, and Stripe for Shopify builds. For more complex needs — subscriptions, split payments, or in-person POS sync — those integrations are scoped individually."
+                }
+            }
+        ]
+    }
+    </script>
+
     <link rel="canonical" href="https://knightlogics.com/service-ecommerce.html">
     <link rel="preload" as="image" href="./images/city hero.webp" fetchpriority="high">
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
@@ -239,6 +280,12 @@
         }
         .svc-step h3 { font-size: 0.9rem; font-weight: 600; color: #ffffff; margin-bottom: 8px; }
         .svc-step p { font-size: 0.8rem; color: rgba(255,255,255,0.58); line-height: 1.5; margin: 0; }
+        .svc-faq { padding: 80px 0; background: #0a0a0a; }
+        .svc-faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 40px; }
+        .svc-faq-item { background: rgba(255,255,255,0.04); border: 1px solid rgba(100,255,218,0.15); border-radius: 16px; padding: 28px 28px 24px; }
+        .svc-faq-item h3 { font-size: 1rem; font-weight: 600; color: #64ffda; margin-bottom: 10px; }
+        .svc-faq-item p { font-size: 0.88rem; color: rgba(255,255,255,0.65); line-height: 1.65; margin: 0; }
+        @media (max-width: 720px) { .svc-faq-grid { grid-template-columns: 1fr; } }
         .svc-cta-section { padding: 90px 0; background: linear-gradient(135deg, #0a0a0a 0%, #0f1724 100%); text-align: center; }
         .svc-cta-box {
             max-width: 700px; margin: 0 auto; padding: 52px 40px;
@@ -536,6 +583,33 @@
                     <h3>Launch &amp; Docs</h3>
                     <p>Go-live on Vercel, DNS configuration, GSC submission, and full documentation of how to add products, manage orders, and extend the system.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="svc-faq">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>E-Commerce FAQs</h2>
+                <p>Common questions from businesses before starting a store build or migration.</p>
+            </div>
+            <div class="svc-faq-grid">
+                <article class="svc-faq-item fade-in">
+                    <h3>How much does an e-commerce website cost?</h3>
+                    <p>A custom storefront with Snipcart or Stripe, product catalog, and mobile checkout typically starts in the mid four figures. Larger catalogs, inventory automation, and dropshipping integrations add scope. Every build gets a detailed quote after a discovery call.</p>
+                </article>
+                <article class="svc-faq-item fade-in">
+                    <h3>Do you build on Shopify or custom code?</h3>
+                    <p>Both, depending on what fits. Shopify suits larger catalogs needing their ecosystem. For lean, fast storefronts without monthly platform fees, a custom-coded static site with Snipcart or Stripe Checkout often performs better and costs less to run.</p>
+                </article>
+                <article class="svc-faq-item fade-in">
+                    <h3>Can you migrate an existing store?</h3>
+                    <p>Yes. Product data, customer records, URLs, and SEO equity can all be migrated with proper redirects and data mapping. The migration plan is locked in before a single line is written so nothing gets lost.</p>
+                </article>
+                <article class="svc-faq-item fade-in">
+                    <h3>What payment processors do you integrate with?</h3>
+                    <p>Stripe and Snipcart for custom-code builds. Shopify Payments, PayPal, and Stripe for Shopify projects. Subscriptions, split payments, or in-person POS sync are scoped individually based on requirements.</p>
+                </article>
             </div>
         </div>
     </section>
