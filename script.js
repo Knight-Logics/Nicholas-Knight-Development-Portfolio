@@ -7,9 +7,12 @@ let suppressLandingReentry = false; // Prevent immediate hero re-entry after nav
 // Dynamic Header and Footer Loading — parallel fetches to minimise round-trips
 async function loadHeaderFooter() {
     try {
+        const headerUrl = new URL('/header.html', window.location.origin);
+        const footerUrl = new URL('/footer.html', window.location.origin);
+
         const [headerResponse, footerResponse] = await Promise.all([
-            fetch('/header.html'),
-            fetch('/footer.html')
+            fetch(headerUrl, { cache: 'no-store' }),
+            fetch(footerUrl, { cache: 'no-store' })
         ]);
         if (headerResponse.ok) {
             const headerContent = await headerResponse.text();
@@ -159,6 +162,20 @@ function initLayeredParallax() {
     let lastScrollbarPosition = 0;
     let isScrollbarScrolling = false;
     const maxLandingScrolls = 3; // Stay on landing screen for 3 scroll actions
+
+    function getForestBaseScale() {
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+
+        if (viewportWidth >= 1400 && viewportHeight <= 900) return 1.10;
+        if (viewportWidth >= 1200) return 1.06;
+        if (viewportWidth >= 1025) return 1.02;
+        if (viewportWidth >= 768) return 0.99;
+        return 0.96;
+    }
+
+    codeForest.style.transform = `translate3d(0, 0, 0) scale(${getForestBaseScale()})`;
+    codeForest.style.opacity = '0.9';
     
     // Prevent default scrolling during landing mode
     function preventScroll(e) {
@@ -255,7 +272,9 @@ function initLayeredParallax() {
         if (codeForest) {
             // EXPAND the code forest - this creates the "exiting forest" illusion
             // As the image gets larger, less of the branches are visible in the frame
-            const scale = 1 + (progress * 2); // Grows from 100% to 300%
+            const baseScale = getForestBaseScale();
+            const maxScale = Math.max(baseScale + 1.55, 2.7);
+            const scale = baseScale + (progress * (maxScale - baseScale));
             const opacity = Math.max(0.9 - (progress * 0.6), 0.1); // Gradually fade
             
             console.log(`🌲 Forest transform: scale(${scale.toFixed(2)}), opacity: ${opacity.toFixed(2)}`);
@@ -1432,82 +1451,90 @@ function showNotification(message, type = 'info') {
 
 // Business Contact Form Handler
 function initBusinessContactForm() {
-    const form = document.getElementById('consultationForm');
-    if (!form) return;
+    const forms = document.querySelectorAll('#consultationForm, #heroConsultationForm');
+    if (!forms.length) return;
 
-    form.addEventListener('submit', async function(e) {
-        e.preventDefault();
-        
-        const submitBtn = form.querySelector('.form-submit-btn');
-        const btnText = submitBtn.querySelector('span');
-        const btnLoading = submitBtn.querySelector('.btn-loading');
-        
-        // Show loading state
-        submitBtn.disabled = true;
-        btnText.style.display = 'none';
-        btnLoading.style.display = 'block';
-        
-        // Collect form data
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData);
-        
-        try {
-            // Send form data to Formspree
-            const response = await fetch('https://formspree.io/f/xnnggyzp', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    businessName: data.businessName,
-                    contactName: data.contactName,
-                    email: data.email,
-                    serviceType: data.serviceType,
-                    timeline: data.timeline || 'Not specified',
-                    budget: data.budget || 'Not specified',
-                    projectDetails: data.projectDetails,
-                    _replyto: data.email,
-                    _subject: `New Consultation Request from ${data.businessName}`
-                })
-            });
+    forms.forEach((form) => {
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = form.querySelector('.form-submit-btn');
+            const btnText = submitBtn.querySelector('span');
+            const btnLoading = submitBtn.querySelector('.btn-loading');
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            btnText.style.display = 'none';
+            btnLoading.style.display = 'block';
+            
+            // Collect form data
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
+            const businessName = data.businessName || 'Knight Logics Inquiry';
+            const contactName = data.contactName || 'Not provided';
+            const serviceType = data.serviceType || 'Not specified';
+            const projectDetails = data.projectDetails || 'Not provided';
+            const timeline = data.timeline || 'Not specified';
+            const budget = data.budget || 'Not specified';
+            
+            try {
+                // Send form data to Formspree
+                const response = await fetch('https://formspree.io/f/xnnggyzp', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        businessName,
+                        contactName,
+                        email: data.email,
+                        serviceType,
+                        timeline,
+                        budget,
+                        projectDetails,
+                        _replyto: data.email,
+                        _subject: `New Consultation Request from ${businessName}`
+                    })
+                });
 
-            if (response.ok) {
-                showBusinessNotification('Thank you! Your consultation request has been sent successfully. We\'ll contact you within 24 hours.', 'success');
-                form.reset();
-            } else {
-                throw new Error('Network response was not ok');
-            }
-            
-        } catch (error) {
-            console.error('Formspree submission error:', error);
-            
-            // Fallback to mailto if Formspree fails
-            const emailSubject = `New Consultation Request from ${data.businessName}`;
-            const emailBody = `
-Business/Organization: ${data.businessName}
-Contact Name: ${data.contactName}
+                if (response.ok) {
+                    showBusinessNotification('Thank you! Your consultation request has been sent successfully. We\'ll contact you within 24 hours.', 'success');
+                    form.reset();
+                } else {
+                    throw new Error('Network response was not ok');
+                }
+                
+            } catch (error) {
+                console.error('Formspree submission error:', error);
+                
+                // Fallback to mailto if Formspree fails
+                const emailSubject = `New Consultation Request from ${businessName}`;
+                const emailBody = `
+Business/Organization: ${businessName}
+Contact Name: ${contactName}
 Email: ${data.email}
-Service Type: ${data.serviceType}
-Timeline: ${data.timeline || 'Not specified'}
-Budget: ${data.budget || 'Not specified'}
+Service Type: ${serviceType}
+Timeline: ${timeline}
+Budget: ${budget}
 
 Project Details:
-${data.projectDetails}
+${projectDetails}
 
 ---
 This message was sent from the Knight Logics contact form on knightlogics.com
-            `.trim();
-            
-            const mailtoLink = `mailto:nickknight488@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
-            window.location.href = mailtoLink;
-            
-            showBusinessNotification('Opening your email client as backup. Please send the email to complete your request.', 'info');
-        } finally {
-            // Reset button state
-            submitBtn.disabled = false;
-            btnText.style.display = 'block';
-            btnLoading.style.display = 'none';
-        }
+                `.trim();
+                
+                const mailtoLink = `mailto:nickknight488@gmail.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+                window.location.href = mailtoLink;
+                
+                showBusinessNotification('Opening your email client as backup. Please send the email to complete your request.', 'info');
+            } finally {
+                // Reset button state
+                submitBtn.disabled = false;
+                btnText.style.display = 'block';
+                btnLoading.style.display = 'none';
+            }
+        });
     });
 }
 
@@ -1737,3 +1764,91 @@ document.addEventListener('click', function(e) {
         document.querySelectorAll('.contact-chip-phone.open').forEach(c => c.classList.remove('open'));
     }
 });
+
+// ============================================================
+// MOBILE BOTTOM SHEET DRAWER
+// ============================================================
+(function() {
+    const CTABar      = document.getElementById('mobileCTABar');
+    const CTABtn      = document.getElementById('mobileCTABtn');
+    const backdrop    = document.getElementById('mobileSheetBackdrop');
+    const sheet       = document.getElementById('mobileSheet');
+    const closeBtn    = document.getElementById('mobileSheetClose');
+
+    if (!CTABtn || !sheet) return;
+
+    function openSheet() {
+        sheet.classList.add('is-open');
+        backdrop.classList.add('is-open');
+        CTABar.classList.add('sheet-open');
+        CTABtn.setAttribute('aria-expanded', 'true');
+        document.body.style.overflow = 'hidden';
+        // Focus first input after animation
+        setTimeout(function() {
+            var first = sheet.querySelector('input, select, textarea');
+            if (first) first.focus();
+        }, 340);
+    }
+
+    function closeSheet() {
+        sheet.classList.remove('is-open');
+        backdrop.classList.remove('is-open');
+        CTABar.classList.remove('sheet-open');
+        CTABtn.setAttribute('aria-expanded', 'false');
+        document.body.style.overflow = '';
+    }
+
+    CTABtn.addEventListener('click', openSheet);
+    closeBtn.addEventListener('click', closeSheet);
+    backdrop.addEventListener('click', closeSheet);
+
+    // Swipe down to close
+    var touchStartY = 0;
+    sheet.addEventListener('touchstart', function(e) {
+        touchStartY = e.touches[0].clientY;
+    }, { passive: true });
+    sheet.addEventListener('touchend', function(e) {
+        var delta = e.changedTouches[0].clientY - touchStartY;
+        if (delta > 60 && sheet.scrollTop === 0) closeSheet();
+    }, { passive: true });
+
+    // Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && sheet.classList.contains('is-open')) closeSheet();
+    });
+
+    // Wire up form submission for the mobile sheet form
+    var mobileForm = document.getElementById('mobileSheetForm');
+    if (mobileForm) {
+        mobileForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            var btn = mobileForm.querySelector('.form-submit-btn');
+            var label = btn.querySelector('span');
+            var loading = btn.querySelector('.btn-loading');
+            btn.disabled = true;
+            if (label) label.style.display = 'none';
+            if (loading) loading.style.display = 'block';
+
+            fetch(mobileForm.action, {
+                method: 'POST',
+                body: new FormData(mobileForm),
+                headers: { 'Accept': 'application/json' }
+            }).then(function(r) {
+                if (r.ok) {
+                    mobileForm.innerHTML = '<div class="form-success-message" style="text-align:center;padding:2rem 0;"><p style="color:#64ffda;font-size:1.1rem;font-weight:700;">Request sent!</p><p style="color:rgba(255,255,255,0.7);margin-top:0.5rem;">We\'ll be in touch shortly.</p></div>';
+                    setTimeout(closeSheet, 2200);
+                } else {
+                    btn.disabled = false;
+                    if (label) label.style.display = '';
+                    if (loading) loading.style.display = 'none';
+                    alert('Something went wrong. Please try again or call (813) 773-5553.');
+                }
+            }).catch(function() {
+                btn.disabled = false;
+                if (label) label.style.display = '';
+                if (loading) loading.style.display = 'none';
+                alert('Network error. Please try again or call (813) 773-5553.');
+            });
+        });
+    }
+})();
