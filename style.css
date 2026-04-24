@@ -4437,6 +4437,11 @@ section::before {
         -webkit-overflow-scrolling: auto;
         overscroll-behavior: none;
     }
+
+    /* Hide sticky CTA bar while hero landing screen is active */
+    body.landing-mode #mobileCTABar {
+        display: none !important;
+    }
     
     /* Mobile Navigation with Logo */
     .navbar {
