@@ -776,17 +776,29 @@ function initNavigation() {
         const menu = dropdown.querySelector('.nav-dropdown-menu');
         
         if (toggle && menu) {
-            // Desktop: Show on hover
+            const desktopHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+
+            // Desktop mouse: open/close on hover only
             dropdown.addEventListener('mouseenter', () => {
-                dropdown.classList.add('active');
+                if (desktopHover.matches) dropdown.classList.add('active');
             });
-            
             dropdown.addEventListener('mouseleave', () => {
-                dropdown.classList.remove('active');
+                if (desktopHover.matches) dropdown.classList.remove('active');
             });
-            
-            // Mobile: Show on click
+
+            // Touch: instant toggle on touchend — preventDefault stops the ghost click that follows
+            toggle.addEventListener('touchend', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const isOpen = dropdown.classList.contains('active');
+                // Close all other open dropdowns first
+                navDropdowns.forEach(d => d.classList.remove('active'));
+                if (!isOpen) dropdown.classList.add('active');
+            });
+
+            // Mouse click fallback for non-hover devices (e.g. keyboard navigation)
             toggle.addEventListener('click', (e) => {
+                if (desktopHover.matches) return; // handled by hover
                 e.preventDefault();
                 e.stopPropagation();
                 dropdown.classList.toggle('active');
@@ -826,6 +838,9 @@ function initNavigation() {
         link.style.transitionDelay = `${index * 0.05}s`;
         
         link.addEventListener('click', () => {
+            // Dropdown toggles are handled separately — don't close the whole menu
+            if (link.classList.contains('nav-dropdown-toggle')) return;
+
             // Add click ripple effect
             link.style.transform = 'translateX(4px) scale(0.95)';
             

@@ -4657,6 +4657,11 @@ section::before {
             display: none !important;
         }
 
+        /* Eliminate iOS 300ms tap delay on dropdown toggles */
+        .nav-dropdown-toggle {
+            touch-action: manipulation;
+        }
+
         /* Override suppression for toggle specifically — same specificity, placed later */
         .nav-menu .nav-dropdown .nav-dropdown-toggle::after {
             content: '›' !important;
@@ -4719,26 +4724,6 @@ section::before {
             border-color: rgba(100, 255, 218, 0.4);
             color: #64ffda;
             padding-left: 18px;
-        }
-    }
-    
-    @media (max-width: 768px) {
-        /* Chevron indicator on plain nav links only (not dropdown toggles) */
-        .nav-menu > .nav-link::after,
-        .nav-menu .nav-link:not(.nav-dropdown-toggle)::after {
-            content: '›';
-            position: static;
-            margin-left: auto;
-            font-size: 22px;
-            font-weight: 300;
-            width: auto;
-            height: auto;
-            background: none;
-            opacity: 0.4;
-            color: #64ffda;
-            bottom: auto;
-            left: auto;
-            transition: none;
         }
     }
     
