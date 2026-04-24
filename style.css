@@ -2227,6 +2227,7 @@ section::before {
     border-radius: 25px;
     transition: all 0.3s ease;
     font-size: 0.9rem;
+    margin-top: 1rem;
 }
 
 .solution-link:hover {
@@ -4399,6 +4400,13 @@ section::before {
     }
 }
 
+/* Service cards: 2-column on larger phones / small tablets (560–768px) */
+@media (min-width: 560px) and (max-width: 768px) {
+    .services-horizontal {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
 @media (max-width: 768px) {
     /* Enable touch scrolling and fix mobile scroll issues */
     html, body {
@@ -4975,7 +4983,7 @@ section::before {
         max-width: 280px;
     }
     
-    /* Services Mobile Layout - Two Columns */
+    /* Services Mobile Layout - Single column on phones */
     .services-positioning-panel {
         grid-template-columns: 1fr;
         padding: 1.25rem;
@@ -4986,7 +4994,7 @@ section::before {
     }
 
     .services-horizontal {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
         gap: 1rem;
     }
 
@@ -4997,7 +5005,33 @@ section::before {
     .service-item {
         width: 100%;
         padding: 1rem;
-    }    .service-content h4 {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .service-content {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+
+    .service-proof-list {
+        flex: 1;
+    }
+
+    /* Full-width, bottom-aligned CTA button inside service cards */
+    .service-item .solution-link {
+        display: flex;
+        width: 100%;
+        box-sizing: border-box;
+        justify-content: center;
+        margin-top: auto;
+        padding-top: 0.9rem;
+        padding-bottom: 0.9rem;
+        margin-left: 0;
+    }
+
+    .service-content h4 {
         font-size: 1rem;
     }
     
