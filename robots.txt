@@ -24,7 +24,9 @@ Disallow: /Ecommerce-Management-System/
 Disallow: /Invoice-Management-System/
 Disallow: /Chess-Game-main/
 Disallow: /Tic-Tac-Toe/
-Disallow: /projects.html
+
+# Block URL parameters that generate junk crawl URLs
+Disallow: /*?search=
 
 # Allow core site assets
 Allow: /images/
