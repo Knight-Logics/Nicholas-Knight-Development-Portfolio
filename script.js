@@ -3,6 +3,7 @@
 let isInLandingMode = true;
 let exitLandingMode = null;
 let suppressLandingReentry = false; // Prevent immediate hero re-entry after nav clicks
+let anchorNavigationInitialized = false;
 
 // Keep verbose landing logs disabled in production to reduce main-thread work on mobile.
 const DEBUG_LANDING = false;
@@ -42,6 +43,73 @@ function useSimplifiedMobileHero() {
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 }
 
+function resolveAnchorHash(href) {
+    if (!href || href === '#') return null;
+
+    const isSamePageHash = href.startsWith('#');
+    const isIndexHash = /(^|\/)index\.html#/.test(href);
+    const isRootHash = /^\/#[^\s]+$/.test(href);
+    const onIndexPage = /(^|\/)index\.html$/.test(window.location.pathname) || window.location.pathname === '/';
+
+    if (isSamePageHash) return href;
+    if ((isIndexHash || isRootHash) && onIndexPage) return href.substring(href.indexOf('#'));
+    return null;
+}
+
+function findAnchorTarget(hash) {
+    const aliasMap = {
+        '#featured-projects': '#work'
+    };
+    const normHash = hash.toLowerCase();
+
+    return document.querySelector(hash)
+        || document.querySelector(`[id="${normHash.replace('#', '')}"]`)
+        || (aliasMap[normHash] ? document.querySelector(aliasMap[normHash]) : null);
+}
+
+function scrollToHashTarget(hash, target) {
+    const scrollWithOffset = () => {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const navbar = document.querySelector('.navbar');
+        const offset = navbar ? navbar.offsetHeight : 0;
+        if (offset) {
+            setTimeout(() => { window.scrollBy(0, -offset); }, 250);
+        }
+        history.pushState(null, null, hash);
+    };
+
+    if (isInLandingMode && typeof exitLandingMode === 'function') {
+        suppressLandingReentry = true;
+        exitLandingMode();
+        setTimeout(() => {
+            scrollWithOffset();
+            setTimeout(() => { suppressLandingReentry = false; }, 1000);
+        }, 900);
+    } else {
+        scrollWithOffset();
+    }
+}
+
+function initAnchorNavigation() {
+    if (anchorNavigationInitialized) return;
+    anchorNavigationInitialized = true;
+
+    document.addEventListener('click', (e) => {
+        const anchor = e.target.closest('a[href*="#"]');
+        if (!anchor) return;
+
+        const href = anchor.getAttribute('href');
+        const hash = resolveAnchorHash(href);
+        if (!hash) return;
+
+        const target = findAnchorTarget(hash);
+        if (!target) return;
+
+        e.preventDefault();
+        scrollToHashTarget(hash, target);
+    });
+}
+
 // Dynamic Header and Footer Loading — parallel fetches to minimise round-trips
 async function loadHeaderFooter() {
     try {
@@ -75,6 +143,8 @@ async function loadHeaderFooter() {
 document.addEventListener('DOMContentLoaded', function() {
     const simplifyMobileHero = useSimplifiedMobileHero();
 
+    initAnchorNavigation();
+
     // Fetch header/footer in parallel — initNavigation runs when ready, doesn't block paint
     loadHeaderFooter().then(() => { initNavigation(); setupIntersectionObserver(); });
 
@@ -92,64 +162,6 @@ document.addEventListener('DOMContentLoaded', function() {
     scheduleNonCriticalInit(initAdvancedParallax, 380);
     scheduleNonCriticalInit(initMagneticButtons, 450);
     scheduleNonCriticalInit(initCursorTrail, 550);
-    
-    // Smooth scrolling for anchor links (same-page and index.html#section)
-    document.querySelectorAll('a[href*="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
-            if (!href || href === '#') return;
-
-            const isSamePageHash = href.startsWith('#');
-            const isIndexHash = /(^|\/)index\.html#/.test(href);
-            const isRootHash = /^\/#[^\s]+$/.test(href);
-            const onIndexPage = /(^|\/)index\.html$/.test(window.location.pathname) || window.location.pathname === '/';
-
-            // Determine target hash for same-page scrolling
-            const hash = isSamePageHash
-                ? href
-                : ((isIndexHash || isRootHash) && onIndexPage ? href.substring(href.indexOf('#')) : null);
-
-            if (hash) {
-                // Try direct target, then case-insensitive, then alias mapping
-                const aliasMap = {
-                    '#featured-projects': '#work'
-                };
-                const normHash = hash.toLowerCase();
-                let target = document.querySelector(hash)
-                    || document.querySelector(`[id="${normHash.replace('#','')}"]`)
-                    || (aliasMap[normHash] ? document.querySelector(aliasMap[normHash]) : null);
-
-                if (target) {
-                    e.preventDefault();
-
-                    const scrollWithOffset = () => {
-                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                        const navbar = document.querySelector('.navbar');
-                        const offset = navbar ? navbar.offsetHeight : 0;
-                        if (offset) {
-                            // Apply a small delay so offset adjusts after scrollIntoView completes
-                            setTimeout(() => { window.scrollBy(0, -offset); }, 250);
-                        }
-                        history.pushState(null, null, hash);
-                    };
-
-                    // Exit landing overlay first if active, then scroll
-                    if (isInLandingMode && typeof exitLandingMode === 'function') {
-                        suppressLandingReentry = true;
-                        exitLandingMode();
-                        setTimeout(() => {
-                            scrollWithOffset();
-                            // Clear suppression shortly after scroll completes
-                            setTimeout(() => { suppressLandingReentry = false; }, 1000);
-                        }, 900);
-                    } else {
-                        scrollWithOffset();
-                    }
-                }
-            }
-            // Otherwise, allow normal navigation (e.g., projects.html)
-        });
-    });
     
     // Dismiss loading screen — header/footer parallel fetch is usually done well before this
     const loadingScreen = document.getElementById('loading-screen');
@@ -866,9 +878,26 @@ function initNavigation() {
         // Add staggered animation delay
         link.style.transitionDelay = `${index * 0.05}s`;
         
-        link.addEventListener('click', () => {
+        link.addEventListener('click', (e) => {
             // Dropdown toggles are handled separately — don't close the whole menu
             if (link.classList.contains('nav-dropdown-toggle')) return;
+
+            const href = link.getAttribute('href') || '';
+            const shouldForceNavigate = link.id !== 'nav-home'
+                && href.startsWith('/')
+                && !href.includes('#');
+            let navigationTarget = null;
+
+            if (shouldForceNavigate) {
+                const targetUrl = new URL(href, window.location.origin);
+                const currentPath = window.location.pathname.replace(/\/+$/, '') || '/';
+                const targetPath = targetUrl.pathname.replace(/\/+$/, '') || '/';
+
+                if (targetUrl.origin === window.location.origin && targetPath !== currentPath) {
+                    navigationTarget = `${targetUrl.pathname}${targetUrl.search}${targetUrl.hash}`;
+                    e.preventDefault();
+                }
+            }
 
             // Add click ripple effect
             link.style.transform = 'translateX(4px) scale(0.95)';
@@ -884,12 +913,20 @@ function initNavigation() {
                     setTimeout(() => {
                         link.style.transform = '';
                     }, 200);
+
+                    if (navigationTarget) {
+                        window.location.assign(navigationTarget);
+                    }
                 }, 150);
             } else {
                 // Reset link transform even if menu elements don't exist
                 setTimeout(() => {
                     link.style.transform = '';
                 }, 200);
+
+                if (navigationTarget) {
+                    window.location.assign(navigationTarget);
+                }
             }
         });
     });
