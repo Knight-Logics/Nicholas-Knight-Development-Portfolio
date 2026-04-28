@@ -30,12 +30,17 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-VX36QR7HJW');
-        window.addEventListener('load', function() {
+        function _loadGA() {
             var s = document.createElement('script');
             s.async = true;
             s.src = 'https://www.googletagmanager.com/gtag/js?id=G-VX36QR7HJW';
             document.head.appendChild(s);
-        });
+        }
+        if ('requestIdleCallback' in window) {
+            requestIdleCallback(_loadGA, { timeout: 5000 });
+        } else {
+            window.addEventListener('load', function() { setTimeout(_loadGA, 3000); });
+        }
     </script>
     
     <!-- Breadcrumb Schema -->
@@ -267,7 +272,6 @@
     <!-- Preconnect to 3rd-party origins to save DNS+TCP+TLS time -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
 
     <!-- LCP hero images — mobile gets smaller file, desktop gets full res -->
     <link rel="preload" as="image" href="./images/city-hero-mobile.webp" fetchpriority="high" type="image/webp" media="(max-width: 1024px)">
@@ -597,24 +601,22 @@
             .title-line.company-name::after { display: none; }
             #loading-screen { display: none; }
         }
+    
+        /* content-visibility: skip painting off-screen sections until scroll */
+        .section-about,.section-services,.section-portfolio,.section-process,
+        .section-faq,.section-contact { content-visibility: auto; contain-intrinsic-size: auto 600px; }
     </style>
-    <link rel="preload" as="style" href="style.min.css?v=20260428a" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="style.min.css?v=20260428a"></noscript>
-    <!-- Non-critical icon and brand-font CSS load after the first paint. -->
+    <link rel="preload" as="style" href="style.min.css?v=20260428b" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="style.min.css?v=20260428b"></noscript>
+    <!-- Non-critical brand-font CSS loads after first paint. Font Awesome removed — icons are inline SVGs. -->
     <script>
         window.addEventListener('load', function () {
             var playfair = document.createElement('link');
             playfair.rel = 'stylesheet';
             playfair.href = 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap';
             document.head.appendChild(playfair);
-
-            var fa = document.createElement('link');
-            fa.rel = 'stylesheet';
-            fa.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css';
-            document.head.appendChild(fa);
         }, { once: true });
     </script>
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
     <title>Custom Websites & Local SEO — Tampa Bay | Knight Logics</title>
     <!-- Microsoft Clarity (deferred until after load to protect first paint) -->
     <script type="text/javascript">
@@ -629,6 +631,23 @@
         }, { once: true });
     </script></head>
 <body>
+﻿<svg style="display:none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="fi-chevron-down" viewBox="0 0 512 512"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></symbol>
+  <symbol id="fi-robot" viewBox="0 0 640 512"><path d="M320 0c17.7 0 32 14.3 32 32V96H472c39.8 0 72 32.2 72 72V440c0 39.8-32.2 72-72 72H168c-39.8 0-72-32.2-72-72V168c0-39.8 32.2-72 72-72H288V32c0-17.7 14.3-32 32-32zM208 384c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H208zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H304zm96 0c-8.8 0-16 7.2-16 16s7.2 16 16 16h32c8.8 0 16-7.2 16-16s-7.2-16-16-16H400zM264 256a40 40 0 1 0 -80 0 40 40 0 1 0 80 0zm152 40a40 40 0 1 0 0-80 40 40 0 1 0 0 80zM48 224H64V416H48c-26.5 0-48-21.5-48-48V272c0-26.5 21.5-48 48-48zm544 0c26.5 0 48 21.5 48 48v96c0 26.5-21.5 48-48 48H576V224h16z"/></symbol>
+  <symbol id="fi-comment-sms" viewBox="0 0 512 512"><path d="M256 448c141.4 0 256-93.1 256-208S397.4 32 256 32S0 125.1 0 240c0 45.1 17.7 86.8 47.7 120.9c-1.9 24.5-11.4 46.3-21.4 62.9c-5.5 9.2-11.1 16.6-15.2 21.6c-2.1 2.5-3.7 4.4-4.9 5.7c-.6 .6-1 1.1-1.3 1.4l-.3 .3 0 0 0 0 0 0 0 0c-4.6 4.6-5.9 11.4-3.4 17.4c2.5 6 8.3 9.9 14.8 9.9c28.7 0 57.6-8.9 81.6-19.3c22.9-10 42.4-21.9 54.3-30.6c31.8 11.5 67 17.9 104.1 17.9zM96 212.8c0-20.3 16.5-36.8 36.8-36.8H152c8.8 0 16 7.2 16 16s-7.2 16-16 16H132.8c-2.7 0-4.8 2.2-4.8 4.8c0 1.6 .8 3.1 2.2 4l29.4 19.6c10.3 6.8 16.4 18.3 16.4 30.7c0 20.3-16.5 36.8-36.8 36.8H112c-8.8 0-16-7.2-16-16s7.2-16 16-16h27.2c2.7 0 4.8-2.2 4.8-4.8c0-1.6-.8-3.1-2.2-4l-29.4-19.6C102.2 236.7 96 225.2 96 212.8zM372.8 176H392c8.8 0 16 7.2 16 16s-7.2 16-16 16H372.8c-2.7 0-4.8 2.2-4.8 4.8c0 1.6 .8 3.1 2.2 4l29.4 19.6c10.2 6.8 16.4 18.3 16.4 30.7c0 20.3-16.5 36.8-36.8 36.8H352c-8.8 0-16-7.2-16-16s7.2-16 16-16h27.2c2.7 0 4.8-2.2 4.8-4.8c0-1.6-.8-3.1-2.2-4l-29.4-19.6c-10.2-6.8-16.4-18.3-16.4-30.7c0-20.3 16.5-36.8 36.8-36.8zm-152 6.4L256 229.3l35.2-46.9c4.1-5.5 11.3-7.8 17.9-5.6s10.9 8.3 10.9 15.2v96c0 8.8-7.2 16-16 16s-16-7.2-16-16V240l-19.2 25.6c-3 4-7.8 6.4-12.8 6.4s-9.8-2.4-12.8-6.4L224 240v48c0 8.8-7.2 16-16 16s-16-7.2-16-16V192c0-6.9 4.4-13 10.9-15.2s13.7 .1 17.9 5.6z"/></symbol>
+  <symbol id="fi-arrow-up-right-from-square" viewBox="0 0 512 512"><path d="M320 0c-17.7 0-32 14.3-32 32s14.3 32 32 32h82.7L201.4 265.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L448 109.3V192c0 17.7 14.3 32 32 32s32-14.3 32-32V32c0-17.7-14.3-32-32-32H320zM80 32C35.8 32 0 67.8 0 112V432c0 44.2 35.8 80 80 80H400c44.2 0 80-35.8 80-80V320c0-17.7-14.3-32-32-32s-32 14.3-32 32V432c0 8.8-7.2 16-16 16H80c-8.8 0-16-7.2-16-16V112c0-8.8 7.2-16 16-16H192c17.7 0 32-14.3 32-32s-14.3-32-32-32H80z"/></symbol>
+  <symbol id="fi-shopping-cart" viewBox="0 0 576 512"><path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/></symbol>
+  <symbol id="fi-arrow-right" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></symbol>
+  <symbol id="fi-microchip" viewBox="0 0 512 512"><path d="M176 24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64c-35.3 0-64 28.7-64 64H24c-13.3 0-24 10.7-24 24s10.7 24 24 24H64v56H24c-13.3 0-24 10.7-24 24s10.7 24 24 24H64v56H24c-13.3 0-24 10.7-24 24s10.7 24 24 24H64c0 35.3 28.7 64 64 64v40c0 13.3 10.7 24 24 24s24-10.7 24-24V448h56v40c0 13.3 10.7 24 24 24s24-10.7 24-24V448h56v40c0 13.3 10.7 24 24 24s24-10.7 24-24V448c35.3 0 64-28.7 64-64h40c13.3 0 24-10.7 24-24s-10.7-24-24-24H448V280h40c13.3 0 24-10.7 24-24s-10.7-24-24-24H448V176h40c13.3 0 24-10.7 24-24s-10.7-24-24-24H448c0-35.3-28.7-64-64-64V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H280V24c0-13.3-10.7-24-24-24s-24 10.7-24 24V64H176V24zM160 128H352c17.7 0 32 14.3 32 32V352c0 17.7-14.3 32-32 32H160c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32zm192 32H160V352H352V160z"/></symbol>
+  <symbol id="fi-bolt" viewBox="0 0 448 512"><path d="M349.4 44.6c5.9-13.7 1.5-29.7-10.6-38.5s-28.6-8-39.9 1.8l-256 224c-10 8.8-13.6 22.9-8.9 35.3S50.7 288 64 288H175.5L98.6 467.4c-5.9 13.7-1.5 29.7 10.6 38.5s28.6 8 39.9-1.8l256-224c10-8.8 13.6-22.9 8.9-35.3s-16.6-20.7-30-20.7H272.5L349.4 44.6z"/></symbol>
+  <symbol id="fi-copy" viewBox="0 0 448 512"><path d="M208 0H332.1c12.7 0 24.9 5.1 33.9 14.1l67.9 67.9c9 9 14.1 21.2 14.1 33.9V336c0 26.5-21.5 48-48 48H208c-26.5 0-48-21.5-48-48V48c0-26.5 21.5-48 48-48zM48 128h80v64H64V448H256V416h64v48c0 26.5-21.5 48-48 48H48c-26.5 0-48-21.5-48-48V176c0-26.5 21.5-48 48-48z"/></symbol>
+  <symbol id="fi-window-maximize" viewBox="0 0 512 512"><path d="M64 32C28.7 32 0 60.7 0 96V416c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V96c0-35.3-28.7-64-64-64H64zM96 96H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H96c-17.7 0-32-14.3-32-32s14.3-32 32-32z"/></symbol>
+  <symbol id="fi-dollar-sign" viewBox="0 0 320 512"><path d="M160 0c17.7 0 32 14.3 32 32V67.7c1.6 .2 3.1 .4 4.7 .7c.4 .1 .7 .1 1.1 .2l48 8.8c17.4 3.2 28.9 19.9 25.7 37.2s-19.9 28.9-37.2 25.7l-47.5-8.7c-31.3-4.6-58.9-1.5-78.3 6.2s-27.2 18.3-29 28.1c-2 10.7-.5 16.7 1.2 20.4c1.8 3.9 5.5 8.3 12.8 13.2c16.3 10.7 41.3 17.7 73.7 26.3l2.9 .8c28.6 7.6 63.6 16.8 89.6 33.8c14.2 9.3 27.6 21.9 35.9 39.5c8.5 17.9 10.3 37.9 6.4 59.2c-6.9 38-33.1 63.4-65.6 76.7c-13.7 5.6-28.6 9.2-44.4 11V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V445.1c-.4-.1-.9-.1-1.3-.2l-.2 0 0 0c-24.4-3.8-64.5-14.3-91.5-26.3c-16.1-7.2-23.4-26.1-16.2-42.2s26.1-23.4 42.2-16.2c20.9 9.3 55.3 18.5 75.2 21.6c31.9 4.7 58.2 2 76-5.3c16.9-6.9 24.6-16.9 26.8-28.9c1.9-10.6 .4-16.7-1.3-20.4c-1.9-4-5.6-8.4-13-13.3c-16.4-10.7-41.5-17.7-74-26.3l-2.8-.7 0 0C119.4 279.3 84.4 270 58.4 253c-14.2-9.3-27.5-22-35.8-39.6c-8.4-17.9-10.1-37.9-6.1-59.2C23.7 116 52.3 91.2 84.8 78.3c13.3-5.3 27.9-8.9 43.2-11V32c0-17.7 14.3-32 32-32z"/></symbol>
+  <symbol id="fi-globe" viewBox="0 0 512 512"><path d="M352 256c0 22.2-1.2 43.6-3.3 64H163.3c-2.2-20.4-3.3-41.8-3.3-64s1.2-43.6 3.3-64H348.7c2.2 20.4 3.3 41.8 3.3 64zm28.8-64H503.9c5.3 20.5 8.1 41.9 8.1 64s-2.8 43.5-8.1 64H380.8c2.1-20.6 3.2-42 3.2-64s-1.1-43.4-3.2-64zm112.6-32H376.7c-10-63.9-29.8-117.4-55.3-151.6c78.3 20.7 142 77.5 171.9 151.6zm-149.1 0H167.7c6.1-36.4 15.5-68.6 27-94.7c10.5-23.6 22.2-40.7 33.5-51.5C239.4 3.2 248.7 0 256 0s16.6 3.2 27.8 13.8c11.3 10.8 23 27.9 33.5 51.5c11.6 26 20.9 58.2 27 94.7zm-209 0H18.6C48.6 85.9 112.2 29.1 190.6 8.4C165.1 42.6 145.3 96.1 135.3 160zM8.1 192H131.2c-2.1 20.6-3.2 42-3.2 64s1.1 43.4 3.2 64H8.1C2.8 299.5 0 278.1 0 256s2.8-43.5 8.1-64zM194.7 446.6c-11.6-26-20.9-58.2-27-94.6H344.3c-6.1 36.4-15.5 68.6-27 94.6c-10.5 23.6-22.2 40.7-33.5 51.5C272.6 508.8 263.3 512 256 512s-16.6-3.2-27.8-13.8c-11.3-10.8-23-27.9-33.5-51.5zM135.3 352c10 63.9 29.8 117.4 55.3 151.6C112.2 482.9 48.6 426.1 18.6 352H135.3zm358.1 0c-30 74.1-93.6 130.9-171.9 151.6c25.5-34.2 45.2-87.7 55.3-151.6H493.4z"/></symbol>
+  <symbol id="fi-code" viewBox="0 0 640 512"><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6zm80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3L562.7 256l-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3z"/></symbol>
+  <symbol id="fi-map-location-dot" viewBox="0 0 576 512"><path d="M408 120c0 54.6-73.1 151.9-105.2 192c-7.7 9.6-22 9.6-29.6 0C241.1 271.9 168 174.6 168 120C168 53.7 221.7 0 288 0s120 53.7 120 120zm8 80.4c3.5-6.9 6.7-13.8 9.6-20.6c.5-1.2 1-2.5 1.5-3.7l116-46.4C558.9 123.4 576 135 576 152V422.8c0 9.8-6 18.6-15.1 22.3L416 503V200.4zM137.6 138.3c2.4 14.1 7.2 28.3 12.8 41.5c2.9 6.8 6.1 13.7 9.6 20.6V451.8L32.9 502.7C17.1 509 0 497.4 0 480.4V209.6c0-9.8 6-18.6 15.1-22.3l122.6-49zM327.8 332c13.9-17.4 35.7-45.7 56.2-77V504.3L192 449.4V255c20.5 31.3 42.3 59.6 56.2 77c20.5 25.6 59.1 25.6 79.6 0zM288 152a40 40 0 1 0 0-80 40 40 0 1 0 0 80z"/></symbol>
+  <symbol id="fi-phone" viewBox="0 0 512 512"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></symbol>
+</svg>
     <!-- Loading Screen -->
     <div id="loading-screen">
         <div class="loader">
@@ -752,7 +771,7 @@
                          height="460">
                     <div class="about-badge-card about-badge-card--local">
                         <div class="about-badge-icon">
-                            <i class="fas fa-dollar-sign"></i>
+                            <svg class="fi" aria-hidden="true"><use href="#fi-dollar-sign"/></svg>
                         </div>
                         <div class="about-badge-text">
                             <span class="about-badge-label">One-Time Build</span>
@@ -761,7 +780,7 @@
                     </div>
                     <div class="about-badge-card about-badge-card--code">
                         <div class="about-badge-icon">
-                            <i class="fas fa-code"></i>
+                            <svg class="fi" aria-hidden="true"><use href="#fi-code"/></svg>
                         </div>
                         <div class="about-badge-text">
                             <span class="about-badge-label">Hand-Coded</span>
@@ -786,7 +805,7 @@
                     <div class="about-ctas">
                         <a href="/contact" class="cta-button primary">Start a Project</a>
                         <a href="tel:+18137735553" class="about-phone-link">
-                            <span class="about-phone-icon-wrap"><i class="fas fa-phone"></i></span>
+                            <span class="about-phone-icon-wrap"><svg class="fi" aria-hidden="true"><use href="#fi-phone"/></svg></span>
                             <span class="about-phone-text">
                                 <span class="about-phone-label">Call Direct</span>
                                 <span class="about-phone-number">(813) 773-5553</span>
@@ -841,7 +860,7 @@
             <div class="services-horizontal">
                 <div class="service-item">
                     <div class="service-icon">
-                        <i class="fas fa-globe"></i>
+                        <svg class="fi" aria-hidden="true"><use href="#fi-globe"/></svg>
                     </div>
                     <div class="service-content">
                         <h4>Custom Websites &amp; Local SEO</h4>
@@ -852,13 +871,13 @@
                             <li>Google Business Profile alignment and local search signals</li>
                             <li>Analytics, call-to-action flow, and PageSpeed tuning</li>
                         </ul>
-                        <a href="/service-websites" class="solution-link">Explore Website Services <i class="fas fa-arrow-right" style="margin-left:6px;"></i></a>
+                        <a href="/service-websites" class="solution-link">Explore Website Services <svg class="fi" aria-hidden="true" style="margin-left:6px;"><use href="#fi-arrow-right"/></svg></a>
                     </div>
                 </div>
 
                 <div class="service-item">
                     <div class="service-icon">
-                        <i class="fas fa-shopping-cart"></i>
+                        <svg class="fi" aria-hidden="true"><use href="#fi-shopping-cart"/></svg>
                     </div>
                     <div class="service-content">
                         <h4>E-Commerce &amp; Data Systems</h4>
@@ -871,7 +890,7 @@
                             <li>Inventory automation and data workflows</li>
                             <li>Analytics, reporting, and system optimization</li>
                         </ul>
-                        <a href="/service-ecommerce" class="solution-link">Learn More About E-Commerce &amp; Data Systems <i class="fas fa-arrow-right" style="margin-left:6px;"></i></a>
+                        <a href="/service-ecommerce" class="solution-link">Learn More About E-Commerce &amp; Data Systems <svg class="fi" aria-hidden="true" style="margin-left:6px;"><use href="#fi-arrow-right"/></svg></a>
                     </div>
                 </div>
             </div>
@@ -920,7 +939,7 @@
             <div class="services-section-break">
                 <div class="services-section-break-line"></div>
                 <div class="services-section-break-content">
-                    <span class="services-section-break-eyebrow"><i class="fas fa-microchip"></i> Beyond the Website</span>
+                    <span class="services-section-break-eyebrow"><svg class="fi" aria-hidden="true"><use href="#fi-microchip"/></svg> Beyond the Website</span>
                     <h3 class="services-section-break-title">Software &amp; Automation</h3>
                     <p class="services-section-break-sub">For businesses that need more than a website — packaged desktop apps, internal tools, and workflow automation that run behind the scenes.</p>
                 </div>
@@ -928,7 +947,7 @@
             <div class="services-horizontal">
                 <div class="service-item">
                     <div class="service-icon">
-                        <i class="fas fa-window-maximize"></i>
+                        <svg class="fi" aria-hidden="true"><use href="#fi-window-maximize"/></svg>
                     </div>
                     <div class="service-content">
                         <h4>Desktop Apps &amp; Specialized Software</h4>
@@ -939,13 +958,13 @@
                             <li>Direct GitHub releases and auto-updates</li>
                             <li>Built from concept to deployed application</li>
                         </ul>
-                        <a href="/service-desktop-apps" class="solution-link">Learn More About Desktop Apps <i class="fas fa-arrow-right" style="margin-left:6px;"></i></a>
+                        <a href="/service-desktop-apps" class="solution-link">Learn More About Desktop Apps <svg class="fi" aria-hidden="true" style="margin-left:6px;"><use href="#fi-arrow-right"/></svg></a>
                     </div>
                 </div>
 
                 <div class="service-item">
                     <div class="service-icon">
-                        <i class="fas fa-robot"></i>
+                        <svg class="fi" aria-hidden="true"><use href="#fi-robot"/></svg>
                     </div>
                     <div class="service-content">
                         <h4>Automation &amp; Internal Tools</h4>
@@ -956,7 +975,7 @@
                             <li>Internal tools for quoting, tracking, and operations</li>
                             <li>Targeted AI use where it saves real time</li>
                         </ul>
-                        <a href="/service-ai-automation" class="solution-link">Explore Automation Services <i class="fas fa-arrow-right" style="margin-left:6px;"></i></a>
+                        <a href="/service-ai-automation" class="solution-link">Explore Automation Services <svg class="fi" aria-hidden="true" style="margin-left:6px;"><use href="#fi-arrow-right"/></svg></a>
                     </div>
                 </div>
             </div>
@@ -1333,37 +1352,37 @@
                 <div class="contact-info-strip">
                     <!-- Email chip: copy to clipboard -->
                     <div class="contact-info-chip contact-chip-interactive" onclick="copyEmail(this)" title="Click to copy email">
-                        <i class="fas fa-copy"></i>
+                        <svg class="fi" aria-hidden="true"><use href="#fi-copy"/></svg>
                         <div>
                             <strong>Email</strong>
                             <span class="chip-email-addr">support@knightlogics.com</span>
                         </div>
-                        <span class="chip-copy-hint"><i class="fas fa-copy"></i></span>
+                        <span class="chip-copy-hint"><svg class="fi" aria-hidden="true"><use href="#fi-copy"/></svg></span>
                     </div>
                     <!-- Phone chip: call / text dropdown -->
                     <div class="contact-info-chip contact-chip-interactive contact-chip-phone" onclick="togglePhoneMenu(this)" title="Call or text us">
-                        <i class="fas fa-phone"></i>
+                        <svg class="fi" aria-hidden="true"><use href="#fi-phone"/></svg>
                         <div>
                             <strong>Phone / Text</strong>
                             <span>(813) 773-5553</span>
                         </div>
-                        <i class="fas fa-chevron-down chip-chevron"></i>
+                        <svg class="fi chip-chevron" aria-hidden="true"><use href="#fi-chevron-down"/></svg>
                         <div class="chip-phone-menu">
-                            <a href="tel:+18137735553" onclick="event.stopPropagation()"><i class="fas fa-phone"></i> Call</a>
-                            <a href="sms:+18137735553" onclick="event.stopPropagation()"><i class="fas fa-comment-sms"></i> Text</a>
+                            <a href="tel:+18137735553" onclick="event.stopPropagation()"><svg class="fi" aria-hidden="true"><use href="#fi-phone"/></svg> Call</a>
+                            <a href="sms:+18137735553" onclick="event.stopPropagation()"><svg class="fi" aria-hidden="true"><use href="#fi-comment-sms"/></svg> Text</a>
                         </div>
                     </div>
                     <!-- Service Area chip: opens map modal -->
                     <div class="contact-info-chip contact-chip-interactive" onclick="openMapModal()" title="View service area map">
-                        <i class="fas fa-map-location-dot"></i>
+                        <svg class="fi" aria-hidden="true"><use href="#fi-map-location-dot"/></svg>
                         <div>
                             <strong>Service Area</strong>
                             <span>Remote worldwide &bull; On-site Tampa Bay</span>
                         </div>
-                        <i class="fas fa-arrow-up-right-from-square chip-ext"></i>
+                        <svg class="fi chip-ext" aria-hidden="true"><use href="#fi-arrow-up-right-from-square"/></svg>
                     </div>
                     <div class="contact-info-chip">
-                        <i class="fas fa-bolt"></i>
+                        <svg class="fi" aria-hidden="true"><use href="#fi-bolt"/></svg>
                         <div>
                             <strong>Response Time</strong>
                             <span>Free consultation within <em style="color:#64ffda;font-style:normal;">24 hours</em></span>
@@ -1535,7 +1554,7 @@
         </div>
     </div>
 
-    <script src="script.min.js?v=20260428a" defer></script>
+    <script src="script.min.js?v=20260428b" defer></script>
 </body>
 </html>
 
