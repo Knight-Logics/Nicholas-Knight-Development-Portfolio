@@ -3799,12 +3799,9 @@ section::before {
 }
 
 .google-reviews-showcase {
-    max-width: 660px;
+    max-width: 1120px;
     margin: 2rem auto 0;
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(100,255,218,0.15);
-    border-radius: 20px;
-    padding: 2.5rem 2.5rem 2.25rem;
+    padding: 0;
     text-align: center;
 }
 
@@ -3812,20 +3809,20 @@ section::before {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 12px;
-    margin-bottom: 0.8rem;
+    gap: 14px;
+    margin: 0 0 1rem;
     flex-wrap: wrap;
 }
 
 .google-g-logo {
-    width: 26px;
-    height: 26px;
+    width: 32px;
+    height: 32px;
     flex-shrink: 0;
     display: block;
 }
 
 .google-reviews-header span {
-    font-size: 1.05rem;
+    font-size: 1.15rem;
     font-weight: 700;
     color: #fff;
     letter-spacing: 0.01em;
@@ -3833,42 +3830,189 @@ section::before {
 
 .google-stars-display {
     color: #FBBC04;
-    font-size: 1.2rem;
-    letter-spacing: 3px;
+    font-size: 0.95rem;
+    letter-spacing: 1px;
 }
 
-.google-reviews-note {
-    color: rgba(255,255,255,0.68);
-    font-size: 0.93rem;
-    line-height: 1.65;
-    max-width: 520px;
-    margin: 0.2rem auto 1.75rem;
+.google-reviews-summary {
+    color: rgba(255,255,255,0.72);
+    font-size: 0.9rem;
+    font-weight: 600;
 }
 
-.google-review-btn {
-    display: inline-flex;
+.review-carousel-wrapper {
+    display: flex;
     align-items: center;
     gap: 10px;
-    padding: 0.8rem 1.9rem;
+    margin: 0 auto;
+    max-width: 1100px;
+}
+
+.review-carousel-track-outer {
+    overflow: hidden;
+    flex: 1;
+}
+
+.review-carousel-track {
+    display: flex;
+    gap: 24px;
+    transition: transform 0.4s cubic-bezier(.4,0,.2,1);
+    will-change: transform;
+}
+
+.review-card {
     background: #fff;
-    color: #3c4043;
-    font-weight: 600;
-    font-size: 0.9rem;
-    border-radius: 6px;
-    text-decoration: none;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.28);
-    transition: box-shadow 0.2s ease, transform 0.15s ease;
+    border-radius: 14px;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    padding: 28px 28px 22px;
+    min-width: calc(33.333% - 16px);
+    max-width: calc(33.333% - 16px);
+    flex: 0 0 calc(33.333% - 16px);
+    box-sizing: border-box;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-.google-review-btn:hover {
-    box-shadow: 0 5px 18px rgba(0,0,0,0.38);
-    transform: translateY(-1px);
+.review-card-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
 
-.google-review-btn svg {
-    width: 18px;
-    height: 18px;
+.review-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
+}
+
+.review-name {
+    font-weight: 600;
+    color: #222;
+    font-size: 0.95rem;
+}
+
+.review-meta {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.review-stars {
+    color: #FBBC04;
+    font-size: 1rem;
+    letter-spacing: 1px;
+}
+
+.review-text {
+    margin: 0;
+    font-size: 0.92rem;
+    color: #444;
+    line-height: 1.6;
+    flex: 1;
+}
+
+.review-date {
+    font-size: 0.8rem;
+    color: #767676;
+}
+
+.review-carousel-btn {
+    background: #fff;
+    border: 2px solid #e0e0e0;
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    font-size: 1.45rem;
+    cursor: pointer;
+    color: #64ffda;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    line-height: 1;
+    padding: 0 0 2px;
+}
+
+.review-carousel-btn:hover:not(:disabled) {
+    background: #64ffda;
+    color: #07151d;
+    border-color: #64ffda;
+}
+
+.review-carousel-btn:disabled {
+    opacity: 0.35;
+    cursor: default;
+}
+
+.review-carousel-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    margin-top: 16px;
+}
+
+.review-carousel-dot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+}
+
+.review-carousel-dot::before {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.3);
+    transition: background 0.2s ease;
+}
+
+.review-carousel-dot.active::before {
+    background: #64ffda;
+}
+
+.review-carousel-wrapper.single-review .review-carousel-track {
+    justify-content: center;
+}
+
+.review-carousel-wrapper.single-review .review-card {
+    min-width: min(100%, 760px);
+    max-width: 760px;
+    flex-basis: min(100%, 760px);
+}
+
+.google-review-links {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.9rem;
+    color: rgba(255,255,255,0.58);
+}
+
+.google-review-links a {
+    color: #64ffda;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.google-review-links a:hover {
+    text-decoration: underline;
 }
 
 @media (max-width: 600px) {
@@ -3876,87 +4020,134 @@ section::before {
         padding: 44px 16px;
     }
     .google-reviews-showcase {
-        padding: 1.75rem 1.25rem 1.5rem;
+        padding: 0;
     }
     .google-reviews-header {
         gap: 8px;
+    }
+    .google-review-links span {
+        display: none;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .review-card {
+        min-width: calc(50% - 12px);
+        max-width: calc(50% - 12px);
+        flex-basis: calc(50% - 12px);
+    }
+}
+
+@media (max-width: 768px) {
+    .review-card {
+        min-width: 100%;
+        max-width: 100%;
+        flex-basis: 100%;
+    }
+
+    .review-carousel-wrapper {
+        gap: 6px;
+    }
+
+    .review-card {
+        padding: 24px 20px 20px;
+    }
+
+    .review-carousel-wrapper.single-review .review-card {
+        min-width: 100%;
+        max-width: 100%;
+        flex-basis: 100%;
     }
 }
 
 
 /* Enhanced Footer */
 .footer {
-    text-align: center;
     margin-top: 60px;
-    padding: 50px 40px 30px;
+    padding: 50px 24px 30px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
     background: rgba(10,10,10,0.95);
     color: #aaa;
 }
 
-.footer-content {
+.footer .container {
+    max-width: 1180px;
+}
+
+.site-footer-content {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
+    grid-template-columns: minmax(220px, 0.95fr) minmax(320px, 1.2fr) minmax(220px, 0.95fr);
+    gap: clamp(24px, 4vw, 54px);
     margin-bottom: 40px;
+    align-items: start;
+}
+
+.site-footer-column {
+    min-width: 0;
     text-align: left;
 }
 
-.footer-section h3 {
+.site-footer-column h3 {
     color: #64ffda;
     margin-bottom: 15px;
     font-size: 1.1rem;
 }
 
-.footer-section p,
-.footer-section a {
+.site-footer-column p,
+.site-footer-column a {
     color: #aaa;
     text-decoration: none;
     font-size: 0.95rem;
     line-height: 1.6;
 }
 
-.footer-section a {
-    display: inline-block;
-    padding: 8px 0;
+.site-footer-column a {
+    transition: color 0.2s ease;
 }
 
-.footer-section a:hover {
+.site-footer-column a:hover {
     color: #64ffda;
 }
 
-.footer-section-center {
+.site-footer-column--brand {
+    text-align: center;
+    max-width: 440px;
+    margin: 0 auto;
+}
+
+.site-footer-column--brand h3,
+.site-footer-column--brand p {
     text-align: center;
 }
 
-.footer-section-center h3,
-.footer-section-center p {
-    text-align: center;
-}
-
-.footer-nav {
+.site-footer-nav {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px 48px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px 28px;
 }
 
-.footer-contact {
+.site-footer-nav a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 24px;
+}
+
+.site-footer-contact {
     display: grid;
-    grid-template-columns: 1fr;
-    gap: 32px;
+    gap: 14px;
 }
 
-.footer .footer-links {
+.site-footer-meta-links {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 14px 20px;
     margin-bottom: 20px;
     flex-wrap: wrap;
     padding-top: 30px;
     border-top: 1px solid rgba(255,255,255,0.05);
 }
 
-.footer .footer-links a {
+.site-footer-meta-links a {
     color: #aaa;
     text-decoration: none;
     font-size: 0.92rem;
@@ -3965,7 +4156,7 @@ section::before {
     display: inline-block;
 }
 
-.footer .footer-links a:hover {
+.site-footer-meta-links a:hover {
     color: #64ffda;
 }
 
@@ -3973,34 +4164,19 @@ section::before {
     margin: 20px 0 0;
     font-size: 0.9rem;
     color: #aaa;
+    text-align: center;
 }
 
-@media (max-width: 768px) {
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 30px;
-        text-align: center;
-    }
-    .footer-nav {
-        align-items: center;
-    }
-    .carousel-btn.prev {
-        left: 5px;
-    }
-    .carousel-btn.next {
-        right: 5px;
-    }
-}
-
-@media (max-width: 1390px) and (min-width: 769px) {
-    .footer-content {
+@media (max-width: 1180px) {
+    .site-footer-content {
         grid-template-columns: 1fr 1fr;
         gap: 32px;
     }
-    .footer-section-center {
-        order: 3;
+
+    .site-footer-column--brand {
+        order: -1;
         grid-column: 1 / -1;
-        text-align: center;
+        max-width: 680px;
     }
 }
 
@@ -5959,7 +6135,7 @@ html {
     border-top: 1px solid #333;
 }
 
-.footer-content {
+.footer-minimal .footer-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -5967,18 +6143,18 @@ html {
     gap: 20px;
 }
 
-.footer-links {
+.footer-minimal .footer-links {
     display: flex;
     gap: 30px;
 }
 
-.footer-links a {
+.footer-minimal .footer-links a {
     color: #888;
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
-.footer-links a:hover {
+.footer-minimal .footer-links a:hover {
     color: #64ffda;
 }
 
@@ -7326,8 +7502,37 @@ html {
         grid-template-columns: 1fr;
     }
     
-    .footer-content {
+    .footer-minimal .footer-content {
         flex-direction: column;
+    }
+
+    .site-footer-content {
+        grid-template-columns: 1fr;
+        gap: 28px;
+        text-align: center;
+    }
+
+    .site-footer-column,
+    .site-footer-column--brand,
+    .site-footer-column--brand h3,
+    .site-footer-column--brand p,
+    .site-footer-column h3,
+    .site-footer-column p {
+        text-align: center;
+    }
+
+    .site-footer-nav {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .site-footer-nav a,
+    .site-footer-contact {
+        justify-content: center;
+    }
+
+    .site-footer-meta-links {
+        gap: 10px 14px;
     }
     
     .cta-buttons {

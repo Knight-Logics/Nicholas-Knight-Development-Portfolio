@@ -113,8 +113,8 @@ function initAnchorNavigation() {
 // Dynamic Header and Footer Loading — parallel fetches to minimise round-trips
 async function loadHeaderFooter() {
     try {
-        const headerUrl = new URL('/header.html?v=20260428d', window.location.origin);
-        const footerUrl = new URL('/footer.html?v=20260428d', window.location.origin);
+        const headerUrl = new URL('/header.html?v=20260428f', window.location.origin);
+        const footerUrl = new URL('/footer.html?v=20260428f', window.location.origin);
 
         const [headerResponse, footerResponse] = await Promise.all([
             fetch(headerUrl),
@@ -157,6 +157,7 @@ document.addEventListener('DOMContentLoaded', function() {
     scheduleNonCriticalInit(initAnimations, 120);
     scheduleNonCriticalInit(initProjectFilters, 220);
     scheduleNonCriticalInit(initVideoPlayer, 220);
+    scheduleNonCriticalInit(initGoogleReviewsCarousel, 240);
     scheduleNonCriticalInit(initSkillBars, 280);
     scheduleNonCriticalInit(initCaseStudyLightbox, 280);
     scheduleNonCriticalInit(initAdvancedParallax, 380);
@@ -1279,6 +1280,99 @@ function initVideoPlayer() {
     // Add some debug logging
     console.log('Video player initialized with', videoItems.length, 'video items');
     console.log('Main video element:', mainVideo);
+}
+
+function initGoogleReviewsCarousel() {
+    const carousels = document.querySelectorAll('[data-review-carousel]');
+    if (!carousels.length) return;
+
+    carousels.forEach((carousel) => {
+        const track = carousel.querySelector('.review-carousel-track');
+        const cards = track ? Array.from(track.querySelectorAll('.review-card')) : [];
+        const prevBtn = carousel.querySelector('.review-carousel-btn.prev');
+        const nextBtn = carousel.querySelector('.review-carousel-btn.next');
+        const showcase = carousel.closest('.google-reviews-showcase');
+        const dotsContainer = showcase ? showcase.querySelector('.review-carousel-dots') : null;
+
+        if (!track || !cards.length || !prevBtn || !nextBtn || !dotsContainer) return;
+
+        let currentIndex = 0;
+
+        carousel.classList.toggle('single-review', cards.length === 1);
+
+        const visibleCount = () => {
+            if (window.innerWidth <= 768) return 1;
+            if (window.innerWidth <= 1024) return 2;
+            return 3;
+        };
+
+        const pageCount = () => Math.max(1, Math.ceil(cards.length / visibleCount()));
+        const maxIndex = () => Math.max(0, cards.length - visibleCount());
+        const activePage = () => Math.floor(currentIndex / visibleCount());
+
+        const cardSpan = () => {
+            if (!cards.length) return 0;
+            const styles = window.getComputedStyle(track);
+            const gap = parseFloat(styles.columnGap || styles.gap || '0');
+            return cards[0].getBoundingClientRect().width + gap;
+        };
+
+        const updateButtons = () => {
+            const singlePage = pageCount() <= 1;
+            prevBtn.disabled = singlePage;
+            nextBtn.disabled = singlePage;
+        };
+
+        const update = () => {
+            currentIndex = Math.max(0, Math.min(currentIndex, maxIndex()));
+            track.style.transform = `translateX(-${currentIndex * cardSpan()}px)`;
+
+            dotsContainer.querySelectorAll('.review-carousel-dot').forEach((dot, index) => {
+                dot.classList.toggle('active', index === activePage());
+            });
+
+            updateButtons();
+        };
+
+        const buildDots = () => {
+            dotsContainer.innerHTML = '';
+            const totalPages = pageCount();
+
+            for (let index = 0; index < totalPages; index += 1) {
+                const dot = document.createElement('button');
+                dot.type = 'button';
+                dot.className = `review-carousel-dot${index === 0 ? ' active' : ''}`;
+                dot.setAttribute('aria-label', `Go to review page ${index + 1}`);
+                dot.addEventListener('click', () => {
+                    currentIndex = index * visibleCount();
+                    update();
+                });
+                dotsContainer.appendChild(dot);
+            }
+        };
+
+        prevBtn.addEventListener('click', () => {
+            currentIndex -= 1;
+            update();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            currentIndex += 1;
+            update();
+        });
+
+        let resizeTimer;
+        window.addEventListener('resize', () => {
+            clearTimeout(resizeTimer);
+            resizeTimer = setTimeout(() => {
+                buildDots();
+                update();
+            }, 140);
+        });
+
+        buildDots();
+        requestAnimationFrame(update);
+    });
 }
 
 // Skill Bars Animation
