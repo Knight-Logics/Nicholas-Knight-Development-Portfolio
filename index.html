@@ -264,9 +264,9 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://knightlogics.com/">
 
-    <!-- Desktop hero backgrounds only; mobile now paints a CSS-only hero shell first. -->
-    <link rel="preload" as="image" href="./images/CircuitBrush3.webp" fetchpriority="high" media="(min-width: 1025px)">
-    <link rel="preload" as="image" href="./images/city%20hero.webp" fetchpriority="low" media="(min-width: 1025px)">
+    <!-- Hero backgrounds preloaded for all devices; city hero is LCP element -->
+    <link rel="preload" as="image" href="./images/city%20hero.webp" fetchpriority="high" type="image/webp">
+    <link rel="preload" as="image" href="./images/CircuitBrush3.webp" fetchpriority="high" type="image/webp" media="(min-width: 1025px)">
 
     <!-- Google Fonts: Playfair Display is non-critical on first paint -->
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap"></noscript>
@@ -591,8 +591,8 @@
             #loading-screen { display: none; }
         }
     </style>
-    <link rel="preload" as="style" href="style.css?v=20260425a" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="style.css?v=20260425a"></noscript>
+    <link rel="preload" as="style" href="style.min.css?v=20260428a" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="style.min.css?v=20260428a"></noscript>
     <!-- Non-critical icon and brand-font CSS load after the first paint. -->
     <script>
         window.addEventListener('load', function () {
@@ -878,7 +878,7 @@
                 <div class="services-showcase-grid">
                     <a href="/case-study-jns" class="services-showcase-card">
                         <div class="services-showcase-thumb">
-                            <img src="./images/JNS%20-%20HomeImage.png" alt="JNS Construction website case study" width="1536" height="1024" loading="lazy">
+                            <img src="./images/JNS-HomeImage.webp" alt="JNS Construction website case study" width="800" height="536" loading="lazy">
                         </div>
                         <div class="services-showcase-copy">
                             <span class="services-showcase-label">Website Case Study</span>
@@ -888,7 +888,7 @@
                     </a>
                     <a href="/case-study-knight-group" class="services-showcase-card">
                         <div class="services-showcase-thumb">
-                            <img src="./images/KnightGroup%20-%20HomeImage.png" alt="Knight Group website case study" width="1536" height="1024" loading="lazy">
+                            <img src="./images/KnightGroup-HomeImage.webp" alt="Knight Group website case study" width="800" height="803" loading="lazy">
                         </div>
                         <div class="services-showcase-copy">
                             <span class="services-showcase-label">Website Case Study</span>
@@ -898,7 +898,7 @@
                     </a>
                     <a href="/case-study-knight-logics" class="services-showcase-card">
                         <div class="services-showcase-thumb">
-                            <img src="./images/KnightLogics-HomeImage.png" alt="Knight Logics website case study" width="1536" height="1024" loading="lazy">
+                            <img src="./images/KnightLogics-HomeImage.webp" alt="Knight Logics website case study" width="800" height="588" loading="lazy">
                         </div>
                         <div class="services-showcase-copy">
                             <span class="services-showcase-label">Website Case Study</span>
@@ -1528,7 +1528,7 @@
         </div>
     </div>
 
-    <script src="script.js?v=20260420b" defer></script>
+    <script src="script.min.js?v=20260428a" defer></script>
 </body>
 </html>
 

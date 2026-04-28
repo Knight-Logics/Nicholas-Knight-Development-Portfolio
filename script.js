@@ -188,8 +188,8 @@ function initLayeredParallax() {
         return;
     }
     
-    // Check if mobile device
-    const isMobile = window.innerWidth <= 768 || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    // Check if mobile device (matchMedia avoids forced layout reflow vs window.innerWidth)
+    const isMobile = window.matchMedia('(max-width: 768px)').matches || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
     landingLog('📱 Mobile detection: width=', window.innerWidth, 'isMobile=', isMobile, 'userAgent=', navigator.userAgent);
     
     // Check if user navigated to a specific section (has hash in URL)
