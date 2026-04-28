@@ -611,10 +611,6 @@ body {
     margin-left: 0;
 }
 
-.hero-title .text-reveal::before {
-    display: none;
-}
-
 .hero-form-shell {
     width: 100%;
     display: flex;
