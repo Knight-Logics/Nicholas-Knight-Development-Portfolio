@@ -264,9 +264,15 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://knightlogics.com/">
 
-    <!-- Hero backgrounds preloaded for all devices; city hero is LCP element -->
-    <link rel="preload" as="image" href="./images/city%20hero.webp" fetchpriority="high" type="image/webp">
-    <link rel="preload" as="image" href="./images/CircuitBrush3.webp" fetchpriority="high" type="image/webp" media="(min-width: 1025px)">
+    <!-- Preconnect to 3rd-party origins to save DNS+TCP+TLS time -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+    <!-- LCP hero images — mobile gets smaller file, desktop gets full res -->
+    <link rel="preload" as="image" href="./images/city-hero-mobile.webp" fetchpriority="high" type="image/webp" media="(max-width: 1024px)">
+    <link rel="preload" as="image" href="./images/city%20hero.webp" fetchpriority="high" type="image/webp" media="(min-width: 1025px)">
+    <link rel="preload" as="image" href="./images/CircuitBrush3.webp" fetchpriority="low" type="image/webp" media="(min-width: 1025px)">
 
     <!-- Google Fonts: Playfair Display is non-critical on first paint -->
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap"></noscript>
@@ -560,6 +566,7 @@
             .hero-form-shell { display: none; }
             .parallax-bg-far {
                 display: block;
+                background-image: url('./images/city-hero-mobile.webp');
                 background-attachment: scroll;
                 opacity: 0.52;
                 filter: brightness(0.52) contrast(1.04);
@@ -878,7 +885,7 @@
                 <div class="services-showcase-grid">
                     <a href="/case-study-jns" class="services-showcase-card">
                         <div class="services-showcase-thumb">
-                            <img src="./images/JNS-HomeImage.webp" alt="JNS Construction website case study" width="800" height="536" loading="lazy">
+                            <img src="./images/JNS-HomeImage.webp" alt="JNS Construction website case study" width="480" height="322" loading="lazy">
                         </div>
                         <div class="services-showcase-copy">
                             <span class="services-showcase-label">Website Case Study</span>
@@ -888,7 +895,7 @@
                     </a>
                     <a href="/case-study-knight-group" class="services-showcase-card">
                         <div class="services-showcase-thumb">
-                            <img src="./images/KnightGroup-HomeImage.webp" alt="Knight Group website case study" width="800" height="803" loading="lazy">
+                            <img src="./images/KnightGroup-HomeImage.webp" alt="Knight Group website case study" width="480" height="482" loading="lazy">
                         </div>
                         <div class="services-showcase-copy">
                             <span class="services-showcase-label">Website Case Study</span>
@@ -898,7 +905,7 @@
                     </a>
                     <a href="/case-study-knight-logics" class="services-showcase-card">
                         <div class="services-showcase-thumb">
-                            <img src="./images/KnightLogics-HomeImage.webp" alt="Knight Logics website case study" width="800" height="588" loading="lazy">
+                            <img src="./images/KnightLogics-HomeImage.webp" alt="Knight Logics website case study" width="480" height="353" loading="lazy">
                         </div>
                         <div class="services-showcase-copy">
                             <span class="services-showcase-label">Website Case Study</span>

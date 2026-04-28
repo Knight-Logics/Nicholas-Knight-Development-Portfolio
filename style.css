@@ -4461,6 +4461,7 @@ section::before {
 
     .parallax-bg-far {
         display: block;
+        background-image: url('./images/city-hero-mobile.webp');
         background-attachment: scroll;
         opacity: 0.52;
         filter: brightness(0.52) contrast(1.04);
