@@ -550,7 +550,6 @@ body {
     transform: translate3d(0, 0, 0) scale(1.10);
     will-change: transform, opacity;
     filter: brightness(0.72) contrast(1.15);
-    mix-blend-mode: multiply;
     /* No transition - real-time transform updates */
 }
 
@@ -4479,7 +4478,6 @@ section::before {
         will-change: auto;
         opacity: 0.66;
         filter: brightness(0.68) contrast(1.06);
-        mix-blend-mode: multiply;
     }
 
     .title-line {
