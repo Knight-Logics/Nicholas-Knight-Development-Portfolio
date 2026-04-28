@@ -1,12 +1,3 @@
-/* Font Awesome font-display override to prevent render blocking */
-@font-face {
-    font-family: 'Font Awesome 6 Free';
-    font-display: swap;
-    src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/webfonts/fa-solid-900.woff2') format('woff2');
-    font-weight: 900;
-    font-style: normal;
-}
-
 /* Reset and Base Styles */
 * {
     margin: 0;
@@ -559,6 +550,7 @@ body {
     transform: translate3d(0, 0, 0) scale(1.10);
     will-change: transform, opacity;
     filter: brightness(0.72) contrast(1.15);
+    mix-blend-mode: multiply;
     /* No transition - real-time transform updates */
 }
 
@@ -4353,6 +4345,10 @@ section::before {
 }
 
 @media (max-width: 768px) {
+    #loading-screen {
+        display: none;
+    }
+
     /* Enable touch scrolling and fix mobile scroll issues */
     html, body {
         overflow-x: hidden;
@@ -4441,51 +4437,85 @@ section::before {
     /* Fix hero section for mobile scrolling while preserving background layers */
     .hero {
         position: relative !important;
-        overflow: visible !important;
+        overflow: hidden !important;
         min-height: 100vh;
         height: auto !important;
         /* Allow normal document flow on mobile */
         display: block !important;
     }
     
-    /* Preserve CircuitBrush.png and other background layers on mobile */
-    .parallax-bg-far,
-    .parallax-bg-mid,
+    .hero + section {
+        margin-top: 0;
+    }
+
+    /* Mobile first paint uses a single static hero layer instead of the full desktop stack. */
     .parallax-bg-near {
         position: absolute;
         top: 0;
         left: 0;
         width: 100%;
-        height: 100vh; /* Ensure full viewport coverage */
+        height: 100%;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        /* Ensure transforms work on mobile */
-        -webkit-transform-style: preserve-3d;
-        transform-style: preserve-3d;
-        -webkit-backface-visibility: hidden;
-        backface-visibility: hidden;
     }
-    
-    /* Ensure CircuitBrush.png is properly scaled for mobile */
+
+    .parallax-bg-far {
+        display: block;
+        background-attachment: scroll;
+        opacity: 0.52;
+        filter: brightness(0.52) contrast(1.04);
+    }
+
+    .parallax-bg-mid {
+        display: none;
+    }
+
     .parallax-bg-near {
         background-image: url('./images/CircuitBrush3.webp');
-        background-size: 100vw 100vh;
-        background-position: center center;
-        transform-origin: center center;
-        transform: translate3d(0, 0, 0) scale(0.96);
-        /* Remove transition for real-time transform updates */
-        will-change: transform, opacity;
+        background-size: cover;
+        background-position: center top;
+        transform: none !important;
+        will-change: auto;
+        opacity: 0.66;
+        filter: brightness(0.68) contrast(1.06);
+        mix-blend-mode: multiply;
+    }
+
+    .title-line {
+        animation: none;
+        background: none;
+        color: #f5fbff;
+        background-clip: border-box;
+        -webkit-background-clip: border-box;
+        -webkit-text-fill-color: currentColor;
+    }
+
+    .title-line.company-name {
+        color: #64ffda;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        font-size: clamp(2rem, 8vw, 2.8rem);
+    }
+
+    .title-line.company-name::after {
+        display: none;
     }
     
     /* Ensure content flows normally on mobile */
     .hero-content-wrapper {
         position: relative !important;
-        height: 100vh;
+        min-height: 100svh;
+        height: auto;
         display: flex;
         align-items: center;
         justify-content: center;
         z-index: 10;
+        padding-top: 110px;
+        padding-bottom: 40px;
+    }
+
+    .scroll-indicator {
+        display: none;
     }
 
     .hamburger {

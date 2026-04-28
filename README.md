@@ -75,27 +75,29 @@ This portfolio site is positioned around practical delivery: AI-assisted automat
    ```
 
 2. **Open with a local server**
-   
-   **Option A: Using VS Code Live Server**
-   - Install the "Live Server" extension in VS Code
-   - Right-click on `index.html` and select "Open with Live Server"
 
-   **Option B: Using Python**
+   **Option A: Using the clean-URL dev server**
    ```bash
-   # Python 3
-   python -m http.server 8000
-   
-   # Python 2
-   python -m SimpleHTTPServer 8000
+   npm run dev
    ```
 
-   **Option C: Using Node.js**
+   This uses `serve` with the local `serve.json` config so extensionless routes like `/contact`, `/projects`, and `/service-websites` resolve the same way they do on the live site.
+
+   **Option B: Using `npx` directly**
+   ```bash
+   npx serve -l 4178 .
+   ```
+
+   **Option C: Basic static servers**
    ```bash
    npx http-server
+   python -m http.server 8000
    ```
 
+   These basic static servers do not rewrite extensionless routes to `.html`, so clean URLs will 404 locally even though they work on the live site.
+
 3. **Open in browser**
-   - Navigate to `http://localhost:8000` (or the port shown in your terminal)
+   - Navigate to `http://localhost:4178` (or the port shown in your terminal)
 
 ## 🎯 Usage
 

@@ -263,19 +263,12 @@
     
     <!-- Canonical URL -->
     <link rel="canonical" href="https://knightlogics.com/">
-    
-    <!-- Preconnect for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-    <link rel="preconnect" href="https://www.googletagmanager.com">
-    <!-- Preload hero LCP image (parallax-bg-near = actual LCP element) -->
-    <link rel="preload" as="image" href="./images/CircuitBrush3.webp" fetchpriority="high">
-    <!-- Secondary hero background (lower priority) -->
-    <link rel="preload" as="image" href="./images/city%20hero.webp" fetchpriority="low">
-    
-    <!-- Google Fonts: Playfair Display — loaded async to avoid render blocking -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+
+    <!-- Desktop hero backgrounds only; mobile now paints a CSS-only hero shell first. -->
+    <link rel="preload" as="image" href="./images/CircuitBrush3.webp" fetchpriority="high" media="(min-width: 1025px)">
+    <link rel="preload" as="image" href="./images/city%20hero.webp" fetchpriority="low" media="(min-width: 1025px)">
+
+    <!-- Google Fonts: Playfair Display is non-critical on first paint -->
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap"></noscript>
     
     <!-- Sitemap reference -->
@@ -288,10 +281,334 @@
     <link rel="manifest" href="./manifest.json">
     <meta name="theme-color" content="#64ffda">
     <meta name="msapplication-TileColor" content="#0a0a0a">
-    
-    <link rel="stylesheet" href="style.css?v=20260425a">
-    <!-- Font Awesome: load non-render-blocking -->
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #ffffff;
+            background-color: #0a0a0a;
+            overflow-x: hidden;
+            overflow-y: auto;
+            min-height: 100vh;
+        }
+        a { text-decoration: none; }
+        #header-container { min-height: 92px; }
+        #loading-screen {
+            position: fixed;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #0a0a0a;
+            z-index: 9999;
+        }
+        .loader { text-align: center; }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 2px solid #333;
+            border-top: 2px solid #64ffda;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        .loader p { color: #64ffda; font-size: 18px; font-weight: 300; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        @keyframes shimmer {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        .hero {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            z-index: 1000;
+            background: #05090c;
+        }
+        .parallax-bg-far,
+        .parallax-bg-mid,
+        .parallax-bg-near {
+            position: absolute;
+            inset: 0;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .parallax-bg-far {
+            background-image: url('./images/city hero.webp');
+            z-index: 1;
+            opacity: 0.7;
+            filter: brightness(0.6) contrast(1.1);
+        }
+        .parallax-bg-mid { display: none; }
+        .parallax-bg-near {
+            background-image: url('./images/CircuitBrush3.webp');
+            z-index: 3;
+            opacity: 0.8;
+            filter: brightness(0.72) contrast(1.12);
+            mix-blend-mode: multiply;
+        }
+        .hero + section {
+            margin-top: 100vh;
+            position: relative;
+            z-index: 500;
+        }
+        .hero-content-wrapper {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+            width: 100%;
+            padding: 0 8vw;
+        }
+        .hero-layout {
+            width: min(860px, calc(100vw - 260px));
+            display: grid;
+            grid-template-columns: minmax(0, 420px) minmax(300px, 340px);
+            gap: clamp(24px, 2vw, 32px);
+            align-items: center;
+            justify-content: center;
+            margin-top: clamp(84px, 13vh, 110px);
+        }
+        .hero-content {
+            width: 100%;
+            max-width: 420px;
+            text-align: left;
+        }
+        .hero-byline {
+            display: inline-block;
+            margin-bottom: 14px;
+            color: #64ffda;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+        .hero-title {
+            font-size: clamp(1.65rem, 3.2vw, 3.35rem);
+            font-weight: 700;
+            margin-bottom: 0.45rem;
+            line-height: 1.02;
+        }
+        .title-line {
+            display: block;
+            background: linear-gradient(135deg, #64ffda, #ffffff, #64ffda);
+            background-size: 200% 200%;
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .title-line.company-name {
+            font-family: 'Playfair Display', 'Georgia', serif;
+            font-size: clamp(2.25rem, 4vw, 3.9rem);
+            font-weight: 700;
+            display: inline-block;
+            padding-bottom: 8px;
+            margin-bottom: 4px;
+            white-space: nowrap;
+        }
+        .hero-subtitle {
+            max-width: 36ch;
+            font-size: 1.02rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.88);
+        }
+        .hero-cta-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 1.5rem;
+        }
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 22px;
+            border-radius: 12px;
+            font-size: 0.98rem;
+            font-weight: 700;
+        }
+        .cta-button.primary {
+            background: linear-gradient(135deg, #64ffda, #4ecdc4);
+            color: #0a0a0a;
+            box-shadow: 0 8px 32px rgba(100, 255, 218, 0.3);
+        }
+        .cta-button.secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: 2px solid rgba(100, 255, 218, 0.5);
+            backdrop-filter: blur(10px);
+        }
+        .hero-form-shell {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .hero-form-card {
+            width: 340px;
+            background: rgba(7, 18, 30, 0.78);
+            border: 1px solid rgba(100, 255, 218, 0.22);
+            border-radius: 24px;
+            padding: 0.9rem 1.4rem 0.8rem;
+            backdrop-filter: blur(18px);
+            box-shadow: 0 22px 48px rgba(0, 0, 0, 0.38);
+        }
+        .hero-form-header { margin-bottom: 0.55rem; }
+        .hero-form-kicker {
+            display: inline-flex;
+            align-items: center;
+            padding: 0.35rem 0.72rem;
+            border-radius: 999px;
+            background: rgba(100, 255, 218, 0.12);
+            border: 1px solid rgba(100, 255, 218, 0.24);
+            color: #64ffda;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+        .hero-form-header h2 {
+            margin: 0.8rem 0 0.35rem;
+            font-size: 1.12rem;
+            color: #ffffff;
+            line-height: 1.15;
+        }
+        .hero-form-header p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.74);
+            font-size: 0.9rem;
+            line-height: 1.32;
+        }
+        .hero-form-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.6rem;
+        }
+        .hero-consultation-form label {
+            display: block;
+            margin-bottom: 0.35rem;
+            font-size: 0.83rem;
+            color: rgba(100, 255, 218, 0.94);
+        }
+        .hero-consultation-form input,
+        .hero-consultation-form select,
+        .hero-consultation-form textarea {
+            width: 100%;
+            padding: 8px 11px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(100, 255, 218, 0.32);
+            font-size: 0.93rem;
+            color: #ffffff;
+        }
+        .hero-consultation-form textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        .hero-form-submit {
+            margin-top: 1rem;
+            width: 100%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 18px;
+            border: 0;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #64ffda, #4ecdc4);
+            color: #0a0a0a;
+            font-weight: 700;
+        }
+        .hero-scroll-area,
+        .scroll-indicator,
+        .hero-form-phone-row { display: none; }
+        @media (max-width: 1024px) {
+            .hero {
+                position: relative;
+                min-height: 100vh;
+                height: auto;
+            }
+            .hero + section { margin-top: 0; }
+            .hero-content-wrapper {
+                min-height: 100svh;
+                height: auto;
+                padding: 110px 20px 40px;
+            }
+            .hero-layout {
+                width: min(100%, 720px);
+                grid-template-columns: 1fr;
+                gap: 1rem;
+                margin-top: 0;
+                justify-items: center;
+            }
+            .hero-content {
+                max-width: 100%;
+                text-align: center;
+            }
+            .hero-subtitle { max-width: none; }
+            .hero-cta-buttons { justify-content: center; }
+            .hero-form-shell { display: none; }
+            .parallax-bg-far {
+                display: block;
+                background-attachment: scroll;
+                opacity: 0.52;
+                filter: brightness(0.52) contrast(1.04);
+            }
+            .parallax-bg-mid { display: none; }
+            .parallax-bg-near {
+                background-image: url('./images/CircuitBrush3.webp');
+                background-size: cover;
+                background-position: center top;
+                transform: none;
+                will-change: auto;
+                opacity: 0.66;
+                filter: brightness(0.68) contrast(1.06);
+                mix-blend-mode: multiply;
+            }
+            .title-line {
+                animation: none;
+                background: none;
+                color: #f5fbff;
+                background-clip: border-box;
+                -webkit-background-clip: border-box;
+                -webkit-text-fill-color: currentColor;
+            }
+            .title-line.company-name {
+                color: #64ffda;
+                font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                font-size: clamp(2rem, 8vw, 2.8rem);
+            }
+            .title-line.company-name::after { display: none; }
+            #loading-screen { display: none; }
+        }
+    </style>
+    <link rel="preload" as="style" href="style.css?v=20260425a" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="style.css?v=20260425a"></noscript>
+    <!-- Non-critical icon and brand-font CSS load after the first paint. -->
+    <script>
+        window.addEventListener('load', function () {
+            var playfair = document.createElement('link');
+            playfair.rel = 'stylesheet';
+            playfair.href = 'https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap';
+            document.head.appendChild(playfair);
+
+            var fa = document.createElement('link');
+            fa.rel = 'stylesheet';
+            fa.href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css';
+            document.head.appendChild(fa);
+        }, { once: true });
+    </script>
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
     <title>Custom Websites & Local SEO — Tampa Bay | Knight Logics</title>
     <!-- Microsoft Clarity (deferred until after load to protect first paint) -->

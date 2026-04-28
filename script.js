@@ -37,6 +37,11 @@ function scheduleNonCriticalInit(fn, delay = 0) {
     }
 }
 
+function useSimplifiedMobileHero() {
+    return window.matchMedia('(max-width: 768px)').matches ||
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+}
+
 // Dynamic Header and Footer Loading — parallel fetches to minimise round-trips
 async function loadHeaderFooter() {
     try {
@@ -68,6 +73,8 @@ async function loadHeaderFooter() {
 
 // Load header and footer on page load, then initialize everything
 document.addEventListener('DOMContentLoaded', function() {
+    const simplifyMobileHero = useSimplifiedMobileHero();
+
     // Fetch header/footer in parallel — initNavigation runs when ready, doesn't block paint
     loadHeaderFooter().then(() => { initNavigation(); setupIntersectionObserver(); });
 
@@ -147,11 +154,16 @@ document.addEventListener('DOMContentLoaded', function() {
     // Dismiss loading screen — header/footer parallel fetch is usually done well before this
     const loadingScreen = document.getElementById('loading-screen');
     if (loadingScreen) {
-        loadingScreen.style.opacity = '0';
-        setTimeout(() => {
+        if (simplifyMobileHero) {
             loadingScreen.style.display = 'none';
             scheduleNonCriticalInit(initMainAnimations);
-        }, 120);
+        } else {
+            loadingScreen.style.opacity = '0';
+            setTimeout(() => {
+                loadingScreen.style.display = 'none';
+                scheduleNonCriticalInit(initMainAnimations);
+            }, 120);
+        }
     }
 });
 
@@ -182,12 +194,29 @@ function initLayeredParallax() {
     
     // Check if user navigated to a specific section (has hash in URL)
     const hasHash = window.location.hash && window.location.hash.length > 1;
-    
-    // Mobile should also use landing mode - just like desktop!
+
+    // Mobile gets a static hero so the first render isn't paying for desktop landing-mode effects.
     if (isMobile) {
-        landingLog('📱 Mobile device detected - using SAME landing mode as desktop');
-        // Keep isInLandingMode = true for mobile too!
-        // Mobile will use touch events that simulate wheel events
+        isInLandingMode = false;
+        document.body.classList.remove('landing-mode');
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
+        document.body.style.height = '';
+        document.body.style.top = '';
+        document.body.style.left = '';
+
+        if (heroSection) {
+            heroSection.style.display = 'block';
+            heroSection.style.opacity = '1';
+        }
+
+        if (scrollIndicator) {
+            scrollIndicator.style.display = 'none';
+        }
+
+        exitLandingMode = null;
+        return;
     }
     
     let scrollActionCount = 0;

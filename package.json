@@ -1,0 +1,8 @@
+{
+  "name": "knightlogics-site",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve -l 4178 .",
+    "dev:local": "npx serve -l 4178 ."
+  }
+}
