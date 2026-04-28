@@ -113,8 +113,8 @@ function initAnchorNavigation() {
 // Dynamic Header and Footer Loading — parallel fetches to minimise round-trips
 async function loadHeaderFooter() {
     try {
-        const headerUrl = new URL('/header.html?v=20260428c', window.location.origin);
-        const footerUrl = new URL('/footer.html?v=20260428c', window.location.origin);
+        const headerUrl = new URL('/header.html?v=20260428d', window.location.origin);
+        const footerUrl = new URL('/footer.html?v=20260428d', window.location.origin);
 
         const [headerResponse, footerResponse] = await Promise.all([
             fetch(headerUrl),
@@ -1566,8 +1566,16 @@ function showNotification(message, type = 'info') {
 
 // Business Contact Form Handler
 function initBusinessContactForm() {
-    const forms = document.querySelectorAll('#consultationForm, #heroConsultationForm');
+    const forms = document.querySelectorAll('.consultation-form');
     if (!forms.length) return;
+
+    const formatFieldLabel = (key) => key
+        .replace(/^_+/, '')
+        .replace(/([A-Z])/g, ' $1')
+        .replace(/[-_]+/g, ' ')
+        .replace(/\s+/g, ' ')
+        .trim()
+        .replace(/^./, (char) => char.toUpperCase());
 
     forms.forEach((form) => {
         form.addEventListener('submit', async function(e) {
@@ -1591,6 +1599,21 @@ function initBusinessContactForm() {
             const projectDetails = data.projectDetails || 'Not provided';
             const timeline = data.timeline || 'Not specified';
             const budget = data.budget || 'Not specified';
+            const subject = data._subject || `New Consultation Request from ${businessName}`;
+            const reservedKeys = new Set([
+                '_subject',
+                '_replyto',
+                'businessName',
+                'contactName',
+                'email',
+                'serviceType',
+                'timeline',
+                'budget',
+                'projectDetails'
+            ]);
+            const extraFields = Object.entries(data)
+                .filter(([key, value]) => !reservedKeys.has(key) && value)
+                .map(([key, value]) => `${formatFieldLabel(key)}: ${value}`);
             
             try {
                 // Send form data to Formspree
@@ -1600,6 +1623,7 @@ function initBusinessContactForm() {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
+                        ...data,
                         businessName,
                         contactName,
                         email: data.email,
@@ -1607,8 +1631,9 @@ function initBusinessContactForm() {
                         timeline,
                         budget,
                         projectDetails,
+                        additionalDetails: extraFields.length ? extraFields.join('\n') : 'None provided',
                         _replyto: data.email,
-                        _subject: `New Consultation Request from ${businessName}`
+                        _subject: subject
                     })
                 });
 
@@ -1623,7 +1648,7 @@ function initBusinessContactForm() {
                 console.error('Formspree submission error:', error);
                 
                 // Fallback to mailto if Formspree fails
-                const emailSubject = `New Consultation Request from ${businessName}`;
+                const emailSubject = subject;
                 const emailBody = `
 Business/Organization: ${businessName}
 Contact Name: ${contactName}
@@ -1631,6 +1656,9 @@ Email: ${data.email}
 Service Type: ${serviceType}
 Timeline: ${timeline}
 Budget: ${budget}
+
+${extraFields.length ? `${extraFields.join('\n')}
+` : ''}
 
 Project Details:
 ${projectDetails}

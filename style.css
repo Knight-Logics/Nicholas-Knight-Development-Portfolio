@@ -7492,6 +7492,19 @@ html {
     margin: 0 auto;
 }
 
+.contact-page-hero-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1.75rem;
+}
+
+.contact-page-hero-actions .cta-button {
+    min-width: 220px;
+    justify-content: center;
+}
+
 /* Main section */
 .contact-page-main {
     background: linear-gradient(180deg, #0d1a2e 0%, #0a0a0a 100%);
@@ -7744,6 +7757,249 @@ html {
     box-shadow: 0 6px 20px rgba(100, 255, 218, 0.1);
 }
 
+.contact-package-section {
+    margin-top: 3rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid rgba(100, 255, 218, 0.08);
+}
+
+.contact-package-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.contact-package-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(100, 255, 218, 0.1);
+    border-radius: 18px;
+    padding: 2rem 1.75rem;
+    transition: all 0.28s ease;
+}
+
+.contact-package-card:hover {
+    border-color: rgba(100, 255, 218, 0.32);
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(100, 255, 218, 0.08);
+}
+
+.contact-package-card--featured {
+    border-color: rgba(100, 255, 218, 0.3);
+    box-shadow: 0 12px 32px rgba(100, 255, 218, 0.08);
+}
+
+.contact-package-kicker {
+    display: inline-flex;
+    align-self: flex-start;
+    padding: 6px 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(100, 255, 218, 0.22);
+    background: rgba(100, 255, 218, 0.08);
+    color: #64ffda;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.contact-package-card h3 {
+    margin: 0;
+    font-size: 1.35rem;
+    color: #ffffff;
+}
+
+.contact-package-card p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.74);
+    line-height: 1.7;
+}
+
+.contact-package-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.7rem;
+}
+
+.contact-package-list li {
+    position: relative;
+    padding-left: 1.1rem;
+    color: rgba(255, 255, 255, 0.82);
+    line-height: 1.55;
+}
+
+.contact-package-list li::before {
+    content: '';
+    position: absolute;
+    top: 0.68rem;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #64ffda;
+    box-shadow: 0 0 12px rgba(100, 255, 218, 0.45);
+}
+
+.contact-package-meta {
+    margin-top: auto;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(100, 255, 218, 0.08);
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.contact-booking-panel {
+    margin-top: 2rem;
+    padding: 2rem;
+    border-radius: 22px;
+    border: 1px solid rgba(100, 255, 218, 0.18);
+    background: linear-gradient(135deg, rgba(100, 255, 218, 0.08), rgba(255, 255, 255, 0.03));
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+}
+
+.contact-booking-copy h3 {
+    margin: 0 0 0.6rem;
+    font-size: clamp(1.4rem, 3vw, 2rem);
+    color: #ffffff;
+}
+
+.contact-booking-copy p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.7;
+    max-width: 700px;
+}
+
+.contact-booking-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.booking-page-main {
+    background: linear-gradient(180deg, #0d1a2e 0%, #0a0a0a 100%);
+    padding: 64px 0 80px;
+}
+
+.booking-package-grid {
+    margin-bottom: 1rem;
+}
+
+.booking-page-grid {
+    display: grid;
+    grid-template-columns: minmax(280px, 0.9fr) minmax(0, 1.2fr);
+    gap: 2rem;
+    align-items: start;
+    margin-top: 3rem;
+}
+
+.booking-page-sidebar {
+    display: grid;
+    gap: 1.25rem;
+}
+
+.booking-info-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(100, 255, 218, 0.1);
+    border-radius: 18px;
+    padding: 1.75rem 1.5rem;
+}
+
+.booking-info-card h3 {
+    margin: 0 0 0.8rem;
+    font-size: 1.15rem;
+    color: #64ffda;
+}
+
+.booking-info-card p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.65;
+}
+
+.booking-info-card--accent {
+    border-color: rgba(100, 255, 218, 0.24);
+    background: linear-gradient(145deg, rgba(100, 255, 218, 0.09), rgba(255, 255, 255, 0.04));
+}
+
+.booking-info-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.75rem;
+}
+
+.booking-info-list li {
+    position: relative;
+    padding-left: 1.1rem;
+    color: rgba(255, 255, 255, 0.78);
+    line-height: 1.6;
+}
+
+.booking-info-list li::before {
+    content: '';
+    position: absolute;
+    top: 0.68rem;
+    left: 0;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #64ffda;
+}
+
+.booking-form-container {
+    margin: 0;
+}
+
+.booking-form-note {
+    margin: 1rem 0 0;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(100, 255, 218, 0.08);
+    color: rgba(255, 255, 255, 0.63);
+    line-height: 1.6;
+    font-size: 0.93rem;
+}
+
+.booking-faq-section {
+    background: #0a0a0a;
+    padding: 80px 0;
+    border-top: 1px solid rgba(100, 255, 218, 0.07);
+}
+
+.booking-faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+}
+
+.booking-faq-item {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(100, 255, 218, 0.1);
+    border-radius: 18px;
+    padding: 1.75rem 1.5rem;
+}
+
+.booking-faq-item h3 {
+    margin: 0 0 0.75rem;
+    font-size: 1.15rem;
+    color: #64ffda;
+}
+
+.booking-faq-item p {
+    margin: 0;
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.65;
+}
+
 /* ── What Happens Next ── */
 .contact-next-section {
     background: #0a0a0a;
@@ -7835,6 +8091,21 @@ html {
         gap: 1.25rem;
     }
 
+    .contact-package-grid,
+    .booking-faq-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-booking-panel,
+    .booking-page-grid {
+        grid-template-columns: 1fr;
+        display: grid;
+    }
+
+    .contact-booking-panel {
+        justify-items: start;
+    }
+
     .contact-page-hero h1 {
         font-size: clamp(2rem, 8vw, 3rem);
     }
@@ -7859,6 +8130,37 @@ html {
 
     .contact-step {
         padding: 1.6rem 1.25rem;
+    }
+
+    .contact-page-hero-actions,
+    .contact-booking-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .contact-page-hero-actions .cta-button,
+    .contact-booking-actions .cta-button {
+        min-width: 0;
+        width: 100%;
+    }
+
+    .contact-package-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .contact-booking-panel {
+        padding: 1.5rem;
+    }
+
+    .booking-page-main,
+    .booking-faq-section {
+        padding: 56px 0;
+    }
+
+    .booking-info-card,
+    .booking-faq-item,
+    .contact-package-card {
+        padding: 1.45rem 1.25rem;
     }
 }
 
