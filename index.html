@@ -806,6 +806,149 @@
             line-height: 1.7;
         }
 
+        .starter-package-followup {
+            display: grid;
+            gap: 18px;
+            margin-top: 24px;
+            padding: 24px;
+            border-radius: 24px;
+            border: 1px solid rgba(100, 255, 218, 0.18);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .starter-package-followup[hidden] {
+            display: none;
+        }
+
+        .starter-package-followup-header h3 {
+            margin: 0;
+            color: #ffffff;
+            font-size: clamp(1.45rem, 2.6vw, 1.95rem);
+            line-height: 1.08;
+        }
+
+        .starter-package-followup-kicker {
+            display: inline-block;
+            margin-bottom: 10px;
+            color: #64ffda;
+            font-size: 0.76rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .starter-package-followup-package {
+            margin: 10px 0 8px;
+            color: #64ffda;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .starter-package-followup-copy {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.74);
+            line-height: 1.65;
+        }
+
+        .starter-package-followup-form {
+            display: grid;
+            gap: 18px;
+        }
+
+        .starter-package-followup-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .starter-package-followup-span-2 {
+            grid-column: 1 / -1;
+        }
+
+        .starter-package-followup .form-group {
+            margin: 0;
+        }
+
+        .starter-package-followup label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ffffff;
+            font-size: 0.94rem;
+            font-weight: 600;
+        }
+
+        .starter-package-followup input,
+        .starter-package-followup textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 14px;
+            border: 1px solid rgba(100, 255, 218, 0.16);
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            font: inherit;
+        }
+
+        .starter-package-followup input[type="file"] {
+            padding: 12px 14px;
+        }
+
+        .starter-package-followup textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .starter-package-followup input::placeholder,
+        .starter-package-followup textarea::placeholder {
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        .starter-package-followup-status {
+            display: none;
+            padding: 14px 16px;
+            border-radius: 14px;
+            line-height: 1.6;
+        }
+
+        .starter-package-followup-status.is-visible {
+            display: block;
+        }
+
+        .starter-package-followup-status.is-error {
+            border: 1px solid rgba(255, 107, 107, 0.34);
+            background: rgba(255, 107, 107, 0.12);
+            color: rgba(255, 255, 255, 0.86);
+        }
+
+        .starter-package-followup-status.is-success {
+            border: 1px solid rgba(100, 255, 218, 0.34);
+            background: rgba(100, 255, 218, 0.1);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .starter-package-followup-status a {
+            color: #64ffda;
+        }
+
+        .starter-package-followup-helper {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        .starter-package-followup-helper a {
+            color: #64ffda;
+            text-decoration: underline;
+        }
+
+        .starter-package-followup-actions {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .starter-package-followup-submit {
+            min-width: 240px;
+        }
+
         body.package-intake-open {
             overflow: hidden;
         }
@@ -1020,6 +1163,22 @@
             }
 
             .starter-package-intake-actions .cta-button {
+                width: 100%;
+            }
+
+            .starter-package-followup {
+                padding: 22px;
+            }
+
+            .starter-package-followup-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .starter-package-followup-span-2 {
+                grid-column: auto;
+            }
+
+            .starter-package-followup-actions .cta-button {
                 width: 100%;
             }
         }
@@ -1521,7 +1680,64 @@
                     </article>
                 </div>
 
-                <p class="starter-packages-note">Each paid package starts with a short intake, then continues into secure Stripe checkout. After payment, email all pertinent details and images to <a href="mailto:nickknight488@gmail.com">nickknight488@gmail.com</a> and we'll be in touch. Free consultation and custom scope are still available if your project does not fit one of these starter offers.</p>
+                <p class="starter-packages-note">Each paid package starts with a short intake, then continues into secure Stripe checkout. After payment, you can upload small reference files or share larger asset links on the confirmation screen, or email <a href="mailto:support@knightlogics.com">support@knightlogics.com</a> and we'll be in touch. Free consultation and custom scope are still available if your project does not fit one of these starter offers.</p>
+
+                <div class="starter-package-followup" id="starterPackageFollowup" hidden>
+                    <div class="starter-package-followup-header">
+                        <span class="starter-package-followup-kicker">After Payment</span>
+                        <h3>Finalize the project handoff.</h3>
+                        <p class="starter-package-followup-package" id="starterPackageFollowupPackage">Starter package</p>
+                        <p class="starter-package-followup-copy">Add any final notes, attach small reference files, or paste a Google Drive, Dropbox, Loom, or video link so everything lands in one place after checkout.</p>
+                    </div>
+
+                    <form id="starterPackageFollowupForm" class="starter-package-followup-form" action="https://formspree.io/f/xnnggyzp" method="POST" enctype="multipart/form-data">
+                        <input type="hidden" id="starterPackageFollowupPackageKey" name="packageKey">
+                        <input type="hidden" id="starterPackageFollowupPackageName" name="packageName">
+                        <input type="hidden" id="starterPackageFollowupPackagePrice" name="packagePrice">
+                        <input type="hidden" id="starterPackageFollowupServiceType" name="serviceType">
+                        <input type="hidden" id="starterPackageFollowupReplyTo" name="_replyto">
+                        <input type="hidden" id="starterPackageFollowupSubject" name="_subject" value="Starter Package Handoff">
+                        <input type="hidden" name="submissionType" value="starter-package-post-payment-handoff">
+
+                        <div class="starter-package-followup-status" id="starterPackageFollowupStatus" aria-live="polite"></div>
+
+                        <div class="starter-package-followup-grid">
+                            <div class="form-group">
+                                <label for="starterPackageFollowupBusinessName">Business / Organization</label>
+                                <input type="text" id="starterPackageFollowupBusinessName" name="businessName" placeholder="Optional business name" maxlength="120">
+                            </div>
+                            <div class="form-group">
+                                <label for="starterPackageFollowupContactName">Your Name</label>
+                                <input type="text" id="starterPackageFollowupContactName" name="contactName" placeholder="First and last name" maxlength="120" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="starterPackageFollowupEmail">Email Address</label>
+                                <input type="email" id="starterPackageFollowupEmail" name="email" placeholder="you@example.com" maxlength="160" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="starterPackageFollowupAssetLink">Share Link for Videos / Folders</label>
+                                <input type="url" id="starterPackageFollowupAssetLink" name="assetLink" placeholder="Google Drive, Dropbox, Loom, YouTube, etc." maxlength="255">
+                            </div>
+                            <div class="form-group starter-package-followup-span-2">
+                                <label for="starterPackageFollowupDetails">Final Details or Instructions</label>
+                                <textarea id="starterPackageFollowupDetails" name="followupDetails" placeholder="Anything else we should know now that payment is complete? Access details, usernames, deadlines, priorities, or technical notes all work here." maxlength="2500"></textarea>
+                            </div>
+                            <div class="form-group starter-package-followup-span-2">
+                                <label for="starterPackageFollowupAttachments">Small Reference Files</label>
+                                <input type="file" id="starterPackageFollowupAttachments" name="attachments" multiple accept=".png,.jpg,.jpeg,.webp,.pdf,.doc,.docx,.txt,.zip">
+                            </div>
+                        </div>
+
+                        <p class="starter-package-followup-helper">Small reference files can be attached here. For videos, large folders, or anything too big to upload cleanly, paste a share link above instead. You can still email <a href="mailto:support@knightlogics.com">support@knightlogics.com</a> if needed.</p>
+
+                        <div class="starter-package-followup-actions">
+                            <button type="submit" class="cta-button primary starter-package-followup-submit" id="starterPackageFollowupSubmit">
+                                <span>Send Final Details</span>
+                                <div class="btn-loading" style="display:none;">Sending follow-up...</div>
+                            </button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
 
@@ -1577,7 +1793,7 @@
                         </div>
                     </div>
 
-                    <p class="starter-package-intake-helper">After payment, email all pertinent details and images to <a href="mailto:nickknight488@gmail.com">nickknight488@gmail.com</a> and we'll be in touch.</p>
+                    <p class="starter-package-intake-helper">After payment, you can upload small reference files or share larger asset links on the confirmation screen, or email <a href="mailto:support@knightlogics.com">support@knightlogics.com</a> and we'll be in touch.</p>
 
                     <div class="starter-package-intake-actions">
                         <button type="button" class="cta-button secondary" id="starterPackageIntakeCancel">Cancel</button>
@@ -2141,11 +2357,13 @@
                 }
             };
             const productionCheckoutApiBase = 'https://knight-logics-local-preview.vercel.app';
+            const formspreeEndpoint = 'https://formspree.io/f/xnnggyzp';
+            const checkoutDraftStorageKey = 'starterPackageCheckoutDraft';
             const splitHostedProductionHosts = new Set([
                 'knightlogics.com',
                 'www.knightlogics.com'
             ]);
-            const intakeSupportEmail = 'nickknight488@gmail.com';
+            const intakeSupportEmail = 'support@knightlogics.com';
 
             const feedback = document.getElementById('starterPackagesFeedback');
             const buttons = Array.from(document.querySelectorAll('[data-package-key]'));
@@ -2160,6 +2378,25 @@
             const intakeSubmitButton = document.getElementById('starterPackageIntakeSubmit');
             const intakeSubmitText = intakeSubmitButton ? intakeSubmitButton.querySelector('span') : null;
             const intakeSubmitLoading = intakeSubmitButton ? intakeSubmitButton.querySelector('.btn-loading') : null;
+            const followupSection = document.getElementById('starterPackageFollowup');
+            const followupForm = document.getElementById('starterPackageFollowupForm');
+            const followupPackageLabel = document.getElementById('starterPackageFollowupPackage');
+            const followupStatus = document.getElementById('starterPackageFollowupStatus');
+            const followupPackageKeyInput = document.getElementById('starterPackageFollowupPackageKey');
+            const followupPackageNameInput = document.getElementById('starterPackageFollowupPackageName');
+            const followupPackagePriceInput = document.getElementById('starterPackageFollowupPackagePrice');
+            const followupServiceTypeInput = document.getElementById('starterPackageFollowupServiceType');
+            const followupReplyToInput = document.getElementById('starterPackageFollowupReplyTo');
+            const followupSubjectInput = document.getElementById('starterPackageFollowupSubject');
+            const followupBusinessNameInput = document.getElementById('starterPackageFollowupBusinessName');
+            const followupContactNameInput = document.getElementById('starterPackageFollowupContactName');
+            const followupEmailInput = document.getElementById('starterPackageFollowupEmail');
+            const followupAssetLinkInput = document.getElementById('starterPackageFollowupAssetLink');
+            const followupDetailsInput = document.getElementById('starterPackageFollowupDetails');
+            const followupAttachmentsInput = document.getElementById('starterPackageFollowupAttachments');
+            const followupSubmitButton = document.getElementById('starterPackageFollowupSubmit');
+            const followupSubmitText = followupSubmitButton ? followupSubmitButton.querySelector('span') : null;
+            const followupSubmitLoading = followupSubmitButton ? followupSubmitButton.querySelector('.btn-loading') : null;
             let lastTriggerButton = null;
 
             function getCheckoutSessionEndpoint() {
@@ -2193,6 +2430,33 @@
                 }
             }
 
+            function focusStarterPackagesAfterPurchase() {
+                const landingExit = typeof window.exitLandingMode === 'function'
+                    ? window.exitLandingMode
+                    : null;
+
+                if (landingExit) {
+                    landingExit();
+                    window.setTimeout(scrollStarterPackagesIntoView, 950);
+                    return;
+                }
+
+                const hero = document.getElementById('hero');
+                if (hero) {
+                    hero.style.display = 'none';
+                    hero.style.opacity = '0';
+                }
+
+                document.body.classList.remove('landing-mode');
+                document.body.style.overflow = '';
+                document.body.style.position = '';
+                document.body.style.width = '';
+                document.body.style.height = '';
+                document.body.style.top = '';
+                document.body.style.left = '';
+                scrollStarterPackagesIntoView();
+            }
+
             function setIntakeSubmitting(isSubmitting) {
                 if (!intakeSubmitButton || !intakeSubmitText || !intakeSubmitLoading) {
                     return;
@@ -2216,6 +2480,99 @@
 
                 intakeStatus.className = 'starter-package-intake-status is-visible';
                 intakeStatus.innerHTML = message;
+            }
+
+            function setFollowupStatus(message, type) {
+                if (!followupStatus) {
+                    return;
+                }
+
+                if (!message) {
+                    followupStatus.className = 'starter-package-followup-status';
+                    followupStatus.innerHTML = '';
+                    return;
+                }
+
+                followupStatus.className = `starter-package-followup-status is-visible is-${type || 'error'}`;
+                followupStatus.innerHTML = message;
+            }
+
+            function setFollowupSubmitting(isSubmitting) {
+                if (!followupSubmitButton || !followupSubmitText || !followupSubmitLoading) {
+                    return;
+                }
+
+                followupSubmitButton.disabled = isSubmitting;
+                followupSubmitText.style.display = isSubmitting ? 'none' : 'block';
+                followupSubmitLoading.style.display = isSubmitting ? 'block' : 'none';
+            }
+
+            function saveCheckoutDraft(formData) {
+                if (!window.sessionStorage) {
+                    return;
+                }
+
+                try {
+                    window.sessionStorage.setItem(checkoutDraftStorageKey, JSON.stringify({
+                        packageKey: formData.get('packageKey') || '',
+                        businessName: String(formData.get('businessName') || '').trim(),
+                        contactName: String(formData.get('contactName') || '').trim(),
+                        email: String(formData.get('email') || '').trim()
+                    }));
+                } catch (error) {
+                    console.warn('Unable to store checkout draft details.', error);
+                }
+            }
+
+            function getCheckoutDraft() {
+                if (!window.sessionStorage) {
+                    return null;
+                }
+
+                try {
+                    const raw = window.sessionStorage.getItem(checkoutDraftStorageKey);
+                    return raw ? JSON.parse(raw) : null;
+                } catch (error) {
+                    console.warn('Unable to read checkout draft details.', error);
+                    return null;
+                }
+            }
+
+            function showFollowupSection(packageKey) {
+                if (!followupSection || !followupPackageLabel || !followupPackageKeyInput || !followupPackageNameInput || !followupPackagePriceInput || !followupServiceTypeInput || !followupSubjectInput) {
+                    return;
+                }
+
+                const packageDetails = getPackageDetails(packageKey);
+                const checkoutDraft = getCheckoutDraft();
+
+                followupSection.hidden = false;
+                followupPackageLabel.textContent = packageDetails.price
+                    ? `${packageDetails.name} - ${packageDetails.price}`
+                    : packageDetails.name;
+                followupPackageKeyInput.value = packageKey || '';
+                followupPackageNameInput.value = packageDetails.name;
+                followupPackagePriceInput.value = packageDetails.price || '';
+                followupServiceTypeInput.value = `Starter Package Post-Payment Handoff - ${packageDetails.name}`;
+                followupSubjectInput.value = `Starter Package Handoff: ${packageDetails.name}`;
+
+                if (checkoutDraft && (!checkoutDraft.packageKey || checkoutDraft.packageKey === packageKey)) {
+                    if (followupBusinessNameInput && !followupBusinessNameInput.value) {
+                        followupBusinessNameInput.value = checkoutDraft.businessName || '';
+                    }
+
+                    if (followupContactNameInput && !followupContactNameInput.value) {
+                        followupContactNameInput.value = checkoutDraft.contactName || '';
+                    }
+
+                    if (followupEmailInput && !followupEmailInput.value) {
+                        followupEmailInput.value = checkoutDraft.email || '';
+                    }
+                }
+
+                if (followupReplyToInput && followupEmailInput) {
+                    followupReplyToInput.value = followupEmailInput.value.trim();
+                }
             }
 
             function openIntake(button) {
@@ -2293,6 +2650,7 @@
                         throw error;
                     }
 
+                    saveCheckoutDraft(formData);
                     window.location.href = payload.url;
                 } catch (error) {
                     console.error('Checkout error:', error);
@@ -2313,6 +2671,75 @@
                 }
             }
 
+            async function submitPostPaymentFollowup() {
+                if (!followupForm || !followupEmailInput || !followupContactNameInput) {
+                    return;
+                }
+
+                if (!followupForm.reportValidity()) {
+                    return;
+                }
+
+                const hasDetails = Boolean(followupDetailsInput && followupDetailsInput.value.trim());
+                const hasShareLink = Boolean(followupAssetLinkInput && followupAssetLinkInput.value.trim());
+                const hasAttachments = Boolean(followupAttachmentsInput && followupAttachmentsInput.files && followupAttachmentsInput.files.length);
+
+                if (!hasDetails && !hasShareLink && !hasAttachments) {
+                    setFollowupStatus('Add final notes, a share link, or at least one attachment before sending the handoff.', 'error');
+                    return;
+                }
+
+                setFollowupSubmitting(true);
+                setFollowupStatus('');
+
+                try {
+                    const formData = new FormData(followupForm);
+                    const replyTo = followupEmailInput.value.trim();
+                    formData.set('_replyto', replyTo);
+                    formData.set('email', replyTo);
+
+                    if (!hasAttachments) {
+                        formData.delete('attachments');
+                    }
+
+                    const response = await fetch(formspreeEndpoint, {
+                        method: 'POST',
+                        headers: {
+                            'Accept': 'application/json'
+                        },
+                        body: formData
+                    });
+
+                    const payload = await response.json().catch(function () {
+                        return {};
+                    });
+
+                    if (!response.ok) {
+                        const errorMessage = payload.error || 'We could not send the post-payment details right now.';
+                        throw new Error(errorMessage);
+                    }
+
+                    setFollowupStatus(`Thanks - your additional details for ${followupPackageNameInput.value || 'this package'} were sent. If you still need to share a larger video or folder, email <a href="mailto:${intakeSupportEmail}">${intakeSupportEmail}</a> with a cloud link.`, 'success');
+
+                    if (followupAssetLinkInput) {
+                        followupAssetLinkInput.value = '';
+                    }
+
+                    if (followupDetailsInput) {
+                        followupDetailsInput.value = '';
+                    }
+
+                    if (followupAttachmentsInput) {
+                        followupAttachmentsInput.value = '';
+                    }
+                } catch (error) {
+                    console.error('Post-payment follow-up error:', error);
+                    setFollowupStatus(`We could not send the additional details right now. Please try again, or email <a href="mailto:${intakeSupportEmail}">${intakeSupportEmail}</a> with your files or share links.`, 'error');
+                } finally {
+                    setFollowupSubmitting(false);
+                }
+            }
+
             buttons.forEach(function (button) {
                 if (button.tagName === 'BUTTON') {
                     button.addEventListener('click', function () {
@@ -2325,6 +2752,19 @@
                 intakeForm.addEventListener('submit', function (event) {
                     event.preventDefault();
                     submitPackageIntake();
+                });
+            }
+
+            if (followupEmailInput && followupReplyToInput) {
+                followupEmailInput.addEventListener('input', function () {
+                    followupReplyToInput.value = followupEmailInput.value.trim();
+                });
+            }
+
+            if (followupForm) {
+                followupForm.addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    submitPostPaymentFollowup();
                 });
             }
 
@@ -2359,16 +2799,21 @@
                 showFeedback(
                     'success',
                     'Payment received',
-                    `Stripe checkout for ${packageName} completed successfully. Your pre-checkout intake was already received. Email all pertinent details and images to <a href="mailto:${intakeSupportEmail}">${intakeSupportEmail}</a> if you have not already, and we'll be in touch.`
+                    `Stripe checkout for ${packageName} completed successfully. Your pre-checkout intake was already received. Use the optional handoff form below for any final files, links, or notes, or email <a href="mailto:${intakeSupportEmail}">${intakeSupportEmail}</a> if you prefer.`
                 );
-                scrollStarterPackagesIntoView();
+                showFollowupSection(packageKey);
+                window.addEventListener('DOMContentLoaded', function handlePurchaseSuccessView() {
+                    window.setTimeout(focusStarterPackagesAfterPurchase, 0);
+                }, { once: true });
             } else if (purchaseState === 'cancelled') {
                 showFeedback(
                     'warning',
                     'Checkout cancelled',
                     `Your intake for ${packageName} was received, but Stripe checkout was cancelled before payment completed. Reopen the package below when you're ready, or email details and images to <a href="mailto:${intakeSupportEmail}">${intakeSupportEmail}</a>.`
                 );
-                scrollStarterPackagesIntoView();
+                window.addEventListener('DOMContentLoaded', function handlePurchaseCancelledView() {
+                    window.setTimeout(focusStarterPackagesAfterPurchase, 0);
+                }, { once: true });
             }
         })();
     </script>

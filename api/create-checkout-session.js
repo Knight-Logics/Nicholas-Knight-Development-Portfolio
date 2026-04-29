@@ -210,7 +210,7 @@ function buildFormspreePayload(packageDefinition, intakeDetails) {
         packageName: packageDefinition.name,
         packagePrice: packageDefinition.priceDisplay,
         packageBillingMode: packageDefinition.mode,
-        additionalDetails: 'Buyer was prompted to email all pertinent details and images to nickknight488@gmail.com after checkout.',
+        additionalDetails: 'Buyer is prompted after payment to send final files, share links, or additional notes through the confirmation-screen handoff form, with support@knightlogics.com as the fallback.',
         _replyto: intakeDetails.email,
         _subject: `Starter Package Intake: ${packageDefinition.name}`
     };
