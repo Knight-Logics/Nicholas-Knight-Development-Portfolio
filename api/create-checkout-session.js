@@ -7,6 +7,8 @@ const DEFAULT_ALLOWED_ORIGINS = new Set([
     'http://localhost:4180'
 ]);
 
+const LOCAL_DEV_ORIGIN_PATTERN = /^http:\/\/(?:127\.0\.0\.1|localhost):\d+$/;
+
 const PACKAGE_DEFINITIONS = {
     'website-local-seo-starter': {
         mode: 'payment',
@@ -72,7 +74,9 @@ function getAllowedOrigin(req) {
         return null;
     }
 
-    return getAllowedOrigins().has(requestOrigin) ? requestOrigin : false;
+    return getAllowedOrigins().has(requestOrigin) || LOCAL_DEV_ORIGIN_PATTERN.test(requestOrigin)
+        ? requestOrigin
+        : false;
 }
 
 function applyCorsHeaders(req, res, allowedOrigin) {
