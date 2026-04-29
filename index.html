@@ -949,16 +949,140 @@
             min-width: 240px;
         }
 
-        body.purchase-return #hero {
-            display: none !important;
+        .starter-package-followup-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 18px;
         }
 
-        body.purchase-return #hero + section {
-            margin-top: 0;
+        .starter-package-followup-header > div {
+            flex: 1 1 auto;
+        }
+
+        .starter-package-followup-close {
+            flex: 0 0 auto;
+            width: 44px;
+            height: 44px;
+            border: 0;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        body.starter-package-modal-open {
+            overflow: hidden;
         }
 
         body.package-intake-open {
             overflow: hidden;
+        }
+
+        .starter-package-success-overlay,
+        .starter-package-followup-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 10030;
+            display: none;
+            place-items: center;
+            padding: 24px;
+            background: rgba(3, 10, 14, 0.82);
+        }
+
+        .starter-package-success-overlay.is-visible,
+        .starter-package-followup-overlay.is-visible {
+            display: grid;
+        }
+
+        .starter-package-success-dialog,
+        .starter-package-followup-dialog {
+            width: min(760px, 100%);
+            max-height: min(92vh, 920px);
+            overflow: auto;
+            padding: 28px;
+            border-radius: 28px;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            background: linear-gradient(180deg, rgba(7, 17, 23, 0.98), rgba(10, 15, 20, 0.98));
+            box-shadow: 0 24px 72px rgba(0, 0, 0, 0.4);
+        }
+
+        .starter-package-followup-dialog {
+            width: min(880px, 100%);
+        }
+
+        .starter-package-followup-dialog .starter-package-followup {
+            margin-top: 0;
+            padding: 0;
+            border: 0;
+            background: transparent;
+        }
+
+        .starter-package-success-dialog {
+            position: relative;
+            display: grid;
+            gap: 18px;
+        }
+
+        .starter-package-success-close {
+            position: absolute;
+            top: 22px;
+            right: 22px;
+            width: 44px;
+            height: 44px;
+            border: 0;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .starter-package-success-kicker {
+            display: inline-block;
+            width: fit-content;
+            padding: 7px 12px;
+            border-radius: 999px;
+            background: rgba(100, 255, 218, 0.12);
+            color: #64ffda;
+            font-size: 0.76rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .starter-package-success-dialog h3 {
+            margin: 0;
+            color: #ffffff;
+            font-size: clamp(1.7rem, 3.5vw, 2.25rem);
+            line-height: 1.08;
+            max-width: 18ch;
+        }
+
+        .starter-package-success-package {
+            margin: 0;
+            color: #64ffda;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .starter-package-success-copy {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.78);
+            line-height: 1.7;
+            max-width: 58ch;
+        }
+
+        .starter-package-success-actions {
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .starter-package-success-confirm {
+            min-width: 220px;
         }
 
         .starter-package-intake-overlay {
@@ -1153,7 +1277,18 @@
                 padding: 12px;
             }
 
+            .starter-package-success-overlay,
+            .starter-package-followup-overlay {
+                padding: 12px;
+            }
+
             .starter-package-intake-dialog {
+                padding: 22px;
+                border-radius: 22px;
+            }
+
+            .starter-package-success-dialog,
+            .starter-package-followup-dialog {
                 padding: 22px;
                 border-radius: 22px;
             }
@@ -1690,61 +1825,81 @@
 
                 <p class="starter-packages-note">Each paid package starts with a short intake, then continues into secure Stripe checkout. After payment, you can upload small reference files or share larger asset links on the confirmation screen, or email <a href="mailto:support@knightlogics.com">support@knightlogics.com</a> and we'll be in touch. Free consultation and custom scope are still available if your project does not fit one of these starter offers.</p>
 
-                <div class="starter-package-followup" id="starterPackageFollowup" hidden>
-                    <div class="starter-package-followup-header">
-                        <span class="starter-package-followup-kicker">After Payment</span>
-                        <h3>Finalize the project handoff.</h3>
-                        <p class="starter-package-followup-package" id="starterPackageFollowupPackage">Starter package</p>
-                        <p class="starter-package-followup-copy">Add any final notes, attach small reference files, or paste a Google Drive, Dropbox, Loom, or video link so everything lands in one place after checkout.</p>
+                <div class="starter-package-success-overlay" id="starterPackageSuccessOverlay" aria-hidden="true">
+                    <div class="starter-package-success-dialog" role="dialog" aria-modal="true" aria-labelledby="starterPackageSuccessTitle" tabindex="-1">
+                        <button type="button" class="starter-package-success-close" id="starterPackageSuccessClose" aria-label="Continue to the next step">&times;</button>
+                        <span class="starter-package-success-kicker">Payment Received</span>
+                        <h3 id="starterPackageSuccessTitle">Thank you. Your purchase was successful.</h3>
+                        <p class="starter-package-success-package" id="starterPackageSuccessPackage">Starter package</p>
+                        <p class="starter-package-success-copy" id="starterPackageSuccessCopy">Click OK or close this window to continue to the final handoff form for files, video links, and any extra project notes.</p>
+                        <div class="starter-package-success-actions">
+                            <button type="button" class="cta-button primary starter-package-success-confirm" id="starterPackageSuccessConfirm">OK</button>
+                        </div>
                     </div>
+                </div>
 
-                    <form id="starterPackageFollowupForm" class="starter-package-followup-form" action="https://formspree.io/f/xnnggyzp" method="POST" enctype="multipart/form-data">
-                        <input type="hidden" id="starterPackageFollowupPackageKey" name="packageKey">
-                        <input type="hidden" id="starterPackageFollowupPackageName" name="packageName">
-                        <input type="hidden" id="starterPackageFollowupPackagePrice" name="packagePrice">
-                        <input type="hidden" id="starterPackageFollowupServiceType" name="serviceType">
-                        <input type="hidden" id="starterPackageFollowupReplyTo" name="_replyto">
-                        <input type="hidden" id="starterPackageFollowupSubject" name="_subject" value="Starter Package Handoff">
-                        <input type="hidden" name="submissionType" value="starter-package-post-payment-handoff">
+                <div class="starter-package-followup-overlay" id="starterPackageFollowupOverlay" aria-hidden="true">
+                    <div class="starter-package-followup-dialog" role="dialog" aria-modal="true" aria-labelledby="starterPackageFollowupTitle" tabindex="-1">
+                        <div class="starter-package-followup" id="starterPackageFollowup" hidden>
+                            <div class="starter-package-followup-header">
+                                <div>
+                                    <span class="starter-package-followup-kicker">After Payment</span>
+                                    <h3 id="starterPackageFollowupTitle">Finalize the project handoff.</h3>
+                                    <p class="starter-package-followup-package" id="starterPackageFollowupPackage">Starter package</p>
+                                    <p class="starter-package-followup-copy">Add any final notes, attach small reference files, or paste a Google Drive, Dropbox, Loom, or video link so everything lands in one place after checkout.</p>
+                                </div>
+                                <button type="button" class="starter-package-followup-close" id="starterPackageFollowupClose" aria-label="Close package handoff">&times;</button>
+                            </div>
 
-                        <div class="starter-package-followup-status" id="starterPackageFollowupStatus" aria-live="polite"></div>
+                            <form id="starterPackageFollowupForm" class="starter-package-followup-form" action="https://formspree.io/f/xnnggyzp" method="POST" enctype="multipart/form-data">
+                                <input type="hidden" id="starterPackageFollowupPackageKey" name="packageKey">
+                                <input type="hidden" id="starterPackageFollowupPackageName" name="packageName">
+                                <input type="hidden" id="starterPackageFollowupPackagePrice" name="packagePrice">
+                                <input type="hidden" id="starterPackageFollowupServiceType" name="serviceType">
+                                <input type="hidden" id="starterPackageFollowupReplyTo" name="_replyto">
+                                <input type="hidden" id="starterPackageFollowupSubject" name="_subject" value="Starter Package Handoff">
+                                <input type="hidden" name="submissionType" value="starter-package-post-payment-handoff">
 
-                        <div class="starter-package-followup-grid">
-                            <div class="form-group">
-                                <label for="starterPackageFollowupBusinessName">Business / Organization</label>
-                                <input type="text" id="starterPackageFollowupBusinessName" name="businessName" placeholder="Optional business name" maxlength="120">
-                            </div>
-                            <div class="form-group">
-                                <label for="starterPackageFollowupContactName">Your Name</label>
-                                <input type="text" id="starterPackageFollowupContactName" name="contactName" placeholder="First and last name" maxlength="120" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="starterPackageFollowupEmail">Email Address</label>
-                                <input type="email" id="starterPackageFollowupEmail" name="email" placeholder="you@example.com" maxlength="160" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="starterPackageFollowupAssetLink">Share Link for Videos / Folders</label>
-                                <input type="url" id="starterPackageFollowupAssetLink" name="assetLink" placeholder="Google Drive, Dropbox, Loom, YouTube, etc." maxlength="255">
-                            </div>
-                            <div class="form-group starter-package-followup-span-2">
-                                <label for="starterPackageFollowupDetails">Final Details or Instructions</label>
-                                <textarea id="starterPackageFollowupDetails" name="followupDetails" placeholder="Anything else we should know now that payment is complete? Access details, usernames, deadlines, priorities, or technical notes all work here." maxlength="2500"></textarea>
-                            </div>
-                            <div class="form-group starter-package-followup-span-2">
-                                <label for="starterPackageFollowupAttachments">Small Reference Files</label>
-                                <input type="file" id="starterPackageFollowupAttachments" name="attachments" multiple accept=".png,.jpg,.jpeg,.webp,.pdf,.doc,.docx,.txt,.zip">
-                            </div>
+                                <div class="starter-package-followup-status" id="starterPackageFollowupStatus" aria-live="polite"></div>
+
+                                <div class="starter-package-followup-grid">
+                                    <div class="form-group">
+                                        <label for="starterPackageFollowupBusinessName">Business / Organization</label>
+                                        <input type="text" id="starterPackageFollowupBusinessName" name="businessName" placeholder="Optional business name" maxlength="120">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="starterPackageFollowupContactName">Your Name</label>
+                                        <input type="text" id="starterPackageFollowupContactName" name="contactName" placeholder="First and last name" maxlength="120" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="starterPackageFollowupEmail">Email Address</label>
+                                        <input type="email" id="starterPackageFollowupEmail" name="email" placeholder="you@example.com" maxlength="160" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="starterPackageFollowupAssetLink">Share Link for Videos / Folders</label>
+                                        <input type="url" id="starterPackageFollowupAssetLink" name="assetLink" placeholder="Google Drive, Dropbox, Loom, YouTube, etc." maxlength="255">
+                                    </div>
+                                    <div class="form-group starter-package-followup-span-2">
+                                        <label for="starterPackageFollowupDetails">Final Details or Instructions</label>
+                                        <textarea id="starterPackageFollowupDetails" name="followupDetails" placeholder="Anything else we should know now that payment is complete? Access details, usernames, deadlines, priorities, or technical notes all work here." maxlength="2500"></textarea>
+                                    </div>
+                                    <div class="form-group starter-package-followup-span-2">
+                                        <label for="starterPackageFollowupAttachments">Small Reference Files</label>
+                                        <input type="file" id="starterPackageFollowupAttachments" name="attachments" multiple accept=".png,.jpg,.jpeg,.webp,.pdf,.doc,.docx,.txt,.zip">
+                                    </div>
+                                </div>
+
+                                <p class="starter-package-followup-helper">Small reference files can be attached here. For videos, large folders, or anything too big to upload cleanly, paste a share link above instead. You can still email <a href="mailto:support@knightlogics.com">support@knightlogics.com</a> if needed.</p>
+
+                                <div class="starter-package-followup-actions">
+                                    <button type="submit" class="cta-button primary starter-package-followup-submit" id="starterPackageFollowupSubmit">
+                                        <span>Send Final Details</span>
+                                        <div class="btn-loading" style="display:none;">Sending follow-up...</div>
+                                    </button>
+                                </div>
+                            </form>
                         </div>
-
-                        <p class="starter-package-followup-helper">Small reference files can be attached here. For videos, large folders, or anything too big to upload cleanly, paste a share link above instead. You can still email <a href="mailto:support@knightlogics.com">support@knightlogics.com</a> if needed.</p>
-
-                        <div class="starter-package-followup-actions">
-                            <button type="submit" class="cta-button primary starter-package-followup-submit" id="starterPackageFollowupSubmit">
-                                <span>Send Final Details</span>
-                                <div class="btn-loading" style="display:none;">Sending follow-up...</div>
-                            </button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
@@ -2386,6 +2541,14 @@
             const intakeSubmitButton = document.getElementById('starterPackageIntakeSubmit');
             const intakeSubmitText = intakeSubmitButton ? intakeSubmitButton.querySelector('span') : null;
             const intakeSubmitLoading = intakeSubmitButton ? intakeSubmitButton.querySelector('.btn-loading') : null;
+            const successOverlay = document.getElementById('starterPackageSuccessOverlay');
+            const successDialog = successOverlay ? successOverlay.querySelector('.starter-package-success-dialog') : null;
+            const successPackageLabel = document.getElementById('starterPackageSuccessPackage');
+            const successCopy = document.getElementById('starterPackageSuccessCopy');
+            const successConfirmButton = document.getElementById('starterPackageSuccessConfirm');
+            const successCloseButton = document.getElementById('starterPackageSuccessClose');
+            const followupOverlay = document.getElementById('starterPackageFollowupOverlay');
+            const followupDialog = followupOverlay ? followupOverlay.querySelector('.starter-package-followup-dialog') : null;
             const followupSection = document.getElementById('starterPackageFollowup');
             const followupForm = document.getElementById('starterPackageFollowupForm');
             const followupPackageLabel = document.getElementById('starterPackageFollowupPackage');
@@ -2405,6 +2568,8 @@
             const followupSubmitButton = document.getElementById('starterPackageFollowupSubmit');
             const followupSubmitText = followupSubmitButton ? followupSubmitButton.querySelector('span') : null;
             const followupSubmitLoading = followupSubmitButton ? followupSubmitButton.querySelector('.btn-loading') : null;
+            const followupCloseButton = document.getElementById('starterPackageFollowupClose');
+            let activePurchaseReturnPackageKey = '';
             let lastTriggerButton = null;
 
             function getCheckoutSessionEndpoint() {
@@ -2431,6 +2596,15 @@
                 feedback.innerHTML = `<strong>${title}</strong><p>${body}</p>`;
             }
 
+            function clearFeedback() {
+                if (!feedback) {
+                    return;
+                }
+
+                feedback.className = 'starter-packages-feedback';
+                feedback.innerHTML = '';
+            }
+
             function scrollStarterPackagesIntoView(behavior) {
                 const section = document.getElementById('starter-packages');
                 if (section) {
@@ -2438,65 +2612,132 @@
                 }
             }
 
-            function markPurchaseReturnView() {
-                document.body.classList.add('purchase-return');
+            function syncStarterPackageModalState() {
+                const hasOverlayVisible = Boolean(
+                    (successOverlay && successOverlay.classList.contains('is-visible')) ||
+                    (followupOverlay && followupOverlay.classList.contains('is-visible'))
+                );
 
-                if (window.location.hash !== '#starter-packages') {
-                    window.history.replaceState(null, '', `${window.location.pathname}${window.location.search}#starter-packages`);
-                }
+                document.body.classList.toggle('starter-package-modal-open', hasOverlayVisible);
             }
 
-            function jumpToStarterPackages() {
-                markPurchaseReturnView();
-                scrollStarterPackagesIntoView('auto');
-                window.requestAnimationFrame(function () {
+            function restoreCheckoutReturnPosition() {
+                const checkoutDraft = getCheckoutDraft();
+                const savedScrollY = checkoutDraft ? Number(checkoutDraft.scrollY) : NaN;
+                const hasSavedScroll = Number.isFinite(savedScrollY) && savedScrollY >= 0;
+
+                const applyReturnPosition = function () {
+                    if (hasSavedScroll) {
+                        window.scrollTo({ top: Math.max(0, savedScrollY), behavior: 'auto' });
+                        return;
+                    }
+
                     scrollStarterPackagesIntoView('auto');
-                });
-                window.setTimeout(function () {
-                    scrollStarterPackagesIntoView('auto');
-                }, 700);
+                };
+
+                applyReturnPosition();
+                window.requestAnimationFrame(applyReturnPosition);
+                window.setTimeout(applyReturnPosition, 450);
             }
 
-            function focusStarterPackagesAfterPurchase() {
-                const landingExit = typeof window.exitLandingMode === 'function'
-                    ? window.exitLandingMode
-                    : null;
-
-                markPurchaseReturnView();
-
-                if (landingExit) {
-                    landingExit();
-                    window.setTimeout(jumpToStarterPackages, 950);
+            function openSuccessOverlay(packageKey) {
+                if (!successOverlay || !successPackageLabel || !successCopy) {
                     return;
                 }
 
-                const hero = document.getElementById('hero');
-                if (hero) {
-                    hero.style.display = 'none';
-                    hero.style.opacity = '0';
-                }
+                const packageDetails = getPackageDetails(packageKey);
 
-                document.body.classList.remove('landing-mode');
-                document.body.style.overflow = '';
-                document.body.style.position = '';
-                document.body.style.width = '';
-                document.body.style.height = '';
-                document.body.style.top = '';
-                document.body.style.left = '';
-                jumpToStarterPackages();
+                activePurchaseReturnPackageKey = packageKey || '';
+                successPackageLabel.textContent = packageDetails.price
+                    ? `${packageDetails.name} - ${packageDetails.price}`
+                    : packageDetails.name;
+                successCopy.textContent = `Thank you - payment for ${packageDetails.name} was received successfully. Click OK or close this window to continue to the final handoff form for files, video links, or any extra project notes.`;
+
+                successOverlay.classList.add('is-visible');
+                successOverlay.setAttribute('aria-hidden', 'false');
+                syncStarterPackageModalState();
+
+                window.requestAnimationFrame(function () {
+                    if (successConfirmButton) {
+                        successConfirmButton.focus();
+                    } else if (successDialog) {
+                        successDialog.focus();
+                    }
+                });
             }
 
-            function schedulePurchaseReturnFocus() {
-                const focusPurchaseReturn = function () {
-                    window.setTimeout(focusStarterPackagesAfterPurchase, 0);
+            function closeSuccessOverlay() {
+                if (!successOverlay || !successOverlay.classList.contains('is-visible')) {
+                    return;
+                }
+
+                successOverlay.classList.remove('is-visible');
+                successOverlay.setAttribute('aria-hidden', 'true');
+                syncStarterPackageModalState();
+            }
+
+            function openFollowupOverlay(packageKey) {
+                if (!followupOverlay) {
+                    return;
+                }
+
+                showFollowupSection(packageKey);
+                followupOverlay.classList.add('is-visible');
+                followupOverlay.setAttribute('aria-hidden', 'false');
+                syncStarterPackageModalState();
+
+                window.requestAnimationFrame(function () {
+                    if (followupContactNameInput) {
+                        followupContactNameInput.focus();
+                    } else if (followupDialog) {
+                        followupDialog.focus();
+                    }
+                });
+            }
+
+            function closeFollowupOverlay(forceClose) {
+                if (!followupOverlay || !followupOverlay.classList.contains('is-visible') || (!forceClose && followupSubmitButton && followupSubmitButton.disabled)) {
+                    return;
+                };
+
+                followupOverlay.classList.remove('is-visible');
+                followupOverlay.setAttribute('aria-hidden', 'true');
+                syncStarterPackageModalState();
+            }
+
+            function proceedToFollowupOverlay() {
+                const packageToOpen = activePurchaseReturnPackageKey || (followupPackageKeyInput ? followupPackageKeyInput.value : '');
+                closeSuccessOverlay();
+                openFollowupOverlay(packageToOpen);
+            }
+
+            function schedulePurchaseReturnExperience(packageKey) {
+                const startPurchaseReturnExperience = function () {
+                    restoreCheckoutReturnPosition();
+                    window.setTimeout(function () {
+                        openSuccessOverlay(packageKey);
+                    }, 120);
                 };
 
                 if (document.readyState === 'complete') {
-                    focusPurchaseReturn();
+                    startPurchaseReturnExperience();
                     return;
                 }
 
-                window.addEventListener('load', focusPurchaseReturn, { once: true });
+                window.addEventListener('load', startPurchaseReturnExperience, { once: true });
+            }
+
+            function schedulePurchaseReturnPositionRestore() {
+                const restorePurchaseReturn = function () {
+                    restoreCheckoutReturnPosition();
+                };
+
+                if (document.readyState === 'complete') {
+                    restorePurchaseReturn();
+                    return;
+                }
+
+                window.addEventListener('load', restorePurchaseReturn, { once: true });
             }
 
             function setIntakeSubmitting(isSubmitting) {
@@ -2557,6 +2798,7 @@
                 try {
                     window.sessionStorage.setItem(checkoutDraftStorageKey, JSON.stringify({
                         packageKey: formData.get('packageKey') || '',
+                        scrollY: Math.round(window.scrollY || window.pageYOffset || 0),
                         businessName: String(formData.get('businessName') || '').trim(),
                         contactName: String(formData.get('contactName') || '').trim(),
                         email: String(formData.get('email') || '').trim()
@@ -2597,6 +2839,7 @@
                 followupPackagePriceInput.value = packageDetails.price || '';
                 followupServiceTypeInput.value = `Starter Package Post-Payment Handoff - ${packageDetails.name}`;
                 followupSubjectInput.value = `Starter Package Handoff: ${packageDetails.name}`;
+                setFollowupStatus('');
 
                 if (checkoutDraft && (!checkoutDraft.packageKey || checkoutDraft.packageKey === packageKey)) {
                     if (followupBusinessNameInput && !followupBusinessNameInput.value) {
@@ -2810,6 +3053,36 @@
                 });
             }
 
+            if (successConfirmButton) {
+                successConfirmButton.addEventListener('click', proceedToFollowupOverlay);
+            }
+
+            if (successCloseButton) {
+                successCloseButton.addEventListener('click', proceedToFollowupOverlay);
+            }
+
+            if (successOverlay) {
+                successOverlay.addEventListener('click', function (event) {
+                    if (event.target === successOverlay) {
+                        proceedToFollowupOverlay();
+                    }
+                });
+            }
+
+            if (followupCloseButton) {
+                followupCloseButton.addEventListener('click', function () {
+                    closeFollowupOverlay();
+                });
+            }
+
+            if (followupOverlay) {
+                followupOverlay.addEventListener('click', function (event) {
+                    if (event.target === followupOverlay) {
+                        closeFollowupOverlay();
+                    }
+                });
+            }
+
             if (intakeCloseButton) {
                 intakeCloseButton.addEventListener('click', closeIntake);
             }
@@ -2828,6 +3101,16 @@
 
             document.addEventListener('keydown', function (event) {
                 if (event.key === 'Escape') {
+                    if (successOverlay && successOverlay.classList.contains('is-visible')) {
+                        proceedToFollowupOverlay();
+                        return;
+                    }
+
+                    if (followupOverlay && followupOverlay.classList.contains('is-visible')) {
+                        closeFollowupOverlay();
+                        return;
+                    }
+
                     closeIntake();
                 }
             });
@@ -2838,20 +3121,15 @@
             const packageName = getPackageDetails(packageKey).name;
 
             if (purchaseState === 'success') {
-                showFeedback(
-                    'success',
-                    'Payment received',
-                    `Stripe checkout for ${packageName} completed successfully. Your pre-checkout intake was already received. Use the optional handoff form below for any final files, links, or notes, or email <a href="mailto:${intakeSupportEmail}">${intakeSupportEmail}</a> if you prefer.`
-                );
-                showFollowupSection(packageKey);
-                schedulePurchaseReturnFocus();
+                clearFeedback();
+                schedulePurchaseReturnExperience(packageKey);
             } else if (purchaseState === 'cancelled') {
                 showFeedback(
                     'warning',
                     'Checkout cancelled',
                     `Your intake for ${packageName} was received, but Stripe checkout was cancelled before payment completed. Reopen the package below when you're ready, or email details and images to <a href="mailto:${intakeSupportEmail}">${intakeSupportEmail}</a>.`
                 );
-                schedulePurchaseReturnFocus();
+                schedulePurchaseReturnPositionRestore();
             }
         })();
     </script>
