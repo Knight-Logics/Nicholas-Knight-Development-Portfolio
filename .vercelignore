@@ -1,0 +1,7 @@
+.vercel
+.venv
+.env
+.env.*
+KNIGHT-LOGICS-PACKAGE-HANDOFF.md
+_icon_sprite.json
+_tmp_home_perf_restore_hero.json
