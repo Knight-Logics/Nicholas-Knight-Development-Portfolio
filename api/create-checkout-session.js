@@ -15,7 +15,7 @@ const PACKAGE_DEFINITIONS = {
     'website-local-seo-starter': {
         mode: 'payment',
         name: 'Local Launch Website Package',
-        description: 'Hand-coded 1-3 page website launch with technical SEO, Search Console and analytics setup, Google Business Profile alignment, and a short post-launch polish window.',
+        description: 'Hand-coded 1-3 page website launch with technical SEO, Search Console and analytics setup, Google Business Profile alignment, and a 14-day post-launch polish window.',
         amount: 199700,
         currency: 'usd',
         priceDisplay: '$1,997',
@@ -39,7 +39,7 @@ const PACKAGE_DEFINITIONS = {
     'monthly-local-seo-starter': {
         mode: 'subscription',
         name: 'Local Visibility Lite',
-        description: 'Low-friction monthly support for Google Business Profile upkeep, website-to-GBP alignment checks, one monthly update, and a simple ranking snapshot.',
+        description: 'Monthly support with one GBP update or refresh, one small website edit batch, a visibility snapshot, and website-to-GBP alignment checks.',
         amount: 19700,
         currency: 'usd',
         priceDisplay: '$197 / month',
