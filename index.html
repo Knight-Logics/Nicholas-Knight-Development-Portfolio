@@ -806,6 +806,173 @@
             line-height: 1.7;
         }
 
+        body.package-intake-open {
+            overflow: hidden;
+        }
+
+        .starter-package-intake-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 10020;
+            display: none;
+            place-items: center;
+            padding: 24px;
+            background: rgba(3, 10, 14, 0.78);
+        }
+
+        .starter-package-intake-overlay.is-visible {
+            display: grid;
+        }
+
+        .starter-package-intake-dialog {
+            width: min(760px, 100%);
+            max-height: min(92vh, 920px);
+            overflow: auto;
+            padding: 28px;
+            border-radius: 28px;
+            border: 1px solid rgba(100, 255, 218, 0.2);
+            background: linear-gradient(180deg, rgba(7, 17, 23, 0.98), rgba(10, 15, 20, 0.98));
+            box-shadow: 0 24px 72px rgba(0, 0, 0, 0.4);
+        }
+
+        .starter-package-intake-header {
+            display: flex;
+            justify-content: space-between;
+            gap: 18px;
+            margin-bottom: 20px;
+        }
+
+        .starter-package-intake-header h3 {
+            margin: 0;
+            color: #ffffff;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            line-height: 1.1;
+        }
+
+        .starter-package-intake-kicker {
+            display: inline-block;
+            margin-bottom: 10px;
+            color: #64ffda;
+            font-size: 0.76rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .starter-package-intake-package {
+            margin: 10px 0 8px;
+            color: #64ffda;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .starter-package-intake-copy {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.74);
+            line-height: 1.65;
+        }
+
+        .starter-package-intake-close {
+            flex: 0 0 auto;
+            width: 44px;
+            height: 44px;
+            border: 0;
+            border-radius: 999px;
+            background: rgba(255, 255, 255, 0.08);
+            color: #ffffff;
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+        }
+
+        .starter-package-intake-form {
+            display: grid;
+            gap: 18px;
+        }
+
+        .starter-package-intake-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 16px;
+        }
+
+        .starter-package-intake-span-2 {
+            grid-column: 1 / -1;
+        }
+
+        .starter-package-intake-dialog .form-group {
+            margin: 0;
+        }
+
+        .starter-package-intake-dialog label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ffffff;
+            font-size: 0.94rem;
+            font-weight: 600;
+        }
+
+        .starter-package-intake-dialog input,
+        .starter-package-intake-dialog select,
+        .starter-package-intake-dialog textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 14px;
+            border: 1px solid rgba(100, 255, 218, 0.16);
+            background: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
+            font: inherit;
+        }
+
+        .starter-package-intake-dialog textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .starter-package-intake-dialog input::placeholder,
+        .starter-package-intake-dialog textarea::placeholder {
+            color: rgba(255, 255, 255, 0.45);
+        }
+
+        .starter-package-intake-helper {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+        }
+
+        .starter-package-intake-helper a {
+            color: #64ffda;
+            text-decoration: underline;
+        }
+
+        .starter-package-intake-status {
+            display: none;
+            padding: 14px 16px;
+            border-radius: 14px;
+            border: 1px solid rgba(255, 107, 107, 0.34);
+            background: rgba(255, 107, 107, 0.12);
+            color: rgba(255, 255, 255, 0.86);
+            line-height: 1.6;
+        }
+
+        .starter-package-intake-status.is-visible {
+            display: block;
+        }
+
+        .starter-package-intake-status a {
+            color: #64ffda;
+        }
+
+        .starter-package-intake-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+        }
+
+        .starter-package-intake-submit {
+            min-width: 240px;
+        }
+
         @media (max-width: 768px) {
             .starter-packages {
                 padding: 72px 0;
@@ -826,6 +993,33 @@
             }
 
             .starter-package-cta {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .starter-package-intake-overlay {
+                padding: 12px;
+            }
+
+            .starter-package-intake-dialog {
+                padding: 22px;
+                border-radius: 22px;
+            }
+
+            .starter-package-intake-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .starter-package-intake-span-2 {
+                grid-column: auto;
+            }
+
+            .starter-package-intake-actions {
+                flex-direction: column-reverse;
+            }
+
+            .starter-package-intake-actions .cta-button {
                 width: 100%;
             }
         }
@@ -1260,7 +1454,7 @@
                 <div class="starter-packages-intro">
                     <span class="starter-packages-kicker">Starter Packages</span>
                     <h2>Clear entry points for businesses that need a better website or stronger local visibility.</h2>
-                    <p>These are the easiest ways to start with Knight Logics. Paid packages now use secure Stripe checkout, where buyers can enter contact details and a short project brief before payment.</p>
+                    <p>These are the easiest ways to start with Knight Logics. Before secure Stripe checkout, buyers answer a short intake so the project context lands in the inbox first.</p>
                 </div>
 
                 <div class="starter-packages-feedback" id="starterPackagesFeedback" aria-live="polite"></div>
@@ -1327,7 +1521,72 @@
                     </article>
                 </div>
 
-                <p class="starter-packages-note">Secure checkout for fixed packages is powered by Stripe and includes quick intake fields for business name, preferred contact method, and project notes. Free consultation and custom scope are still available if your project does not fit one of these starter offers.</p>
+                <p class="starter-packages-note">Each paid package starts with a short intake, then continues into secure Stripe checkout. After payment, email all pertinent details and images to <a href="mailto:nickknight488@gmail.com">nickknight488@gmail.com</a> and we'll be in touch. Free consultation and custom scope are still available if your project does not fit one of these starter offers.</p>
+            </div>
+        </div>
+
+        <div class="starter-package-intake-overlay" id="starterPackageIntake" aria-hidden="true">
+            <div class="starter-package-intake-dialog" role="dialog" aria-modal="true" aria-labelledby="starterPackageIntakeTitle" tabindex="-1">
+                <div class="starter-package-intake-header">
+                    <div>
+                        <span class="starter-package-intake-kicker">Before Checkout</span>
+                        <h3 id="starterPackageIntakeTitle">Tell us what this purchase needs to accomplish.</h3>
+                        <p class="starter-package-intake-package" id="starterPackageIntakePackage">Starter package</p>
+                        <p class="starter-package-intake-copy">This intake is emailed before checkout so the project context is already on hand when payment comes through.</p>
+                    </div>
+                    <button type="button" class="starter-package-intake-close" id="starterPackageIntakeClose" aria-label="Close package intake">&times;</button>
+                </div>
+
+                <form id="starterPackageIntakeForm" class="starter-package-intake-form">
+                    <input type="hidden" id="starterPackageIntakePackageKey" name="packageKey">
+                    <div class="starter-package-intake-status" id="starterPackageIntakeStatus" aria-live="polite"></div>
+
+                    <div class="starter-package-intake-grid">
+                        <div class="form-group">
+                            <label for="starterPackageBusinessName">Business / Organization</label>
+                            <input type="text" id="starterPackageBusinessName" name="businessName" placeholder="Your business name" maxlength="120" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="starterPackageContactName">Your Name</label>
+                            <input type="text" id="starterPackageContactName" name="contactName" placeholder="First and last name" maxlength="120" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="starterPackageEmail">Email Address</label>
+                            <input type="email" id="starterPackageEmail" name="email" placeholder="you@example.com" maxlength="160" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="starterPackagePhone">Phone Number</label>
+                            <input type="tel" id="starterPackagePhone" name="phone" placeholder="Optional" maxlength="40">
+                        </div>
+                        <div class="form-group">
+                            <label for="starterPackagePreferredContact">Preferred Contact</label>
+                            <select id="starterPackagePreferredContact" name="preferredContact" required>
+                                <option value="">Choose one...</option>
+                                <option value="email">Email</option>
+                                <option value="phone">Phone call</option>
+                                <option value="text">Text message</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="starterPackageWebsiteOrProfile">Website or Profile URL</label>
+                            <input type="url" id="starterPackageWebsiteOrProfile" name="websiteOrProfile" placeholder="Optional website or GBP link" maxlength="255">
+                        </div>
+                        <div class="form-group starter-package-intake-span-2">
+                            <label for="starterPackageProjectDetails">What should we fix or improve?</label>
+                            <textarea id="starterPackageProjectDetails" name="projectDetails" placeholder="What is not working now, and what outcome do you want from this package?" maxlength="1500" required></textarea>
+                        </div>
+                    </div>
+
+                    <p class="starter-package-intake-helper">After payment, email all pertinent details and images to <a href="mailto:nickknight488@gmail.com">nickknight488@gmail.com</a> and we'll be in touch.</p>
+
+                    <div class="starter-package-intake-actions">
+                        <button type="button" class="cta-button secondary" id="starterPackageIntakeCancel">Cancel</button>
+                        <button type="submit" class="cta-button primary starter-package-intake-submit" id="starterPackageIntakeSubmit">
+                            <span>Continue to Secure Checkout</span>
+                            <div class="btn-loading" style="display:none;">Sending details...</div>
+                        </button>
+                    </div>
+                </form>
             </div>
         </div>
     </section>
@@ -1867,19 +2126,41 @@
 
     <script>
         (function () {
-            const packageNames = {
-                'website-local-seo-starter': 'Website + Local SEO Starter Package',
-                'gbp-optimization': 'Google Business Profile Optimization',
-                'monthly-local-seo-starter': 'Monthly Local SEO Starter'
+            const packageCatalog = {
+                'website-local-seo-starter': {
+                    name: 'Website + Local SEO Starter Package',
+                    price: '$1,997'
+                },
+                'gbp-optimization': {
+                    name: 'Google Business Profile Optimization',
+                    price: '$297'
+                },
+                'monthly-local-seo-starter': {
+                    name: 'Monthly Local SEO Starter',
+                    price: '$397/mo'
+                }
             };
             const productionCheckoutApiBase = 'https://knight-logics-local-preview.vercel.app';
             const splitHostedProductionHosts = new Set([
                 'knightlogics.com',
                 'www.knightlogics.com'
             ]);
+            const intakeSupportEmail = 'nickknight488@gmail.com';
 
             const feedback = document.getElementById('starterPackagesFeedback');
             const buttons = Array.from(document.querySelectorAll('[data-package-key]'));
+            const intakeOverlay = document.getElementById('starterPackageIntake');
+            const intakeDialog = intakeOverlay ? intakeOverlay.querySelector('.starter-package-intake-dialog') : null;
+            const intakeForm = document.getElementById('starterPackageIntakeForm');
+            const intakePackageKeyInput = document.getElementById('starterPackageIntakePackageKey');
+            const intakePackageLabel = document.getElementById('starterPackageIntakePackage');
+            const intakeStatus = document.getElementById('starterPackageIntakeStatus');
+            const intakeCloseButton = document.getElementById('starterPackageIntakeClose');
+            const intakeCancelButton = document.getElementById('starterPackageIntakeCancel');
+            const intakeSubmitButton = document.getElementById('starterPackageIntakeSubmit');
+            const intakeSubmitText = intakeSubmitButton ? intakeSubmitButton.querySelector('span') : null;
+            const intakeSubmitLoading = intakeSubmitButton ? intakeSubmitButton.querySelector('.btn-loading') : null;
+            let lastTriggerButton = null;
 
             function getCheckoutSessionEndpoint() {
                 const apiBase = splitHostedProductionHosts.has(window.location.hostname)
@@ -1887,6 +2168,13 @@
                     : window.location.origin;
 
                 return new URL('/api/create-checkout-session', `${apiBase}/`).toString();
+            }
+
+            function getPackageDetails(packageKey) {
+                return packageCatalog[packageKey] || {
+                    name: 'that package',
+                    price: ''
+                };
             }
 
             function showFeedback(type, title, body) {
@@ -1898,20 +2186,93 @@
                 feedback.innerHTML = `<strong>${title}</strong><p>${body}</p>`;
             }
 
-            function resetButton(button) {
-                if (!button) {
+            function scrollStarterPackagesIntoView() {
+                const section = document.getElementById('starter-packages');
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+
+            function setIntakeSubmitting(isSubmitting) {
+                if (!intakeSubmitButton || !intakeSubmitText || !intakeSubmitLoading) {
                     return;
                 }
 
-                button.disabled = false;
-                button.textContent = button.dataset.defaultLabel;
+                intakeSubmitButton.disabled = isSubmitting;
+                intakeSubmitText.style.display = isSubmitting ? 'none' : 'block';
+                intakeSubmitLoading.style.display = isSubmitting ? 'block' : 'none';
             }
 
-            async function startCheckout(button) {
-                const packageKey = button.dataset.packageKey;
+            function setIntakeStatus(message) {
+                if (!intakeStatus) {
+                    return;
+                }
 
-                button.disabled = true;
-                button.textContent = 'Redirecting...';
+                if (!message) {
+                    intakeStatus.className = 'starter-package-intake-status';
+                    intakeStatus.innerHTML = '';
+                    return;
+                }
+
+                intakeStatus.className = 'starter-package-intake-status is-visible';
+                intakeStatus.innerHTML = message;
+            }
+
+            function openIntake(button) {
+                if (!intakeOverlay || !intakeDialog || !intakeForm || !intakePackageKeyInput || !intakePackageLabel) {
+                    return;
+                }
+
+                lastTriggerButton = button;
+                const packageKey = button.dataset.packageKey;
+                const packageDetails = getPackageDetails(packageKey);
+
+                intakePackageKeyInput.value = packageKey;
+                intakePackageLabel.textContent = packageDetails.price
+                    ? `${packageDetails.name} - ${packageDetails.price}`
+                    : packageDetails.name;
+                setIntakeStatus('');
+                intakeOverlay.classList.add('is-visible');
+                intakeOverlay.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('package-intake-open');
+                window.requestAnimationFrame(function () {
+                    const firstField = document.getElementById('starterPackageBusinessName');
+                    if (firstField) {
+                        firstField.focus();
+                    }
+                });
+            }
+
+            function closeIntake(forceClose) {
+                if (!intakeOverlay || !intakeOverlay.classList.contains('is-visible') || (!forceClose && intakeSubmitButton && intakeSubmitButton.disabled)) {
+                    return;
+                }
+
+                intakeOverlay.classList.remove('is-visible');
+                intakeOverlay.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('package-intake-open');
+                setIntakeStatus('');
+
+                if (lastTriggerButton && typeof lastTriggerButton.focus === 'function') {
+                    lastTriggerButton.focus();
+                }
+            }
+
+            async function submitPackageIntake() {
+                if (!intakeForm || !intakePackageKeyInput) {
+                    return;
+                }
+
+                if (!intakeForm.reportValidity()) {
+                    return;
+                }
+
+                const formData = new FormData(intakeForm);
+                const packageKey = formData.get('packageKey');
+                const packageDetails = getPackageDetails(packageKey);
+
+                setIntakeSubmitting(true);
+                setIntakeStatus('');
 
                 try {
                     const response = await fetch(getCheckoutSessionEndpoint(), {
@@ -1919,61 +2280,95 @@
                         headers: {
                             'Content-Type': 'application/json'
                         },
-                        body: JSON.stringify({ packageKey })
+                        body: JSON.stringify(Object.fromEntries(formData))
                     });
 
-                    const payload = await response.json();
+                    const payload = await response.json().catch(function () {
+                        return {};
+                    });
 
                     if (!response.ok || !payload.url) {
-                        throw new Error(payload.error || 'Unable to start checkout right now.');
+                        const error = new Error(payload.error || 'Unable to start checkout right now.');
+                        error.intakeAccepted = Boolean(payload.intakeAccepted);
+                        throw error;
                     }
 
                     window.location.href = payload.url;
                 } catch (error) {
                     console.error('Checkout error:', error);
-                    showFeedback(
-                        'error',
-                        'Checkout unavailable',
-                        `We could not start Stripe checkout for ${packageNames[packageKey] || 'that package'} right now. You can still <a href="/contact">use the contact form</a> and request it directly.`
-                    );
-                    resetButton(button);
+
+                    if (error.intakeAccepted) {
+                        closeIntake(true);
+                        showFeedback(
+                            'warning',
+                            'Intake received, checkout unavailable',
+                            `We received your details for ${packageDetails.name}, but Stripe checkout could not be started right now. Email any pertinent details and images to <a href="mailto:${intakeSupportEmail}">${intakeSupportEmail}</a> and we'll follow up.`
+                        );
+                        scrollStarterPackagesIntoView();
+                    } else {
+                        setIntakeStatus(`We could not send your package intake right now. Please try again, or email the details directly to <a href="mailto:${intakeSupportEmail}">${intakeSupportEmail}</a>.`);
+                    }
+                } finally {
+                    setIntakeSubmitting(false);
                 }
             }
 
-            buttons.forEach((button) => {
+            buttons.forEach(function (button) {
                 if (button.tagName === 'BUTTON') {
-                    button.dataset.defaultLabel = button.textContent.trim();
                     button.addEventListener('click', function () {
-                        startCheckout(button);
+                        openIntake(button);
                     });
+                }
+            });
+
+            if (intakeForm) {
+                intakeForm.addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    submitPackageIntake();
+                });
+            }
+
+            if (intakeCloseButton) {
+                intakeCloseButton.addEventListener('click', closeIntake);
+            }
+
+            if (intakeCancelButton) {
+                intakeCancelButton.addEventListener('click', closeIntake);
+            }
+
+            if (intakeOverlay) {
+                intakeOverlay.addEventListener('click', function (event) {
+                    if (event.target === intakeOverlay) {
+                        closeIntake();
+                    }
+                });
+            }
+
+            document.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape') {
+                    closeIntake();
                 }
             });
 
             const params = new URLSearchParams(window.location.search);
             const purchaseState = params.get('purchase');
             const packageKey = params.get('package');
-            const packageName = packageNames[packageKey] || 'your package';
+            const packageName = getPackageDetails(packageKey).name;
 
             if (purchaseState === 'success') {
                 showFeedback(
                     'success',
                     'Payment received',
-                    `Stripe checkout for ${packageName} completed successfully. Your contact details and project notes were submitted with the order. If there is anything else we should know before kickoff, please <a href="/contact">send a quick follow-up here</a>.`
+                    `Stripe checkout for ${packageName} completed successfully. Your pre-checkout intake was already received. Email all pertinent details and images to <a href="mailto:${intakeSupportEmail}">${intakeSupportEmail}</a> if you have not already, and we'll be in touch.`
                 );
-                const section = document.getElementById('starter-packages');
-                if (section) {
-                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                scrollStarterPackagesIntoView();
             } else if (purchaseState === 'cancelled') {
                 showFeedback(
                     'warning',
                     'Checkout cancelled',
-                    `Stripe checkout for ${packageName} was cancelled before payment completed. You can try again here or <a href="/contact">reach out through the contact form</a> if you want help first.`
+                    `Your intake for ${packageName} was received, but Stripe checkout was cancelled before payment completed. Reopen the package below when you're ready, or email details and images to <a href="mailto:${intakeSupportEmail}">${intakeSupportEmail}</a>.`
                 );
-                const section = document.getElementById('starter-packages');
-                if (section) {
-                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
+                scrollStarterPackagesIntoView();
             }
         })();
     </script>
