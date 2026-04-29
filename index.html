@@ -1872,9 +1872,22 @@
                 'gbp-optimization': 'Google Business Profile Optimization',
                 'monthly-local-seo-starter': 'Monthly Local SEO Starter'
             };
+            const productionCheckoutApiBase = 'https://knight-logics-checkout.vercel.app';
+            const splitHostedProductionHosts = new Set([
+                'knightlogics.com',
+                'www.knightlogics.com'
+            ]);
 
             const feedback = document.getElementById('starterPackagesFeedback');
             const buttons = Array.from(document.querySelectorAll('[data-package-key]'));
+
+            function getCheckoutSessionEndpoint() {
+                const apiBase = splitHostedProductionHosts.has(window.location.hostname)
+                    ? productionCheckoutApiBase
+                    : window.location.origin;
+
+                return new URL('/api/create-checkout-session', `${apiBase}/`).toString();
+            }
 
             function showFeedback(type, title, body) {
                 if (!feedback) {
@@ -1901,7 +1914,7 @@
                 button.textContent = 'Redirecting...';
 
                 try {
-                    const response = await fetch('/api/create-checkout-session', {
+                    const response = await fetch(getCheckoutSessionEndpoint(), {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json'

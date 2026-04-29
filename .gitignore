@@ -60,3 +60,4 @@ build/
 
 # Personal/sensitive files (add any specific files you don't want to commit)
 # config.js (if it contains sensitive data)
+.vercel

@@ -1,4 +1,87 @@
 {
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/about",
+      "destination": "/about.html"
+    },
+    {
+      "source": "/contact",
+      "destination": "/contact.html"
+    },
+    {
+      "source": "/book-consultation",
+      "destination": "/book-consultation.html"
+    },
+    {
+      "source": "/service-websites",
+      "destination": "/service-websites.html"
+    },
+    {
+      "source": "/service-ecommerce",
+      "destination": "/service-ecommerce.html"
+    },
+    {
+      "source": "/service-ai-automation",
+      "destination": "/service-ai-automation.html"
+    },
+    {
+      "source": "/service-desktop-apps",
+      "destination": "/service-desktop-apps.html"
+    },
+    {
+      "source": "/case-study-jns",
+      "destination": "/case-study-jns.html"
+    },
+    {
+      "source": "/case-study-knight-group",
+      "destination": "/case-study-knight-group.html"
+    },
+    {
+      "source": "/case-study-knight-logics",
+      "destination": "/case-study-knight-logics.html"
+    },
+    {
+      "source": "/projects",
+      "destination": "/projects.html"
+    },
+    {
+      "source": "/display-control-plus",
+      "destination": "/display-control-plus.html"
+    },
+    {
+      "source": "/videoforge",
+      "destination": "/videoforge.html"
+    },
+    {
+      "source": "/pixelforge-ai",
+      "destination": "/pixelforge-ai.html"
+    },
+    {
+      "source": "/auto-vid-compiler",
+      "destination": "/auto-vid-compiler.html"
+    },
+    {
+      "source": "/privacy-policy",
+      "destination": "/privacy-policy.html"
+    },
+    {
+      "source": "/terms-of-service",
+      "destination": "/terms-of-service.html"
+    },
+    {
+      "source": "/cookie-policy",
+      "destination": "/cookie-policy.html"
+    },
+    {
+      "source": "/refund-policy",
+      "destination": "/refund-policy.html"
+    },
+    {
+      "source": "/disclaimer",
+      "destination": "/disclaimer.html"
+    }
+  ],
   "headers": [
     {
       "source": "/images/(.*)",

@@ -1,5 +1,12 @@
 const Stripe = require('stripe');
 
+const DEFAULT_ALLOWED_ORIGINS = new Set([
+    'https://knightlogics.com',
+    'https://www.knightlogics.com',
+    'http://127.0.0.1:4180',
+    'http://localhost:4180'
+]);
+
 const PACKAGE_DEFINITIONS = {
     'website-local-seo-starter': {
         mode: 'payment',
@@ -47,6 +54,37 @@ function getBaseUrl(req) {
     const proto = forwardedProto || (isLocalHost ? 'http' : 'https');
 
     return `${proto}://${host}`;
+}
+
+function getAllowedOrigins() {
+    const configuredOrigins = (process.env.CHECKOUT_ALLOWED_ORIGINS || '')
+        .split(',')
+        .map((origin) => origin.trim())
+        .filter(Boolean);
+
+    return new Set([...DEFAULT_ALLOWED_ORIGINS, ...configuredOrigins]);
+}
+
+function getAllowedOrigin(req) {
+    const requestOrigin = req.headers.origin;
+
+    if (!requestOrigin) {
+        return null;
+    }
+
+    return getAllowedOrigins().has(requestOrigin) ? requestOrigin : false;
+}
+
+function applyCorsHeaders(req, res, allowedOrigin) {
+    if (!allowedOrigin) {
+        return;
+    }
+
+    res.setHeader('Access-Control-Allow-Origin', allowedOrigin);
+    res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    res.setHeader('Access-Control-Max-Age', '86400');
+    res.setHeader('Vary', 'Origin');
 }
 
 function buildLineItem(packageDefinition) {
@@ -133,8 +171,21 @@ function buildCustomFields() {
 }
 
 module.exports = async function handler(req, res) {
+    const allowedOrigin = getAllowedOrigin(req);
+
+    if (allowedOrigin === false) {
+        return res.status(403).json({ error: 'Origin not allowed.' });
+    }
+
+    applyCorsHeaders(req, res, allowedOrigin);
+
+    if (req.method === 'OPTIONS') {
+        res.setHeader('Allow', 'POST, OPTIONS');
+        return res.status(204).end();
+    }
+
     if (req.method !== 'POST') {
-        res.setHeader('Allow', 'POST');
+        res.setHeader('Allow', 'POST, OPTIONS');
         return res.status(405).json({ error: 'Method not allowed.' });
     }
 
@@ -155,7 +206,7 @@ module.exports = async function handler(req, res) {
         const stripe = new Stripe(stripeSecretKey, {
             apiVersion: '2025-03-31.basil'
         });
-        const baseUrl = getBaseUrl(req);
+        const baseUrl = allowedOrigin || getBaseUrl(req);
         const checkoutMetadata = buildCheckoutMetadata(packageKey, packageDefinition);
 
         const sessionParams = {
