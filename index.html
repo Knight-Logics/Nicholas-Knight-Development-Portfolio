@@ -613,6 +613,222 @@
         /* content-visibility: skip painting off-screen sections until scroll */
         .section-about,.section-services,.section-portfolio,.section-process,
         .section-faq,.section-contact { content-visibility: auto; contain-intrinsic-size: auto 600px; }
+
+        .starter-packages {
+            position: relative;
+            padding: 88px 0;
+            background:
+                radial-gradient(circle at 85% 14%, rgba(100, 255, 218, 0.12), transparent 20%),
+                linear-gradient(180deg, #081218 0%, #0a0f14 100%);
+            border-top: 1px solid rgba(100, 255, 218, 0.12);
+            border-bottom: 1px solid rgba(100, 255, 218, 0.12);
+        }
+
+        .starter-packages-shell {
+            display: grid;
+            gap: 32px;
+        }
+
+        .starter-packages-intro {
+            max-width: 760px;
+        }
+
+        .starter-packages-kicker {
+            display: inline-block;
+            margin-bottom: 14px;
+            color: #64ffda;
+            font-size: 0.82rem;
+            font-weight: 700;
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+        }
+
+        .starter-packages-intro h2 {
+            margin-bottom: 14px;
+            font-size: clamp(2rem, 4vw, 3.1rem);
+            line-height: 1.06;
+            color: #ffffff;
+        }
+
+        .starter-packages-intro p {
+            margin: 0;
+            max-width: 64ch;
+            color: rgba(255, 255, 255, 0.72);
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .starter-packages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 22px;
+        }
+
+        .starter-package-card {
+            display: grid;
+            gap: 18px;
+            padding: 28px;
+            border-radius: 24px;
+            border: 1px solid rgba(100, 255, 218, 0.16);
+            background: rgba(255, 255, 255, 0.04);
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
+            backdrop-filter: blur(10px);
+        }
+
+        .starter-package-card--featured {
+            background: linear-gradient(180deg, rgba(100, 255, 218, 0.12), rgba(255, 255, 255, 0.05));
+            border-color: rgba(100, 255, 218, 0.28);
+        }
+
+        .starter-package-tag {
+            display: inline-flex;
+            width: fit-content;
+            padding: 7px 12px;
+            border-radius: 999px;
+            background: rgba(100, 255, 218, 0.12);
+            color: #64ffda;
+            font-size: 0.76rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .starter-package-head h3 {
+            margin: 0 0 8px;
+            font-size: 1.34rem;
+            line-height: 1.2;
+            color: #ffffff;
+        }
+
+        .starter-package-price {
+            margin: 0;
+            color: #64ffda;
+            font-size: 1.95rem;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .starter-package-desc {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.78);
+            line-height: 1.65;
+        }
+
+        .starter-package-points {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            gap: 10px;
+        }
+
+        .starter-package-points li {
+            position: relative;
+            padding-left: 18px;
+            color: rgba(255, 255, 255, 0.74);
+            line-height: 1.55;
+        }
+
+        .starter-package-points li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.62em;
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: #64ffda;
+        }
+
+        .starter-package-cta {
+            width: fit-content;
+            margin-top: auto;
+            border: 0;
+            cursor: pointer;
+            font-family: inherit;
+        }
+
+        .starter-package-cta[disabled] {
+            opacity: 0.7;
+            cursor: wait;
+            box-shadow: none;
+        }
+
+        .starter-packages-feedback {
+            display: none;
+            padding: 18px 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(100, 255, 218, 0.18);
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        .starter-packages-feedback.is-visible {
+            display: block;
+        }
+
+        .starter-packages-feedback.is-success {
+            border-color: rgba(100, 255, 218, 0.34);
+            background: rgba(100, 255, 218, 0.1);
+        }
+
+        .starter-packages-feedback.is-warning {
+            border-color: rgba(255, 183, 77, 0.34);
+            background: rgba(255, 183, 77, 0.1);
+        }
+
+        .starter-packages-feedback.is-error {
+            border-color: rgba(255, 107, 107, 0.34);
+            background: rgba(255, 107, 107, 0.1);
+        }
+
+        .starter-packages-feedback strong {
+            display: block;
+            margin-bottom: 6px;
+            color: #ffffff;
+            font-size: 1rem;
+        }
+
+        .starter-packages-feedback p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.65;
+        }
+
+        .starter-packages-feedback a {
+            color: #64ffda;
+            text-decoration: underline;
+        }
+
+        .starter-packages-note {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.62);
+            font-size: 0.96rem;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 768px) {
+            .starter-packages {
+                padding: 72px 0;
+            }
+
+            .starter-package-card {
+                padding: 24px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .starter-packages {
+                padding: 60px 0;
+            }
+
+            .starter-package-card {
+                padding: 22px;
+            }
+
+            .starter-package-cta {
+                width: 100%;
+            }
+        }
     </style>
     <link rel="preload" as="style" href="style.min.css?v=20260428m" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="style.min.css?v=20260428m"></noscript>
@@ -1034,6 +1250,84 @@
                     <a href="/contact" class="cta-button primary">Start with a Free Consultation</a>
                     <a href="#proof" class="cta-button secondary">Review The Proof</a>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="starter-packages" class="starter-packages">
+        <div class="container">
+            <div class="starter-packages-shell">
+                <div class="starter-packages-intro">
+                    <span class="starter-packages-kicker">Starter Packages</span>
+                    <h2>Clear entry points for businesses that need a better website or stronger local visibility.</h2>
+                    <p>These are the easiest ways to start with Knight Logics. Paid packages now use secure Stripe checkout, where buyers can enter contact details and a short project brief before payment.</p>
+                </div>
+
+                <div class="starter-packages-feedback" id="starterPackagesFeedback" aria-live="polite"></div>
+
+                <div class="starter-packages-grid">
+                    <article class="starter-package-card starter-package-card--featured">
+                        <span class="starter-package-tag">Most Popular</span>
+                        <div class="starter-package-head">
+                            <h3>Website + Local SEO Starter Package</h3>
+                            <p class="starter-package-price">$1,997</p>
+                        </div>
+                        <p class="starter-package-desc">Hand-coded website work plus technical SEO and Google Business alignment for local businesses that need a stronger front door.</p>
+                        <ul class="starter-package-points">
+                            <li>Custom website build or rebuild</li>
+                            <li>Technical SEO, schema, and Search Console setup</li>
+                            <li>Google Business Profile alignment for local visibility</li>
+                        </ul>
+                        <button type="button" class="cta-button primary starter-package-cta" data-package-key="website-local-seo-starter">Buy This Package</button>
+                    </article>
+
+                    <article class="starter-package-card">
+                        <span class="starter-package-tag">One-Time Fix</span>
+                        <div class="starter-package-head">
+                            <h3>Google Business Profile Optimization</h3>
+                            <p class="starter-package-price">$297</p>
+                        </div>
+                        <p class="starter-package-desc">One-time GBP cleanup for businesses with a weak, incomplete, or underperforming listing.</p>
+                        <ul class="starter-package-points">
+                            <li>Profile cleanup and offer positioning</li>
+                            <li>Category, service, and conversion-path tuning</li>
+                            <li>Local visibility best-practice pass</li>
+                        </ul>
+                        <button type="button" class="cta-button primary starter-package-cta" data-package-key="gbp-optimization">Buy GBP Optimization</button>
+                    </article>
+
+                    <article class="starter-package-card">
+                        <span class="starter-package-tag">Ongoing Support</span>
+                        <div class="starter-package-head">
+                            <h3>Monthly Local SEO Starter</h3>
+                            <p class="starter-package-price">$397/mo</p>
+                        </div>
+                        <p class="starter-package-desc">Light ongoing local SEO support for businesses that need steady cleanup and visibility work without a bloated retainer.</p>
+                        <ul class="starter-package-points">
+                            <li>Ongoing local SEO cleanup and tuning</li>
+                            <li>Website and GBP alignment checks</li>
+                            <li>Practical next-step recommendations</li>
+                        </ul>
+                        <button type="button" class="cta-button primary starter-package-cta" data-package-key="monthly-local-seo-starter">Start Monthly Plan</button>
+                    </article>
+
+                    <article class="starter-package-card">
+                        <span class="starter-package-tag">No-Risk Start</span>
+                        <div class="starter-package-head">
+                            <h3>Free Website &amp; SEO Audit</h3>
+                            <p class="starter-package-price">Free</p>
+                        </div>
+                        <p class="starter-package-desc">Fast audit with direct findings on speed, visibility, calls to action, and local search issues.</p>
+                        <ul class="starter-package-points">
+                            <li>Website review</li>
+                            <li>Local SEO and GBP review</li>
+                            <li>Practical next steps</li>
+                        </ul>
+                        <a href="/contact" class="cta-button primary starter-package-cta">Request Free Audit</a>
+                    </article>
+                </div>
+
+                <p class="starter-packages-note">Secure checkout for fixed packages is powered by Stripe and includes quick intake fields for business name, preferred contact method, and project notes. Free consultation and custom scope are still available if your project does not fit one of these starter offers.</p>
             </div>
         </div>
     </section>
@@ -1571,6 +1865,105 @@
         </div>
     </div>
 
+    <script>
+        (function () {
+            const packageNames = {
+                'website-local-seo-starter': 'Website + Local SEO Starter Package',
+                'gbp-optimization': 'Google Business Profile Optimization',
+                'monthly-local-seo-starter': 'Monthly Local SEO Starter'
+            };
+
+            const feedback = document.getElementById('starterPackagesFeedback');
+            const buttons = Array.from(document.querySelectorAll('[data-package-key]'));
+
+            function showFeedback(type, title, body) {
+                if (!feedback) {
+                    return;
+                }
+
+                feedback.className = `starter-packages-feedback is-visible is-${type}`;
+                feedback.innerHTML = `<strong>${title}</strong><p>${body}</p>`;
+            }
+
+            function resetButton(button) {
+                if (!button) {
+                    return;
+                }
+
+                button.disabled = false;
+                button.textContent = button.dataset.defaultLabel;
+            }
+
+            async function startCheckout(button) {
+                const packageKey = button.dataset.packageKey;
+
+                button.disabled = true;
+                button.textContent = 'Redirecting...';
+
+                try {
+                    const response = await fetch('/api/create-checkout-session', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({ packageKey })
+                    });
+
+                    const payload = await response.json();
+
+                    if (!response.ok || !payload.url) {
+                        throw new Error(payload.error || 'Unable to start checkout right now.');
+                    }
+
+                    window.location.href = payload.url;
+                } catch (error) {
+                    console.error('Checkout error:', error);
+                    showFeedback(
+                        'error',
+                        'Checkout unavailable',
+                        `We could not start Stripe checkout for ${packageNames[packageKey] || 'that package'} right now. You can still <a href="/contact">use the contact form</a> and request it directly.`
+                    );
+                    resetButton(button);
+                }
+            }
+
+            buttons.forEach((button) => {
+                if (button.tagName === 'BUTTON') {
+                    button.dataset.defaultLabel = button.textContent.trim();
+                    button.addEventListener('click', function () {
+                        startCheckout(button);
+                    });
+                }
+            });
+
+            const params = new URLSearchParams(window.location.search);
+            const purchaseState = params.get('purchase');
+            const packageKey = params.get('package');
+            const packageName = packageNames[packageKey] || 'your package';
+
+            if (purchaseState === 'success') {
+                showFeedback(
+                    'success',
+                    'Payment received',
+                    `Stripe checkout for ${packageName} completed successfully. Your contact details and project notes were submitted with the order. If there is anything else we should know before kickoff, please <a href="/contact">send a quick follow-up here</a>.`
+                );
+                const section = document.getElementById('starter-packages');
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            } else if (purchaseState === 'cancelled') {
+                showFeedback(
+                    'warning',
+                    'Checkout cancelled',
+                    `Stripe checkout for ${packageName} was cancelled before payment completed. You can try again here or <a href="/contact">reach out through the contact form</a> if you want help first.`
+                );
+                const section = document.getElementById('starter-packages');
+                if (section) {
+                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }
+        })();
+    </script>
     <script src="script.min.js?v=20260428g" defer></script>
 </body>
 </html>
