@@ -14,40 +14,40 @@ const VALID_PREFERRED_CONTACTS = new Set(['email', 'phone', 'text']);
 const PACKAGE_DEFINITIONS = {
     'website-local-seo-starter': {
         mode: 'payment',
-        name: 'Website + Local SEO Starter Package',
-        description: 'Hand-coded website build or rebuild with technical SEO, Search Console setup, and Google Business Profile alignment.',
+        name: 'Local Launch Website Package',
+        description: 'Hand-coded 1-3 page website launch with technical SEO, Search Console and analytics setup, Google Business Profile alignment, and a short post-launch polish window.',
         amount: 199700,
         currency: 'usd',
         priceDisplay: '$1,997',
         metadata: {
-            packageType: 'website_local_seo_starter',
+            packageType: 'local_launch_website_package',
             fulfillment: 'project'
         }
     },
     'gbp-optimization': {
         mode: 'payment',
-        name: 'Google Business Profile Optimization',
-        description: 'One-time Google Business Profile cleanup with positioning, category tuning, and conversion-path improvements.',
+        name: 'Google Business Profile Sprint',
+        description: 'One-time Google Business Profile sprint covering categories, services, conversion copy, Q&A, review-request guidance, and a ranking baseline.',
         amount: 29700,
         currency: 'usd',
         priceDisplay: '$297',
         metadata: {
-            packageType: 'gbp_optimization',
+            packageType: 'gbp_sprint',
             fulfillment: 'service'
         }
     },
     'monthly-local-seo-starter': {
         mode: 'subscription',
-        name: 'Monthly Local SEO Starter',
-        description: 'Monthly local SEO support with website and GBP alignment checks plus ongoing cleanup and tuning.',
-        amount: 39700,
+        name: 'Local Visibility Lite',
+        description: 'Low-friction monthly support for Google Business Profile upkeep, website-to-GBP alignment checks, one monthly update, and a simple ranking snapshot.',
+        amount: 19700,
         currency: 'usd',
-        priceDisplay: '$397 / month',
+        priceDisplay: '$197 / month',
         recurring: {
             interval: 'month'
         },
         metadata: {
-            packageType: 'monthly_local_seo_starter',
+            packageType: 'local_visibility_lite',
             fulfillment: 'subscription'
         }
     }
