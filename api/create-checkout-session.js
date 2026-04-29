@@ -287,8 +287,8 @@ module.exports = async function handler(req, res) {
             line_items: [buildLineItem(packageDefinition)],
             billing_address_collection: 'auto',
             customer_email: intakeDetails.email,
-            success_url: `${baseUrl}/?purchase=success&package=${encodeURIComponent(packageKey)}`,
-            cancel_url: `${baseUrl}/?purchase=cancelled&package=${encodeURIComponent(packageKey)}`,
+            success_url: `${baseUrl}/?purchase=success&package=${encodeURIComponent(packageKey)}#starter-packages`,
+            cancel_url: `${baseUrl}/?purchase=cancelled&package=${encodeURIComponent(packageKey)}#starter-packages`,
             metadata: checkoutMetadata
         };
 
