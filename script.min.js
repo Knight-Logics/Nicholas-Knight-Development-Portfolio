@@ -1566,6 +1566,9 @@ function initSiteChatWidget() {
         script.src = `https://code.tidio.co/${publicKey}.js`;
         script.async = true;
         script.dataset.klChat = 'tidio';
+        script.addEventListener('load', () => {
+            suppressDefaultTidioLauncher();
+        });
         document.body.appendChild(script);
     }
 }
@@ -1594,6 +1597,11 @@ function suppressDefaultTidioLauncher() {
                 button.style.pointerEvents = 'none';
             }
         });
+
+        const tidioApi = window.tidioChatApi;
+        if (tidioApi && typeof tidioApi.hide === 'function') {
+            tidioApi.hide();
+        }
     };
 
     hideLaunchers();
@@ -1601,6 +1609,15 @@ function suppressDefaultTidioLauncher() {
     if (!document.body) return;
     const observer = new MutationObserver(hideLaunchers);
     observer.observe(document.body, { childList: true, subtree: true });
+
+    let attempts = 0;
+    const hideInterval = setInterval(() => {
+        hideLaunchers();
+        attempts += 1;
+        if (attempts >= 20) {
+            clearInterval(hideInterval);
+        }
+    }, 500);
 }
 
 function initChatLauncher(config) {
@@ -1617,8 +1634,8 @@ function initChatLauncher(config) {
             height: 58px;
             border: 0;
             border-radius: 999px;
-            background: linear-gradient(135deg, #2f8cff, #1f6fff);
-            color: #ffffff;
+            background: linear-gradient(135deg, #64ffda, #4ecdc4);
+            color: #0a0a0a;
             cursor: pointer;
             z-index: 2147483000;
             display: inline-flex;
@@ -1629,7 +1646,7 @@ function initChatLauncher(config) {
         }
         #kl-chat-launcher:hover {
             transform: translateY(-2px);
-            box-shadow: 0 16px 38px rgba(10, 35, 90, 0.55);
+            box-shadow: 0 16px 38px rgba(78, 205, 196, 0.45);
         }
         #kl-chat-launcher svg {
             width: 26px;
@@ -1662,6 +1679,9 @@ function initChatLauncher(config) {
             const api = window.tidioChatApi;
 
             if (api && typeof api.open === 'function') {
+                if (typeof api.show === 'function') {
+                    api.show();
+                }
                 api.open();
                 return;
             }
@@ -1679,6 +1699,9 @@ function initChatLauncher(config) {
 
             setTimeout(() => {
                 if (window.tidioChatApi && typeof window.tidioChatApi.open === 'function') {
+                    if (typeof window.tidioChatApi.show === 'function') {
+                        window.tidioChatApi.show();
+                    }
                     window.tidioChatApi.open();
                 }
             }, 900);
