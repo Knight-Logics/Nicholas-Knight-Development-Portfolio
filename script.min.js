@@ -1542,7 +1542,7 @@ function scrollToTop() {
 function initSiteChatWidget() {
     if (document.querySelector('script[data-kl-chat="tidio"]')) return;
     const script = document.createElement('script');
-    script.src = 'https://code.tidio.co/vxyavzev0ezmockhadrsnje3xvyupl43.js';
+    script.src = 'https://code.tidio.co/rmlhzyory69fi9cbvxvlfy9hwlt4v6kf.js';
     script.async = true;
     script.dataset.klChat = 'tidio';
     document.body.appendChild(script);
