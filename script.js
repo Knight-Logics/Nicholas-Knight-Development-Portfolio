@@ -1574,12 +1574,71 @@ function initSiteChatWidget() {
 }
 
 function suppressDefaultTidioLauncher() {
+    const shadowObserverRoots = new WeakSet();
+    const shadowStyleRoots = new WeakSet();
+
     const hideElement = (el) => {
         el.style.display = 'none';
         el.style.visibility = 'hidden';
         el.style.pointerEvents = 'none';
         el.style.opacity = '0';
         el.setAttribute('aria-hidden', 'true');
+    };
+
+    const shadowCss = `
+        [data-testid="widgetButton"],
+        [data-testid="widgetButtonBody"],
+        #button,
+        #button-body,
+        [aria-label="Minimize"],
+        button[aria-label="Open chat widget"],
+        button[aria-label="Minimize chat widget"],
+        button[aria-label="Close chat widget"] {
+            display: none !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+            opacity: 0 !important;
+        }
+    `;
+
+    const getSearchRoots = () => {
+        const roots = [document];
+        const queue = [document.documentElement];
+
+        while (queue.length) {
+            const current = queue.shift();
+            if (!current || !current.querySelectorAll) continue;
+
+            current.querySelectorAll('*').forEach((el) => {
+                if (el.shadowRoot) {
+                    roots.push(el.shadowRoot);
+                    queue.push(el.shadowRoot);
+                }
+            });
+        }
+
+        return roots;
+    };
+
+    const ensureShadowStyle = (root) => {
+        if (!(root instanceof ShadowRoot) || shadowStyleRoots.has(root)) {
+            return;
+        }
+
+        const style = document.createElement('style');
+        style.textContent = shadowCss;
+        root.appendChild(style);
+        shadowStyleRoots.add(root);
+    };
+
+    const observeShadowRoot = (root, hideLaunchers) => {
+        if (!(root instanceof ShadowRoot) || shadowObserverRoots.has(root)) {
+            return;
+        }
+
+        const observer = new MutationObserver(hideLaunchers);
+        observer.observe(root, { childList: true, subtree: true, attributes: true });
+        shadowObserverRoots.add(root);
     };
 
     const shouldHideButton = (button) => {
@@ -1629,7 +1688,13 @@ function suppressDefaultTidioLauncher() {
     };
 
     const hideLaunchers = () => {
+        const searchRoots = getSearchRoots();
         const ariaSelectors = [
+            '[data-testid="widgetButton"]',
+            '[data-testid="widgetButtonBody"]',
+            '#button',
+            '#button-body',
+            '[aria-label="Minimize"]',
             'button[aria-label="Open chat widget"]',
             'button[aria-label="Minimize chat widget"]',
             'button[aria-label="Close chat widget"]',
@@ -1639,16 +1704,23 @@ function suppressDefaultTidioLauncher() {
             '[class*="tidio"] button'
         ];
 
-        ariaSelectors.forEach((selector) => {
-            document.querySelectorAll(selector).forEach((el) => {
-                hideElement(el);
+        searchRoots.forEach((root) => {
+            ensureShadowStyle(root);
+            observeShadowRoot(root, hideLaunchers);
+
+            ariaSelectors.forEach((selector) => {
+                root.querySelectorAll(selector).forEach((el) => {
+                    hideElement(el);
+                });
             });
         });
 
-        document.querySelectorAll('button, [role="button"]').forEach((button) => {
-            if (shouldHideButton(button)) {
-                hideElement(button);
-            }
+        searchRoots.forEach((root) => {
+            root.querySelectorAll('button, [role="button"]').forEach((button) => {
+                if (shouldHideButton(button)) {
+                    hideElement(button);
+                }
+            });
         });
 
         const tidioApi = window.tidioChatApi;
@@ -1689,9 +1761,14 @@ function initChatLauncher(config) {
 
     const setLauncherState = (isOpen) => {
         window.__klChatIsOpen = isOpen;
-        launcher.dataset.state = isOpen ? 'open' : 'closed';
-        launcher.setAttribute('aria-label', isOpen ? 'Close chat' : 'Open chat');
-        launcher.innerHTML = isOpen ? closeIconMarkup : chatIconMarkup;
+        launcher.style.display = isOpen ? 'none' : '';
+        launcher.setAttribute('aria-label', 'Open chat');
+        launcher.innerHTML = chatIconMarkup;
+        if (isOpen) {
+            document.body.classList.add('kl-chat-open');
+        } else {
+            document.body.classList.remove('kl-chat-open');
+        }
     };
 
     const revealTidioContainers = () => {};
@@ -1728,13 +1805,10 @@ function initChatLauncher(config) {
             height: 26px;
             fill: currentColor;
         }
-        button[aria-label="Open chat widget"],
-        button[aria-label="Minimize chat widget"],
-        button[aria-label="Close chat widget"],
-        #tidio-chat button,
-        [id^="tidio-"] button,
-        [id*="tidio"] button,
-        [class*="tidio"] button {
+        body:not(.kl-chat-open) [data-testid="widgetButton"],
+        body:not(.kl-chat-open) [data-testid="widgetButtonBody"],
+        body:not(.kl-chat-open) button[aria-label="Open chat widget"],
+        body:not(.kl-chat-open) [aria-label="Minimize"] {
             display: none !important;
             visibility: hidden !important;
             pointer-events: none !important;
@@ -1780,10 +1854,22 @@ function initChatLauncher(config) {
         setLauncherState(false);
     };
 
+    const registerTidioCloseListener = () => {
+        if (window.__klTidioCloseListenerRegistered) return;
+        const api = window.tidioChatApi;
+        if (api && typeof api.on === 'function') {
+            window.__klTidioCloseListenerRegistered = true;
+            api.on('close', () => {
+                setLauncherState(false);
+            });
+        }
+    };
+
     const openChat = () => {
         window.__klChatUserOpened = true;
         revealTidioContainers();
         setLauncherState(true);
+        registerTidioCloseListener();
 
         const api = window.tidioChatApi;
 
@@ -1827,6 +1913,7 @@ function initChatLauncher(config) {
         setTimeout(() => {
             revealTidioContainers();
             if (window.tidioChatApi) {
+                registerTidioCloseListener();
                 if (typeof window.tidioChatApi.show === 'function') {
                     window.tidioChatApi.show();
                 }
