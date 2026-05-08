@@ -146,7 +146,11 @@ document.addEventListener('DOMContentLoaded', function() {
     initAnchorNavigation();
 
     // Fetch header/footer in parallel — initNavigation runs when ready, doesn't block paint
-    loadHeaderFooter().then(() => { initNavigation(); setupIntersectionObserver(); });
+    loadHeaderFooter().then(() => {
+        initNavigation();
+        setupIntersectionObserver();
+        initSiteChatWidget();
+    });
 
     // Keep only above-the-fold essentials immediate.
     initLayeredParallax();
@@ -1078,9 +1082,9 @@ function initNavigation() {
         link.addEventListener('click', (e) => {
             const targetId = link.getAttribute('href');
             
-            // Check if it's an external link (contains .html) or starts with http
-            if (targetId.includes('.html') || targetId.startsWith('http')) {
-                // Allow normal navigation for external links
+            // Check if it's an external link, clean URL path, or starts with http
+            if (targetId.includes('.html') || targetId.startsWith('http') || !targetId.startsWith('#')) {
+                // Allow normal navigation for page links and external links
                 return;
             }
             
@@ -1535,6 +1539,155 @@ function scrollToTop() {
     });
 }
 
+function initSiteChatWidget() {
+    const chatDefaults = {
+        provider: 'tidio',
+        enabled: true,
+        tidioPublicKey: 'vxyavzev0ezmockhadrsnje3xvyupl43'
+    };
+
+    const config = Object.assign({}, chatDefaults, window.KLChatConfig || {});
+    if (!config.enabled) return;
+
+    initChatLauncher(config);
+
+    if (config.provider === 'tidio') {
+        suppressDefaultTidioLauncher();
+
+        const publicKey = (config.tidioPublicKey || '').trim();
+        if (!publicKey) {
+            console.info('KL chat enabled, but no Tidio public key is set yet.');
+            return;
+        }
+
+        if (document.querySelector('script[data-kl-chat="tidio"]')) return;
+
+        const script = document.createElement('script');
+        script.src = `https://code.tidio.co/${publicKey}.js`;
+        script.async = true;
+        script.dataset.klChat = 'tidio';
+        document.body.appendChild(script);
+    }
+}
+
+function suppressDefaultTidioLauncher() {
+    const hideLaunchers = () => {
+        const ariaSelectors = [
+            'button[aria-label="Open chat widget"]',
+            'button[aria-label="Minimize chat widget"]',
+            'button[aria-label="Close chat widget"]'
+        ];
+
+        ariaSelectors.forEach((selector) => {
+            document.querySelectorAll(selector).forEach((el) => {
+                el.style.display = 'none';
+                el.style.visibility = 'hidden';
+                el.style.pointerEvents = 'none';
+            });
+        });
+
+        document.querySelectorAll('button').forEach((button) => {
+            const label = (button.textContent || '').trim().toLowerCase();
+            if (label.includes('chat with us')) {
+                button.style.display = 'none';
+                button.style.visibility = 'hidden';
+                button.style.pointerEvents = 'none';
+            }
+        });
+    };
+
+    hideLaunchers();
+
+    if (!document.body) return;
+    const observer = new MutationObserver(hideLaunchers);
+    observer.observe(document.body, { childList: true, subtree: true });
+}
+
+function initChatLauncher(config) {
+    if (document.getElementById('kl-chat-launcher')) return;
+
+    const style = document.createElement('style');
+    style.id = 'kl-chat-launcher-style';
+    style.textContent = `
+        #kl-chat-launcher {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            width: 58px;
+            height: 58px;
+            border: 0;
+            border-radius: 999px;
+            background: linear-gradient(135deg, #2f8cff, #1f6fff);
+            color: #ffffff;
+            cursor: pointer;
+            z-index: 2147483000;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 12px 32px rgba(10, 35, 90, 0.45);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        #kl-chat-launcher:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 16px 38px rgba(10, 35, 90, 0.55);
+        }
+        #kl-chat-launcher svg {
+            width: 26px;
+            height: 26px;
+            fill: currentColor;
+        }
+        @media (max-width: 768px) {
+            #kl-chat-launcher {
+                right: 16px;
+                bottom: 86px;
+                width: 54px;
+                height: 54px;
+            }
+        }
+    `;
+    document.head.appendChild(style);
+
+    const launcher = document.createElement('button');
+    launcher.id = 'kl-chat-launcher';
+    launcher.type = 'button';
+    launcher.setAttribute('aria-label', 'Open chat');
+    launcher.innerHTML = `
+        <svg viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+            <path d="M256 32C114.6 32 0 125.1 0 240c0 49.6 21.4 95.1 57.1 131.1c-2.6 21.2-10.2 44.4-25.8 67.3c-4.3 6.3-4.7 14.5-1.2 21.2c3.6 6.8 10.5 11 18.2 11c53.5 0 94.8-20.1 122.7-40.8c26.9 8.1 55.6 12.2 85 12.2c141.4 0 256-93.1 256-208S397.4 32 256 32z"/>
+        </svg>
+    `;
+
+    launcher.addEventListener('click', () => {
+        if (config.provider === 'tidio') {
+            const api = window.tidioChatApi;
+
+            if (api && typeof api.open === 'function') {
+                api.open();
+                return;
+            }
+
+            const existingScript = document.querySelector('script[data-kl-chat="tidio"]');
+            if (!existingScript) {
+                const publicKey = (config.tidioPublicKey || '').trim();
+                if (!publicKey) return;
+                const script = document.createElement('script');
+                script.src = `https://code.tidio.co/${publicKey}.js`;
+                script.async = true;
+                script.dataset.klChat = 'tidio';
+                document.body.appendChild(script);
+            }
+
+            setTimeout(() => {
+                if (window.tidioChatApi && typeof window.tidioChatApi.open === 'function') {
+                    window.tidioChatApi.open();
+                }
+            }, 900);
+        }
+    });
+
+    document.body.appendChild(launcher);
+}
+
 // Add scroll to top button
 function addScrollToTopButton() {
     const scrollButton = document.createElement('button');
@@ -1574,8 +1727,11 @@ function addScrollToTopButton() {
     });
 }
 
-// Initialize scroll to top button
-addScrollToTopButton();
+// Scroll-to-top is intentionally disabled because live chat uses this corner.
+const ENABLE_SCROLL_TO_TOP_BUTTON = false;
+if (ENABLE_SCROLL_TO_TOP_BUTTON) {
+    addScrollToTopButton();
+}
 
 // Typing Effect for Hero Title (Optional Enhancement)
 function typeWriter(element, text, speed = 100) {
