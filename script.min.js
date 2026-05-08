@@ -1599,7 +1599,7 @@ function suppressDefaultTidioLauncher() {
         });
 
         const tidioApi = window.tidioChatApi;
-        if (tidioApi && typeof tidioApi.hide === 'function') {
+        if (!window.__klChatUserOpened && tidioApi && typeof tidioApi.hide === 'function') {
             tidioApi.hide();
         }
     };
@@ -1622,6 +1622,36 @@ function suppressDefaultTidioLauncher() {
 
 function initChatLauncher(config) {
     if (document.getElementById('kl-chat-launcher')) return;
+
+    const revealTidioContainers = () => {
+        const root = document.getElementById('tidio-chat');
+        const codeFrame = document.getElementById('tidio-chat-code');
+
+        if (root) {
+            root.style.setProperty('display', 'block', 'important');
+            root.style.setProperty('visibility', 'visible', 'important');
+            root.style.setProperty('pointer-events', 'auto', 'important');
+            root.style.setProperty('position', 'fixed', 'important');
+            root.style.setProperty('right', '0', 'important');
+            root.style.setProperty('bottom', '0', 'important');
+            root.style.setProperty('top', 'auto', 'important');
+            root.style.setProperty('left', 'auto', 'important');
+            root.style.setProperty('width', '380px', 'important');
+            root.style.setProperty('height', '520px', 'important');
+        }
+
+        if (codeFrame) {
+            codeFrame.style.setProperty('display', 'block', 'important');
+            codeFrame.style.setProperty('visibility', 'visible', 'important');
+            codeFrame.style.setProperty('pointer-events', 'auto', 'important');
+            codeFrame.style.setProperty('position', 'fixed', 'important');
+            codeFrame.style.setProperty('right', '20px', 'important');
+            codeFrame.style.setProperty('bottom', '92px', 'important');
+            codeFrame.style.setProperty('top', 'auto', 'important');
+            codeFrame.style.setProperty('left', 'auto', 'important');
+            codeFrame.style.setProperty('z-index', '2147482999', 'important');
+        }
+    };
 
     const style = document.createElement('style');
     style.id = 'kl-chat-launcher-style';
@@ -1676,14 +1706,34 @@ function initChatLauncher(config) {
 
     launcher.addEventListener('click', () => {
         if (config.provider === 'tidio') {
+            window.__klChatUserOpened = true;
+            revealTidioContainers();
             const api = window.tidioChatApi;
 
-            if (api && typeof api.open === 'function') {
+            if (api) {
                 if (typeof api.show === 'function') {
                     api.show();
                 }
-                api.open();
-                return;
+
+                if (typeof api.popUpOpen === 'function') {
+                    api.popUpOpen();
+                    return;
+                }
+
+                if (typeof api.open === 'function') {
+                    api.open();
+                    return;
+                }
+
+                if (typeof api.display === 'function') {
+                    api.display(true);
+                    return;
+                }
+
+                if (typeof api.chatDisplay === 'function') {
+                    api.chatDisplay(true);
+                    return;
+                }
             }
 
             const existingScript = document.querySelector('script[data-kl-chat="tidio"]');
@@ -1698,11 +1748,22 @@ function initChatLauncher(config) {
             }
 
             setTimeout(() => {
-                if (window.tidioChatApi && typeof window.tidioChatApi.open === 'function') {
+                revealTidioContainers();
+                if (window.tidioChatApi) {
                     if (typeof window.tidioChatApi.show === 'function') {
                         window.tidioChatApi.show();
                     }
-                    window.tidioChatApi.open();
+                    if (typeof window.tidioChatApi.popUpOpen === 'function') {
+                        window.tidioChatApi.popUpOpen();
+                        return;
+                    }
+                    if (typeof window.tidioChatApi.open === 'function') {
+                        window.tidioChatApi.open();
+                        return;
+                    }
+                    if (typeof window.tidioChatApi.display === 'function') {
+                        window.tidioChatApi.display(true);
+                    }
                 }
             }, 900);
         }
