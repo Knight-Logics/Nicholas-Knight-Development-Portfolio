@@ -113,8 +113,8 @@ function initAnchorNavigation() {
 // Dynamic Header and Footer Loading — parallel fetches to minimise round-trips
 async function loadHeaderFooter() {
     try {
-        const headerUrl = new URL('/header.html?v=20260428f', window.location.origin);
-        const footerUrl = new URL('/footer.html?v=20260428f', window.location.origin);
+        const headerUrl = new URL('/header.html?v=20260508a', window.location.origin);
+        const footerUrl = new URL('/footer.html?v=20260508a', window.location.origin);
 
         const [headerResponse, footerResponse] = await Promise.all([
             fetch(headerUrl),
@@ -1574,27 +1574,80 @@ function initSiteChatWidget() {
 }
 
 function suppressDefaultTidioLauncher() {
+    const hideElement = (el) => {
+        el.style.display = 'none';
+        el.style.visibility = 'hidden';
+        el.style.pointerEvents = 'none';
+        el.style.opacity = '0';
+        el.setAttribute('aria-hidden', 'true');
+    };
+
+    const shouldHideButton = (button) => {
+        if (!button || button.id === 'kl-chat-launcher') {
+            return false;
+        }
+
+        const label = [
+            button.getAttribute('aria-label') || '',
+            button.getAttribute('title') || '',
+            button.textContent || ''
+        ].join(' ').trim().toLowerCase();
+
+        const ancestry = [];
+        let current = button;
+        while (current && current !== document.body) {
+            if (current.id) ancestry.push(current.id.toLowerCase());
+            if (typeof current.className === 'string' && current.className) {
+                ancestry.push(current.className.toLowerCase());
+            }
+            current = current.parentElement;
+        }
+
+        const ancestryText = ancestry.join(' ');
+        if (ancestryText.includes('tidio')) {
+            return true;
+        }
+
+        if (
+            label.includes('chat with us') ||
+            label.includes('chat widget') ||
+            label.includes('minimize chat') ||
+            label.includes('close chat') ||
+            label.includes('open chat widget')
+        ) {
+            return true;
+        }
+
+        const style = getComputedStyle(button);
+        const rect = button.getBoundingClientRect();
+        return style.position === 'fixed'
+            && rect.width > 0
+            && rect.height > 0
+            && rect.left > window.innerWidth - 180
+            && rect.top > window.innerHeight - 260
+            && (label.includes('chat') || label.includes('close') || label.includes('message') || ancestryText.includes('widget'));
+    };
+
     const hideLaunchers = () => {
         const ariaSelectors = [
             'button[aria-label="Open chat widget"]',
             'button[aria-label="Minimize chat widget"]',
-            'button[aria-label="Close chat widget"]'
+            'button[aria-label="Close chat widget"]',
+            '#tidio-chat button',
+            '[id^="tidio-"] button',
+            '[id*="tidio"] button',
+            '[class*="tidio"] button'
         ];
 
         ariaSelectors.forEach((selector) => {
             document.querySelectorAll(selector).forEach((el) => {
-                el.style.display = 'none';
-                el.style.visibility = 'hidden';
-                el.style.pointerEvents = 'none';
+                hideElement(el);
             });
         });
 
-        document.querySelectorAll('button').forEach((button) => {
-            const label = (button.textContent || '').trim().toLowerCase();
-            if (label.includes('chat with us')) {
-                button.style.display = 'none';
-                button.style.visibility = 'hidden';
-                button.style.pointerEvents = 'none';
+        document.querySelectorAll('button, [role="button"]').forEach((button) => {
+            if (shouldHideButton(button)) {
+                hideElement(button);
             }
         });
 
@@ -1677,7 +1730,11 @@ function initChatLauncher(config) {
         }
         button[aria-label="Open chat widget"],
         button[aria-label="Minimize chat widget"],
-        button[aria-label="Close chat widget"] {
+        button[aria-label="Close chat widget"],
+        #tidio-chat button,
+        [id^="tidio-"] button,
+        [id*="tidio"] button,
+        [class*="tidio"] button {
             display: none !important;
             visibility: hidden !important;
             pointer-events: none !important;
