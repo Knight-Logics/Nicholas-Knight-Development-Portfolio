@@ -113,8 +113,8 @@ function initAnchorNavigation() {
 // Dynamic Header and Footer Loading — parallel fetches to minimise round-trips
 async function loadHeaderFooter() {
     try {
-        const headerUrl = new URL('/header.html?v=20260508a', window.location.origin);
-        const footerUrl = new URL('/footer.html?v=20260508a', window.location.origin);
+        const headerUrl = new URL('/header.html?v=20260509a', window.location.origin);
+        const footerUrl = new URL('/footer.html?v=20260509a', window.location.origin);
 
         const [headerResponse, footerResponse] = await Promise.all([
             fetch(headerUrl),
