@@ -1,0 +1,600 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Case study: Sal's Painting — Search-Ready Starter by Knight Logics. Multi-page painter website with GA4, Clarity, GSC setup, and core technical SEO foundation.">
+    <meta name="author" content="Nicholas Knight">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Search-Ready Starter Case Study: Sal's Painting | Knight Logics">
+    <meta property="og:description" content="Search-Ready Starter · Custom domain · GA4 + Clarity · Full technical SEO. How Knight Logics built Sal's Painting's foundation for organic growth.">
+    <meta property="og:url" content="https://knightlogics.com/case-study-sals-painting">
+    <meta property="og:site_name" content="Knight Logics">
+    <meta property="og:image" content="https://knightlogics.com/images/KnightLogicsLogo2.png">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="1024">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Search-Ready Starter Case Study: Sal's Painting | Knight Logics">
+    <meta name="twitter:image" content="https://knightlogics.com/images/KnightLogicsLogo2.png">
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+    <link rel="canonical" href="https://knightlogics.com/case-study-sals-painting">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VX36QR7HJW"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-VX36QR7HJW');</script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://knightlogics.com"},
+            {"@type": "ListItem", "position": 2, "name": "Custom Websites", "item": "https://knightlogics.com/service-websites"},
+            {"@type": "ListItem", "position": 3, "name": "Case Study: Sal's Painting", "item": "https://knightlogics.com/case-study-sals-painting"}
+        ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Search-Ready Starter Case Study — Sal's Painting & Basic Renovations",
+        "description": "How Knight Logics built Sal's Painting's Search-Ready Starter: multi-page site with GA4, Clarity, GSC setup, and core technical SEO foundation — without CRM or automation layers.",
+        "url": "https://knightlogics.com/case-study-sals-painting",
+        "datePublished": "2026-01-15",
+        "dateModified": "2026-05-09",
+        "author": {
+            "@type": "Person",
+            "name": "Nicholas Knight",
+            "url": "https://knightlogics.com"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Knight Logics",
+            "url": "https://knightlogics.com",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://knightlogics.com/images/KnightLogicsLogo2.png",
+                "width": 1024,
+                "height": 1024
+            }
+        }
+    }
+    </script>
+
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" href="/images/KnightLogicsLogo2.png" sizes="1024x1024">
+    <link rel="apple-touch-icon" href="/images/KnightLogicsLogo2.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#6de1ff">
+    <link rel="stylesheet" href="style.css?v=20260428l">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
+
+    <title>Search-Ready Starter Case Study — Sal's Painting | Knight Logics</title>
+
+    <style>
+        /* ── Case Study Shared Layout ── */
+        .cs-hero {
+            position: relative;
+            min-height: 420px;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(0,0,0,0.82), rgba(0,0,0,0.82)), url('https://salspaintingrenovation.com/SalsHeroImage.png') center/cover no-repeat;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(100,255,218,0.1);
+        }
+        .cs-hero-inner {
+            position: relative;
+            z-index: 2;
+            padding: 100px 0 70px;
+            max-width: 820px;
+        }
+        .cs-breadcrumb {
+            display: flex;
+            gap: 8px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            color: rgba(255,255,255,0.7);
+        }
+        .cs-breadcrumb a {
+            color: #64ffda;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .cs-breadcrumb a:hover { color: #fff; }
+        .cs-type-badge {
+            display: inline-block;
+            background: rgba(100,255,218,0.1);
+            border: 1px solid rgba(100,255,218,0.3);
+            color: #64ffda;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            margin-bottom: 12px;
+        }
+        .cs-hero h1 {
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            line-height: 1.2;
+            color: #fff;
+            margin: 0 0 20px;
+            font-weight: 800;
+        }
+        .cs-hero h1 span { color: #64ffda; }
+        .cs-hero-sub {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.85);
+            margin: 0 0 30px;
+            max-width: 700px;
+        }
+        .cs-hero-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .cs-btn-live, .cs-btn-back {
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+        .cs-btn-live {
+            background: #64ffda;
+            color: #000; /* Ensure readable contrast */
+        }
+        .cs-btn-live:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(100,255,218,0.3);
+        }
+        .cs-btn-back {
+            background: transparent;
+            color: #64ffda;
+            border: 1px solid #64ffda;
+        }
+        .cs-btn-back:hover {
+            background: rgba(100,255,218,0.1);
+        }
+        .cs-scores {
+            background: rgba(10,15,10,0.98);
+            border-bottom: 1px solid rgba(100,255,218,0.1);
+            padding: 28px 0;
+        }
+        .cs-scores-grid {
+            display: flex;
+            gap: 0;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .cs-score-item {
+            text-align: center;
+            padding: 12px 40px;
+            border-right: 1px solid rgba(255,255,255,0.08);
+        }
+        .cs-score-item:last-child { border-right: none; }
+        .cs-score-num {
+            display: block;
+            font-size: 2rem;
+            font-weight: 800;
+            color: #64ffda;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .cs-score-label {
+            font-size: 0.76rem;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        .cs-overview {
+            padding: 60px 0;
+            border-bottom: 1px solid rgba(100,255,218,0.1);
+        }
+        .cs-overview-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+        @media (max-width: 900px) {
+            .cs-overview-grid { grid-template-columns: 1fr; gap: 40px; }
+        }
+        .cs-overview h2 {
+            font-size: clamp(1.6rem, 4vw, 2.2rem);
+            line-height: 1.3;
+            margin-top: 12px;
+            margin-bottom: 24px;
+            color: #fff;
+        }
+        .cs-section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #64ffda;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            margin-bottom: 12px;
+        }
+        .cs-tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+        .cs-tag {
+            display: inline-block;
+            background: rgba(100,255,218,0.1);
+            border: 1px solid rgba(100,255,218,0.3);
+            color: #64ffda;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .cs-overview p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 18px;
+        }
+        .cs-deliverables {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .cs-deliverables li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.75);
+        }
+        .cs-deliverables i {
+            color: #64ffda;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+        .cs-cta-section {
+            background: rgba(100,255,218,0.03);
+            border-top: 1px solid rgba(100,255,218,0.1);
+            padding: 60px 0;
+            text-align: center;
+        }
+        .cs-cta-section p {
+            color: rgba(255,255,255,0.75);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .btn-primary {
+            display: inline-block;
+            background: #64ffda;
+            color: #000;
+            padding: 14px 32px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(100,255,218,0.3);
+        }
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .cs-gbp-inline {
+            display: flex; align-items: center; gap: 14px;
+            margin-top: 20px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(100,255,218,0.15);
+            border-radius: 14px; padding: 16px 20px;
+            max-width: 50%;
+        }
+        .cs-gbp-glogo {
+            width: 38px; height: 38px; flex-shrink: 0;
+            background: #fff; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; font-weight: 900; color: #4285F4;
+            font-family: Arial, sans-serif;
+        }
+        .cs-gbp-info { flex: 1; min-width: 0; }
+        .cs-gbp-info h3 { font-size: 0.9rem; font-weight: 700; color: #fff; margin-bottom: 2px; }
+        .cs-gbp-stars { color: #fbbc04; font-size: 0.82rem; margin-bottom: 2px; }
+        .cs-gbp-stars span { color: rgba(255,255,255,0.5); font-size: 0.78rem; margin-left: 4px; }
+        .cs-gbp-meta { font-size: 0.76rem; color: rgba(255,255,255,0.45); }
+        .cs-gbp-link {
+            display: inline-flex; align-items: center; gap: 6px;
+            padding: 7px 14px; border-radius: 999px;
+            border: 1px solid rgba(100,255,218,0.3); color: #64ffda;
+            font-size: 0.78rem; font-weight: 600; text-decoration: none;
+            white-space: nowrap; flex-shrink: 0;
+            transition: background 0.2s, border-color 0.2s;
+        }
+        .cs-gbp-link:hover { background: rgba(100,255,218,0.08); border-color: rgba(100,255,218,0.45); }
+        @media (max-width: 900px) {
+            .cs-gbp-inline { max-width: 100%; }
+        }
+        @media (max-width: 600px) {
+            .cs-gbp-inline { flex-wrap: wrap; }
+            .cs-gbp-link { white-space: normal; flex-shrink: 1; }
+        }
+    </style>
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <!-- ══ HERO ══ -->
+    <section class="cs-hero">
+        <div class="container">
+            <div class="cs-hero-inner fade-in">
+                <nav class="cs-breadcrumb" aria-label="Breadcrumb">
+                    <a href="/">Home</a>
+                    <span>/</span>
+                    <a href="/service-websites.html">Custom Websites</a>
+                    <span>/</span>
+                    <span>Sal's Painting</span>
+                </nav>
+                <div class="cs-type-badge"><i class="fas fa-search"></i> Search-Ready Starter · from $1,200</div>
+                <h1><span>Search-Ready Starter — Sal's Painting & Basic Renovations</span></h1>
+                <p class="cs-hero-sub">A search-optimized painter website built for immediate Google visibility: GA4 analytics, Microsoft Clarity heatmaps, Google Search Console verification, core technical SEO foundation, and a polished brand identity. No CRM, no automation layer — just a clean, search-optimized site ready to convert organic traffic.</p>
+                <div class="cs-hero-actions">
+                    <a href="https://salspaintingrenovation.com/" class="cs-btn-live" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i> View Live Site</a>
+                    <a href="/service-websites.html" class="cs-btn-back"><i class="fas fa-arrow-left"></i> All Case Studies</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ SCORE STRIP ══ -->
+    <div class="cs-scores">
+        <div class="container">
+            <div class="cs-scores-grid">
+                <div class="cs-score-item">
+                    <span class="cs-score-num">88</span>
+                    <span class="cs-score-label">Desktop Performance</span>
+                </div>
+                <div class="cs-score-item">
+                    <span class="cs-score-num">69</span>
+                    <span class="cs-score-label">Mobile Performance</span>
+                </div>
+                <div class="cs-score-item">
+                    <span class="cs-score-num">100</span>
+                    <span class="cs-score-label">SEO Score</span>
+                </div>
+                <div class="cs-score-item">
+                    <span class="cs-score-num">92</span>
+                    <span class="cs-score-label">Accessibility</span>
+                </div>
+                <div class="cs-score-item">
+                    <span class="cs-score-num">6</span>
+                    <span class="cs-score-label">Schema Types</span>
+                </div>
+                <div class="cs-score-item">
+                    <span class="cs-score-num">Multi</span>
+                    <span class="cs-score-label">Page Scope</span>
+                </div>
+            </div>
+            <div style="display:flex; justify-content:center; padding-top:24px;">
+                <a href="https://pagespeed.web.dev/report?url=https%3A%2F%2Fsalspaintingrenovation.com%2F" target="_blank" rel="noopener" class="cs-btn-live" style="padding: 12px 24px; font-weight: 700; text-decoration: none;"><i class="fas fa-gauge-high"></i> Test This Page's Lighthouse Scores</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ SCOPE SNAPSHOT ══ -->
+    <section class="cs-overview" style="border-top: 1px solid rgba(100,255,218,0.1);">
+        <div class="container">
+            <p class="cs-section-label"><i class="fas fa-ruler-combined"></i> Scope Snapshot</p>
+            <h2 style="font-size: 1.8rem; margin-bottom: 16px;">Why This Sits in the $1,200 Range</h2>
+            <p style="max-width: 780px; margin-bottom: 24px;">This tier is priced lower because it focuses on a leaner web + SEO foundation and lower operational lift at launch, not because of weak quality.</p>
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px;">
+                <div style="background: rgba(100,255,218,0.06); border: 1px solid rgba(100,255,218,0.18); border-radius: 10px; padding: 16px;">
+                    <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.58); margin-bottom: 8px;">Operational Context</div>
+                    <div style="font-size: 1.5rem; font-weight: 800; color: #fff;">Lower launch overhead</div>
+                    <div style="font-size: 0.86rem; color: rgba(255,255,255,0.6); margin-top: 6px;">GBP already existed and was already optimized before this build</div>
+                </div>
+                <div style="background: rgba(100,255,218,0.06); border: 1px solid rgba(100,255,218,0.18); border-radius: 10px; padding: 16px;">
+                    <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.58); margin-bottom: 8px;">SEO Depth</div>
+                    <div style="font-size: 1.5rem; font-weight: 800; color: #fff;">Technical foundation</div>
+                    <div style="font-size: 0.86rem; color: rgba(255,255,255,0.6); margin-top: 6px;">GA4, Clarity, schema, and GSC verification</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); border: 1px dashed rgba(255,255,255,0.22); border-radius: 10px; padding: 16px;">
+                    <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.58); margin-bottom: 8px;">Project-Specific Driver</div>
+                    <div style="font-size: 1.5rem; font-weight: 800; color: #fff;">GBP already optimized</div>
+                    <div style="font-size: 0.86rem; color: rgba(255,255,255,0.6); margin-top: 6px;">Pre-existing GBP was already optimized here, unlike JNS which required net-new GBP setup and optimization.</div>
+                </div>
+                <div style="background: rgba(255,255,255,0.03); border: 1px dashed rgba(255,255,255,0.22); border-radius: 10px; padding: 16px;">
+                    <div style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; color: rgba(255,255,255,0.58); margin-bottom: 8px;">Business Ops Setup</div>
+                    <div style="font-size: 1.5rem; font-weight: 800; color: #fff;">No new line required</div>
+                    <div style="font-size: 0.86rem; color: rgba(255,255,255,0.6); margin-top: 6px;">No business phone line provisioning was needed for this rollout</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cs-overview" style="padding-top: 18px; border-top: 1px dashed rgba(255,255,255,0.14);">
+        <div class="container">
+            <p style="font-size: 0.86rem; color: rgba(255,255,255,0.62); margin: 0;">Snapshot notice: this case study reflects implementation status at the time this project was published. Clients may later add features from higher tiers, but the pricing context shown here maps to the original delivered scope and launch conditions.</p>
+        </div>
+    </section>
+
+    <!-- ══ GBP PROOF ══ -->
+    <div class="container">
+        <div class="cs-gbp-inline">
+            <div class="cs-gbp-glogo">G</div>
+            <div class="cs-gbp-info">
+                <h3>Sal's Painting &amp; Basic Renovations</h3>
+                <div class="cs-gbp-stars">★★★★★ <span>5.0 · 14 Google reviews</span></div>
+                <div class="cs-gbp-meta">Clearwater / Pinellas County, FL</div>
+            </div>
+            <a href="https://share.google/C3E6N060eqlRViF0x" target="_blank" rel="noopener" class="cs-gbp-link">
+                <i class="fas fa-arrow-up-right-from-square"></i> View on Google
+            </a>
+        </div>
+    </div>
+
+    <!-- ══ OVERVIEW / THE BUILD ══ -->
+    <section class="cs-overview" style="border-top: 1px solid rgba(100,255,218,0.1);">
+        <div class="container">
+            <div class="cs-overview-grid">
+                <div>
+                    <p class="cs-section-label"><i class="fas fa-wrench"></i> The Build</p>
+                    <h2>Full technical SEO foundation without automation overhead</h2>
+                    <div class="cs-tech-stack" aria-label="Tech stack">
+                        <span class="cs-tag">HTML5</span>
+                        <span class="cs-tag">CSS3</span>
+                        <span class="cs-tag">Vanilla JS</span>
+                        <span class="cs-tag">GA4 Analytics</span>
+                        <span class="cs-tag">Clarity Heatmaps</span>
+                        <span class="cs-tag">Google Search Console</span>
+                    </div>
+                    <p>The Search-Ready Starter bridges the gap between entry-level (Preview Launch Site) and full-service local builds (Local Launch Plus). It's built for contractors, painters, and service providers who want Google organic visibility — but don't yet need CRM integration, automated follow-up, or social media automation.</p>
+                    <p>Sal's Painting got a search-optimized website with service, gallery, FAQ, and contact content plus the core technical SEO plumbing: GA4 for conversion tracking, Clarity for user behavior, and Google Search Console verification, plus a brand identity package (cards, brochures, logo) to back up the web presence.</p>
+                    <p>The key differentiator from Preview Launch: this is about <strong>being found</strong> when someone searches "painter near me" or "interior painting [service area]." No shortcuts on analytics and no missed Search Console setup.</p>
+                    <p>Pre-existing Google Business Profile support was also improved with aligned schema and category optimization, giving the site and GBP a cohesive local identity without requiring from-scratch GBP creation.</p>
+                </div>
+                <div>
+                    <p class="cs-section-label"><i class="fas fa-list-check"></i> What Was Delivered</p>
+                    <ul class="cs-deliverables">
+                        <li><i class="fas fa-check-circle"></i> Custom domain registration and setup</li>
+                        <li><i class="fas fa-check-circle"></i> Search-optimized website architecture with conversion-focused service, gallery, about, contact, and FAQ content</li>
+                        <li><i class="fas fa-check-circle"></i> Service-focused sections (interior, exterior, drywall, accent walls, deck staining, renovations)</li>
+                        <li><i class="fas fa-check-circle"></i> LocalBusiness JSON-LD schema with service area and address</li>
+                        <li><i class="fas fa-check-circle"></i> FAQPage schema for rich snippets</li>
+                        <li><i class="fas fa-check-circle"></i> OfferCatalog and Offer schema layered into the homepage content</li>
+                        <li><i class="fas fa-check-circle"></i> Google Analytics 4 with custom configuration</li>
+                        <li><i class="fas fa-check-circle"></i> Microsoft Clarity heatmaps and session recording</li>
+                        <li><i class="fas fa-check-circle"></i> Google Search Console verification and sitemapsubmission</li>
+                        <li><i class="fas fa-check-circle"></i> Robots.txt and sitemap.xml optimization</li>
+                        <li><i class="fas fa-check-circle"></i> Service-area keyword targeting (towns, neighborhoods)</li>
+                        <li><i class="fas fa-check-circle"></i> Contact form with email routing</li>
+                        <li><i class="fas fa-check-circle"></i> Mobile-responsive design (mobile-first)</li>
+                        <li><i class="fas fa-check-circle"></i> Open Graph + Twitter Card meta on all pages</li>
+                        <li><i class="fas fa-check-circle"></i> Professional branding package (business cards, brochures, logo refinement)</li>
+                        <li><i class="fas fa-check-circle"></i> Pre-existing GBP integration and optimization</li>
+                    </ul>
+                    <p class="cs-section-label" style="margin-top:24px;"><i class="fas fa-info-circle"></i> What's Not Included</p>
+                    <ul class="cs-deliverables">
+                        <li><i class="fas fa-times-circle"></i> CRM or lead management system integration</li>
+                        <li><i class="fas fa-times-circle"></i> Automated email follow-up sequences</li>
+                        <li><i class="fas fa-times-circle"></i> Social media automation or posting</li>
+                        <li><i class="fas fa-times-circle"></i> Directory and citation registration (BizListUSA, MerchantCircle, etc.)</li>
+                        <li><i class="fas fa-times-circle"></i> Ongoing SEO maintenance or content updates</li>
+                        <li><i class="fas fa-times-circle"></i> Social media manager integration</li>
+                        <li><i class="fas fa-times-circle"></i> Paid ad setup (Google Ads, Facebook Ads)</li>
+                        <li><i class="fas fa-times-circle"></i> Bing Webmaster Tools setup and verification</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ TIER COMPARISON ══ -->
+    <section class="cs-overview">
+        <div class="container">
+            <p class="cs-section-label"><i class="fas fa-chart-bar"></i> How This Tier Differs</p>
+            <h2 style="font-size: 1.8rem; margin-bottom: 30px;">Search-Ready Starter vs Preview Launch vs Local Launch Plus</h2>
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px;">
+                <div style="background: rgba(100,255,218,0.05); border: 1px solid rgba(100,255,218,0.15); padding: 20px; border-radius: 6px;">
+                    <h3 style="color: #fff; margin-top: 0; margin-bottom: 12px;">Preview Launch ($500)</h3>
+                    <ul class="cs-deliverables" style="font-size: 0.9rem;">
+                        <li><i class="fas fa-check-circle"></i> Single page</li>
+                        <li><i class="fas fa-times-circle"></i> GitHub Pages (no domain)</li>
+                        <li><i class="fas fa-times-circle"></i> No Analytics</li>
+                        <li><i class="fas fa-times-circle"></i> Basic schema</li>
+                        <li><i class="fas fa-times-circle"></i> No GSC/Bing setup</li>
+                    </ul>
+                </div>
+                <div style="background: rgba(100,255,218,0.1); border: 1px solid rgba(100,255,218,0.3); padding: 20px; border-radius: 6px;">
+                    <h3 style="color: #fff; margin-top: 0; margin-bottom: 12px;">Search-Ready Starter (from $1,200) ✓ YOU ARE HERE</h3>
+                    <ul class="cs-deliverables" style="font-size: 0.9rem;">
+                        <li><i class="fas fa-check-circle"></i> Search-optimized web build</li>
+                        <li><i class="fas fa-check-circle"></i> Custom domain</li>
+                        <li><i class="fas fa-check-circle"></i> GA4 + Clarity</li>
+                        <li><i class="fas fa-check-circle"></i> Core technical SEO</li>
+                        <li><i class="fas fa-check-circle"></i> GSC verified</li>
+                        <li><i class="fas fa-times-circle"></i> No Bing setup</li>
+                        <li><i class="fas fa-times-circle"></i> No CRM</li>
+                        <li><i class="fas fa-times-circle"></i> No Automation</li>
+                    </ul>
+                </div>
+                <div style="background: rgba(100,255,218,0.05); border: 1px solid rgba(100,255,218,0.15); padding: 20px; border-radius: 6px;">
+                    <h3 style="color: #fff; margin-top: 0; margin-bottom: 12px;">Local Launch Plus ($2,997+)</h3>
+                    <ul class="cs-deliverables" style="font-size: 0.9rem;">
+                        <li><i class="fas fa-check-circle"></i> Everything in Starter</li>
+                        <li><i class="fas fa-check-circle"></i> 10+ dedicated pages</li>
+                        <li><i class="fas fa-check-circle"></i> GSC + Bing verified</li>
+                        <li><i class="fas fa-check-circle"></i> GBP setup + photos</li>
+                        <li><i class="fas fa-check-circle"></i> Business phone setup support</li>
+                        <li><i class="fas fa-check-circle"></i> Booking page</li>
+                        <li><i class="fas fa-check-circle"></i> Extended schema</li>
+                        <li><i class="fas fa-times-circle"></i> Still no CRM</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ RICH RESULTS ══ -->
+    <section class="cs-overview" style="background: linear-gradient(135deg, #0a0a0a 0%, #0f1724 100%); border-top: 1px solid rgba(100,255,218,0.1);">
+        <div class="container">
+            <p class="cs-section-label"><i class="fas fa-code"></i> Structured Data</p>
+            <h2 style="font-size: 1.8rem; margin-bottom: 16px;">Rich Results Validation</h2>
+            <p style="max-width: 760px;">Live Rich Results Test output for the homepage currently reports <strong>3 valid items</strong>: FAQ, Local businesses, and Organization. The cards below summarize what each one does for visibility and trust in search.</p>
+            <p style="margin: 10px 0 0; color: rgba(255,255,255,0.58); font-size: 0.88rem;">Live run status (2026-05-09): synced to a live Rich Results run from the authenticated shared browser session.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 14px; margin: 28px 0 22px;">
+                <div style="background: rgba(100,255,218,0.04); border: 1px solid rgba(100,255,218,0.10); border-radius: 10px; padding: 16px 18px; min-width: 220px;"><div style="font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 8px;">Valid Items (Live Test)</div><div style="font-size: 1.05rem; font-weight: 800; color: #fff;">3 detected</div></div>
+                <div style="background: rgba(100,255,218,0.04); border: 1px solid rgba(100,255,218,0.10); border-radius: 10px; padding: 16px 18px; min-width: 220px;"><div style="font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 8px;">Next Schema Pass</div><div style="font-size: 1.05rem; font-weight: 800; color: #fff;">Add BreadcrumbList</div></div>
+            </div>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px;">
+                <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fsalspaintingrenovation.com%2F" target="_blank" rel="noopener" class="cs-btn-live" style="padding: 12px 22px;"><i class="fas fa-arrow-up-right-from-square"></i> Run Live Rich Results Test</a>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px;">
+                <div style="background: rgba(100,255,218,0.04); border: 1px solid rgba(100,255,218,0.10); border-radius: 10px; padding: 16px 18px;"><div style="font-weight: 800; color: #fff; margin-bottom: 8px;">FAQ (1 valid item)</div><div style="font-size: 0.86rem; color: rgba(255,255,255,0.58);">Eligible FAQ content can help Sal occupy more SERP space and pre-answer homeowner objections before a click.</div></div>
+                <div style="background: rgba(100,255,218,0.04); border: 1px solid rgba(100,255,218,0.10); border-radius: 10px; padding: 16px 18px;"><div style="font-weight: 800; color: #fff; margin-bottom: 8px;">Local businesses (1 valid item)</div><div style="font-size: 0.86rem; color: rgba(255,255,255,0.58);">Strengthens local relevance signals around service area, location, and business identity for map and local-intent queries.</div></div>
+                <div style="background: rgba(100,255,218,0.04); border: 1px solid rgba(100,255,218,0.10); border-radius: 10px; padding: 16px 18px;"><div style="font-weight: 800; color: #fff; margin-bottom: 8px;">Organization (1 valid item)</div><div style="font-size: 0.86rem; color: rgba(255,255,255,0.58);">Reinforces brand/entity understanding so Google can better connect website, profile, and branded search behavior.</div></div>
+                <div style="background: rgba(100,255,218,0.04); border: 1px solid rgba(100,255,218,0.10); border-radius: 10px; padding: 16px 18px;"><div style="font-weight: 800; color: #fff; margin-bottom: 8px;">BreadcrumbList (next addition)</div><div style="font-size: 0.86rem; color: rgba(255,255,255,0.58);">Recommended next pass for cleaner URL paths in search results and stronger page-hierarchy context.</div></div>
+            </div>
+            <p style="margin-top: 18px; color: rgba(255,255,255,0.55); font-size: 0.9rem;">Source: Google Rich Results Test snapshot provided for https://salspaintingrenovation.com/ (crawled May 9, 2026).</p>
+        </div>
+    </section>
+
+    <!-- ══ CTA SECTION ══ -->
+    <section class="cs-cta-section">
+        <div class="container">
+            <h2 style="font-size: 2rem; margin-bottom: 12px; color: #fff;">Ready for Google Visibility?</h2>
+            <p>The Search-Ready Starter is perfect for service businesses ready to invest in organic lead generation without automation overhead.</p>
+            <a href="/contact" class="btn-primary">Get Your Quote</a>
+        </div>
+    </section>
+
+    <div id="footer-container"></div>
+
+    <script src="script.js?v=20260427"></script>
+</body>
+</html>
+
+

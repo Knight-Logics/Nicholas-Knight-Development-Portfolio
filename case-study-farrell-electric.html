@@ -1,0 +1,575 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Case study: Farrell Electric — Preview Launch Site by Knight Logics. Single-page electrician website on GitHub Pages with essential SEO and contact form.">
+    <meta name="author" content="Nicholas Knight">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Preview Launch Site Case Study: Farrell Electric | Knight Logics">
+    <meta property="og:description" content="Preview Launch Site · Single page · GitHub Pages · Essential contact conversion. How Knight Logics built Farrell Electric's entry-tier online presence.">
+    <meta property="og:url" content="https://knightlogics.com/case-study-farrell-electric">
+    <meta property="og:site_name" content="Knight Logics">
+    <meta property="og:image" content="https://knightlogics.com/images/KnightLogicsLogo2.png">
+    <meta property="og:image:width" content="1024">
+    <meta property="og:image:height" content="1024">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Preview Launch Site Case Study: Farrell Electric | Knight Logics">
+    <meta name="twitter:image" content="https://knightlogics.com/images/KnightLogicsLogo2.png">
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+    <link rel="canonical" href="https://knightlogics.com/case-study-farrell-electric">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VX36QR7HJW"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-VX36QR7HJW');</script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://knightlogics.com"},
+            {"@type": "ListItem", "position": 2, "name": "Custom Websites", "item": "https://knightlogics.com/service-websites"},
+            {"@type": "ListItem", "position": 3, "name": "Case Study: Farrell Electric", "item": "https://knightlogics.com/case-study-farrell-electric"}
+        ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": "Preview Launch Site Case Study — Farrell Electric",
+        "description": "How Knight Logics built Farrell Electric's entry-tier Preview Launch Site: single-page design on GitHub Pages with essential SEO meta, schema, and contact form.",
+        "url": "https://knightlogics.com/case-study-farrell-electric",
+        "datePublished": "2026-01-15",
+        "dateModified": "2026-05-09",
+        "author": {
+            "@type": "Person",
+            "name": "Nicholas Knight",
+            "url": "https://knightlogics.com"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Knight Logics",
+            "url": "https://knightlogics.com",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "https://knightlogics.com/images/KnightLogicsLogo2.png",
+                "width": 1024,
+                "height": 1024
+            }
+        },
+        "about": {
+            "@type": "Service",
+            "name": "Custom Website Design & Local SEO",
+            "provider": {
+                "@type": "Organization",
+                "name": "Knight Logics"
+            }
+        }
+    }
+    </script>
+
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" href="/images/KnightLogicsLogo2.png" sizes="1024x1024">
+    <link rel="apple-touch-icon" href="/images/KnightLogicsLogo2.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#6de1ff">
+    <link rel="stylesheet" href="style.css?v=20260428l">
+    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
+
+    <title>Preview Launch Site Case Study — Farrell Electric | Knight Logics</title>
+
+    <style>
+        /* ── Case Study Shared Layout ── */
+        .cs-hero {
+            position: relative;
+            min-height: 420px;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(rgba(0,0,0,0.82), rgba(0,0,0,0.82)), url('https://farrell-electric.github.io/farrell-electric-website/HeroImage.png') center/cover no-repeat;
+            overflow: hidden;
+            border-bottom: 1px solid rgba(100,255,218,0.1);
+        }
+        @media (max-width: 720px) {
+            .cs-hero { background: linear-gradient(rgba(0,0,0,0.82), rgba(0,0,0,0.82)), url('https://farrell-electric.github.io/farrell-electric-website/HeroImage.png') center/cover no-repeat; }
+        }
+        .cs-hero-inner {
+            position: relative;
+            z-index: 2;
+            padding: 100px 0 70px;
+            max-width: 820px;
+        }
+        .cs-breadcrumb {
+            display: flex;
+            gap: 8px;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            color: rgba(255,255,255,0.7);
+        }
+        .cs-breadcrumb a {
+            color: #64ffda;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .cs-breadcrumb a:hover { color: #fff; }
+        .cs-type-badge {
+            display: inline-block;
+            background: rgba(100,255,218,0.1);
+            border: 1px solid rgba(100,255,218,0.3);
+            color: #64ffda;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            margin-bottom: 12px;
+        }
+        .cs-hero h1 {
+            font-size: clamp(2rem, 8vw, 3.5rem);
+            line-height: 1.2;
+            color: #fff;
+            margin: 0 0 20px;
+            font-weight: 800;
+        }
+        .cs-hero h1 span { color: #64ffda; }
+        .cs-hero-sub {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.85);
+            margin: 0 0 30px;
+            max-width: 700px;
+        }
+        .cs-hero-actions {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .cs-btn-live, .cs-btn-back {
+            padding: 12px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 0.95rem;
+        }
+        .cs-btn-live {
+            background: #64ffda;
+            color: #000; /* Ensure readable contrast */
+        }
+        .cs-btn-live:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(100,255,218,0.3);
+        }
+        .cs-btn-back {
+            background: transparent;
+            color: #64ffda;
+            border: 1px solid #64ffda;
+        }
+        .cs-btn-back:hover {
+            background: rgba(100,255,218,0.1);
+        }
+        .cs-scores {
+            background: rgba(10,15,10,0.98);
+            border-bottom: 1px solid rgba(100,255,218,0.1);
+            padding: 28px 0;
+        }
+        .cs-scores-grid {
+            display: flex;
+            gap: 0;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .cs-score-item {
+            text-align: center;
+            padding: 12px 40px;
+            border-right: 1px solid rgba(255,255,255,0.08);
+        }
+        .cs-score-item:last-child { border-right: none; }
+        .cs-score-num {
+            display: block;
+            font-size: 2rem;
+            font-weight: 800;
+            color: #64ffda;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .cs-score-label {
+            font-size: 0.76rem;
+            color: rgba(255,255,255,0.5);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+        .cs-overview {
+            padding: 60px 0;
+            border-bottom: 1px solid rgba(100,255,218,0.1);
+        }
+        .cs-overview-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: start;
+        }
+        @media (max-width: 900px) {
+            .cs-overview-grid { grid-template-columns: 1fr; gap: 40px; }
+        }
+        .cs-overview h2 {
+            font-size: clamp(1.6rem, 4vw, 2.2rem);
+            line-height: 1.3;
+            margin-top: 12px;
+            margin-bottom: 24px;
+            color: #fff;
+        }
+        .cs-section-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #64ffda;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            margin-bottom: 12px;
+        }
+        .cs-tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+        .cs-tag {
+            display: inline-block;
+            background: rgba(100,255,218,0.1);
+            border: 1px solid rgba(100,255,218,0.3);
+            color: #64ffda;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .cs-overview p {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: rgba(255,255,255,0.75);
+            margin-bottom: 18px;
+        }
+        .cs-deliverables {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .cs-deliverables li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: rgba(255,255,255,0.75);
+        }
+        .cs-deliverables i {
+            color: #64ffda;
+            flex-shrink: 0;
+            margin-top: 3px;
+        }
+        .cs-gbp-inline {
+            background: rgba(100,255,218,0.05);
+            border: 1px solid rgba(100,255,218,0.15);
+            border-radius: 8px;
+            padding: 20px;
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            margin-top: 16px;
+        }
+        .cs-gbp-glogo {
+            width: 50px;
+            height: 50px;
+            background: #4285F4;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: bold;
+            flex-shrink: 0;
+        }
+        .cs-gbp-info {
+            flex: 1;
+        }
+        .cs-gbp-info h3 {
+            margin: 0 0 4px;
+            font-size: 1rem;
+            color: #fff;
+        }
+        .cs-gbp-stars {
+            font-size: 0.85rem;
+            color: #FFC107;
+            margin-bottom: 4px;
+        }
+        .cs-gbp-meta {
+            font-size: 0.85rem;
+            color: rgba(255,255,255,0.6);
+        }
+        .cs-gbp-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #64ffda;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        .cs-gbp-link:hover {
+            color: #fff;
+        }
+        .cs-cta-section {
+            background: rgba(100,255,218,0.03);
+            border-top: 1px solid rgba(100,255,218,0.1);
+            padding: 60px 0;
+            text-align: center;
+        }
+        .cs-cta-section p {
+            color: rgba(255,255,255,0.75);
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .btn-primary {
+            display: inline-block;
+            background: #64ffda;
+            color: #000;
+            padding: 14px 32px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(100,255,218,0.3);
+        }
+        .fade-in {
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+
+    <style>
+            .cs-btn-live, .cs-btn-test {
+        color: #000 !important; /* Black text for readability */
+      }
+            .cs-btn-live:hover, .cs-btn-test:hover {
+        color: #fff !important; /* White text on hover */
+      }
+            .cs-btn-back,
+            .cs-btn-back:visited,
+            .cs-btn-back:hover,
+            .cs-btn-back:focus,
+            .cs-btn-back i,
+            .cs-btn-back span {
+                color: #64ffda !important;
+                -webkit-text-fill-color: #64ffda !important;
+            }
+      [style*="background: #64ffda"] {
+        color: #000 !important; /* Black text for teal backgrounds */
+      }
+    </style>
+</head>
+<body>
+    <div id="header-container"></div>
+
+    <!-- ══ HERO ══ -->
+    <section class="cs-hero">
+        <div class="container">
+            <div class="cs-hero-inner fade-in">
+                <nav class="cs-breadcrumb" aria-label="Breadcrumb">
+                    <a href="/">Home</a>
+                    <span>/</span>
+                    <a href="/service-websites.html">Custom Websites</a>
+                    <span>/</span>
+                    <span>Farrell Electric</span>
+                </nav>
+                <div class="cs-type-badge"><i class="fas fa-rocket"></i> Preview Launch Site · $500</div>
+                <h1><span>Preview Launch Site — Farrell Electric</span></h1>
+                <p class="cs-hero-sub">A single-page electrician website launched on GitHub Pages with essential contact conversion, basic SEO meta, and a form-driven lead capture flow. No custom domain, no complex analytics setup — just a clean, functional online presence at entry-level scope and pricing.</p>
+                <div class="cs-hero-actions">
+                    <a href="https://farrell-electric.github.io/farrell-electric-website/" class="cs-btn-live" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i> View Live Site</a>
+                    <a href="/service-websites.html" class="cs-btn-back"><i class="fas fa-arrow-left"></i> All Case Studies</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ SCORE STRIP ══ -->
+    <div class="cs-scores">
+        <div class="container">
+            <div class="cs-scores-grid">
+                <div class="cs-score-item">
+                    <span class="cs-score-num">91</span>
+                    <span class="cs-score-label">Desktop Performance</span>
+                </div>
+                <div class="cs-score-item">
+                    <span class="cs-score-num">69</span>
+                    <span class="cs-score-label">Mobile Performance</span>
+                </div>
+                <div class="cs-score-item">
+                    <span class="cs-score-num">100</span>
+                    <span class="cs-score-label">SEO Score</span>
+                </div>
+                <div class="cs-score-item">
+                    <span class="cs-score-num">100</span>
+                    <span class="cs-score-label">Accessibility</span>
+                </div>
+                <div class="cs-score-item">
+                    <span class="cs-score-num">1</span>
+                    <span class="cs-score-label">Schema Types</span>
+                </div>
+                <div class="cs-score-item">
+                    <span class="cs-score-num">1</span>
+                    <span class="cs-score-label">Pages Built</span>
+                </div>
+            </div>
+            <div style="display:flex; justify-content:center; padding-top:24px;">
+                <a href="https://pagespeed.web.dev/report?url=https%3A%2F%2Ffarrell-electric.github.io%2Ffarrell-electric-website%2F" target="_blank" rel="noopener" class="cs-btn-live" style="padding: 12px 24px; font-weight: 700; text-decoration: none;"><i class="fas fa-gauge-high"></i> Test This Page's Lighthouse Scores</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ GBP PROOF PLACEHOLDER ══ -->
+    <div class="container">
+        <div class="cs-gbp-inline">
+            <div class="cs-gbp-glogo">G</div>
+            <div class="cs-gbp-info">
+                <h3>Farrell Electric</h3>
+                <div class="cs-gbp-stars">Pending <span>Google Business Profile placeholder for this tier</span></div>
+                <div class="cs-gbp-meta">Preview Launch Site does not include full GBP setup by default</div>
+            </div>
+            <span class="cs-gbp-link"><i class="fas fa-clock"></i> Placeholder</span>
+        </div>
+    </div>
+
+    <!-- ══ OVERVIEW / THE BUILD ══ -->
+    <section class="cs-overview">
+        <div class="container">
+            <div class="cs-overview-grid">
+                <div>
+                    <p class="cs-section-label"><i class="fas fa-wrench"></i> The Build</p>
+                    <h2>Single-page entry-tier electrician site on GitHub Pages</h2>
+                    <div class="cs-tech-stack" aria-label="Tech stack">
+                        <span class="cs-tag">HTML5</span>
+                        <span class="cs-tag">CSS3</span>
+                        <span class="cs-tag">Vanilla JS</span>
+                        <span class="cs-tag">GitHub Pages</span>
+                        <span class="cs-tag">Schema Markup</span>
+                    </div>
+                    <p>The Preview Launch Site is purpose-built for businesses that need an immediate online presence without the scope (or budget) of a multi-page, analytics-rich build. It answers the question: "How can we get online this week?"</p>
+                    <p>Farrell Electric needed a way for potential customers to find contact details, see service offerings, and submit inquiries — all without a custom domain or complex backend. The entire site is a single custom-coded page deployed on free GitHub Pages hosting.</p>
+                    <p>This tier skips analytics, skips the multi-page architecture, skips the directory registration foundation, and focuses entirely on conversion: clear value prop, services listed, work photos, and a contact form. It's not designed for long-term SEO dominance; it's designed for immediate lead capture.</p>
+                    <p>At $500, the Preview Launch Site represents the absolute minimum entry point into custom-coded, professional online presence. It's ideal for sole proprietors, new service businesses, and contractors testing the market before investing in a fuller local SEO buildout.</p>
+                </div>
+                <div>
+                    <p class="cs-section-label"><i class="fas fa-list-check"></i> What Was Delivered</p>
+                    <ul class="cs-deliverables">
+                        <li><i class="fas fa-check-circle"></i> Single custom HTML page with responsive design</li>
+                        <li><i class="fas fa-check-circle"></i> HTML5 semantic markup for accessibility</li>
+                        <li><i class="fas fa-check-circle"></i> Basic SEO meta tags (title, description, OG, Twitter Card)</li>
+                        <li><i class="fas fa-check-circle"></i> Electrician schema (JSON-LD) for service type identification</li>
+                        <li><i class="fas fa-check-circle"></i> Contact form with email routing</li>
+                        <li><i class="fas fa-check-circle"></i> Services section with clear offerings</li>
+                        <li><i class="fas fa-check-circle"></i> Work/portfolio gallery showing completed projects</li>
+                        <li><i class="fas fa-check-circle"></i> Service area and geographic coverage</li>
+                        <li><i class="fas fa-check-circle"></i> About section for trust and credibility</li>
+                        <li><i class="fas fa-check-circle"></i> Hamburger navigation for mobile</li>
+                        <li><i class="fas fa-check-circle"></i> Mobile-responsive layout (no desktop-only design)</li>
+                        <li><i class="fas fa-check-circle"></i> Deployed on free GitHub Pages hosting</li>
+                    </ul>
+                    <p class="cs-section-label" style="margin-top:24px;"><i class="fas fa-info-circle"></i> What's Not Included</p>
+                    <ul class="cs-deliverables">
+                        <li><i class="fas fa-times-circle"></i> Custom domain (hosted on GitHub Pages URL)</li>
+                        <li><i class="fas fa-times-circle"></i> Google Analytics or Microsoft Clarity</li>
+                        <li><i class="fas fa-times-circle"></i> Google Business Profile setup</li>
+                        <li><i class="fas fa-times-circle"></i> Multi-page architecture (services pages, blog, etc.)</li>
+                        <li><i class="fas fa-times-circle"></i> Advanced SEO foundation (keywords, local indexing focus)</li>
+                        <li><i class="fas fa-times-circle"></i> Directory registration or citation work</li>
+                        <li><i class="fas fa-times-circle"></i> Bing Webmaster setup</li>
+                        <li><i class="fas fa-times-circle"></i> Local-specific service pages</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ══ WHEN TO CHOOSE THIS TIER ══ -->
+    <section class="cs-overview" style="border-top: 1px solid rgba(100,255,218,0.1); border-bottom: 1px solid rgba(100,255,218,0.1);">
+        <div class="container">
+            <p class="cs-section-label"><i class="fas fa-lightbulb"></i> Ideal For</p>
+            <h2 style="font-size: 1.6rem; margin-bottom: 20px;">Preview Launch Site is Right When:</h2>
+            <ul class="cs-deliverables" style="grid-column: 1;">
+                <li><i class="fas fa-check-circle"></i> You need to go online <strong>this week</strong>, not this quarter</li>
+                <li><i class="fas fa-check-circle"></i> Your business is new and you want to test market demand before heavy investment</li>
+                <li><i class="fas fa-check-circle"></i> You're a sole proprietor or small team with limited upfront budget</li>
+                <li><i class="fas fa-check-circle"></i> You want a professional online presence but don't need SEO optimization yet</li>
+                <li><i class="fas fa-check-circle"></i> Most of your lead flow comes from word-of-mouth or direct referrals</li>
+                <li><i class="fas fa-check-circle"></i> You'd rather start simple and upgrade to a fuller SEO build later</li>
+            </ul>
+            <p style="margin-top: 20px; color: rgba(255,255,255,0.75);"><strong>Next step:</strong> Once you need a custom domain, Google visibility, multi-page architecture, and local search optimization, the <strong><a href="/service-websites.html" style="color: #64ffda;">Search Foundation Site ($1,200)</a></strong> or <strong><a href="/pricing.html" style="color: #64ffda;">Local Launch Plus ($2,997+)</a></strong> packages add that foundation.</p>
+        </div>
+    </section>
+
+    <!-- ══ RICH RESULTS ══ -->
+    <section class="cs-overview" style="background: linear-gradient(135deg, #0a0a0a 0%, #0f1724 100%); border-top: 1px solid rgba(100,255,218,0.1);">
+        <div class="container">
+            <p class="cs-section-label"><i class="fas fa-code"></i> Structured Data</p>
+            <h2 style="font-size: 1.8rem; margin-bottom: 16px;">Rich Results Validation</h2>
+            <p style="max-width: 760px;">Latest live Rich Results output for the homepage reports <strong>2 valid items</strong>: Local businesses and Organization. This is accurate for an entry-tier preview build and shows Google can parse core business identity markup.</p>
+            <p style="margin: 10px 0 0; color: rgba(255,255,255,0.58); font-size: 0.88rem;">Live run status (2026-05-09): synced to a live Rich Results run from the authenticated shared browser session.</p>
+            <div style="display: flex; flex-wrap: wrap; gap: 14px; margin: 28px 0 22px;">
+                <div style="background: rgba(100,255,218,0.04); border: 1px solid rgba(100,255,218,0.10); border-radius: 10px; padding: 16px 18px; min-width: 220px;"><div style="font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 8px;">Valid Items (Live Test)</div><div style="font-size: 1.05rem; font-weight: 800; color: #fff;">2 detected</div></div>
+                <div style="background: rgba(100,255,218,0.04); border: 1px solid rgba(100,255,218,0.10); border-radius: 10px; padding: 16px 18px; min-width: 220px;"><div style="font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 8px;">Next Schema Pass</div><div style="font-size: 1.05rem; font-weight: 800; color: #fff;">Add BreadcrumbList</div></div>
+            </div>
+            <div style="display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 24px;">
+                <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Ffarrell-electric.github.io%2Ffarrell-electric-website%2F" target="_blank" rel="noopener" class="cs-btn-live" style="padding: 12px 22px;"><i class="fas fa-arrow-up-right-from-square"></i> Run Live Rich Results Test</a>
+            </div>
+            <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; max-width: 900px;">
+                <div style="background: rgba(100,255,218,0.04); border: 1px solid rgba(100,255,218,0.10); border-radius: 10px; padding: 16px 18px;"><div style="font-weight: 800; color: #fff; margin-bottom: 8px;">Local businesses (1 valid item)</div><div style="font-size: 0.86rem; color: rgba(255,255,255,0.58);">Confirms core local business context so Google can map service area intent to the business homepage.</div></div>
+                <div style="background: rgba(100,255,218,0.04); border: 1px solid rgba(100,255,218,0.10); border-radius: 10px; padding: 16px 18px;"><div style="font-weight: 800; color: #fff; margin-bottom: 8px;">Organization (1 valid item)</div><div style="font-size: 0.86rem; color: rgba(255,255,255,0.58);">Reinforces brand/entity identity and helps Google connect site signals to the company profile.</div></div>
+                <div style="background: rgba(100,255,218,0.04); border: 1px solid rgba(100,255,218,0.10); border-radius: 10px; padding: 16px 18px;"><div style="font-weight: 800; color: #fff; margin-bottom: 8px;">BreadcrumbList (next addition)</div><div style="font-size: 0.86rem; color: rgba(255,255,255,0.58);">Recommended next schema layer so search results can show cleaner navigation paths instead of raw URLs.</div></div>
+            </div>
+            <p style="margin-top: 18px; color: rgba(255,255,255,0.55); font-size: 0.9rem;">Source: live Rich Results run for https://farrell-electric.github.io/farrell-electric-website/ (result id: iRQxF5gN1ZJS0YBUm5kR2A).</p>
+        </div>
+    </section>
+
+    <!-- ══ CTA SECTION ══ -->
+    <section class="cs-cta-section">
+        <div class="container">
+            <h2 style="font-size: 2rem; margin-bottom: 12px; color: #fff;">Ready to Launch Your Site?</h2>
+            <p>Every project starts with a conversation. Let's discuss your goals, timeline, and budget.</p>
+            <a href="/contact" class="btn-primary">Start Your Project</a>
+        </div>
+    </section>
+
+    <div id="footer-container"></div>
+
+    <script src="script.js?v=20260427"></script>
+</body>
+</html>
+
+

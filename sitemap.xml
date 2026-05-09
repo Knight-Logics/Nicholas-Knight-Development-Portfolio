@@ -55,6 +55,18 @@
 
   <!-- Case Studies -->
   <url>
+    <loc>https://knightlogics.com/case-study-farrell-electric</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://knightlogics.com/case-study-sals-painting</loc>
+    <lastmod>2026-05-09</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://knightlogics.com/case-study-jns</loc>
     <lastmod>2026-05-09</lastmod>
     <changefreq>monthly</changefreq>
@@ -74,23 +86,15 @@
   </url>
   <url>
     <loc>https://knightlogics.com/case-study-screen-team</loc>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://knightlogics.com/case-study-moms-resin-tables</loc>
-    <lastmod>2026-05-06</lastmod>
+    <lastmod>2026-05-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
-  </url>
-
-  <!-- Projects -->
-  <url>
-    <loc>https://knightlogics.com/projects</loc>
-    <lastmod>2026-04-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
   </url>
 
   <!-- Product Pages -->

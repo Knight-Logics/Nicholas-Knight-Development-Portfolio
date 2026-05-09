@@ -213,7 +213,7 @@
     </script>
 
     <link rel="canonical" href="https://knightlogics.com/service-websites">
-    <link rel="preload" as="image" href="./images/code hero.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="./images/websitehero.png" fetchpriority="high">
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
     <link rel="shortcut icon" href="/favicon.ico">
     <link rel="icon" type="image/png" href="/images/KnightLogicsLogo2.png" sizes="1024x1024">
@@ -246,14 +246,14 @@
             min-height: 520px;
             display: flex;
             align-items: center;
-            background: url('./images/code hero.webp') center/cover no-repeat;
+            background: url('./images/websitehero.png') center/cover no-repeat;
             overflow: hidden;
         }
         .svc-hero::before {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(10,10,10,0.90) 0%, rgba(10,10,10,0.60) 100%);
+            background: linear-gradient(135deg, rgba(10,10,10,0.94) 0%, rgba(10,10,10,0.72) 100%);
             z-index: 1;
         }
         .svc-hero-inner {
@@ -402,10 +402,29 @@
             box-shadow: 0 20px 50px rgba(0,0,0,0.35);
         }
         .svc-work-thumb {
+            position: relative;
             width: 100%;
             aspect-ratio: 16/9;
             overflow: hidden;
             background: #111;
+        }
+        .svc-work-price {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            z-index: 10;
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 14px;
+            border-radius: 999px;
+              background: linear-gradient(135deg, rgba(100,255,218,0.98), rgba(126,255,229,0.96));
+              border: 1px solid rgba(255,255,255,0.6);
+              color: #04110e;
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 0.03em;
+              box-shadow: 0 10px 24px rgba(0,0,0,0.32);
+              text-shadow: none;
         }
         .svc-work-thumb img {
             width: 100%;
@@ -462,6 +481,12 @@
             color: rgba(255,255,255,0.7);
             line-height: 1.55;
             margin: 0 0 12px;
+        }
+        .svc-work-client {
+            font-size: 0.86rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.74);
+            margin: 0 0 10px;
         }
         .svc-work-cta {
             font-size: 0.8rem;
@@ -893,7 +918,7 @@
     </div>
 
     <!-- ══ FEATURES / DELIVERABLES ══ -->
-    <section class="svc-features">
+    <section class="svc-features" style="display:none;">
         <div class="container">
             <div class="section-header fade-in">
                 <h2>What's Included</h2>
@@ -938,105 +963,141 @@
     <section class="svc-work" id="website-proof">
         <div class="container">
             <div class="section-header fade-in">
-                <h2>Real Work, Real Results</h2>
-                <p>These are production websites — not mock-ups. Every project is deployed, indexed by Google, and built to perform.</p>
+                <h2>Website Work You Can Check</h2>
+                <p>Live sites built for real businesses and product brands — with local SEO, conversion structure, and clean technical foundations baked in from the start.</p>
             </div>
             <div class="svc-work-grid svc-work-grid--3">
-                <a class="svc-work-card fade-in" href="/case-study-screen-team">
+                <a class="svc-work-card fade-in" href="/case-study-farrell-electric.html">
                     <div class="svc-work-thumb">
-                        <img src="https://screenteamllc.com/Images/ScreenTeamBanner.png" alt="ScreenTeamLLC.com local lead-generation website case study" loading="lazy">
+                        <img src="https://farrell-electric.github.io/farrell-electric-website/HeroImage.png" alt="Farrell Electric starter website example" loading="lazy">
+                        <span class="svc-work-price">$500</span>
                     </div>
                     <div class="svc-work-copy">
-                        <p class="svc-work-label">Client Website</p>
-                        <h3>ScreenTeamLLC.com</h3>
-                        <p>Service-focused local site with direct-call flows, trust pages, and schema-first local SEO structure.</p>
+                        <p class="svc-work-label">Starter Example</p>
+                        <h3>Preview Launch Site</h3>
+                        <p class="svc-work-client">Farrell Electric</p>
+                        <p>Single-page proof-of-concept build focused on credibility, service clarity, and a direct call-first conversion path.</p>
                         <span class="svc-work-cta">View Case Study <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </a>
 
-                <a class="svc-work-card fade-in" href="/case-study-moms-resin-tables">
+                <a class="svc-work-card fade-in" href="/case-study-sals-painting.html">
                     <div class="svc-work-thumb">
-                        <img src="https://momsresintables.com/assets/images/picwish_8813969001_image1.webp" alt="MomsResinTables.com e-commerce case study" loading="lazy">
+                        <img src="https://salspaintingrenovation.com/SalsHeroImage.png" alt="Sal's Painting website example" loading="lazy">
+                        <span class="svc-work-price">from $1,200</span>
                     </div>
                     <div class="svc-work-copy">
-                        <p class="svc-work-label">E-Commerce Build</p>
-                        <h3>Mom's Resin Tables</h3>
-                        <p>Premium product-brand site with custom quote flow, trust pages, and e-commerce-ready presentation.</p>
+                        <p class="svc-work-label">Live Client</p>
+                        <h3>Search-Ready Starter</h3>
+                        <p class="svc-work-client">Sal's Painting &amp; Basic Renovations</p>
+                        <p>Live-domain starter with LocalBusiness and FAQ schema, analytics, and estimate-first conversion without a heavy multi-page scope.</p>
                         <span class="svc-work-cta">View Case Study <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </a>
 
-                <a class="svc-work-card fade-in" href="/case-study-jns">
+                <a class="svc-work-card fade-in" href="/case-study-moms-resin-tables.html">
                     <div class="svc-work-thumb">
-                        <img src="./images/JNS%20-%20HomeImage.png" alt="JNSBuilds.com construction website — Tampa Bay web design by Knight Logics" loading="lazy">
+                        <img src="https://momsresintables.com/assets/images/picwish_8813969001_image1.webp" alt="Mom's Resin Tables e-commerce showcase" loading="lazy">
+                        <span class="svc-work-price">from $2,497</span>
                     </div>
                     <div class="svc-work-copy">
-                        <p class="svc-work-label">Client Website</p>
-                        <h3>JNSBuilds.com</h3>
-                        <p>11-page construction site. 99 Desktop Performance · 100 SEO · FAQPage + LocalBusiness schema · Deployed on GitHub Pages.</p>
+                        <p class="svc-work-label">Live Client</p>
+                        <h3>E-Commerce Launch</h3>
+                        <p class="svc-work-client">Mom's Resin Tables</p>
+                        <p>Catalog, product pages, cart and Stripe checkout, custom builder, commissions flow, and policy pages for a real product brand.</p>
                         <span class="svc-work-cta">View Case Study <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </a>
 
-                <a class="svc-work-card fade-in" href="/case-study-knight-group">
+                <a class="svc-work-card fade-in" href="/case-study-jns.html">
                     <div class="svc-work-thumb">
-                        <img src="./images/KnightGroup%20-%20HomeImage.png" alt="KnightGroup.com handyman business website — custom web design by Knight Logics" loading="lazy">
+                        <img src="./images/JNS%20-%20HomeImage.png" alt="JNS Construction website case study" loading="lazy">
+                        <span class="svc-work-price">from $2,997</span>
                     </div>
                     <div class="svc-work-copy">
-                        <p class="svc-work-label">Co-Owned Business</p>
-                        <h3>KnightGroup.com</h3>
-                        <p>Multi-page handyman business site. 96 Performance · 100 Accessibility · 100 SEO · BreadcrumbList + LocalBusiness schema.</p>
+                        <p class="svc-work-label">Live Client</p>
+                        <h3>Local Launch Plus</h3>
+                        <p class="svc-work-client">JNS Construction</p>
+                        <p>11-page contractor build with service architecture, form routing, analytics, FAQ schema, and strong local-search launch depth.</p>
                         <span class="svc-work-cta">View Case Study <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </a>
 
-                <a class="svc-work-card fade-in" href="/case-study-knight-logics">
+                <a class="svc-work-card fade-in" href="/case-study-knight-group.html">
                     <div class="svc-work-thumb">
-                        <img src="./images/KnightLogics-HomeImage.png" alt="KnightLogics.com portfolio website — Tampa Bay web designer showcase" loading="lazy">
+                        <picture>
+                            <source media="(max-width: 768px)" srcset="https://www.knightgroup.com/Images/KGHero-mobile.webp">
+                            <img src="https://www.knightgroup.com/Images/KGHero.webp" alt="Knight Group website case study" loading="lazy">
+                        </picture>
+                        <span class="svc-work-price">custom from $3,500</span>
                     </div>
                     <div class="svc-work-copy">
-                        <p class="svc-work-label">Portfolio Website</p>
-                        <h3>KnightLogics.com</h3>
-                        <p>This site. 95 Desktop Performance · 100 Accessibility · 100 SEO · Dynamic architecture · GA4 + Search Console verified.</p>
+                        <p class="svc-work-label">Live Client</p>
+                        <h3>Growth System</h3>
+                        <p class="svc-work-client">Knight Group</p>
+                        <p>Public site, booking flow, local SEO, CRM support, follow-up systems, and a broader automated growth stack behind the business.</p>
+                        <span class="svc-work-cta">View Case Study <i class="fas fa-arrow-right"></i></span>
+                    </div>
+                </a>
+
+                <a class="svc-work-card fade-in" href="/case-study-screen-team.html">
+                    <div class="svc-work-thumb">
+                        <img src="https://screenteamllc.com/Images/ScreenTeamBanner.png" alt="The Screen Team LLC website showcase" loading="lazy">
+                        <span class="svc-work-price">custom from $3,500</span>
+                    </div>
+                    <div class="svc-work-copy">
+                        <p class="svc-work-label">Live Client</p>
+                        <h3>Growth System</h3>
+                        <p class="svc-work-client">The Screen Team LLC</p>
+                        <p>Deep service-page coverage, quote forms, service-area SEO, and the supporting ops layer required to keep local lead flow moving.</p>
                         <span class="svc-work-cta">View Case Study <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </a>
             </div>
-        </div>
-    </section>
 
-    <!-- ══ PROCESS ══ -->
-    <section class="svc-process">
-        <div class="container">
-            <div class="section-header fade-in">
-                <h2>How It Works</h2>
-                <p>A clear, collaborative process from first call to live site — no surprises, no endless revision cycles.</p>
-            </div>
-            <div class="svc-process-steps fade-in">
-                <div class="svc-step">
-                    <div class="svc-step-num">1</div>
-                    <h3>Discovery</h3>
-                    <p>We discuss goals, competitors, target keywords, and design direction. No charge for the initial consultation.</p>
-                </div>
-                <div class="svc-step">
-                    <div class="svc-step-num">2</div>
-                    <h3>Design &amp; Content</h3>
-                    <p>Wireframes, color direction, and copy outline reviewed together before a single line of code is written.</p>
-                </div>
-                <div class="svc-step">
-                    <div class="svc-step-num">3</div>
-                    <h3>Development</h3>
-                    <p>Custom HTML, CSS, and JavaScript built to spec. Mobile-first and performance-optimized from the start.</p>
-                </div>
-                <div class="svc-step">
-                    <div class="svc-step-num">4</div>
-                    <h3>SEO &amp; QA</h3>
-                    <p>Schema markup, metadata, canonical tags, PageSpeed benchmarking, and cross-browser testing before launch.</p>
-                </div>
-                <div class="svc-step">
-                    <div class="svc-step-num">5</div>
-                    <h3>Launch &amp; Handoff</h3>
-                    <p>Deployment, Search Console submission, GA4 verification, and full documentation of everything built.</p>
+            <!-- Upgrade ladder -->
+            <div class="svc-pricing-ladder fade-in">
+                <h3>The upgrade path — start anywhere</h3>
+                <div class="svc-pricing-ladder-steps">
+                    <div class="svc-ladder-step">
+                        <span class="svc-ladder-label">Preview only</span>
+                        <span class="svc-ladder-price">$500</span>
+                    </div>
+                    <div class="svc-ladder-arrow">→</div>
+                    <div class="svc-ladder-step">
+                        <span class="svc-ladder-label">Essential launch</span>
+                        <span class="svc-ladder-price">$700</span>
+                    </div>
+                    <div class="svc-ladder-arrow">→</div>
+                    <div class="svc-ladder-step">
+                        <span class="svc-ladder-label">Launch plus</span>
+                        <span class="svc-ladder-price">$850</span>
+                    </div>
+                    <div class="svc-ladder-arrow">→</div>
+                    <div class="svc-ladder-step">
+                        <span class="svc-ladder-label">Search foundation</span>
+                        <span class="svc-ladder-price">$1,200+</span>
+                    </div>
+                    <div class="svc-ladder-arrow">→</div>
+                    <div class="svc-ladder-step">
+                        <span class="svc-ladder-label">Local launch</span>
+                        <span class="svc-ladder-price">$1,997</span>
+                    </div>
+                    <div class="svc-ladder-arrow">→</div>
+                    <div class="svc-ladder-step">
+                        <span class="svc-ladder-label">Local launch plus</span>
+                        <span class="svc-ladder-price">$2,997+</span>
+                    </div>
+                    <div class="svc-ladder-arrow">→</div>
+                    <div class="svc-ladder-step">
+                        <span class="svc-ladder-label">E-commerce</span>
+                        <span class="svc-ladder-price">$2,497+</span>
+                    </div>
+                    <div class="svc-ladder-arrow">→</div>
+                    <div class="svc-ladder-step">
+                        <span class="svc-ladder-label">Growth system</span>
+                        <span class="svc-ladder-price">$3,500+</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1446,52 +1507,6 @@
 
             </div><!-- /svc-pricing-grid--3 -->
 
-            <!-- Upgrade ladder -->
-            <div class="svc-pricing-ladder fade-in">
-                <h3>The upgrade path — start anywhere</h3>
-                <div class="svc-pricing-ladder-steps">
-                    <div class="svc-ladder-step">
-                        <span class="svc-ladder-label">Preview only</span>
-                        <span class="svc-ladder-price">$500</span>
-                    </div>
-                    <div class="svc-ladder-arrow">→</div>
-                    <div class="svc-ladder-step">
-                        <span class="svc-ladder-label">Essential launch</span>
-                        <span class="svc-ladder-price">$700</span>
-                    </div>
-                    <div class="svc-ladder-arrow">→</div>
-                    <div class="svc-ladder-step">
-                        <span class="svc-ladder-label">Launch plus</span>
-                        <span class="svc-ladder-price">$850</span>
-                    </div>
-                    <div class="svc-ladder-arrow">→</div>
-                    <div class="svc-ladder-step">
-                        <span class="svc-ladder-label">Search foundation</span>
-                        <span class="svc-ladder-price">$1,200+</span>
-                    </div>
-                    <div class="svc-ladder-arrow">→</div>
-                    <div class="svc-ladder-step">
-                        <span class="svc-ladder-label">Local launch</span>
-                        <span class="svc-ladder-price">$1,997</span>
-                    </div>
-                    <div class="svc-ladder-arrow">→</div>
-                    <div class="svc-ladder-step">
-                        <span class="svc-ladder-label">Local launch plus</span>
-                        <span class="svc-ladder-price">$2,997+</span>
-                    </div>
-                    <div class="svc-ladder-arrow">→</div>
-                    <div class="svc-ladder-step">
-                        <span class="svc-ladder-label">E-commerce</span>
-                        <span class="svc-ladder-price">$2,497+</span>
-                    </div>
-                    <div class="svc-ladder-arrow">→</div>
-                    <div class="svc-ladder-step">
-                        <span class="svc-ladder-label">Growth system</span>
-                        <span class="svc-ladder-price">$3,500+</span>
-                    </div>
-                </div>
-            </div>
-
             <!-- E-Commerce Package -->
             <div class="svc-pricing-monthly-header fade-in">
                 <h3>E-Commerce Launch</h3>
@@ -1701,10 +1716,47 @@
             <!-- Link to full pricing page -->
             <div style="text-align:center;margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.08);">
                 <p style="color:var(--text-secondary);font-size:0.95rem;margin-bottom:1.2rem;">Looking for e-commerce, CRM &amp; job records, contractor documents, citations, monthly plans, or the performance partner option?</p>
-                <a href="/pricing" class="cta-button primary" style="display:inline-block;margin-right:1rem;">View Full Pricing &amp; Add-Ons →</a>
+                <a href="/pricing.html" class="cta-button primary" style="display:inline-block;margin-right:1rem;">View Full Pricing &amp; Add-Ons →</a>
                 <a href="/contact" class="cta-button secondary" style="display:inline-block;">Get a Free Audit</a>
             </div>
 
+        </div>
+    </section>
+
+    <!-- ══ PROCESS ══ -->
+    <section class="svc-process">
+        <div class="container">
+            <div class="section-header fade-in">
+                <h2>How It Works</h2>
+                <p>A clear, collaborative process from first call to live site — no surprises, no endless revision cycles.</p>
+            </div>
+            <div class="svc-process-steps fade-in">
+                <div class="svc-step">
+                    <div class="svc-step-num">1</div>
+                    <h3>Discovery</h3>
+                    <p>We discuss goals, competitors, target keywords, and design direction. No charge for the initial consultation.</p>
+                </div>
+                <div class="svc-step">
+                    <div class="svc-step-num">2</div>
+                    <h3>Design &amp; Content</h3>
+                    <p>Wireframes, color direction, and copy outline reviewed together before a single line of code is written.</p>
+                </div>
+                <div class="svc-step">
+                    <div class="svc-step-num">3</div>
+                    <h3>Development</h3>
+                    <p>Custom HTML, CSS, and JavaScript built to spec. Mobile-first and performance-optimized from the start.</p>
+                </div>
+                <div class="svc-step">
+                    <div class="svc-step-num">4</div>
+                    <h3>SEO &amp; QA</h3>
+                    <p>Schema markup, metadata, canonical tags, PageSpeed benchmarking, and cross-browser testing before launch.</p>
+                </div>
+                <div class="svc-step">
+                    <div class="svc-step-num">5</div>
+                    <h3>Launch &amp; Handoff</h3>
+                    <p>Deployment, Search Console submission, GA4 verification, and full documentation of everything built.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -1769,3 +1821,4 @@
     <script src="script.js?v=20260509a"></script>
 </body>
 </html>
+

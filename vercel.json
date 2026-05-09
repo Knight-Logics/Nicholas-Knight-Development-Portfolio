@@ -11,10 +11,6 @@
       "destination": "/pricing.html"
     },
     {
-      "source": "/about",
-      "destination": "/about.html"
-    },
-    {
       "source": "/contact",
       "destination": "/contact.html"
     },
@@ -51,8 +47,20 @@
       "destination": "/case-study-knight-logics.html"
     },
     {
-      "source": "/projects",
-      "destination": "/projects.html"
+      "source": "/case-study-farrell-electric",
+      "destination": "/case-study-farrell-electric.html"
+    },
+    {
+      "source": "/case-study-sals-painting",
+      "destination": "/case-study-sals-painting.html"
+    },
+    {
+      "source": "/case-study-moms-resin-tables",
+      "destination": "/case-study-moms-resin-tables.html"
+    },
+    {
+      "source": "/case-study-screen-team",
+      "destination": "/case-study-screen-team.html"
     },
     {
       "source": "/display-control-plus",
@@ -92,6 +100,44 @@
     }
   ],
   "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        {
+          "key": "Cache-Control",
+          "value": "no-store, max-age=0"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), usb=(), payment=()"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=31536000; includeSubDomains"
+        },
+        {
+          "key": "Cross-Origin-Opener-Policy",
+          "value": "same-origin-allow-popups"
+        }
+      ]
+    },
     {
       "source": "/images/(.*)",
       "headers": [

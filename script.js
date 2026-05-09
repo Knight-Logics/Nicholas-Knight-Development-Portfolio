@@ -113,26 +113,46 @@ function initAnchorNavigation() {
 // Dynamic Header and Footer Loading — parallel fetches to minimise round-trips
 async function loadHeaderFooter() {
     try {
-        const headerUrl = new URL('/header.html?v=20260509a', window.location.origin);
-        const footerUrl = new URL('/footer.html?v=20260509a', window.location.origin);
+        const tryFetch = async (urls) => {
+            for (const url of urls) {
+                try {
+                    const res = await fetch(url, { cache: 'no-store' });
+                    if (res.ok) {
+                        return await res.text();
+                    }
+                } catch (err) {
+                    console.warn('Partial fetch error for', url.toString(), err);
+                }
+            }
+            return null;
+        };
 
-        const [headerResponse, footerResponse] = await Promise.all([
-            fetch(headerUrl),
-            fetch(footerUrl)
+        const headerCandidates = [
+            new URL('/header.html?v=20260509a', window.location.origin),
+            new URL('/header', window.location.origin)
+        ];
+        const footerCandidates = [
+            new URL('/footer.html?v=20260509a', window.location.origin),
+            new URL('/footer', window.location.origin)
+        ];
+
+        const [headerContent, footerContent] = await Promise.all([
+            tryFetch(headerCandidates),
+            tryFetch(footerCandidates)
         ]);
-        if (headerResponse.ok) {
-            const headerContent = await headerResponse.text();
-            const headerContainer = document.getElementById('header-container');
-            if (headerContainer) headerContainer.innerHTML = headerContent;
-        } else {
-            console.warn('Header fetch failed:', headerResponse.status);
+
+        const headerContainer = document.getElementById('header-container');
+        if (headerContainer && headerContent) {
+            headerContainer.innerHTML = headerContent;
+        } else if (headerContainer) {
+            console.warn('Header partial could not be loaded from known routes.');
         }
-        if (footerResponse.ok) {
-            const footerContent = await footerResponse.text();
-            const footerContainer = document.getElementById('footer-container');
-            if (footerContainer) footerContainer.innerHTML = footerContent;
-        } else {
-            console.warn('Footer fetch failed:', footerResponse.status);
+
+        const footerContainer = document.getElementById('footer-container');
+        if (footerContainer && footerContent) {
+            footerContainer.innerHTML = footerContent;
+        } else if (footerContainer) {
+            console.warn('Footer partial could not be loaded from known routes.');
         }
     } catch (error) {
         console.error('Error loading header/footer:', error);

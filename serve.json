@@ -1,7 +1,6 @@
 {
   "cleanUrls": true,
   "rewrites": [
-    { "source": "/about", "destination": "/about.html" },
     { "source": "/contact", "destination": "/contact.html" },
     { "source": "/book-consultation", "destination": "/book-consultation.html" },
     { "source": "/service-websites", "destination": "/service-websites.html" },
@@ -11,7 +10,10 @@
     { "source": "/case-study-jns", "destination": "/case-study-jns.html" },
     { "source": "/case-study-knight-group", "destination": "/case-study-knight-group.html" },
     { "source": "/case-study-knight-logics", "destination": "/case-study-knight-logics.html" },
-    { "source": "/projects", "destination": "/projects.html" },
+    { "source": "/case-study-farrell-electric", "destination": "/case-study-farrell-electric.html" },
+    { "source": "/case-study-sals-painting", "destination": "/case-study-sals-painting.html" },
+    { "source": "/case-study-moms-resin-tables", "destination": "/case-study-moms-resin-tables.html" },
+    { "source": "/case-study-screen-team", "destination": "/case-study-screen-team.html" },
     { "source": "/display-control-plus", "destination": "/display-control-plus.html" },
     { "source": "/videoforge", "destination": "/videoforge.html" },
     { "source": "/pixelforge-ai", "destination": "/pixelforge-ai.html" },

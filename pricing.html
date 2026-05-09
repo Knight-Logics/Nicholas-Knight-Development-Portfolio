@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -258,6 +258,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="image" href="./images/websitehero.png" fetchpriority="high">
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap"></noscript>
     <link rel="stylesheet" href="/style.css?v=20260507a">
@@ -271,7 +272,20 @@
         .pricing-hero {
             padding: clamp(5rem, 10vw, 9rem) 0 clamp(2.5rem, 5vw, 4rem);
             text-align: center;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            position: relative;
+            overflow: hidden;
+            background: url('./images/websitehero.png') center/cover no-repeat;
+        }
+        .pricing-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(10,10,10,0.94) 0%, rgba(10,10,10,0.72) 100%);
+            z-index: 1;
+        }
+        .pricing-hero .container {
+            position: relative;
+            z-index: 2;
         }
         .pricing-hero-kicker {
             display: inline-flex;
@@ -345,6 +359,7 @@
         }
         .pricing-section-header {
             margin-bottom: 2.5rem;
+            text-align: center;
         }
         .pricing-section-header .kicker {
             display: inline-flex;
@@ -370,6 +385,7 @@
             font-size: 1rem;
             color: #888;
             max-width: 620px;
+            margin: 0 auto;
         }
 
         /* Tables */
@@ -1186,6 +1202,7 @@
                 <p>Custom-coded from scratch — HTML, CSS, and JavaScript. No page builders, no plugin bloat, no monthly platform fees.</p>
                 <p style="font-size:0.88rem;color:#64ffda;margin-top:0.5rem;">✓ Every website package includes logo use, hero images, and supporting graphics — either using your existing assets or created as part of the build. No extra charge.</p>
                 <p style="font-size:0.88rem;color:#aaa;margin-top:0.65rem;">Website price jumps are based on page count, launch setup depth, analytics/search setup, and revision allowance — not vague custom markup.</p>
+                <p style="font-size:0.88rem;color:#aaa;margin-top:0.35rem;">Package bundles are priced to be a better value than buying equivalent setup work as separate line items.</p>
                 <p style="font-size:0.88rem;color:#aaa;margin-top:0.35rem;">Every package starts with the secure intake and checkout flow. The selector adjusts the package price before checkout instead of sending users off-page.</p>
             </div>
 
@@ -1250,7 +1267,7 @@
                     <p class="pricing-card-name">Search Foundation Plus</p>
                     <p class="pricing-card-price">$1,500</p>
                     <ul>
-                        <li>Everything in Search-Ready Starter</li>
+                        <li>Everything in Search Foundation Site</li>
                         <li>Up to 5 pages with stronger content structure</li>
                         <li>Google Search Console + sitemap + indexing</li>
                         <li>LocalBusiness schema + Open Graph tags</li>
@@ -1711,6 +1728,7 @@
             </table>
 
             <span class="pricing-sub-label">Search Foundation</span>
+            <p style="font-size:0.86rem;color:#aaa;margin:0 0 0.75rem;">A la carte SEO/search line items are intentionally priced above bundled package rates.</p>
             <table class="pricing-table">
                 <thead><tr><th>Service</th><th>Price</th></tr></thead>
                 <tbody>
@@ -1800,7 +1818,7 @@
             <p>Get a free 24-hour audit — top 3 website, GBP, or local SEO fixes with a practical next step. No commitment.</p>
             <div class="btn-row">
                 <a href="/contact" class="cta-button primary">Get Free 24-Hour Audit</a>
-                <a href="/service-websites" class="cta-button secondary">See Website Services</a>
+                <a href="/service-websites.html" class="cta-button secondary">See Website Services</a>
             </div>
         </div>
     </div>
@@ -2017,7 +2035,7 @@
                 'ecommerce-launch': { name: 'E-Commerce Launch', price: '$2,497', family: 'ecommerce' },
                 'ecommerce-growth-store': { name: 'E-Commerce Growth Store', price: '$3,997', family: 'ecommerce' },
                 'ecommerce-advanced-system': { name: 'Advanced E-Commerce System', price: '$7,500', family: 'ecommerce' },
-                'gbp-optimization': { name: 'Google Business Profile Sprint', price: '$297', family: 'seo' },
+                'gbp-optimization': { name: 'Google Business Profile Sprint', price: '$397', family: 'seo' },
                 'monthly-local-seo-starter': { name: 'Local Visibility Lite', price: '$197/mo', family: 'monthly' },
                 'monthly-visibility-standard': { name: 'Visibility Standard', price: '$397/mo', family: 'monthly' },
                 'monthly-visibility-pro': { name: 'Visibility Pro', price: '$697/mo', family: 'monthly' },
@@ -2443,3 +2461,5 @@
     <script src="/script.js?v=20260509a"></script>
 </body>
 </html>
+
+

@@ -12,6 +12,10 @@ const FORMSPREE_ENDPOINT = process.env.FORMSPREE_ENDPOINT || 'https://formspree.
 const VALID_PAGE_COUNT_EXPECTATIONS = new Set(['small', 'medium', 'large', 'enterprise']);
 const VALID_SEO_EXPANSION_NEEDS = new Set(['no', 'services', 'cities', 'both']);
 const VALID_SELLING_ONLINE_NEEDS = new Set(['no', 'later', 'stripe-links', 'cart-store']);
+const MAX_JSON_BODY_BYTES = 64 * 1024;
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const RATE_LIMIT_MAX_REQUESTS = 30;
+const requestBuckets = new Map();
 
 function createHttpError(statusCode, message) {
     const error = new Error(message);
@@ -206,9 +210,9 @@ const PACKAGE_DEFINITIONS = {
         mode: 'payment',
         name: 'Google Business Profile Sprint',
         description: 'One-time Google Business Profile sprint covering categories, services, conversion copy, Q&A, review-request guidance, and a ranking baseline.',
-        amount: 29700,
+        amount: 39700,
         currency: 'usd',
-        priceDisplay: '$297',
+        priceDisplay: '$397',
         metadata: {
             packageType: 'gbp_sprint',
             fulfillment: 'service',
@@ -509,12 +513,54 @@ function applyCorsHeaders(res, allowedOrigin) {
 function sendJson(res, statusCode, payload) {
     res.statusCode = statusCode;
     res.setHeader('Content-Type', 'application/json; charset=utf-8');
+    res.setHeader('Cache-Control', 'no-store, max-age=0');
     res.end(JSON.stringify(payload));
 }
 
 function sendEmpty(res, statusCode) {
     res.statusCode = statusCode;
+    res.setHeader('Cache-Control', 'no-store, max-age=0');
     res.end();
+}
+
+function getClientIp(req) {
+    const forwarded = req.headers['x-forwarded-for'];
+
+    if (typeof forwarded === 'string' && forwarded.trim()) {
+        return forwarded.split(',')[0].trim();
+    }
+
+    return req.socket && req.socket.remoteAddress ? req.socket.remoteAddress : 'unknown';
+}
+
+function getRateLimitState(ip) {
+    const now = Date.now();
+    const existing = requestBuckets.get(ip);
+
+    if (!existing || now > existing.resetAt) {
+        const fresh = {
+            count: 1,
+            resetAt: now + RATE_LIMIT_WINDOW_MS
+        };
+        requestBuckets.set(ip, fresh);
+        return { limited: false, remainingMs: RATE_LIMIT_WINDOW_MS };
+    }
+
+    existing.count += 1;
+
+    if (existing.count > RATE_LIMIT_MAX_REQUESTS) {
+        return { limited: true, remainingMs: Math.max(0, existing.resetAt - now) };
+    }
+
+    if (requestBuckets.size > 5000) {
+        for (const [bucketIp, bucket] of requestBuckets) {
+            if (now > bucket.resetAt) {
+                requestBuckets.delete(bucketIp);
+            }
+        }
+    }
+
+    return { limited: false, remainingMs: Math.max(0, existing.resetAt - now) };
 }
 
 async function readRawBody(req) {
@@ -531,9 +577,17 @@ async function readRawBody(req) {
     }
 
     const chunks = [];
+    let totalBytes = 0;
 
     for await (const chunk of req) {
-        chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+        const normalizedChunk = Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk);
+        totalBytes += normalizedChunk.length;
+
+        if (totalBytes > MAX_JSON_BODY_BYTES) {
+            throw createHttpError(413, 'Checkout payload is too large.');
+        }
+
+        chunks.push(normalizedChunk);
     }
 
     return Buffer.concat(chunks);
@@ -954,6 +1008,14 @@ module.exports = async function handler(req, res) {
     if (req.method !== 'POST') {
         res.setHeader('Allow', 'POST, OPTIONS');
         return sendJson(res, 405, { error: 'Method not allowed.' });
+    }
+
+    const rateState = getRateLimitState(getClientIp(req));
+
+    if (rateState.limited) {
+        const retryAfterSeconds = Math.max(1, Math.ceil(rateState.remainingMs / 1000));
+        res.setHeader('Retry-After', String(retryAfterSeconds));
+        return sendJson(res, 429, { error: 'Too many checkout attempts. Please wait and try again.' });
     }
 
     const stripeSecretKey = process.env.STRIPE_SECRET_KEY || process.env.STRIPE_API_KEY;

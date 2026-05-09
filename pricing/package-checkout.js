@@ -191,7 +191,7 @@
         },
         'gbp-optimization': {
             name: 'Google Business Profile Sprint',
-            price: '$297',
+            price: '$397',
             family: 'seo',
             profile: 'website-local',
             goalLabel: 'What do you want improved about your Google Business Profile?',
