@@ -1,6 +1,15 @@
 {
+  "build": {
+    "env": {
+      "NODEJS_HELPERS": "0"
+    }
+  },
   "cleanUrls": true,
   "rewrites": [
+    {
+      "source": "/pricing",
+      "destination": "/pricing.html"
+    },
     {
       "source": "/about",
       "destination": "/about.html"
