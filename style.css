@@ -4699,8 +4699,8 @@ section::before {
         background-image: url('./images/CircuitBrush3.webp');
         background-size: cover;
         background-position: center top;
-        transform: none !important;
-        will-change: auto;
+        transform: translate3d(0, 0, 0) scale(1.02);
+        will-change: transform, opacity;
         opacity: 0.66;
         filter: brightness(0.68) contrast(1.06);
     }
@@ -4731,10 +4731,10 @@ section::before {
         height: auto;
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         z-index: 10;
-        padding-top: 110px;
-        padding-bottom: 40px;
+        padding-top: 84px;
+        padding-bottom: 24px;
     }
 
     .scroll-indicator {
@@ -5059,8 +5059,8 @@ section::before {
         grid-template-columns: 1fr;
         gap: 1rem;
         transform: none;
-        margin-top: 88px;
-        margin-bottom: 84px;
+        margin-top: 20px;
+        margin-bottom: 52px;
         justify-items: center;
     }
     
@@ -5082,8 +5082,8 @@ section::before {
         grid-template-columns: 1fr;
         gap: 1rem;
         transform: none;
-        margin-top: 88px;
-        margin-bottom: 84px;
+        margin-top: 20px;
+        margin-bottom: 52px;
         justify-items: center;
     }
     

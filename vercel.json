@@ -5,6 +5,13 @@
     }
   },
   "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/brochure",
+      "destination": "/?utm_source=brochure&utm_medium=print&utm_campaign=kl_site_visit",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
       "source": "/pricing",

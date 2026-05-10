@@ -232,8 +232,9 @@ function initLayeredParallax() {
     // Check if user navigated to a specific section (has hash in URL)
     const hasHash = window.location.hash && window.location.hash.length > 1;
 
-    // Mobile gets a static hero so the first render isn't paying for desktop landing-mode effects.
-    if (isMobile) {
+    // Respect accessibility preferences: reduced motion users keep a static hero.
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (isMobile && prefersReducedMotion) {
         isInLandingMode = false;
         document.body.classList.remove('landing-mode');
         document.body.style.overflow = '';

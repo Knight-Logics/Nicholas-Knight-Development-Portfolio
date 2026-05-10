@@ -60,6 +60,7 @@
     {
         "@context": "https://schema.org",
         "@type": "ProfessionalService",
+        "@id": "https://knightlogics.com/#organization",
         "name": "Knight Logics",
         "url": "https://knightlogics.com",
         "description": "Tampa Bay web design, local SEO, Google Business Profile optimization, e-commerce development, CRM setup, and automation services for small businesses.",
@@ -89,102 +90,402 @@
         "hasOfferCatalog": {
             "@type": "OfferCatalog",
             "name": "Knight Logics Pricing Catalog",
+            "@id": "https://knightlogics.com/pricing#pricing-catalog",
             "url": "https://knightlogics.com/pricing",
             "itemListElement": [
                 {
-                    "@type": "Offer",
-                    "name": "Preview Launch Site",
-                    "price": "500",
-                    "priceCurrency": "USD",
-                    "url": "https://knightlogics.com/pricing#starter-packages",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "Preview Launch Site",
-                        "serviceType": "Custom-coded preview website"
-                    }
+                    "@type": "OfferCatalog",
+                    "name": "Website Packages",
+                    "url": "https://knightlogics.com/pricing#websites",
+                    "itemListElement": [
+                        {
+                            "@type": "Offer",
+                            "@id": "https://knightlogics.com/pricing#offer-website-preview-launch",
+                            "name": "Preview Launch Site",
+                            "url": "https://knightlogics.com/pricing#websites",
+                            "price": "500",
+                            "priceCurrency": "USD",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Preview Launch Site",
+                                "serviceType": "Custom-coded preview website"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "@id": "https://knightlogics.com/pricing#offer-website-essential-launch",
+                            "name": "Essential Launch Site",
+                            "url": "https://knightlogics.com/pricing#websites",
+                            "price": "700",
+                            "priceCurrency": "USD",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Essential Launch Site",
+                                "serviceType": "Custom website launch"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "@id": "https://knightlogics.com/pricing#offer-website-essential-plus",
+                            "name": "Essential Launch Plus",
+                            "url": "https://knightlogics.com/pricing#websites",
+                            "price": "850",
+                            "priceCurrency": "USD",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Essential Launch Plus",
+                                "serviceType": "Custom website launch with deeper local setup"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "@id": "https://knightlogics.com/pricing#offer-website-search-foundation",
+                            "name": "Search Foundation Site",
+                            "url": "https://knightlogics.com/pricing#websites",
+                            "price": "1200",
+                            "priceCurrency": "USD",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Search Foundation Site",
+                                "serviceType": "Search-ready website with technical SEO baseline"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "@id": "https://knightlogics.com/pricing#offer-website-search-foundation-plus",
+                            "name": "Search Foundation Plus",
+                            "url": "https://knightlogics.com/pricing#websites",
+                            "price": "1500",
+                            "priceCurrency": "USD",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Search Foundation Plus",
+                                "serviceType": "Search foundation website with expanded SEO and launch depth"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "@id": "https://knightlogics.com/pricing#offer-website-local-launch",
+                            "name": "Local Launch Site",
+                            "url": "https://knightlogics.com/pricing#websites",
+                            "price": "1997",
+                            "priceCurrency": "USD",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Local Launch Site",
+                                "serviceType": "Local SEO website package"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "@id": "https://knightlogics.com/pricing#offer-website-local-launch-plus",
+                            "name": "Local Launch Plus",
+                            "url": "https://knightlogics.com/pricing#websites",
+                            "priceSpecification": {
+                                "@type": "PriceSpecification",
+                                "priceCurrency": "USD",
+                                "minPrice": "2997",
+                                "maxPrice": "4500"
+                            },
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Local Launch Plus",
+                                "serviceType": "Advanced local growth website build"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "@type": "OfferCatalog",
+                    "name": "E-Commerce Packages",
+                    "url": "https://knightlogics.com/pricing#ecommerce",
+                    "itemListElement": [
+                        {
+                            "@type": "Offer",
+                            "@id": "https://knightlogics.com/pricing#offer-ecommerce-storefront-preview",
+                            "name": "Storefront Preview",
+                            "url": "https://knightlogics.com/pricing#ecommerce",
+                            "price": "750",
+                            "priceCurrency": "USD",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Storefront Preview",
+                                "serviceType": "Custom-coded product catalog preview"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "@id": "https://knightlogics.com/pricing#offer-ecommerce-payment-link-store",
+                            "name": "Payment-Link Store",
+                            "url": "https://knightlogics.com/pricing#ecommerce",
+                            "price": "1200",
+                            "priceCurrency": "USD",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Payment-Link Store",
+                                "serviceType": "Custom storefront with Stripe payment links"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "@id": "https://knightlogics.com/pricing#offer-ecommerce-launch",
+                            "name": "E-Commerce Launch",
+                            "url": "https://knightlogics.com/pricing#ecommerce",
+                            "price": "2497",
+                            "priceCurrency": "USD",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "E-Commerce Launch",
+                                "serviceType": "Custom e-commerce website development"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "@id": "https://knightlogics.com/pricing#offer-ecommerce-growth-store",
+                            "name": "E-Commerce Growth Store",
+                            "url": "https://knightlogics.com/pricing#ecommerce",
+                            "priceSpecification": {
+                                "@type": "PriceSpecification",
+                                "priceCurrency": "USD",
+                                "minPrice": "3997"
+                            },
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "E-Commerce Growth Store",
+                                "serviceType": "Growth-focused e-commerce system with reporting and automations"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "@id": "https://knightlogics.com/pricing#offer-ecommerce-advanced-system",
+                            "name": "Advanced E-Commerce System",
+                            "url": "https://knightlogics.com/pricing#ecommerce",
+                            "priceSpecification": {
+                                "@type": "PriceSpecification",
+                                "priceCurrency": "USD",
+                                "minPrice": "7500",
+                                "maxPrice": "15000"
+                            },
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Advanced E-Commerce System",
+                                "serviceType": "Custom e-commerce platform with inventory, webhooks, and reporting"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "@type": "OfferCatalog",
+                    "name": "Growth, CRM, and Operations Packages",
+                    "url": "https://knightlogics.com/pricing#growth",
+                    "itemListElement": [
+                        {
+                            "@type": "Offer",
+                            "@id": "https://knightlogics.com/pricing#offer-growth-simple-lead-tracker",
+                            "name": "Simple Lead Tracker",
+                            "url": "https://knightlogics.com/pricing#growth",
+                            "priceSpecification": {
+                                "@type": "PriceSpecification",
+                                "priceCurrency": "USD",
+                                "minPrice": "250",
+                                "maxPrice": "500"
+                            },
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Simple Lead Tracker",
+                                "serviceType": "Lead source and pipeline tracking setup"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "@id": "https://knightlogics.com/pricing#offer-growth-contractor-crm-starter",
+                            "name": "Contractor CRM Starter",
+                            "url": "https://knightlogics.com/pricing#growth",
+                            "priceSpecification": {
+                                "@type": "PriceSpecification",
+                                "priceCurrency": "USD",
+                                "minPrice": "500",
+                                "maxPrice": "1500"
+                            },
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Contractor CRM Starter",
+                                "serviceType": "Contractor CRM and pipeline setup"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "@id": "https://knightlogics.com/pricing#offer-growth-job-records-system",
+                            "name": "Job Records System",
+                            "url": "https://knightlogics.com/pricing#growth",
+                            "priceSpecification": {
+                                "@type": "PriceSpecification",
+                                "priceCurrency": "USD",
+                                "minPrice": "750",
+                                "maxPrice": "3000"
+                            },
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Job Records System",
+                                "serviceType": "Job intake, records, and document system"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "@id": "https://knightlogics.com/pricing#offer-growth-automated-job-records",
+                            "name": "Automated Job Records",
+                            "url": "https://knightlogics.com/pricing#growth",
+                            "priceSpecification": {
+                                "@type": "PriceSpecification",
+                                "priceCurrency": "USD",
+                                "minPrice": "1500",
+                                "maxPrice": "3500"
+                            },
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Automated Job Records",
+                                "serviceType": "Automated job records and workflow integration"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "@id": "https://knightlogics.com/pricing#offer-growth-system-starter",
+                            "name": "Growth System Starter",
+                            "url": "https://knightlogics.com/pricing#growth",
+                            "priceSpecification": {
+                                "@type": "PriceSpecification",
+                                "priceCurrency": "USD",
+                                "minPrice": "3500",
+                                "maxPrice": "5000"
+                            },
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Growth System Starter",
+                                "serviceType": "Lead tracking and business growth system"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "@id": "https://knightlogics.com/pricing#offer-full-growth-system",
+                            "name": "Full Growth System",
+                            "url": "https://knightlogics.com/pricing#growth",
+                            "priceSpecification": {
+                                "@type": "PriceSpecification",
+                                "priceCurrency": "USD",
+                                "minPrice": "5000",
+                                "maxPrice": "10000"
+                            },
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Full Growth System",
+                                "serviceType": "Full local growth, CRM, and reporting system"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "@id": "https://knightlogics.com/pricing#offer-custom-automation-system",
+                            "name": "Custom Automation System",
+                            "url": "https://knightlogics.com/pricing#growth",
+                            "priceSpecification": {
+                                "@type": "PriceSpecification",
+                                "priceCurrency": "USD",
+                                "minPrice": "10000"
+                            },
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Custom Automation System",
+                                "serviceType": "Custom CRM, routing, and AI-assisted reporting system"
+                            }
+                        }
+                    ]
+                },
+                {
+                    "@type": "OfferCatalog",
+                    "name": "Monthly Visibility Plans",
+                    "url": "https://knightlogics.com/pricing#monthly",
+                    "itemListElement": [
+                        {
+                            "@type": "Offer",
+                            "@id": "https://knightlogics.com/pricing#offer-monthly-visibility-lite",
+                            "name": "Visibility Lite",
+                            "url": "https://knightlogics.com/pricing#monthly",
+                            "priceSpecification": {
+                                "@type": "UnitPriceSpecification",
+                                "priceCurrency": "USD",
+                                "price": "197",
+                                "unitText": "MONTH"
+                            },
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Visibility Lite",
+                                "serviceType": "Monthly local visibility maintenance"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "@id": "https://knightlogics.com/pricing#offer-monthly-visibility-standard",
+                            "name": "Visibility Standard",
+                            "url": "https://knightlogics.com/pricing#monthly",
+                            "priceSpecification": {
+                                "@type": "UnitPriceSpecification",
+                                "priceCurrency": "USD",
+                                "price": "397",
+                                "unitText": "MONTH"
+                            },
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Visibility Standard",
+                                "serviceType": "Monthly website and GBP management"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "@id": "https://knightlogics.com/pricing#offer-monthly-visibility-pro",
+                            "name": "Visibility Pro",
+                            "url": "https://knightlogics.com/pricing#monthly",
+                            "priceSpecification": {
+                                "@type": "UnitPriceSpecification",
+                                "priceCurrency": "USD",
+                                "price": "697",
+                                "unitText": "MONTH"
+                            },
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Visibility Pro",
+                                "serviceType": "Monthly visibility and citation support"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
+                            "@id": "https://knightlogics.com/pricing#offer-monthly-growth-management",
+                            "name": "Growth Management",
+                            "url": "https://knightlogics.com/pricing#monthly",
+                            "priceSpecification": {
+                                "@type": "UnitPriceSpecification",
+                                "priceCurrency": "USD",
+                                "minPrice": "1000",
+                                "maxPrice": "2500",
+                                "unitText": "MONTH"
+                            },
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "Growth Management",
+                                "serviceType": "Monthly growth operations, tracking, and automation support"
+                            }
+                        }
+                    ]
                 },
                 {
                     "@type": "Offer",
-                    "name": "Essential Launch Site",
-                    "price": "700",
-                    "priceCurrency": "USD",
-                    "url": "https://knightlogics.com/pricing#starter-packages",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "Essential Launch Site",
-                        "serviceType": "Custom website launch"
-                    }
-                },
-                {
-                    "@type": "Offer",
-                    "name": "Local Launch Site",
-                    "price": "1997",
-                    "priceCurrency": "USD",
-                    "url": "https://knightlogics.com/pricing#starter-packages",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "Local Launch Site",
-                        "serviceType": "Local SEO website package"
-                    }
-                },
-                {
-                    "@type": "Offer",
+                    "@id": "https://knightlogics.com/pricing#offer-gbp-sprint",
                     "name": "Google Business Profile Sprint",
+                    "url": "https://knightlogics.com/pricing#search-addons",
                     "price": "297",
                     "priceCurrency": "USD",
-                    "url": "https://knightlogics.com/pricing#search-addons",
                     "itemOffered": {
                         "@type": "Service",
                         "name": "Google Business Profile Sprint",
                         "serviceType": "Google Business Profile optimization"
-                    }
-                },
-                {
-                    "@type": "Offer",
-                    "name": "E-Commerce Launch",
-                    "price": "2497",
-                    "priceCurrency": "USD",
-                    "url": "https://knightlogics.com/pricing#ecommerce",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "E-Commerce Launch",
-                        "serviceType": "Custom e-commerce website development"
-                    }
-                },
-                {
-                    "@type": "Offer",
-                    "name": "Growth System Starter",
-                    "price": "3500",
-                    "priceCurrency": "USD",
-                    "url": "https://knightlogics.com/pricing#growth",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "Growth System Starter",
-                        "serviceType": "Lead tracking and business growth system"
-                    }
-                },
-                {
-                    "@type": "Offer",
-                    "name": "Local Visibility Lite",
-                    "price": "197",
-                    "priceCurrency": "USD",
-                    "url": "https://knightlogics.com/pricing#monthly",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "Local Visibility Lite",
-                        "serviceType": "Monthly local SEO maintenance"
-                    }
-                },
-                {
-                    "@type": "Offer",
-                    "name": "Visibility Standard",
-                    "price": "397",
-                    "priceCurrency": "USD",
-                    "url": "https://knightlogics.com/pricing#monthly",
-                    "itemOffered": {
-                        "@type": "Service",
-                        "name": "Visibility Standard",
-                        "serviceType": "Monthly website and GBP management"
                     }
                 }
             ]
@@ -1207,7 +1508,7 @@
             </div>
 
             <span class="pricing-sub-label">Packages</span>
-            <div class="pricing-card-row">
+            <div class="pricing-card-row pricing-card-row--4">
 
                 <div class="pricing-card">
                     <p class="pricing-card-name">Preview Launch Site</p>
@@ -1262,6 +1563,10 @@
                     </ul>
                     <a href="/?openPackage=website-search-foundation#starter-packages" class="pricing-card-cta">Get Google-ready</a>
                 </div>
+
+            </div>
+
+            <div class="pricing-card-row pricing-card-row--3c">
 
                 <div class="pricing-card">
                     <p class="pricing-card-name">Search Foundation Plus</p>
