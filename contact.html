@@ -31,6 +31,7 @@
         function gtag(){dataLayer.push(arguments);}
         gtag('js', new Date());
         gtag('config', 'G-VX36QR7HJW');
+        gtag('config', 'AW-18138273413');
         window.addEventListener('load', function() {
             var s = document.createElement('script');
             s.async = true;
@@ -494,5 +495,17 @@
     <div id="footer-container"></div>
 
     <script src="script.js?v=20260509a"></script>
+    <script>
+        // Google Ads conversion tracking — fires on contact form submission
+        (function() {
+            var form = document.getElementById('consultationForm');
+            if (!form) return;
+            form.addEventListener('submit', function() {
+                if (typeof gtag === 'function') {
+                    gtag('event', 'generate_lead', { 'send_to': 'AW-18138273413' });
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
