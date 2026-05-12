@@ -32,6 +32,21 @@
       "permanent": true
     },
     {
+      "source": "/nicholas-knight.html",
+      "destination": "/nicholas-knight",
+      "permanent": true
+    },
+    {
+      "source": "/service-local-seo.html",
+      "destination": "/service-local-seo",
+      "permanent": true
+    },
+    {
+      "source": "/service-google-business-profile.html",
+      "destination": "/service-google-business-profile",
+      "permanent": true
+    },
+    {
       "source": "/service-websites.html",
       "destination": "/service-websites",
       "permanent": true

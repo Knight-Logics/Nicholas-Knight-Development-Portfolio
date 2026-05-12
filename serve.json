@@ -7,6 +7,9 @@
   "rewrites": [
     { "source": "/contact", "destination": "/contact.html" },
     { "source": "/book-consultation", "destination": "/book-consultation.html" },
+    { "source": "/nicholas-knight", "destination": "/nicholas-knight.html" },
+    { "source": "/service-local-seo", "destination": "/service-local-seo.html" },
+    { "source": "/service-google-business-profile", "destination": "/service-google-business-profile.html" },
     { "source": "/service-websites", "destination": "/service-websites.html" },
     { "source": "/service-ecommerce", "destination": "/service-ecommerce.html" },
     { "source": "/service-ai-automation", "destination": "/service-ai-automation.html" },
