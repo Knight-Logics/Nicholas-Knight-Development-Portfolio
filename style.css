@@ -8485,6 +8485,1062 @@ html {
     }
 }
 
+/* ============================================================
+   SHARED SERVICE PAGE STYLES
+   ============================================================ */
+
+.page-service-local-seo .svc-hero,
+.page-service-google-business-profile .svc-hero {
+    position: relative;
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+}
+
+.page-service-local-seo .svc-hero {
+    background: url('./images/websitehero.webp') center/cover no-repeat;
+}
+
+.page-service-google-business-profile .svc-hero {
+    background: url('./images/city%20hero.webp') center/cover no-repeat;
+}
+
+.page-service-local-seo .svc-hero::before,
+.page-service-google-business-profile .svc-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.94) 0%, rgba(10, 10, 10, 0.72) 100%);
+    z-index: 1;
+}
+
+.page-service-local-seo .svc-hero-inner,
+.page-service-local-seo .svc-section,
+.page-service-local-seo .svc-cta-box,
+.page-service-google-business-profile .svc-hero-inner,
+.page-service-google-business-profile .svc-section,
+.page-service-google-business-profile .svc-cta-box {
+    position: relative;
+    z-index: 2;
+}
+
+.page-service-local-seo .svc-hero-inner,
+.page-service-google-business-profile .svc-hero-inner {
+    max-width: 760px;
+    padding: 120px 0 90px;
+}
+
+.page-service-local-seo .svc-breadcrumb,
+.page-service-google-business-profile .svc-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 22px;
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.page-service-local-seo .svc-breadcrumb a,
+.page-service-google-business-profile .svc-breadcrumb a {
+    color: #64ffda;
+    text-decoration: none;
+}
+
+.page-service-local-seo .svc-eyebrow,
+.page-service-google-business-profile .svc-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(100, 255, 218, 0.12);
+    border: 1px solid rgba(100, 255, 218, 0.25);
+    color: #64ffda;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+}
+
+.page-service-local-seo .svc-hero h1,
+.page-service-google-business-profile .svc-hero h1 {
+    font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+    font-weight: 700;
+    line-height: 1.12;
+    margin-bottom: 1rem;
+    color: #ffffff;
+}
+
+.page-service-local-seo .svc-hero p,
+.page-service-google-business-profile .svc-hero p {
+    font-size: clamp(1rem, 1.4vw, 1.18rem);
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.65;
+    margin-bottom: 2rem;
+}
+
+.page-service-local-seo .svc-hero p {
+    max-width: 640px;
+}
+
+.page-service-google-business-profile .svc-hero p {
+    max-width: 650px;
+}
+
+.page-service-local-seo .svc-cta-row,
+.page-service-google-business-profile .svc-cta-row {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.page-service-local-seo .svc-stats,
+.page-service-google-business-profile .svc-stats {
+    background: rgba(10, 10, 10, 0.98);
+    border-bottom: 1px solid rgba(100, 255, 218, 0.12);
+    padding: 32px 0;
+}
+
+.page-service-local-seo .svc-stats-grid,
+.page-service-local-seo .svc-grid,
+.page-service-local-seo .svc-card-grid,
+.page-service-local-seo .svc-faq-grid,
+.page-service-google-business-profile .svc-stats-grid,
+.page-service-google-business-profile .svc-grid,
+.page-service-google-business-profile .svc-card-grid,
+.page-service-google-business-profile .svc-faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.page-service-local-seo .svc-stats-grid,
+.page-service-google-business-profile .svc-stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+    text-align: center;
+}
+
+.page-service-local-seo .svc-stat-label,
+.page-service-google-business-profile .svc-stat-label {
+    display: block;
+    font-size: 1.55rem;
+    font-weight: 700;
+    color: #64ffda;
+    margin-bottom: 4px;
+}
+
+.page-service-local-seo .svc-stat-desc,
+.page-service-google-business-profile .svc-stat-desc {
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.page-service-local-seo .svc-section,
+.page-service-google-business-profile .svc-section {
+    padding: 86px 0;
+}
+
+.page-service-local-seo .svc-section--dark,
+.page-service-google-business-profile .svc-section--dark {
+    background: #0d0d0d;
+}
+
+.page-service-local-seo .svc-section--gradient,
+.page-service-google-business-profile .svc-section--gradient {
+    background: linear-gradient(135deg, #0a0a0a 0%, #0f1724 100%);
+}
+
+.page-service-local-seo .svc-section-label,
+.page-service-google-business-profile .svc-section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #64ffda;
+    font-size: 0.82rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 14px;
+}
+
+.page-service-local-seo .svc-section h2,
+.page-service-google-business-profile .svc-section h2 {
+    font-size: clamp(1.7rem, 3vw, 2.35rem);
+    line-height: 1.18;
+    color: #ffffff;
+    margin-bottom: 16px;
+}
+
+.page-service-local-seo .svc-section p,
+.page-service-local-seo .svc-section li,
+.page-service-google-business-profile .svc-section p,
+.page-service-google-business-profile .svc-section li {
+    color: rgba(255, 255, 255, 0.74);
+    line-height: 1.7;
+}
+
+.page-service-local-seo .svc-card,
+.page-service-local-seo .svc-faq-card,
+.page-service-local-seo .svc-cta-box,
+.page-service-google-business-profile .svc-card,
+.page-service-google-business-profile .svc-faq-card,
+.page-service-google-business-profile .svc-cta-box {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(100, 255, 218, 0.12);
+    border-radius: 18px;
+    padding: 28px;
+}
+
+.page-service-local-seo .svc-card h3,
+.page-service-local-seo .svc-faq-card h3,
+.page-service-google-business-profile .svc-card h3,
+.page-service-google-business-profile .svc-faq-card h3 {
+    font-size: 1.08rem;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.page-service-local-seo .svc-list,
+.page-service-google-business-profile .svc-list {
+    list-style: none;
+    padding: 0;
+    margin: 18px 0 0;
+}
+
+.page-service-local-seo .svc-list li,
+.page-service-google-business-profile .svc-list li {
+    position: relative;
+    padding-left: 22px;
+    margin-bottom: 12px;
+}
+
+.page-service-local-seo .svc-list li::before,
+.page-service-google-business-profile .svc-list li::before {
+    content: '\2022';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: #64ffda;
+    font-weight: 700;
+}
+
+.page-service-local-seo .svc-link,
+.page-service-google-business-profile .svc-link {
+    color: #64ffda;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.page-service-local-seo .svc-cta-section,
+.page-service-google-business-profile .svc-cta-section {
+    padding: 72px 0;
+    background: #0a0a0a;
+    text-align: center;
+    border-top: 1px solid rgba(100, 255, 218, 0.08);
+}
+
+.page-service-local-seo .svc-cta-box p,
+.page-service-google-business-profile .svc-cta-box p {
+    max-width: 620px;
+    margin: 0 auto 24px;
+}
+
+@media (max-width: 960px) {
+    .page-service-local-seo .svc-stats-grid,
+    .page-service-local-seo .svc-grid,
+    .page-service-local-seo .svc-card-grid,
+    .page-service-local-seo .svc-faq-grid,
+    .page-service-google-business-profile .svc-stats-grid,
+    .page-service-google-business-profile .svc-grid,
+    .page-service-google-business-profile .svc-card-grid,
+    .page-service-google-business-profile .svc-faq-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 720px) {
+    .page-service-local-seo .svc-stats-grid,
+    .page-service-local-seo .svc-grid,
+    .page-service-local-seo .svc-card-grid,
+    .page-service-local-seo .svc-faq-grid,
+    .page-service-google-business-profile .svc-stats-grid,
+    .page-service-google-business-profile .svc-grid,
+    .page-service-google-business-profile .svc-card-grid,
+    .page-service-google-business-profile .svc-faq-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .page-service-local-seo .svc-hero-inner,
+    .page-service-google-business-profile .svc-hero-inner {
+        padding: 110px 0 80px;
+    }
+}
+
+/* ============================================================
+   WEBSITE SERVICE PAGE
+   ============================================================ */
+
+.page-service-websites .svc-hero {
+    position: relative;
+    min-height: 520px;
+    display: flex;
+    align-items: center;
+    background: url('./images/websitehero.webp') center/cover no-repeat;
+    overflow: hidden;
+}
+
+.page-service-websites .svc-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.94) 0%, rgba(10, 10, 10, 0.72) 100%);
+    z-index: 1;
+}
+
+.page-service-websites .svc-hero-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 760px;
+    padding: 120px 0 90px;
+}
+
+.page-service-websites .svc-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 14px;
+    border-radius: 999px;
+    background: rgba(100, 255, 218, 0.12);
+    border: 1px solid rgba(100, 255, 218, 0.25);
+    color: #64ffda;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+}
+
+.page-service-websites .svc-hero h1 {
+    font-size: clamp(2.2rem, 4.5vw, 3.8rem);
+    font-weight: 700;
+    line-height: 1.12;
+    margin-bottom: 1rem;
+    background: linear-gradient(135deg, #64ffda, #ffffff, #64ffda);
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s ease-in-out infinite;
+}
+
+.page-service-websites .svc-hero p {
+    font-size: clamp(1rem, 1.4vw, 1.2rem);
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.65;
+    margin-bottom: 2rem;
+    max-width: 620px;
+}
+
+.page-service-websites .svc-cta-row {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.page-service-websites .svc-stats {
+    background: rgba(10, 10, 10, 0.98);
+    border-bottom: 1px solid rgba(100, 255, 218, 0.12);
+    padding: 32px 0;
+}
+
+.page-service-websites .svc-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    text-align: center;
+}
+
+.page-service-websites .svc-stat-label {
+    display: block;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #64ffda;
+    margin-bottom: 4px;
+}
+
+.page-service-websites .svc-stat-desc {
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.page-service-websites .svc-features {
+    padding: 90px 0;
+    background: #0d0d0d;
+}
+
+.page-service-websites .svc-features-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 52px;
+}
+
+.page-service-websites .svc-feature-card {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(100, 255, 218, 0.13);
+    border-radius: 18px;
+    padding: 28px 24px;
+    transition: all 0.3s ease;
+}
+
+.page-service-websites .svc-feature-card:hover {
+    border-color: rgba(100, 255, 218, 0.35);
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(100, 255, 218, 0.08);
+}
+
+.page-service-websites .svc-card-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: linear-gradient(135deg, #64ffda, #4ecdc4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    color: #0a0a0a;
+    margin-bottom: 18px;
+    transition: all 0.3s ease;
+}
+
+.page-service-websites .svc-feature-card:hover .svc-card-icon {
+    transform: rotate(8deg) scale(1.08);
+}
+
+.page-service-websites .svc-feature-card h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.page-service-websites .svc-feature-card p {
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.74);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.page-service-websites .svc-work {
+    padding: 90px 0;
+    background: linear-gradient(135deg, #0a0a0a 0%, #0f1724 100%);
+}
+
+.page-service-websites .svc-work-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 28px;
+    margin-top: 52px;
+}
+
+.page-service-websites .svc-work-card {
+    border-radius: 20px;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(100, 255, 218, 0.12);
+    transition: all 0.3s ease;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.page-service-websites .svc-work-card:hover {
+    border-color: rgba(100, 255, 218, 0.3);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
+}
+
+.page-service-websites .svc-work-thumb {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: #111;
+}
+
+.page-service-websites .svc-work-price {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    z-index: 10;
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, rgba(100, 255, 218, 0.98), rgba(126, 255, 229, 0.96));
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    color: #04110e;
+    font-size: 0.82rem;
+    font-weight: 800;
+    letter-spacing: 0.03em;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.32);
+    text-shadow: none;
+}
+
+.page-service-websites .svc-work-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.page-service-websites .svc-work-card:hover .svc-work-thumb img {
+    transform: scale(1.04);
+}
+
+.page-service-websites .svc-work-thumb.logo-thumb {
+    background: #f5f5f5;
+}
+
+.page-service-websites .svc-work-thumb.logo-thumb img {
+    object-fit: contain;
+    padding: 2rem;
+}
+
+.page-service-websites .svc-work-placeholder {
+    width: 100%;
+    aspect-ratio: 16/9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, rgba(100, 255, 218, 0.06), rgba(10, 10, 10, 0.85));
+    border-bottom: 1px dashed rgba(100, 255, 218, 0.2);
+}
+
+.page-service-websites .svc-work-placeholder i {
+    font-size: 2.5rem;
+    color: rgba(100, 255, 218, 0.35);
+    margin-bottom: 12px;
+}
+
+.page-service-websites .svc-work-placeholder p {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.4);
+    text-align: center;
+    padding: 0 24px;
+    margin: 0;
+    font-style: italic;
+    line-height: 1.5;
+}
+
+.page-service-websites .svc-work-copy {
+    padding: 20px 24px;
+}
+
+.page-service-websites .svc-work-label {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #64ffda;
+    margin-bottom: 6px;
+}
+
+.page-service-websites .svc-work-copy h3 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 6px;
+}
+
+.page-service-websites .svc-work-copy p {
+    font-size: 0.88rem;
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.55;
+    margin: 0 0 12px;
+}
+
+.page-service-websites .svc-work-client {
+    font-size: 0.86rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.74);
+    margin: 0 0 10px;
+}
+
+.page-service-websites .svc-work-cta {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #64ffda;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.page-service-websites .svc-work-grid--3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.page-service-websites .svc-process {
+    padding: 90px 0;
+    background: #0a0a0a;
+}
+
+.page-service-websites .svc-process-steps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    margin-top: 52px;
+    position: relative;
+}
+
+.page-service-websites .svc-process-steps::before {
+    content: '';
+    position: absolute;
+    top: 31px;
+    left: calc(10% + 32px);
+    right: calc(10% + 32px);
+    height: 2px;
+    background: linear-gradient(90deg, #64ffda, #4ecdc4, #64ffda);
+    opacity: 0.25;
+}
+
+.page-service-websites .svc-step {
+    text-align: center;
+    position: relative;
+}
+
+.page-service-websites .svc-step-num {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(100, 255, 218, 0.15), rgba(100, 255, 218, 0.05));
+    border: 2px solid rgba(100, 255, 218, 0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #64ffda;
+    margin: 0 auto 16px;
+}
+
+.page-service-websites .svc-step h3 {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 8px;
+}
+
+.page-service-websites .svc-step p {
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.58);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.page-service-websites .svc-faq {
+    padding: 90px 0;
+    background: #0d0d0d;
+}
+
+.page-service-websites .svc-faq-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-top: 52px;
+}
+
+.page-service-websites .svc-faq-item {
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(100, 255, 218, 0.14);
+    border-radius: 20px;
+    padding: 24px;
+}
+
+.page-service-websites .svc-faq-item h3 {
+    font-size: 1rem;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.page-service-websites .svc-faq-item p {
+    font-size: 0.92rem;
+    color: rgba(255, 255, 255, 0.72);
+    line-height: 1.65;
+    margin: 0;
+}
+
+.page-service-websites .svc-cta-section {
+    padding: 90px 0;
+    background: linear-gradient(135deg, #0a0a0a 0%, #0f1724 100%);
+    text-align: center;
+}
+
+.page-service-websites .svc-cta-box {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 52px 40px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(100, 255, 218, 0.2);
+    border-radius: 28px;
+    backdrop-filter: blur(10px);
+}
+
+.page-service-websites .svc-cta-box h2 {
+    font-size: clamp(1.8rem, 3vw, 2.6rem);
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #64ffda, #ffffff);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.page-service-websites .svc-cta-box p {
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.65;
+    margin-bottom: 28px;
+}
+
+.page-service-websites .svc-pricing {
+    padding: 90px 0;
+    background: #0a0a0a;
+}
+
+.page-service-websites .svc-pricing-section-label {
+    text-align: center;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #64ffda;
+    margin-bottom: 32px;
+}
+
+.page-service-websites .svc-pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 20px;
+}
+
+.page-service-websites .svc-pricing-grid--2 {
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.page-service-websites .svc-pricing-grid--3 {
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.page-service-websites .svc-pricing-card {
+    position: relative;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(100, 255, 218, 0.14);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: border-color 0.25s, transform 0.25s;
+}
+
+.page-service-websites .svc-pricing-card:hover {
+    border-color: rgba(100, 255, 218, 0.35);
+    transform: translateY(-3px);
+}
+
+.page-service-websites .svc-pricing-card--featured {
+    border-color: rgba(100, 255, 218, 0.45);
+    background: rgba(100, 255, 218, 0.06);
+}
+
+.page-service-websites .svc-pricing-badge {
+    background: linear-gradient(135deg, #64ffda, #00c8ff);
+    color: #0a0a0a;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 6px 0;
+}
+
+.page-service-websites .svc-pricing-header {
+    padding: 28px 28px 18px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.page-service-websites .svc-pricing-name {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: #64ffda;
+    margin-bottom: 10px;
+}
+
+.page-service-websites .svc-pricing-price {
+    font-size: clamp(1.9rem, 3vw, 2.5rem);
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1;
+    margin-bottom: 10px;
+}
+
+.page-service-websites .svc-pricing-price-note {
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.page-service-websites .svc-pricing-tagline {
+    font-size: 0.87rem;
+    color: rgba(255, 255, 255, 0.62);
+    line-height: 1.5;
+    margin: 0;
+}
+
+.page-service-websites .svc-pricing-body {
+    padding: 20px 28px;
+    flex: 1;
+}
+
+.page-service-websites .svc-pricing-list-label {
+    font-size: 0.71rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(100, 255, 218, 0.85);
+    margin: 0 0 10px;
+}
+
+.page-service-websites .svc-pricing-list-label--no {
+    color: rgba(255, 255, 255, 0.38);
+    margin-top: 18px;
+}
+
+.page-service-websites .svc-pricing-includes,
+.page-service-websites .svc-pricing-excludes {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.page-service-websites .svc-pricing-includes li,
+.page-service-websites .svc-pricing-excludes li {
+    font-size: 0.83rem;
+    line-height: 1.5;
+    padding: 4px 0 4px 22px;
+    position: relative;
+}
+
+.page-service-websites .svc-pricing-includes li {
+    color: rgba(255, 255, 255, 0.78);
+}
+
+.page-service-websites .svc-pricing-includes li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #64ffda;
+    font-weight: 700;
+    font-size: 0.85rem;
+}
+
+.page-service-websites .svc-pricing-excludes li {
+    color: rgba(255, 255, 255, 0.35);
+}
+
+.page-service-websites .svc-pricing-excludes li::before {
+    content: '✕';
+    position: absolute;
+    left: 0;
+    color: rgba(255, 90, 90, 0.5);
+    font-weight: 700;
+    font-size: 0.78rem;
+}
+
+.page-service-websites .svc-pricing-example {
+    margin-top: 16px;
+    font-size: 0.82rem;
+    color: rgba(255, 255, 255, 0.48);
+    font-style: italic;
+    line-height: 1.5;
+    border-left: 2px solid rgba(100, 255, 218, 0.25);
+    padding-left: 12px;
+}
+
+.page-service-websites .svc-pricing-cta {
+    display: block;
+    margin: 0 28px 28px;
+    padding: 13px 20px;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid rgba(100, 255, 218, 0.35);
+    color: #64ffda;
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+}
+
+.page-service-websites .svc-pricing-cta:hover {
+    background: rgba(100, 255, 218, 0.12);
+}
+
+.page-service-websites .svc-pricing-cta--featured {
+    background: linear-gradient(135deg, #64ffda, #00c8ff);
+    color: #0a0a0a;
+    border-color: transparent;
+    font-weight: 700;
+}
+
+.page-service-websites .svc-pricing-cta--featured:hover {
+    opacity: 0.9;
+    color: #0a0a0a;
+}
+
+.page-service-websites .svc-pricing-monthly-header {
+    text-align: center;
+    margin: 72px 0 36px;
+}
+
+.page-service-websites .svc-pricing-monthly-header h3 {
+    font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 10px;
+}
+
+.page-service-websites .svc-pricing-monthly-header p {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.62);
+}
+
+.page-service-websites .svc-pricing-ladder {
+    margin-top: 64px;
+    padding: 36px 40px;
+    background: rgba(100, 255, 218, 0.04);
+    border: 1px solid rgba(100, 255, 218, 0.16);
+    border-radius: 20px;
+    text-align: center;
+}
+
+.page-service-websites .svc-pricing-ladder h3 {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 24px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.page-service-websites .svc-pricing-ladder-steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.page-service-websites .svc-ladder-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.page-service-websites .svc-ladder-label {
+    font-size: 0.76rem;
+    color: rgba(255, 255, 255, 0.55);
+    font-weight: 500;
+}
+
+.page-service-websites .svc-ladder-price {
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: #64ffda;
+}
+
+.page-service-websites .svc-ladder-arrow {
+    font-size: 1.1rem;
+    color: rgba(100, 255, 218, 0.3);
+    margin-bottom: 10px;
+}
+
+@media (max-width: 1100px) {
+    .page-service-websites .svc-pricing-grid--2 {
+        grid-template-columns: 1fr;
+    }
+
+    .page-service-websites .svc-pricing-grid--3 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .page-service-websites .svc-stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .page-service-websites .svc-features-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .page-service-websites .svc-work-grid,
+    .page-service-websites .svc-work-grid--3,
+    .page-service-websites .svc-faq-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .page-service-websites .svc-process-steps {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .page-service-websites .svc-process-steps::before {
+        display: none;
+    }
+}
+
+@media (max-width: 700px) {
+    .page-service-websites .svc-pricing-grid,
+    .page-service-websites .svc-pricing-grid--3 {
+        grid-template-columns: 1fr;
+    }
+
+    .page-service-websites .svc-pricing-ladder {
+        padding: 24px 20px;
+    }
+
+    .page-service-websites .svc-ladder-arrow {
+        display: none;
+    }
+}
+
+@media (max-width: 600px) {
+    .page-service-websites .svc-features-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .page-service-websites .svc-process-steps {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .page-service-websites .svc-cta-row {
+        flex-direction: column;
+    }
+
+    .page-service-websites .svc-cta-box {
+        padding: 36px 20px;
+    }
+}
+
 /* ══ Homepage FAQ Grid — responsive ══ */
 @media (max-width: 720px) {
     .section-faq [style*="grid-template-columns: 1fr 1fr"] {
