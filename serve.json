@@ -1,5 +1,9 @@
 {
   "cleanUrls": true,
+  "redirects": [
+    { "source": "/projects", "destination": "/service-websites", "type": 301 },
+    { "source": "/projects.html", "destination": "/service-websites", "type": 301 }
+  ],
   "rewrites": [
     { "source": "/contact", "destination": "/contact.html" },
     { "source": "/book-consultation", "destination": "/book-consultation.html" },

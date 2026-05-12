@@ -28,14 +28,8 @@ Disallow: /*.py
 Disallow: /*.sql
 Disallow: /*.csv
 
-# Noindex portfolio demo apps — keep crawlers out to preserve crawl budget
-Disallow: /CRM-Management-System/
-Disallow: /Employee-Management-System/
-Disallow: /Project-Management-System/
-Disallow: /Ecommerce-Management-System/
-Disallow: /Invoice-Management-System/
-Disallow: /Chess-Game-main/
-Disallow: /Tic-Tac-Toe/
+# Demo apps are intentionally omitted from the sitemap and marked noindex on-page.
+# Keep them crawlable so Google can process those directives and retire stale demo URLs cleanly.
 
 # Block URL parameters that generate junk crawl URLs
 Disallow: /*?search=

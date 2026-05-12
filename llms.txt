@@ -12,63 +12,63 @@
 
 ### Custom Website Design & Local SEO
 Hand-coded, fast-loading business websites paired with Google Business Profile optimization and local SEO for the Tampa Bay area. No page builders, no recurring platform fees.
-URL: https://knightlogics.com/service-websites.html
+URL: https://knightlogics.com/service-websites
 
 ### AI & Business Automation
 Workflow automation, API integrations, webhook pipelines, and internal tooling to reduce manual work and improve operational reliability for small businesses.
-URL: https://knightlogics.com/service-ai-automation.html
+URL: https://knightlogics.com/service-ai-automation
 
 ### E-Commerce Development
 Shopify store development, custom Firebase + Stripe checkout systems, Snipcart integration, inventory automation, and dropshipping pipeline tooling.
-URL: https://knightlogics.com/service-ecommerce.html
+URL: https://knightlogics.com/service-ecommerce
 
 ### Custom Desktop Applications
 Windows desktop apps built with Python + PyInstaller. Shipped products include AI video upscaling, automated video narration/production tools, and display management utilities.
-URL: https://knightlogics.com/service-desktop-apps.html
+URL: https://knightlogics.com/service-desktop-apps
 
 ## Products
 
 ### PixelForge AI
 AI-powered video upscaling desktop application for Windows. Uses Real-ESRGAN and FFMPEG for 4× upscaling with noise reduction. Free download.
-URL: https://knightlogics.com/pixelforge-ai.html
+URL: https://knightlogics.com/pixelforge-ai
 Download: https://github.com/Knight-Logics/v11b-upscaling-app/releases/latest/download/PixelForge-AI.exe
 
 ### VideoForge Studio
 Automated YouTube video narration and production app. Flask-based hybrid desktop tool for AI-assisted Top 5 listicle video creation.
-URL: https://knightlogics.com/videoforge.html
+URL: https://knightlogics.com/videoforge
 Download: https://github.com/Knight-Logics/VideoForge-Studio/releases/download/v0.4.4/VideoForge-Studio-Installer.exe
 
 ### Display Control+
 Windows multi-monitor display configuration switcher with system tray integration. Instantly switch between monitor layouts without digging into Windows settings.
-URL: https://knightlogics.com/display-control-plus.html
+URL: https://knightlogics.com/display-control-plus
 Download: https://github.com/Knight-Logics/display-control-plus/releases/download/v1.0.16/DisplayControlSetup_v1.0.16.exe
 
 ### Auto Vid Compiler
 Automated video clip gathering and compilation tool. Watches folders, assembles clips, and optionally uploads to platforms.
-URL: https://knightlogics.com/auto-vid-compiler.html
+URL: https://knightlogics.com/auto-vid-compiler
 Download: https://github.com/Knight-Logics/Auto-Video-Editor-and-Compiler/releases/download/v1.0/BMagic_AutoVidCompiler_PERFECT.exe
 
 ## Case Studies
 
 ### JNS Construction Services (jnsbuilds.com)
 Full static site build for a Florida construction LLC. Custom branding, schema markup, sitemap, and local SEO targeting Pinellas County.
-URL: https://knightlogics.com/case-study-jns.html
+URL: https://knightlogics.com/case-study-jns
 
 ### Knight Group Real Estate (knightgroup.com)
 Custom real estate agency website for a Tampa Bay residential real estate team. Gallery pages, service area targeting, inquiry forms.
-URL: https://knightlogics.com/case-study-knight-group.html
+URL: https://knightlogics.com/case-study-knight-group
 
 ### Knight Logics Portfolio Site (knightlogics.com)
 Self-built portfolio and service website. Hand-coded HTML/CSS/JS, structured data, IndexNow, Bing/Google Search Console, and GA4 analytics.
-URL: https://knightlogics.com/case-study-knight-logics.html
+URL: https://knightlogics.com/case-study-knight-logics
 
 ## Key Pages
 - Homepage: https://knightlogics.com/
 - Services overview: https://knightlogics.com/#services
-- Projects gallery: https://knightlogics.com/projects.html
-- Contact / free consultation: https://knightlogics.com/contact.html
-- Privacy Policy: https://knightlogics.com/privacy-policy.html
-- Terms of Service: https://knightlogics.com/terms-of-service.html
+- Case studies / portfolio proof: https://knightlogics.com/service-websites
+- Contact / free consultation: https://knightlogics.com/contact
+- Privacy Policy: https://knightlogics.com/privacy-policy
+- Terms of Service: https://knightlogics.com/terms-of-service
 
 ## GitHub
 - Organization: https://github.com/Knight-Logics

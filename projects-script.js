@@ -2,12 +2,12 @@
 
 async function loadHeaderFooter() {
     try {
-        const headerResponse = await fetch('/header.html');
+        const headerResponse = await fetch('/header.html?v=20260512a', { cache: 'no-store' });
         if (headerResponse.ok) {
             const headerContainer = document.getElementById('header-container');
             if (headerContainer) headerContainer.innerHTML = await headerResponse.text();
         }
-        const footerResponse = await fetch('/footer.html');
+        const footerResponse = await fetch('/footer.html?v=20260512a', { cache: 'no-store' });
         if (footerResponse.ok) {
             const footerContainer = document.getElementById('footer-container');
             if (footerContainer) footerContainer.innerHTML = await footerResponse.text();

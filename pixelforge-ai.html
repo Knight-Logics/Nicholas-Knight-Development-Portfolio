@@ -360,7 +360,7 @@
     <script>
         async function loadHeaderFooter() {
             try {
-                const headerResponse = await fetch('/header.html');
+                const headerResponse = await fetch('/header.html?v=20260512a', { cache: 'no-store' });
                 if (headerResponse.ok) {
                     const headerContent = await headerResponse.text();
                     const headerContainer = document.getElementById('header-container');
@@ -369,7 +369,7 @@
                     }
                 }
 
-                const footerResponse = await fetch('/footer.html');
+                const footerResponse = await fetch('/footer.html?v=20260512a', { cache: 'no-store' });
                 if (footerResponse.ok) {
                     const footerContent = await footerResponse.text();
                     const footerContainer = document.getElementById('footer-container');

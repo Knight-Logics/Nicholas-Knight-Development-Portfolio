@@ -7,6 +7,171 @@
   "cleanUrls": true,
   "redirects": [
     {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/projects",
+      "destination": "/service-websites",
+      "permanent": true
+    },
+    {
+      "source": "/projects.html",
+      "destination": "/service-websites",
+      "permanent": true
+    },
+    {
+      "source": "/contact.html",
+      "destination": "/contact",
+      "permanent": true
+    },
+    {
+      "source": "/book-consultation.html",
+      "destination": "/book-consultation",
+      "permanent": true
+    },
+    {
+      "source": "/service-websites.html",
+      "destination": "/service-websites",
+      "permanent": true
+    },
+    {
+      "source": "/service-ecommerce.html",
+      "destination": "/service-ecommerce",
+      "permanent": true
+    },
+    {
+      "source": "/service-ai-automation.html",
+      "destination": "/service-ai-automation",
+      "permanent": true
+    },
+    {
+      "source": "/service-desktop-apps.html",
+      "destination": "/service-desktop-apps",
+      "permanent": true
+    },
+    {
+      "source": "/case-study-jns.html",
+      "destination": "/case-study-jns",
+      "permanent": true
+    },
+    {
+      "source": "/case-study-knight-group.html",
+      "destination": "/case-study-knight-group",
+      "permanent": true
+    },
+    {
+      "source": "/case-study-knight-logics.html",
+      "destination": "/case-study-knight-logics",
+      "permanent": true
+    },
+    {
+      "source": "/case-study-farrell-electric.html",
+      "destination": "/case-study-farrell-electric",
+      "permanent": true
+    },
+    {
+      "source": "/case-study-sals-painting.html",
+      "destination": "/case-study-sals-painting",
+      "permanent": true
+    },
+    {
+      "source": "/case-study-moms-resin-tables.html",
+      "destination": "/case-study-moms-resin-tables",
+      "permanent": true
+    },
+    {
+      "source": "/case-study-screen-team.html",
+      "destination": "/case-study-screen-team",
+      "permanent": true
+    },
+    {
+      "source": "/display-control-plus.html",
+      "destination": "/display-control-plus",
+      "permanent": true
+    },
+    {
+      "source": "/videoforge.html",
+      "destination": "/videoforge",
+      "permanent": true
+    },
+    {
+      "source": "/pixelforge-ai.html",
+      "destination": "/pixelforge-ai",
+      "permanent": true
+    },
+    {
+      "source": "/auto-vid-compiler.html",
+      "destination": "/auto-vid-compiler",
+      "permanent": true
+    },
+    {
+      "source": "/privacy-policy.html",
+      "destination": "/privacy-policy",
+      "permanent": true
+    },
+    {
+      "source": "/terms-of-service.html",
+      "destination": "/terms-of-service",
+      "permanent": true
+    },
+    {
+      "source": "/cookie-policy.html",
+      "destination": "/cookie-policy",
+      "permanent": true
+    },
+    {
+      "source": "/refund-policy.html",
+      "destination": "/refund-policy",
+      "permanent": true
+    },
+    {
+      "source": "/disclaimer.html",
+      "destination": "/disclaimer",
+      "permanent": true
+    },
+    {
+      "source": "/CRM-Management-System/index.html",
+      "destination": "/CRM-Management-System/",
+      "permanent": true
+    },
+    {
+      "source": "/Employee-Management-System/index.html",
+      "destination": "/Employee-Management-System/",
+      "permanent": true
+    },
+    {
+      "source": "/Project-Management-System/index.html",
+      "destination": "/Project-Management-System/",
+      "permanent": true
+    },
+    {
+      "source": "/Ecommerce-Management-System/index.html",
+      "destination": "/Ecommerce-Management-System/",
+      "permanent": true
+    },
+    {
+      "source": "/Invoice-Management-System/index.html",
+      "destination": "/Invoice-Management-System/",
+      "permanent": true
+    },
+    {
+      "source": "/Chess-Game-main/index.html",
+      "destination": "/Chess-Game-main/",
+      "permanent": true
+    },
+    {
+      "source": "/Tic-Tac-Toe/index.html",
+      "destination": "/Tic-Tac-Toe/",
+      "permanent": true
+    },
+    {
+      "source": "/JavaScript-Tic-Tac-Toe-master/index.html",
+      "destination": "/JavaScript-Tic-Tac-Toe-master/",
+      "permanent": true
+    },
+    {
       "source": "/brochure",
       "destination": "/?utm_source=brochure&utm_medium=print&utm_campaign=kl_site_visit",
       "permanent": false
@@ -113,6 +278,132 @@
         {
           "key": "Cache-Control",
           "value": "no-store, max-age=0"
+        }
+      ]
+    },
+    {
+      "source": "/header.html",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/footer.html",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
+    },
+    {
+      "source": "/404.html",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    },
+    {
+      "source": "/sitemap.xml",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    },
+    {
+      "source": "/robots.txt",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    },
+    {
+      "source": "/llms.txt",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    },
+    {
+      "source": "/CRM-Management-System/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        }
+      ]
+    },
+    {
+      "source": "/Employee-Management-System/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        }
+      ]
+    },
+    {
+      "source": "/Project-Management-System/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        }
+      ]
+    },
+    {
+      "source": "/Ecommerce-Management-System/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        }
+      ]
+    },
+    {
+      "source": "/Invoice-Management-System/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        }
+      ]
+    },
+    {
+      "source": "/Chess-Game-main/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        }
+      ]
+    },
+    {
+      "source": "/Tic-Tac-Toe/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
+        }
+      ]
+    },
+    {
+      "source": "/JavaScript-Tic-Tac-Toe-master/(.*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, follow"
         }
       ]
     },
