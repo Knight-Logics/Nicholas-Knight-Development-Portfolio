@@ -2520,6 +2520,18 @@ section::before {
     margin: 0;
 }
 
+.services-showcase-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.85rem;
+    margin-top: 1rem;
+}
+
+.services-showcase-links .solution-link {
+    margin-top: 0;
+}
+
 .services-showcase-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));

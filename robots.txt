@@ -15,6 +15,10 @@ Sitemap: https://knightlogics.com/sitemap.xml
 
 # Disallow APIs, internal tooling, scratch files, and raw source assets
 Disallow: /api/
+Disallow: /header
+Disallow: /header.html
+Disallow: /footer
+Disallow: /footer.html
 Disallow: /.git/
 Disallow: /.venv/
 Disallow: /.vercel/
