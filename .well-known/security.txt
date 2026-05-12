@@ -1,0 +1,6 @@
+Contact: mailto:support@knightlogics.com
+Contact: https://knightlogics.com/contact
+Expires: 2027-05-12T23:59:59.000Z
+Canonical: https://knightlogics.com/.well-known/security.txt
+Preferred-Languages: en
+Hiring: https://knightlogics.com/nicholas-knight

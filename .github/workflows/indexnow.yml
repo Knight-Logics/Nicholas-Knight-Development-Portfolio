@@ -1,0 +1,125 @@
+name: Notify IndexNow
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  submit:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Build IndexNow URL list
+        id: build_urls
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          HOST="https://knightlogics.com"
+          KEY="c11d1576b012440ea9fd020d6fd81d4b"
+          BEFORE="${{ github.event.before }}"
+          AFTER="${{ github.sha }}"
+
+          if [ "$BEFORE" = "0000000000000000000000000000000000000000" ]; then
+            changed_files="$(git ls-files)"
+          else
+            changed_files="$(git diff --name-only "$BEFORE" "$AFTER")"
+          fi
+
+          declare -A seen
+          urls=()
+
+          add_url() {
+            local url="$1"
+            if [ -n "$url" ] && [ -z "${seen[$url]+x}" ]; then
+              seen["$url"]=1
+              urls+=("$url")
+            fi
+          }
+
+          add_sitemap_urls() {
+            if [ -f sitemap.xml ]; then
+              while IFS= read -r loc; do
+                add_url "$loc"
+              done < <(grep -oP '(?<=<loc>)[^<]+' sitemap.xml)
+            fi
+          }
+
+          while IFS= read -r file; do
+            [ -z "$file" ] && continue
+
+            case "$file" in
+              index.html)
+                add_url "$HOST/"
+                ;;
+              *.html)
+                if [[ "$file" != */* ]]; then
+                  route="${file%.html}"
+                  add_url "$HOST/$route"
+                fi
+                ;;
+              llms.txt|llms-full.txt|robots.txt|humans.txt)
+                add_url "$HOST/$file"
+                ;;
+              sitemap.xml)
+                add_url "$HOST/sitemap.xml"
+                add_sitemap_urls
+                ;;
+              .well-known/security.txt)
+                add_url "$HOST/.well-known/security.txt"
+                ;;
+              header.html|footer.html|style.css|style.min.css|script.js|script.min.js|manifest.json|favicon.ico)
+                add_sitemap_urls
+                add_url "$HOST/"
+                add_url "$HOST/llms.txt"
+                add_url "$HOST/llms-full.txt"
+                ;;
+              images/*)
+                add_sitemap_urls
+                ;;
+            esac
+          done <<< "$changed_files"
+
+          if [ "${#urls[@]}" -eq 0 ]; then
+            echo "count=0" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          printf '%s\n' "${urls[@]}" > url_list.txt
+
+          {
+            echo "count=${#urls[@]}"
+            echo "key=$KEY"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Submit changed URLs to IndexNow
+        if: steps.build_urls.outputs.count != '0'
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          jq -n \
+            --arg host "knightlogics.com" \
+            --arg key "${{ steps.build_urls.outputs.key }}" \
+            --arg keyLocation "https://knightlogics.com/${{ steps.build_urls.outputs.key }}.txt" \
+            --rawfile urls url_list.txt \
+            '{
+              host: $host,
+              key: $key,
+              keyLocation: $keyLocation,
+              urlList: ($urls | split("\n") | map(select(length > 0)))
+            }' > indexnow.json
+
+          curl --fail --show-error --silent \
+            -H "Content-Type: application/json; charset=utf-8" \
+            -d @indexnow.json \
+            https://api.indexnow.org/indexnow

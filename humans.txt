@@ -1,0 +1,11 @@
+/* TEAM */
+Business: Knight Logics
+Founder: Nicholas Knight
+Location: Safety Harbor, Florida, USA
+Contact: support@knightlogics.com
+Website: https://knightlogics.com/
+
+/* SITE */
+Standards: HTML5, CSS3, JavaScript, JSON-LD, llms.txt, IndexNow, sitemap.xml, robots.txt
+Stack: GitHub Pages, GitHub Actions, Google Analytics 4, Microsoft Clarity
+Primary Services: Hand-coded websites, local SEO, Google Business Profile optimization, automation, desktop apps
