@@ -1,12 +1,15 @@
 User-agent: *
 Allow: /
 Allow: /manifest.json
+Allow: /llms.txt
+Allow: /llms-full.txt
 
 # Sitemaps
 Sitemap: https://knightlogics.com/sitemap.xml
 
-# AI agent index (llms.txt protocol — non-standard, omitted from robots.txt to pass validators)
-# https://llmstxt.org — file accessible at https://knightlogics.com/llms.txt
+# AI / LLM summary files (kept as comments here to avoid validator issues with non-standard directives)
+# Summary: https://knightlogics.com/llms.txt
+# Full summary: https://knightlogics.com/llms-full.txt
 
 # Disallow APIs, internal tooling, scratch files, and raw source assets
 Disallow: /api/
