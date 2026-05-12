@@ -34,7 +34,14 @@ Disallow: /*.sql
 Disallow: /*.csv
 
 # Demo apps are intentionally omitted from the sitemap and marked noindex on-page.
-# Keep them crawlable so Google can process those directives and retire stale demo URLs cleanly.
+# Block legacy portfolio demos to reduce crawl waste on non-business surfaces.
+Disallow: /CRM-Management-System/
+Disallow: /Ecommerce-Management-System/
+Disallow: /Employee-Management-System/
+Disallow: /Invoice-Management-System/
+Disallow: /Project-Management-System/
+Disallow: /JavaScript-Tic-Tac-Toe-master/
+Disallow: /Chess-Game/
 
 # Block URL parameters that generate junk crawl URLs
 Disallow: /*?search=
