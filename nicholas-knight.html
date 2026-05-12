@@ -37,8 +37,15 @@
     {
         "@context": "https://schema.org",
         "@type": ["ProfilePage", "AboutPage"],
+        "@id": "https://knightlogics.com/#nicholas-knight-page",
         "name": "Nicholas Knight | Founder of Knight Logics",
         "url": "https://knightlogics.com/nicholas-knight",
+        "isPartOf": {
+            "@id": "https://knightlogics.com/#website"
+        },
+        "about": {
+            "@id": "https://knightlogics.com/#organization"
+        },
         "mainEntity": {
             "@type": "Person",
             "@id": "https://knightlogics.com/#nicholas-knight",
@@ -48,9 +55,7 @@
             "jobTitle": "Founder of Knight Logics",
             "description": "Safety Harbor-based founder of Knight Logics. Builds hand-coded websites, local SEO systems, Google Business Profile improvements, workflow automations, and shipped Windows desktop apps.",
             "worksFor": {
-                "@type": "Organization",
-                "name": "Knight Logics",
-                "url": "https://knightlogics.com"
+                "@id": "https://knightlogics.com/#organization"
             },
             "homeLocation": {
                 "@type": "Place",

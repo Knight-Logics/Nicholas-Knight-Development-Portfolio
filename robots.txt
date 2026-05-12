@@ -3,6 +3,8 @@ Allow: /
 Allow: /manifest.json
 Allow: /llms.txt
 Allow: /llms-full.txt
+Allow: /humans.txt
+Allow: /.well-known/security.txt
 
 # Sitemaps
 Sitemap: https://knightlogics.com/sitemap.xml

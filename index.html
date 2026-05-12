@@ -61,21 +61,25 @@
     {
         "@context": "https://schema.org",
         "@type": "Person",
+        "@id": "https://knightlogics.com/#nicholas-knight",
         "name": "Nicholas Knight",
-        "alternateName": "Knight Logics",
         "description": "Custom website developer and local SEO specialist serving Tampa Bay small businesses. Builds fast, hand-coded websites with Google Business Profile optimization and practical automation.",
-        "url": "https://knightlogics.com",
+        "url": "https://knightlogics.com/nicholas-knight",
         "image": "https://knightlogics.com/images/KnightLogicsLogo2.webp",
+        "homeLocation": {
+            "@type": "Place",
+            "name": "Safety Harbor, Florida"
+        },
         "sameAs": [
+            "https://www.linkedin.com/in/nicholasknight87/",
             "https://github.com/Nicholasjknight",
             "https://github.com/Knight-Logics",
             "https://www.linkedin.com/company/knight-logics/",
-            "https://www.google.com/maps/place/Knight+Logics/data=!4m2!3m1!1s0x0:0x48644c12a6309a67?hl=en&amp;ictx=111"
+            "https://www.google.com/maps/place/Knight+Logics/data=!4m2!3m1!1s0x0:0x48644c12a6309a67?hl=en&ictx=111"
         ],
         "jobTitle": "Web Designer & Local SEO Specialist — Tampa Bay",
         "worksFor": {
-            "@type": "Organization",
-            "name": "Knight Logics"
+            "@id": "https://knightlogics.com/#organization"
         },
         "knowsAbout": [
             "Custom Website Design Tampa Bay",
@@ -103,9 +107,10 @@
     {
         "@context": "https://schema.org",
         "@type": ["Organization", "LocalBusiness", "ProfessionalService"],
+        "@id": "https://knightlogics.com/#organization",
         "name": "Knight Logics",
         "alternateName": ["Knight Logics Web Design", "Nicholas Knight Development"],
-        "url": "https://knightlogics.com",
+        "url": "https://knightlogics.com/",
         "logo": {
             "@type": "ImageObject",
             "url": "https://knightlogics.com/images/KnightLogicsLogo2.webp",
@@ -118,9 +123,12 @@
         "telephone": "+1-813-773-5553",
         "priceRange": "$$",
         "foundingDate": "2024",
+        "foundingLocation": {
+            "@type": "Place",
+            "name": "Safety Harbor, Florida"
+        },
         "founder": {
-            "@type": "Person",
-            "name": "Nicholas Knight"
+            "@id": "https://knightlogics.com/#nicholas-knight"
         },
         "address": {
             "@type": "PostalAddress",
@@ -213,11 +221,36 @@
             "url": "https://knightlogics.com/contact",
             "availableLanguage": "English"
         },
+        "hasMap": "https://www.google.com/maps/place/Knight+Logics/data=!4m2!3m1!1s0x0:0x48644c12a6309a67?hl=en&ictx=111",
         "sameAs": [
             "https://github.com/Knight-Logics",
             "https://www.linkedin.com/company/knight-logics/",
-            "https://www.google.com/maps/place/Knight+Logics/data=!4m2!3m1!1s0x0:0x48644c12a6309a67?hl=en&amp;ictx=111"
+            "https://www.google.com/maps/place/Knight+Logics/data=!4m2!3m1!1s0x0:0x48644c12a6309a67?hl=en&ictx=111"
         ]
+    }
+    </script>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "@id": "https://knightlogics.com/#webpage",
+        "url": "https://knightlogics.com/",
+        "name": "Custom Websites & Local SEO — Tampa Bay | Knight Logics",
+        "description": "Hand-coded websites, local SEO, and Google Business optimization for Tampa Bay businesses that need more leads and visibility.",
+        "isPartOf": {
+            "@id": "https://knightlogics.com/#website"
+        },
+        "about": {
+            "@id": "https://knightlogics.com/#organization"
+        },
+        "primaryImageOfPage": {
+            "@type": "ImageObject",
+            "url": "https://knightlogics.com/images/KnightLogicsLogo2.webp",
+            "width": 1024,
+            "height": 1024
+        },
+        "inLanguage": "en-US"
     }
     </script>
     
@@ -229,12 +262,13 @@
         "@id": "https://knightlogics.com/#website",
         "name": "Knight Logics",
         "alternateName": "Knight Logics Web Design Tampa Bay",
-        "url": "https://knightlogics.com",
+        "url": "https://knightlogics.com/",
         "description": "Custom website design, local SEO, and automation services for small businesses in Tampa Bay, FL.",
         "publisher": {
-            "@type": "Organization",
-            "name": "Knight Logics",
-            "url": "https://knightlogics.com"
+            "@id": "https://knightlogics.com/#organization"
+        },
+        "about": {
+            "@id": "https://knightlogics.com/#organization"
         },
         "inLanguage": "en-US"
     }

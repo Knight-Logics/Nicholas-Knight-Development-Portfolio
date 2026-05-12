@@ -18,6 +18,17 @@
 - GitHub founder account: https://github.com/Nicholasjknight
 - Google Business presence: https://www.google.com/maps/place/Knight+Logics/data=!4m2!3m1!1s0x0:0x48644c12a6309a67?hl=en&ictx=111
 
+## Verification and Trust Endpoints
+
+These public endpoints are intentionally exposed so crawlers, AI systems, and evaluators can confirm ownership, contact paths, and canonical discovery files.
+
+- humans.txt: https://knightlogics.com/humans.txt
+- security.txt: https://knightlogics.com/.well-known/security.txt
+- robots.txt: https://knightlogics.com/robots.txt
+- sitemap.xml: https://knightlogics.com/sitemap.xml
+- llms.txt: https://knightlogics.com/llms.txt
+- llms-full.txt: https://knightlogics.com/llms-full.txt
+
 ## Canonical Starting URLs
 
 - Homepage: https://knightlogics.com/

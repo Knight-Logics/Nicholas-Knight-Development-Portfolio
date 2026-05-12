@@ -10,12 +10,19 @@
 - Location: Safety Harbor, FL 34695
 - Google Business Profile: https://www.google.com/maps/place/Knight+Logics/data=!4m2!3m1!1s0x0:0x48644c12a6309a67?hl=en&ictx=111
 - LinkedIn: https://www.linkedin.com/company/knight-logics/
+- Founder LinkedIn: https://www.linkedin.com/in/nicholasknight87/
 - GitHub org: https://github.com/Knight-Logics
 - GitHub personal: https://github.com/Nicholasjknight
 
 ## AI Summary Files
 - Primary summary: https://knightlogics.com/llms.txt
 - Full summary: https://knightlogics.com/llms-full.txt
+
+## Verification & Trust Endpoints
+- humans.txt: https://knightlogics.com/humans.txt
+- security.txt: https://knightlogics.com/.well-known/security.txt
+- robots.txt: https://knightlogics.com/robots.txt
+- sitemap.xml: https://knightlogics.com/sitemap.xml
 
 ## Best Starting Pages
 - Homepage: https://knightlogics.com/
