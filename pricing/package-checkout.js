@@ -406,10 +406,25 @@
     const followupSubmitLoading = followupSubmitButton ? followupSubmitButton.querySelector('.btn-loading') : null;
     const followupCloseButton = document.getElementById('starterPackageFollowupClose');
 
-    const pricingCtas = Array.from(document.querySelectorAll('.pricing-card-cta[href*="openPackage="]'));
+    const pricingCtas = Array.from(document.querySelectorAll('.pricing-card-cta[data-package-key], .pricing-card-cta[href*="openPackage="]'));
     let activePackageKey = 'website-local-seo-starter';
     let lastTrigger = null;
     let activePurchaseReturnPackageKey = '';
+
+    function getPackageKeyFromTrigger(trigger) {
+        if (!trigger) {
+            return '';
+        }
+
+        const dataPackageKey = trigger.getAttribute('data-package-key');
+        if (dataPackageKey) {
+            return dataPackageKey;
+        }
+
+        const href = trigger.getAttribute('href') || '';
+        const url = new URL(href, window.location.origin);
+        return url.searchParams.get('openPackage') || '';
+    }
 
     function getPackageDetails(packageKey) {
         return packageCatalog[packageKey] || {
@@ -1349,9 +1364,7 @@
     pricingCtas.forEach(function (link) {
         link.addEventListener('click', function (event) {
             event.preventDefault();
-            const href = link.getAttribute('href') || '';
-            const url = new URL(href, window.location.origin);
-            const packageKey = url.searchParams.get('openPackage');
+            const packageKey = getPackageKeyFromTrigger(link);
 
             if (!packageKey || !packageCatalog[packageKey]) {
                 return;
@@ -1474,6 +1487,13 @@
 
     if (openPackageKey && packageCatalog[openPackageKey]) {
         openIntake(openPackageKey, null);
+
+        if (window.history && typeof window.history.replaceState === 'function') {
+            params.delete('openPackage');
+            const nextSearch = params.toString();
+            const nextUrl = `${window.location.pathname}${nextSearch ? `?${nextSearch}` : ''}${window.location.hash || ''}`;
+            window.history.replaceState({}, document.title, nextUrl);
+        }
     }
 
     if (purchaseState === 'success' && returnPackageKey && packageCatalog[returnPackageKey]) {
