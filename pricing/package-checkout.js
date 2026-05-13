@@ -457,12 +457,42 @@
         return Array.isArray(packageConfig.paymentOptions) && packageConfig.paymentOptions.some((option) => option.value === 'deposit');
     }
 
+    function extractCurrencyAmount(text) {
+        const match = String(text || '').match(/\$([\d,]+(?:\.\d{2})?)/);
+        return match ? Number(match[1].replace(/,/g, '')) : null;
+    }
+
+    function getCheckoutAmount(packageConfig, paymentOptionConfig) {
+        if (paymentOptionConfig) {
+            const optionAmount = extractCurrencyAmount(paymentOptionConfig.label);
+            if (Number.isFinite(optionAmount)) {
+                return optionAmount;
+            }
+        }
+
+        if (Array.isArray(packageConfig.paymentOptions)) {
+            const fullOption = packageConfig.paymentOptions.find((option) => option.value === 'full');
+            const fullAmount = extractCurrencyAmount(fullOption && fullOption.label);
+            if (Number.isFinite(fullAmount)) {
+                return fullAmount;
+            }
+        }
+
+        return extractCurrencyAmount(packageConfig.price);
+    }
+
+    function supportsBnpl(packageConfig, paymentOptionConfig) {
+        const checkoutAmount = getCheckoutAmount(packageConfig, paymentOptionConfig);
+        return packageConfig && packageConfig.family !== 'monthly' && Number.isFinite(checkoutAmount) && checkoutAmount >= 800;
+    }
+
     function getAssuranceData(packageConfig) {
         const baseChips = [
             'Secure Stripe checkout',
             'You do not need every detail right now',
             'Starter files can be attached now or after payment'
         ];
+        const bnplChip = 'Eligible checkout amounts over $800 may show Klarna or Afterpay/Clearpay';
 
         if (packageConfig.family === 'monthly') {
             return {
@@ -473,10 +503,26 @@
         }
 
         if (hasDepositOption(packageConfig)) {
+            if (supportsBnpl(packageConfig)) {
+                return {
+                    title: 'Secure checkout with financing or deposit options',
+                    body: 'Use this starter form to lock in the package and attach anything helpful now. Eligible checkout amounts over $800 may show Klarna or Afterpay/Clearpay in Stripe, and any deposit you choose is still applied to the project total.',
+                    chips: [...baseChips, bnplChip, 'Deposit is applied to the project total']
+                };
+            }
+
             return {
                 title: 'Secure checkout with a full-pay or deposit option',
                 body: 'Use this starter form to lock in the package and attach anything helpful now. If you choose a deposit, it is applied to the project total and the remaining balance is handled in milestones.',
                 chips: [...baseChips, 'Deposit is applied to the project total']
+            };
+        }
+
+        if (supportsBnpl(packageConfig)) {
+            return {
+                title: '2-minute starter form before secure checkout',
+                body: 'This is not a full discovery questionnaire. It is just enough to start the project cleanly, collect any starter files you already have, and move you into checkout. Eligible checkout amounts over $800 may show Klarna or Afterpay/Clearpay alongside standard card payment.',
+                chips: [...baseChips, bnplChip]
             };
         }
 
@@ -812,6 +858,7 @@
         const selectedPaymentConfig = Array.isArray(packageConfig.paymentOptions)
             ? packageConfig.paymentOptions.find((option) => option.value === selectedPayment)
             : null;
+        const selectedCheckoutSupportsBnpl = supportsBnpl(packageConfig, selectedPaymentConfig);
 
         if (configuratorLabel) {
             configuratorLabel.textContent = Array.isArray(packageConfig.paymentOptions) && packageConfig.paymentOptions.length > 0
@@ -833,18 +880,26 @@
 
         if (configuratorCopy) {
             configuratorCopy.textContent = selectedPaymentConfig && selectedPayment === 'deposit'
-                ? selectedPaymentConfig.help
+                ? selectedCheckoutSupportsBnpl
+                    ? `${selectedPaymentConfig.help} Eligible checkout amounts over $800 may also show Klarna or Afterpay/Clearpay in Stripe.`
+                    : selectedPaymentConfig.help
                 : packageConfig.family === 'monthly'
                     ? 'This starter form confirms the property and main priority before recurring Stripe checkout starts.'
-                    : 'This starter form is just enough to get the project moving cleanly before secure Stripe checkout.';
+                    : selectedCheckoutSupportsBnpl
+                        ? 'This starter form is just enough to get the project moving cleanly before secure Stripe checkout. Eligible checkout amounts over $800 may show Klarna or Afterpay/Clearpay.'
+                        : 'This starter form is just enough to get the project moving cleanly before secure Stripe checkout.';
         }
 
         if (configuratorMeta) {
             configuratorMeta.textContent = packageConfig.family === 'monthly'
                 ? 'You can attach starter files now, but the main thing we need is the site or profile you want maintained.'
                 : hasDepositOption(packageConfig)
-                    ? 'If you choose a deposit, it is applied to the project total. You will still get a post-payment handoff for more files and references.'
-                    : 'Starter files can be attached now, and larger folders, videos, or raw media can be sent by share link now or after payment.';
+                    ? selectedCheckoutSupportsBnpl
+                        ? 'Eligible checkout amounts over $800 may show Klarna or Afterpay/Clearpay in Stripe. Customers can still pay normally by card, or use the deposit option when it fits the project better.'
+                        : 'If you choose a deposit, it is applied to the project total. You will still get a post-payment handoff for more files and references.'
+                    : selectedCheckoutSupportsBnpl
+                        ? 'Eligible checkout amounts over $800 may show Klarna or Afterpay/Clearpay in Stripe. Customers can still choose a normal card payment.'
+                        : 'Starter files can be attached now, and larger folders, videos, or raw media can be sent by share link now or after payment.';
         }
 
         if (intakeSubmitText) {
