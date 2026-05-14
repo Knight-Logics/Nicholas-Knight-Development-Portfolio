@@ -39,7 +39,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap"></noscript>
-    <link rel="stylesheet" href="style.min.css?v=20260512c">
+    <link rel="stylesheet" href="style.min.css?v=20260514a">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
     <title>Pay Invoice | Knight Logics</title>
@@ -54,7 +54,15 @@
     <style>
         /* Pay Invoice page — supplemental styles */
         .invoice-page-hero {
-            background: linear-gradient(135deg, #050a14 0%, #0a1628 60%, #0d1f3c 100%);
+            background: url('./images/websitehero.webp') top center / cover no-repeat;
+        }
+        .invoice-page-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(5,10,20,0.92) 0%, rgba(10,22,40,0.85) 60%, rgba(13,31,60,0.82) 100%);
+            pointer-events: none;
+            z-index: 0;
         }
 
         .invoice-amount-wrap {
@@ -189,6 +197,10 @@
             font-size: 0.9rem;
         }
 
+        #invoicePaymentMain .contact-form-header {
+            margin-top: clamp(10px, 2vw, 18px);
+        }
+
         @media (max-width: 600px) {
             .invoice-result-card {
                 padding: 36px 24px;
@@ -237,75 +249,13 @@
 
     <!-- ==================== MAIN PAYMENT CONTENT ==================== -->
     <div id="invoicePaymentMain">
-
-        <section class="contact-page-hero invoice-page-hero">
-            <div class="contact-page-hero-inner">
-                <nav class="kl-breadcrumb" aria-label="Breadcrumb">
-                    <a href="/">Home</a>
-                    <span>/</span>
-                    <span>Pay Invoice</span>
-                </nav>
-                <span class="contact-page-badge">Secure Checkout &bull; Powered by Stripe</span>
-                <h1>Pay Your Knight Logics Invoice</h1>
-                <p>Enter your invoice number and the amount due to complete your payment securely. All transactions are processed through Stripe — Knight Logics never stores your card information.</p>
-                <div class="contact-page-hero-actions">
-                    <a href="#invoicePaymentForm" class="cta-button primary">Pay Now</a>
-                    <a href="mailto:support@knightlogics.com" class="cta-button secondary">Questions About Your Invoice</a>
-                </div>
-            </div>
-        </section>
-
         <section class="booking-page-main">
             <div class="container">
 
-                <div class="booking-page-grid">
-
-                    <!-- Sidebar -->
-                    <aside class="booking-page-sidebar fade-in">
-
-                        <div class="booking-info-card">
-                            <h3>How invoice payment works</h3>
-                            <ul class="booking-info-list">
-                                <li>Enter the invoice number from your project agreement or invoice email.</li>
-                                <li>Enter the amount shown on the invoice exactly as written.</li>
-                                <li>Fill in your name and email — Stripe sends the receipt automatically.</li>
-                                <li>You will be redirected to a secure Stripe checkout page to complete the payment.</li>
-                            </ul>
-                        </div>
-
-                        <div class="booking-info-card">
-                            <h3>What your invoice number looks like</h3>
-                            <ul class="booking-info-list">
-                                <li>Invoice numbers are listed at the top of your Knight Logics project agreement or invoice email.</li>
-                                <li>Common formats: <strong>KL-2026-001</strong>, <strong>KL/WEB/042</strong>, or the reference number provided by Nicholas directly.</li>
-                                <li>If you are not sure of your invoice number, check your email or reach out before paying.</li>
-                            </ul>
-                        </div>
-
-                        <div class="booking-info-card">
-                            <h3>Payment security</h3>
-                            <ul class="booking-info-list">
-                                <li>All payments are processed through Stripe — a PCI-DSS compliant payment processor.</li>
-                                <li>Knight Logics never stores or sees your card information.</li>
-                                <li>Stripe sends a receipt to the email you provide.</li>
-                            </ul>
-                        </div>
-
-                        <div class="booking-info-card booking-info-card--accent">
-                            <h3>Need help with your invoice?</h3>
-                            <p>If the amount is unclear, you have a question about a line item, or you need to discuss a payment plan, reach out directly before submitting payment.</p>
-                            <div class="contact-page-hero-actions">
-                                <a href="mailto:support@knightlogics.com" class="cta-button primary">Email Knight Logics</a>
-                                <a href="tel:+18137735553" class="cta-button secondary">Call or Text</a>
-                            </div>
-                        </div>
-
-                    </aside>
-
-                    <!-- Payment Form -->
-                    <div class="contact-form-container booking-form-container fade-in">
+                <div class="contact-form-container booking-form-container fade-in" style="max-width: 860px; margin: 0 auto;">
 
                         <div class="contact-form-header">
+                            <h1>Pay Your Knight Logics Invoice</h1>
                             <h2>Invoice Payment</h2>
                             <p>Enter your invoice details below. You will be redirected to Stripe to enter your payment information securely.</p>
                         </div>
@@ -314,14 +264,13 @@
 
                             <div class="form-row">
                                 <div class="form-group">
-                                    <label for="invoiceNumber">Invoice Number <span aria-hidden="true" style="color:#64ffda">*</span></label>
+                                    <label for="invoiceNumber">Invoice Number <span style="color:#a8b2c1;font-size:0.8rem;">(optional)</span></label>
                                     <input
                                         type="text"
                                         id="invoiceNumber"
                                         name="invoiceNumber"
-                                        placeholder="e.g. KL-2026-001"
+                                        placeholder="If you have one, e.g. KL-2026-001"
                                         maxlength="60"
-                                        required
                                         autocomplete="off"
                                         spellcheck="false"
                                     >
@@ -412,7 +361,6 @@
 
                         </form>
 
-                    </div>
                 </div>
 
             </div>
@@ -456,6 +404,31 @@
                 gtag('event', 'invoice_payment_success', { event_category: 'payment', event_label: inv || 'unknown' });
             }
 
+            // Track referral payment completion (wait for scripts to load)
+            (function trackPaymentCompletion() {
+                var paymentSuccessKey = 'kl_invoice_payment_completed_' + (inv || 'unknown') + '_' + (amt || '0');
+                if (window.klTrackReferral && !sessionStorage.getItem(paymentSuccessKey)) {
+                    try {
+                        sessionStorage.setItem(paymentSuccessKey, '1');
+                        var amountNumber = parseFloat(String(amt || '').replace(/[^0-9.]/g, ''));
+                        var amountCents = Number.isFinite(amountNumber) ? Math.round(amountNumber * 100) : null;
+                        var attrSuccess = typeof window.klGetAttribution === 'function' ? (window.klGetAttribution() || null) : null;
+                        if (attrSuccess && (attrSuccess.referralPartner || attrSuccess.referralOffer) && amountCents) {
+                            window.klTrackReferral('payment_completed', {
+                                amountCents: amountCents,
+                                packageName: 'invoice_payment',
+                                eventSource: 'invoice_payment',
+                                pagePath: '/pay-invoice',
+                                externalEventId: 'manual_invoice_success:' + (inv || 'unknown') + ':' + amountCents + ':' + attrSuccess.sessionId
+                            });
+                        }
+                    } catch (successTrackError) {}
+                } else if (!window.klTrackReferral && !sessionStorage.getItem(paymentSuccessKey)) {
+                    // Retry if klTrackReferral not ready yet (scripts still loading)
+                    setTimeout(trackPaymentCompletion, 50);
+                }
+            })();
+
         } else if (paymentState === 'cancelled') {
             document.getElementById('invoicePaymentMain').style.display = 'none';
             document.getElementById('invoiceCancelledSection').style.display = 'flex';
@@ -493,12 +466,12 @@
             var clientPhone   = (document.getElementById('clientPhone').value || '').trim();
             var description   = (document.getElementById('invoiceDescription').value || '').trim();
             var amountRaw     = parseFloat(document.getElementById('invoiceAmount').value || '0');
+            var attr = typeof window.klGetAttribution === 'function'
+                ? (window.klGetAttribution() || null)
+                : null;
 
             // Client-side validation
-            if (!invoiceNumber) {
-                return showError('Please enter your invoice number.');
-            }
-            if (!/^[A-Za-z0-9\-_.#/]{1,60}$/.test(invoiceNumber)) {
+            if (invoiceNumber && !/^[A-Za-z0-9\-_.#/]{1,60}$/.test(invoiceNumber)) {
                 return showError('Invoice number contains invalid characters. Use letters, numbers, dashes, dots, or slashes only.');
             }
             if (!clientName) {
@@ -538,7 +511,13 @@
                     clientEmail: clientEmail,
                     clientPhone: clientPhone,
                     description: description,
-                    amountCents: amountCents
+                    amountCents: amountCents,
+                    referralPartner: attr && attr.referralPartner ? attr.referralPartner : '',
+                    referralOffer: attr && attr.referralOffer ? attr.referralOffer : '',
+                    utmMedium: attr && attr.utmMedium ? attr.utmMedium : '',
+                    utmCampaign: attr && attr.utmCampaign ? attr.utmCampaign : '',
+                    utmFirstUrl: attr && attr.firstUrl ? attr.firstUrl : '',
+                    sessionId: attr && attr.sessionId ? attr.sessionId : ''
                 })
             })
             .then(function (response) {

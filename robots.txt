@@ -55,3 +55,5 @@ Disallow: /*?search=
 Allow: /images/
 Allow: /style.css
 Allow: /script.js
+Disallow: /referral-dashboard
+Disallow: /referral-dashboard.html

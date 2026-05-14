@@ -5,7 +5,7 @@
  * POST /api/referral-event
  * Body (JSON):
  *   {
- *     eventType:        string,   // 'pageview' | 'form_submit' | 'checkout_start'
+ *     eventType:        string,   // 'pageview' | 'form_submit' | 'checkout_start' | 'payment_completed'
  *     referralPartner:  string,   // ?ref= value
  *     referralOffer:    string,   // ?offer= value
  *     utmMedium:        string,
@@ -16,6 +16,8 @@
  *     contactName:      string,   // optional
  *     packageName:      string,   // optional — from checkout events
  *     amountCents:      number,   // optional
+ *     eventSource:      string,   // optional — starter_package | invoice_payment | formspree | website
+ *     externalEventId:  string,   // optional — Stripe session ID or other dedupe key
  *     sessionId:        string,   // client random ID, for dedup
  *   }
  *
@@ -28,7 +30,7 @@
 const { neon } = require('@neondatabase/serverless');
 const crypto = require('crypto');
 
-const ALLOWED_EVENT_TYPES = new Set(['pageview', 'form_submit', 'checkout_start']);
+const ALLOWED_EVENT_TYPES = new Set(['pageview', 'form_submit', 'checkout_start', 'payment_completed', 'referral_contact_submit']);
 
 const ALLOWED_ORIGINS = new Set([
     'https://knightlogics.com',
@@ -45,6 +47,31 @@ function normInt(val) {
     return Number.isFinite(n) && n >= 0 ? n : null;
 }
 
+function getBountyForAmount(grossAmountCents) {
+    if (!grossAmountCents || grossAmountCents < 100) {
+        return null;
+    }
+
+    if (grossAmountCents < 50000) {
+        const payout = Math.round(grossAmountCents * 0.10);
+        return { payoutAmountCents: payout, tierLabel: '<$500 => 10%' };
+    }
+
+    if (grossAmountCents <= 99999) {
+        return { payoutAmountCents: 5000, tierLabel: '$500-$999 => $50' };
+    }
+
+    if (grossAmountCents <= 199999) {
+        return { payoutAmountCents: 15000, tierLabel: '$1,000-$1,999 => $150' };
+    }
+
+    if (grossAmountCents <= 499999) {
+        return { payoutAmountCents: 25000, tierLabel: '$2,000-$4,999 => $250' };
+    }
+
+    return { payoutAmountCents: 50000, tierLabel: '$5,000+ => $500' };
+}
+
 function hashIp(ip) {
     if (!ip) return null;
     return crypto.createHash('sha256').update(ip + (process.env.KL_IP_SALT || 'kl2026')).digest('hex').slice(0, 16);
@@ -58,6 +85,21 @@ function getCorsHeaders(origin) {
         'Access-Control-Allow-Headers': 'Content-Type',
         'Access-Control-Max-Age': '86400'
     };
+}
+
+async function readRawBody(req) {
+    if (Buffer.isBuffer(req.rawBody)) return req.rawBody.toString('utf8');
+    if (typeof req.rawBody === 'string') return req.rawBody;
+    if (typeof req.body === 'string') return req.body;
+    if (req.body && typeof req.body === 'object' && !Buffer.isBuffer(req.body)) {
+        return JSON.stringify(req.body);
+    }
+
+    const chunks = [];
+    for await (const chunk of req) {
+        chunks.push(Buffer.isBuffer(chunk) ? chunk : Buffer.from(chunk));
+    }
+    return Buffer.concat(chunks).toString('utf8');
 }
 
 module.exports = async function handler(req, res) {
@@ -82,9 +124,8 @@ module.exports = async function handler(req, res) {
 
     let body;
     try {
-        body = typeof req.body === 'object' && req.body !== null
-            ? req.body
-            : JSON.parse(req.body || '{}');
+        const rawBody = await readRawBody(req);
+        body = rawBody ? JSON.parse(rawBody) : {};
     } catch (_) {
         body = {};
     }
@@ -111,6 +152,8 @@ module.exports = async function handler(req, res) {
     const name        = normStr(body.contactName,  120);
     const pkgName     = normStr(body.packageName,  120);
     const amountCents = normInt(body.amountCents);
+    const eventSource = normStr(body.eventSource, 40);
+    const externalEventId = normStr(body.externalEventId, 160);
     const sessionId   = normStr(body.sessionId,    64);
 
     const ip = req.headers['x-forwarded-for']
@@ -124,19 +167,34 @@ module.exports = async function handler(req, res) {
     try {
         const sql = neon(process.env.KL_DATABASE_URL);
 
-        await sql`
+        const inserted = await sql`
             INSERT INTO kl_referral_events
                 (event_type, referral_partner, referral_offer, utm_medium, utm_campaign,
                  first_url, page_path, contact_email, contact_name, package_name,
-                 amount_cents, session_id, ip_hash, user_agent_short)
+                 amount_cents, event_source, external_event_id, session_id, ip_hash, user_agent_short)
             VALUES
                 (${eventType}, ${referralPartner}, ${referralOffer}, ${utmMedium}, ${utmCampaign},
                  ${firstUrl}, ${pagePath}, ${email}, ${name}, ${pkgName},
-                 ${amountCents}, ${sessionId}, ${ipHash}, ${uaShort})
+                 ${amountCents}, ${eventSource}, ${externalEventId}, ${sessionId}, ${ipHash}, ${uaShort})
+            ON CONFLICT (external_event_id) DO NOTHING
+            RETURNING id
         `;
 
+        if (inserted.length && eventType === 'payment_completed' && referralPartner) {
+            const bounty = getBountyForAmount(amountCents || 0);
+            if (bounty) {
+                await sql`
+                    INSERT INTO kl_referral_payouts
+                        (referral_event_id, partner_slug, gross_amount_cents, commission_percent, commission_amount_cents, payout_status, payout_note)
+                    VALUES
+                        (${inserted[0].id}, ${referralPartner}, ${amountCents}, 0, ${bounty.payoutAmountCents}, 'owed', ${'Flat bounty tier: ' + bounty.tierLabel})
+                    ON CONFLICT (referral_event_id) DO NOTHING
+                `;
+            }
+        }
+
         res.writeHead(200, { ...corsHeaders, 'Content-Type': 'application/json' });
-        return res.end(JSON.stringify({ ok: true }));
+        return res.end(JSON.stringify({ ok: true, duplicate: !inserted.length }));
     } catch (err) {
         console.error('[referral-event] DB error:', err && err.message);
         /* Return 200 to avoid breaking client-side code */

@@ -8,6 +8,19 @@ let anchorNavigationInitialized = false;
 // Keep verbose landing logs disabled in production to reduce main-thread work on mobile.
 const DEBUG_LANDING = false;
 
+// KL Lead push notifications — fires to ntfy.sh desktop/browser on every successful form submission
+// Subscribe at: https://ntfy.sh/kl-leads-9r4x  (or ntfy desktop app → add topic kl-leads-9r4x)
+var KL_NTFY_TOPIC = 'kl-leads-9r4x';
+function klNotifyLead(title, body) {
+    try {
+        fetch('https://ntfy.sh/' + KL_NTFY_TOPIC, {
+            method: 'POST',
+            headers: { 'Title': title, 'Priority': 'high', 'Tags': 'bell' },
+            body: String(body)
+        }).catch(function() {});
+    } catch (e) {}
+}
+
 function landingLog(...args) {
     if (DEBUG_LANDING) {
         console.log(...args);
@@ -2193,6 +2206,7 @@ function initBusinessContactForm() {
 
                 if (response.ok) {
                     showBusinessNotification('Thank you! Your consultation request has been sent successfully. We\'ll contact you within 24 hours.', 'success');
+                    klNotifyLead('New KL Lead', 'Contact: ' + contactName + '\nEmail: ' + (data.email || '') + '\nService: ' + serviceType);
                     form.reset();
                 } else {
                     throw new Error('Network response was not ok');
@@ -2505,6 +2519,9 @@ document.addEventListener('click', function(e) {
                 headers: { 'Accept': 'application/json' }
             }).then(function(r) {
                 if (r.ok) {
+                    var mName = (document.getElementById('mobileContactName') || {}).value || 'Unknown';
+                    var mEmail = (document.getElementById('mobileEmail') || {}).value || '';
+                    klNotifyLead('KL Mobile Form', 'Contact: ' + mName + '\nEmail: ' + mEmail);
                     mobileForm.innerHTML = '<div class="form-success-message" style="text-align:center;padding:2rem 0;"><p style="color:#64ffda;font-size:1.1rem;font-weight:700;">Request sent!</p><p style="color:rgba(255,255,255,0.7);margin-top:0.5rem;">We\'ll be in touch shortly.</p></div>';
                     setTimeout(closeSheet, 2200);
                 } else {

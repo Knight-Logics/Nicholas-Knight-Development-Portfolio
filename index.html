@@ -3677,6 +3677,7 @@
                     }
 
                     setFollowupStatus(`Thanks - your additional details for ${followupPackageNameInput.value || 'this package'} were sent. If you still need to share a larger video or folder, email <a href="mailto:${intakeSupportEmail}">${intakeSupportEmail}</a> with a cloud link.`, 'success');
+                    try { klNotifyLead('KL Package Handoff', 'Contact: ' + (followupContactNameInput ? followupContactNameInput.value : 'Unknown') + '\nEmail: ' + (followupEmailInput ? followupEmailInput.value : '') + '\nPackage: ' + (followupPackageNameInput ? followupPackageNameInput.value : '')); } catch(e) {}
 
                     if (followupAssetLinkInput) {
                         followupAssetLinkInput.value = '';
@@ -3834,6 +3835,7 @@
             }
         })();
     </script>
+    <script src="attribution.js" defer></script>
     <script src="script.min.js?v=20260512c" defer></script>
 </body>
 </html>

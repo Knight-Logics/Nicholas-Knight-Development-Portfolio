@@ -1,0 +1,38 @@
+package_key,package_name,family,billing_mode,payment_option,amount_usd,interval,product_name,product_id,price_id,created_now
+website-preview-launch,Preview Launch Site,website,payment,full,500.00,,KL - Preview Launch Site,prod_UW8ZeNIJjjqDA8,price_1TX6IFErWiwwLYoRkwXyo3Zb,no
+website-live-essential,Essential Launch Site,website,payment,full,700.00,,KL - Essential Launch Site,prod_UW8ZpbO1fCZwL3,price_1TX6IFErWiwwLYoRLCj09vAO,no
+website-live-plus,Essential Launch Plus,website,payment,full,850.00,,KL - Essential Launch Plus,prod_UW8Zifk62E3Yn2,price_1TX6IGErWiwwLYoR6uJEmLVl,no
+website-search-foundation,Search Foundation Site,website,payment,full,1200.00,,KL - Search Foundation Site,prod_UW8ZfGTQKWVpi0,price_1TX6IHErWiwwLYoRo5tcFL3w,no
+website-search-foundation-plus,Search Foundation Plus,website,payment,full,1500.00,,KL - Search Foundation Plus,prod_UW8ZxTLhwSVKfA,price_1TX6IHErWiwwLYoR4zBfVYU9,no
+website-search-foundation-plus,Search Foundation Plus,website,payment,deposit,750.00,,KL - Search Foundation Plus,prod_UW8ZxTLhwSVKfA,price_1TX6IIErWiwwLYoRYeSz0OrL,no
+website-local-seo-starter,Local Launch Site,website,payment,full,1997.00,,KL - Local Launch Site,prod_UW8ZCsmUlsw5OC,price_1TX6IIErWiwwLYoRt7g6QDZl,no
+website-local-seo-starter,Local Launch Site,website,payment,deposit,1000.00,,KL - Local Launch Site,prod_UW8ZCsmUlsw5OC,price_1TX6IJErWiwwLYoREcQMrXzA,no
+website-local-launch-plus,Local Launch Plus,website,payment,full,2997.00,,KL - Local Launch Plus,prod_UW8Z4obTD3JzoV,price_1TX6IKErWiwwLYoRqxtYQI7H,no
+website-local-launch-plus,Local Launch Plus,website,payment,deposit,1500.00,,KL - Local Launch Plus,prod_UW8Z4obTD3JzoV,price_1TX6IKErWiwwLYoRkAaQnBkN,no
+website-local-launch-max,Local Launch Max,website,payment,full,4500.00,,KL - Local Launch Max,prod_UW8ZgzrMbObwa0,price_1TX6ILErWiwwLYoRf3lkVGj0,no
+website-local-launch-max,Local Launch Max,website,payment,deposit,2000.00,,KL - Local Launch Max,prod_UW8ZgzrMbObwa0,price_1TX6ILErWiwwLYoRidTACaU3,no
+ecommerce-preview-catalog,Storefront Preview,ecommerce,payment,full,750.00,,KL - Storefront Preview,prod_UW8ZHpu9XVJx3i,price_1TX6IMErWiwwLYoRHT8oeduo,no
+ecommerce-payment-links,Payment-Link Store,ecommerce,payment,full,1200.00,,KL - Payment-Link Store,prod_UW8ZBKWkvD3foI,price_1TX6IMErWiwwLYoRhmx00did,no
+ecommerce-launch,E-Commerce Launch,ecommerce,payment,full,2497.00,,KL - E-Commerce Launch,prod_UW8ZCZugvRpQ3p,price_1TX6INErWiwwLYoRld9p3r1b,no
+ecommerce-launch,E-Commerce Launch,ecommerce,payment,deposit,1250.00,,KL - E-Commerce Launch,prod_UW8ZCZugvRpQ3p,price_1TX6INErWiwwLYoRbvW2Ss9G,no
+ecommerce-launch-plus,E-Commerce Launch Plus,ecommerce,payment,full,3497.00,,KL - E-Commerce Launch Plus,prod_UW8Z8QIkDSBNxO,price_1TX6IOErWiwwLYoRvpR9asl9,no
+ecommerce-growth-store,E-Commerce Growth Store,ecommerce,payment,full,3997.00,,KL - E-Commerce Growth Store,prod_UW8ZSWuoJpfCFs,price_1TX6IPErWiwwLYoROsKhCL6d,no
+ecommerce-growth-store,E-Commerce Growth Store,ecommerce,payment,deposit,2000.00,,KL - E-Commerce Growth Store,prod_UW8ZSWuoJpfCFs,price_1TX6IPErWiwwLYoRWpjyvsrn,no
+ecommerce-advanced-system,Advanced E-Commerce System,ecommerce,payment,full,7500.00,,KL - Advanced E-Commerce System,prod_UW8Zrg5doY4YtR,price_1TX6IQErWiwwLYoRmfpkJgJT,no
+ecommerce-advanced-system,Advanced E-Commerce System,ecommerce,payment,deposit,2500.00,,KL - Advanced E-Commerce System,prod_UW8Zrg5doY4YtR,price_1TX6IQErWiwwLYoRb1bmeUTk,no
+gbp-optimization,Google Business Profile Sprint,seo,payment,full,397.00,,KL - Google Business Profile Sprint,prod_UW8Zqm5NIBQUlD,price_1TX6IRErWiwwLYoRVttnIxGd,no
+monthly-local-seo-starter,Local Visibility Lite,monthly,subscription,full,197.00,month,KL - Local Visibility Lite,prod_UW8ZfTorOq8WLW,price_1TX6ISErWiwwLYoRs6D7vkmF,no
+monthly-visibility-standard,Visibility Standard,monthly,subscription,full,397.00,month,KL - Visibility Standard,prod_UW8Z3kpPtjARRj,price_1TX6ISErWiwwLYoRUFjmq6US,no
+monthly-visibility-pro,Visibility Pro,monthly,subscription,full,697.00,month,KL - Visibility Pro,prod_UW8ZO1OcRbvILP,price_1TX6ITErWiwwLYoRKfTAyBIm,no
+monthly-growth-management,Growth Management,monthly,subscription,full,1000.00,month,KL - Growth Management,prod_UW8ZENJO8cTPbL,price_1TX6ITErWiwwLYoRcVU5pgUt,no
+ops-simple-lead-tracker,Simple Lead Tracker,ops,payment,full,250.00,,KL - Simple Lead Tracker,prod_UW8ZTQSb01cvJ5,price_1TX6IUErWiwwLYoRXbaBqJrs,no
+ops-contractor-crm-starter,Contractor CRM Starter,ops,payment,full,500.00,,KL - Contractor CRM Starter,prod_UW8Zoapio2IO8o,price_1TX6IVErWiwwLYoROxY8IOdJ,no
+ops-job-records-system,Job Records System,ops,payment,full,750.00,,KL - Job Records System,prod_UW8ZsglciPlLBV,price_1TX6IVErWiwwLYoRvCaJrb9O,no
+ops-automated-job-records,Automated Job Records,ops,payment,full,1500.00,,KL - Automated Job Records,prod_UW8ZJC68DRxxZb,price_1TX6IWErWiwwLYoRurRRsi2T,no
+ops-automated-job-records,Automated Job Records,ops,payment,deposit,750.00,,KL - Automated Job Records,prod_UW8ZJC68DRxxZb,price_1TX6IWErWiwwLYoR2TzYLnBF,no
+ops-growth-system-starter,Growth System Starter,ops,payment,full,3500.00,,KL - Growth System Starter,prod_UW8ZRL9d8z30Ad,price_1TX6IXErWiwwLYoRLVUF5ous,no
+ops-growth-system-starter,Growth System Starter,ops,payment,deposit,1750.00,,KL - Growth System Starter,prod_UW8ZRL9d8z30Ad,price_1TX6IYErWiwwLYoRDD82GaYs,no
+ops-full-growth-system,Full Growth System,ops,payment,full,5000.00,,KL - Full Growth System,prod_UW8Z9tlHGJy7ZL,price_1TX6IYErWiwwLYoRISI0g3MT,no
+ops-full-growth-system,Full Growth System,ops,payment,deposit,2000.00,,KL - Full Growth System,prod_UW8Z9tlHGJy7ZL,price_1TX6IZErWiwwLYoRECEjpmNS,no
+ops-custom-automation-system,Custom Automation System,ops,payment,full,10000.00,,KL - Custom Automation System,prod_UW8Z3CYNrnSOBH,price_1TX6IZErWiwwLYoRDu6E5B6E,no
+ops-custom-automation-system,Custom Automation System,ops,payment,deposit,2500.00,,KL - Custom Automation System,prod_UW8Z3CYNrnSOBH,price_1TX6IaErWiwwLYoR89f70Ss4,no

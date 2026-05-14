@@ -114,7 +114,7 @@
 
     <section class="cs-hero" style="padding: 80px 0 60px; background: linear-gradient(160deg, #050a14 0%, #0a1628 100%);">
         <div class="container" style="max-width: 920px;">
-            <nav aria-label="Breadcrumb" class="cs-breadcrumb">
+            <nav aria-label="Breadcrumb" class="kl-breadcrumb">
                 <a href="/">Home</a>
                 <span>/</span>
                 <span>Case Studies</span>
@@ -123,9 +123,9 @@
             <h1 style="font-size: clamp(2rem, 4vw, 3rem); margin: 0 0 18px; line-height: 1.15;">Website Case Studies You Can Actually Check</h1>
             <p style="font-size: 1.08rem; color: #a8b2c8; line-height: 1.75; max-width: 800px; margin: 0 0 26px;">These are real Knight Logics builds and documented proof pages, not placeholder mockups. Use them to see the range from lean starter launches to full growth-ready local business systems.</p>
             <div style="display:flex; flex-wrap:wrap; gap:14px;">
-                <a href="/service-websites" class="services-panel-link" style="display:inline-flex; align-items:center; gap:8px;">See Website Services</a>
-                <a href="/free-website-audit" class="services-panel-link" style="display:inline-flex; align-items:center; gap:8px; background: transparent; border: 1px solid rgba(100,255,218,.25);">Start with a Free Audit</a>
-                <a href="/pricing" class="services-panel-link" style="display:inline-flex; align-items:center; gap:8px; background: transparent; border: 1px solid rgba(100,255,218,.25);">Compare Pricing</a>
+                <a href="/service-websites" class="services-panel-link services-panel-link--solid">See Website Services</a>
+                <a href="/free-website-audit" class="services-panel-link">Start with a Free Audit</a>
+                <a href="/pricing" class="services-panel-link">Compare Pricing</a>
             </div>
         </div>
     </section>
@@ -147,7 +147,13 @@
                         <p class="svc-work-label">Starter Example</p>
                         <h3>Preview Launch Site</h3>
                         <p class="svc-work-client">Farrell Electric</p>
-                        <p>Single-page proof-of-concept build focused on credibility, service clarity, and a direct call-first conversion path.</p>
+                        <div class="svc-work-tags">
+                            <span class="svc-work-tag">Custom HTML</span>
+                            <span class="svc-work-tag">GitHub Pages</span>
+                            <span class="svc-work-tag">Mobile-First</span>
+                            <span class="svc-work-tag">Click-to-Call</span>
+                        </div>
+                        <p>Single-page proof-of-concept build focused on credibility, service clarity, and a direct call-first conversion path. No page builder, no monthly fees.</p>
                         <span class="svc-work-cta">View Case Study <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </a>
@@ -161,7 +167,14 @@
                         <p class="svc-work-label">Live Client</p>
                         <h3>Search-Ready Starter</h3>
                         <p class="svc-work-client">Sal's Painting &amp; Basic Renovations</p>
-                        <p>Live-domain starter with LocalBusiness and FAQ schema, analytics, and estimate-first conversion without a heavy multi-page scope.</p>
+                        <div class="svc-work-tags">
+                            <span class="svc-work-tag">LocalBusiness Schema</span>
+                            <span class="svc-work-tag">FAQ Schema</span>
+                            <span class="svc-work-tag">GA4</span>
+                            <span class="svc-work-tag">Estimate Form</span>
+                            <span class="svc-work-tag">Own Domain</span>
+                        </div>
+                        <p>Live-domain starter with LocalBusiness and FAQ schema, analytics, and estimate-first conversion — schema-ready from launch, built for Google to find and trust.</p>
                         <span class="svc-work-cta">View Case Study <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </a>
@@ -175,7 +188,14 @@
                         <p class="svc-work-label">Live Client</p>
                         <h3>E-Commerce Launch</h3>
                         <p class="svc-work-client">Mom's Resin Tables</p>
-                        <p>Catalog, product pages, cart and Stripe checkout, custom builder, commissions flow, and policy pages for a real product brand.</p>
+                        <div class="svc-work-tags">
+                            <span class="svc-work-tag">Stripe Checkout</span>
+                            <span class="svc-work-tag">Product Cart</span>
+                            <span class="svc-work-tag">Custom Builder</span>
+                            <span class="svc-work-tag">Commission Flow</span>
+                            <span class="svc-work-tag">Policy Pages</span>
+                        </div>
+                        <p>Full storefront with cart, Stripe checkout, a custom resin table builder, commission tracking, and complete policy pages — no Shopify fees, full code ownership.</p>
                         <span class="svc-work-cta">View Case Study <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </a>
@@ -188,8 +208,16 @@
                     <div class="svc-work-copy">
                         <p class="svc-work-label">Live Client</p>
                         <h3>Local Launch Plus</h3>
-                        <p class="svc-work-client">JNS Construction</p>
-                        <p>11-page contractor build with service architecture, form routing, analytics, FAQ schema, and strong local-search launch depth.</p>
+                        <p class="svc-work-client">JNS Construction Services LLC</p>
+                        <div class="svc-work-tags">
+                            <span class="svc-work-tag">11 Pages</span>
+                            <span class="svc-work-tag">Service Schema</span>
+                            <span class="svc-work-tag">FAQ Schema</span>
+                            <span class="svc-work-tag">Form Routing</span>
+                            <span class="svc-work-tag">GA4</span>
+                            <span class="svc-work-tag">Sitemap + GSC</span>
+                        </div>
+                        <p>11-page contractor build with full service architecture, form routing, analytics, FAQ and Service schema, and full launch QA for strong local-search depth from day one.</p>
                         <span class="svc-work-cta">View Case Study <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </a>
@@ -206,7 +234,14 @@
                         <p class="svc-work-label">Live Client</p>
                         <h3>Growth System</h3>
                         <p class="svc-work-client">Knight Group</p>
-                        <p>Public site, booking flow, local SEO, CRM support, follow-up systems, and a broader automated growth stack behind the business.</p>
+                        <div class="svc-work-tags">
+                            <span class="svc-work-tag">Public Site</span>
+                            <span class="svc-work-tag">Booking Flow</span>
+                            <span class="svc-work-tag">Local SEO</span>
+                            <span class="svc-work-tag">CRM Support</span>
+                            <span class="svc-work-tag">Follow-Up Automation</span>
+                        </div>
+                        <p>Website + ops stack built to generate and track real local leads. Public site, booking flow, local SEO, CRM integration, and automated follow-up workflows behind the business.</p>
                         <span class="svc-work-cta">View Case Study <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </a>
@@ -219,8 +254,15 @@
                     <div class="svc-work-copy">
                         <p class="svc-work-label">Live Client</p>
                         <h3>Growth System</h3>
-                        <p class="svc-work-client">The Screen Team LLC</p>
-                        <p>Deep service-page coverage, quote forms, service-area SEO, and the supporting ops layer required to keep local lead flow moving.</p>
+                        <p class="svc-work-client">Screen Team LLC</p>
+                        <div class="svc-work-tags">
+                            <span class="svc-work-tag">Service Pages</span>
+                            <span class="svc-work-tag">City Pages</span>
+                            <span class="svc-work-tag">Quote Forms</span>
+                            <span class="svc-work-tag">Service-Area SEO</span>
+                            <span class="svc-work-tag">Ops Layer</span>
+                        </div>
+                        <p>Deep service-page and city-page coverage, quote forms, service-area SEO, and the supporting ops infrastructure to keep multi-area local lead flow moving consistently.</p>
                         <span class="svc-work-cta">View Case Study <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </a>
@@ -234,7 +276,14 @@
                         <p class="svc-work-label">Internal Build</p>
                         <h3>KnightLogics.com</h3>
                         <p class="svc-work-client">Knight Logics</p>
-                        <p>Portfolio and service site built to demonstrate technical SEO, accessibility, rich results, clean structure, and direct-response conversion flow.</p>
+                        <div class="svc-work-tags">
+                            <span class="svc-work-tag">Technical SEO</span>
+                            <span class="svc-work-tag">Rich Results</span>
+                            <span class="svc-work-tag">Schema Markup</span>
+                            <span class="svc-work-tag">Core Web Vitals</span>
+                            <span class="svc-work-tag">Accessibility</span>
+                        </div>
+                        <p>Portfolio and service site built to rank, perform, and demonstrate every service offered — technical SEO, accessibility, rich results, clean structure, and direct-response conversion flow.</p>
                         <span class="svc-work-cta">View Case Study <i class="fas fa-arrow-right"></i></span>
                     </div>
                 </a>
@@ -263,8 +312,8 @@
                 </div>
             </div>
             <div style="display:flex; flex-wrap:wrap; gap:14px; justify-content:center; margin-top:32px;">
-                <a href="/service-websites" class="services-panel-link" style="display:inline-flex; align-items:center; gap:8px;">See Website Services</a>
-                <a href="/free-website-audit" class="services-panel-link" style="display:inline-flex; align-items:center; gap:8px; background: transparent; border: 1px solid rgba(100,255,218,.25);">Start with the Free Audit</a>
+                <a href="/service-websites" class="services-panel-link services-panel-link--solid">See Website Services</a>
+                <a href="/free-website-audit" class="services-panel-link">Start with the Free Audit</a>
             </div>
         </div>
     </section>

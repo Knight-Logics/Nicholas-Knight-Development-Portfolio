@@ -16,6 +16,8 @@ const MAX_JSON_BODY_BYTES = 64 * 1024;
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 const RATE_LIMIT_MAX_REQUESTS = 30;
 const requestBuckets = new Map();
+const KL_PRODUCT_KEY_META = 'kl_package_key';
+const KL_PAYMENT_OPTION_META = 'kl_payment_option';
 
 function createHttpError(statusCode, message) {
     const error = new Error(message);
@@ -793,7 +795,8 @@ function buildIntakeDetails(body, packageDefinition) {
         referralOffer: normalizeSingleLine(body && (body.kl_offer || body.referralOffer), 80),
         utmMedium: normalizeSingleLine(body && (body.kl_utm_medium || body.utmMedium), 80),
         utmCampaign: normalizeSingleLine(body && (body.kl_utm_campaign || body.utmCampaign), 80),
-        utmFirstUrl: normalizeSingleLine(body && (body.kl_first_url || body.utmFirstUrl), 300)
+        utmFirstUrl: normalizeSingleLine(body && (body.kl_first_url || body.utmFirstUrl), 300),
+        sessionId: normalizeSingleLine(body && (body.kl_session_id || body.sessionId), 64)
     };
 
     if (!intakeDetails.businessName || !intakeDetails.contactName || !intakeDetails.email || !intakeDetails.projectDetails) {
@@ -859,7 +862,7 @@ function getPaymentSelection(packageKey, requestedOption, packageDefinition) {
     };
 }
 
-function buildLineItem(packageDefinition, paymentSelection) {
+function buildInlineLineItem(packageDefinition, paymentSelection) {
     const priceData = {
         currency: packageDefinition.currency,
         product_data: {
@@ -875,6 +878,117 @@ function buildLineItem(packageDefinition, paymentSelection) {
 
     return {
         price_data: priceData,
+        quantity: 1
+    };
+}
+
+function normalizeRecurringInterval(recurring) {
+    if (!recurring || !recurring.interval) {
+        return '';
+    }
+
+    return String(recurring.interval).toLowerCase();
+}
+
+function normalizeRecurringIntervalCount(recurring) {
+    if (!recurring || !Number.isFinite(recurring.interval_count)) {
+        return 1;
+    }
+
+    return recurring.interval_count;
+}
+
+function doesPriceMatchSelection(price, packageDefinition, paymentSelection) {
+    if (!price || price.currency !== packageDefinition.currency || price.unit_amount !== paymentSelection.amount) {
+        return false;
+    }
+
+    const paymentOption = (price.metadata && price.metadata[KL_PAYMENT_OPTION_META]) || 'full';
+
+    if (paymentOption !== paymentSelection.key) {
+        return false;
+    }
+
+    if (packageDefinition.mode === 'subscription') {
+        if (!price.recurring) {
+            return false;
+        }
+
+        return (
+            normalizeRecurringInterval(price.recurring) === normalizeRecurringInterval(packageDefinition.recurring) &&
+            normalizeRecurringIntervalCount(price.recurring) === normalizeRecurringIntervalCount(packageDefinition.recurring)
+        );
+    }
+
+    return !price.recurring;
+}
+
+async function getOrCreateCatalogProduct(stripe, packageKey, packageDefinition) {
+    const productsResponse = await stripe.products.list({ active: true, limit: 100 });
+    const existing = (productsResponse.data || []).find((product) =>
+        product &&
+        product.metadata &&
+        product.metadata[KL_PRODUCT_KEY_META] === packageKey
+    );
+
+    if (existing) {
+        return existing;
+    }
+
+    return stripe.products.create({
+        name: `KL - ${packageDefinition.name}`,
+        description: packageDefinition.description,
+        metadata: {
+            [KL_PRODUCT_KEY_META]: packageKey,
+            kl_package_name: packageDefinition.name,
+            kl_mode: packageDefinition.mode,
+            kl_family: (packageDefinition.metadata && packageDefinition.metadata.family) || ''
+        }
+    });
+}
+
+async function getOrCreateCatalogPrice(stripe, product, packageKey, packageDefinition, paymentSelection) {
+    const pricesResponse = await stripe.prices.list({
+        product: product.id,
+        active: true,
+        limit: 100
+    });
+
+    const existing = (pricesResponse.data || []).find((price) =>
+        doesPriceMatchSelection(price, packageDefinition, paymentSelection)
+    );
+
+    if (existing) {
+        return existing;
+    }
+
+    const createPayload = {
+        product: product.id,
+        currency: packageDefinition.currency,
+        unit_amount: paymentSelection.amount,
+        metadata: {
+            [KL_PRODUCT_KEY_META]: packageKey,
+            [KL_PAYMENT_OPTION_META]: paymentSelection.key,
+            kl_package_name: packageDefinition.name
+        },
+        nickname: paymentSelection.key === 'deposit'
+            ? `${packageDefinition.name} Deposit`
+            : `${packageDefinition.name} Full`
+    };
+
+    if (packageDefinition.mode === 'subscription') {
+        createPayload.recurring = packageDefinition.recurring;
+    }
+
+    return stripe.prices.create(createPayload);
+}
+
+async function buildCatalogLineItem(stripe, packageKey, packageDefinition, paymentSelection) {
+    const product = await getOrCreateCatalogProduct(stripe, packageKey, packageDefinition);
+    const price = await getOrCreateCatalogPrice(stripe, product, packageKey, packageDefinition, paymentSelection);
+
+    return {
+        price: price.id,
         quantity: 1
     };
 }
@@ -953,6 +1067,10 @@ function buildCheckoutMetadata(packageKey, packageDefinition, intakeDetails, pay
         metadata.utmCampaign = intakeDetails.utmCampaign;
     }
 
+    if (intakeDetails.sessionId) {
+        metadata.referralSessionId = intakeDetails.sessionId;
+    }
+
     return metadata;
 }
 
@@ -1017,7 +1135,21 @@ async function submitIntakeToFormspree(packageDefinition, intakeDetails, payment
     }
 }
 
-module.exports = async function handler(req, res) {
+async function sendReferralEvent(apiBase, payload) {
+    if (!apiBase || !payload) {
+        return;
+    }
+
+    try {
+        await fetch(apiBase + '/api/referral-event', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        }).catch(function () {});
+    } catch (_) {}
+}
+
+async function handler(req, res) {
     const allowedOrigin = getAllowedOrigin(req);
 
     if (allowedOrigin === false) {
@@ -1108,6 +1240,7 @@ module.exports = async function handler(req, res) {
         });
 
         const baseUrl = allowedOrigin || getBaseUrl(req);
+        const apiBase = baseUrl.replace(/\/$/, '');
         const checkoutMetadata = buildCheckoutMetadata(packageKey, packageDefinition, intakeDetails, paymentSelection);
         const successReturnUrl = new URL(intakeDetails.returnPath || '/pricing', `${baseUrl}/`);
         successReturnUrl.searchParams.set('purchase', 'success');
@@ -1117,9 +1250,36 @@ module.exports = async function handler(req, res) {
         cancelReturnUrl.searchParams.set('purchase', 'cancelled');
         cancelReturnUrl.searchParams.set('package', packageKey);
 
+        if (intakeDetails.referralPartner || intakeDetails.referralOffer) {
+            await sendReferralEvent(apiBase, {
+                eventType: 'form_submit',
+                referralPartner: intakeDetails.referralPartner || '',
+                referralOffer: intakeDetails.referralOffer || '',
+                utmMedium: intakeDetails.utmMedium || '',
+                utmCampaign: intakeDetails.utmCampaign || '',
+                firstUrl: intakeDetails.utmFirstUrl || '',
+                pagePath: intakeDetails.returnPath || '/pricing',
+                contactEmail: intakeDetails.email || '',
+                contactName: intakeDetails.contactName || '',
+                packageName: packageKey || '',
+                sessionId: intakeDetails.sessionId || '',
+                eventSource: 'starter_package'
+            });
+        }
+
+        let lineItem;
+
+        try {
+            lineItem = await buildCatalogLineItem(stripe, packageKey, packageDefinition, paymentSelection);
+        } catch (catalogError) {
+            // Fallback keeps checkout operational if Stripe catalog lookup fails.
+            console.error('Stripe catalog lookup failed; falling back to inline checkout price data:', catalogError);
+            lineItem = buildInlineLineItem(packageDefinition, paymentSelection);
+        }
+
         const sessionParams = {
             mode: packageDefinition.mode,
-            line_items: [buildLineItem(packageDefinition, paymentSelection)],
+            line_items: [lineItem],
             billing_address_collection: 'auto',
             customer_email: intakeDetails.email,
             success_url: `${successReturnUrl.toString()}#starter-packages`,
@@ -1142,28 +1302,21 @@ module.exports = async function handler(req, res) {
 
         /* Fire-and-forget referral checkout_start event — never blocks checkout */
         if (intakeDetails.referralPartner || intakeDetails.referralOffer) {
-            Promise.resolve().then(function () {
-                const eventPayload = JSON.stringify({
-                    eventType: 'checkout_start',
-                    referralPartner: intakeDetails.referralPartner || '',
-                    referralOffer:   intakeDetails.referralOffer   || '',
-                    utmMedium:       intakeDetails.utmMedium       || '',
-                    utmCampaign:     intakeDetails.utmCampaign     || '',
-                    firstUrl:        intakeDetails.utmFirstUrl     || '',
-                    pagePath:        '/checkout',
-                    contactEmail:    intakeDetails.email           || '',
-                    contactName:     intakeDetails.name            || '',
-                    packageName:     packageKey                    || '',
-                    amountCents:     paymentSelection && paymentSelection.amountCents != null
-                                        ? paymentSelection.amountCents : 0
-                });
-                /* Internal loopback via fetch — works in Vercel Node.js runtime */
-                const apiBase = (allowedOrigin || getBaseUrl(req)).replace(/\/$/, '');
-                fetch(apiBase + '/api/referral-event', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: eventPayload
-                }).catch(function () {});
+            await sendReferralEvent(apiBase, {
+                eventType: 'checkout_start',
+                referralPartner: intakeDetails.referralPartner || '',
+                referralOffer: intakeDetails.referralOffer || '',
+                utmMedium: intakeDetails.utmMedium || '',
+                utmCampaign: intakeDetails.utmCampaign || '',
+                firstUrl: intakeDetails.utmFirstUrl || '',
+                pagePath: '/checkout',
+                contactEmail: intakeDetails.email || '',
+                contactName: intakeDetails.contactName || '',
+                packageName: packageKey || '',
+                amountCents: paymentSelection && paymentSelection.amount != null ? paymentSelection.amount : 0,
+                sessionId: intakeDetails.sessionId || '',
+                eventSource: 'starter_package',
+                externalEventId: 'checkout_start:' + session.id
             });
         }
 
@@ -1187,4 +1340,8 @@ module.exports = async function handler(req, res) {
             intakeAccepted: true
         });
     }
-};
+}
+
+module.exports = handler;
+module.exports.PACKAGE_DEFINITIONS = PACKAGE_DEFINITIONS;
+module.exports.PACKAGE_PAYMENT_OPTIONS = PACKAGE_PAYMENT_OPTIONS;

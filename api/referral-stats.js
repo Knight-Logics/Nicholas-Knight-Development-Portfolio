@@ -10,14 +10,8 @@
  *   offer    — filter to one offer code
  *   days     — lookback window in days (default 30, max 365)
  *
- * Returns:
- * {
- *   summary: { pageviews, form_submits, checkout_starts, unique_sessions, unique_partners },
- *   byPartner: [ { referral_partner, pageviews, form_submits, checkout_starts } ],
- *   byOffer:   [ { referral_offer, pageviews, form_submits, checkout_starts } ],
- *   recent:    [ last 20 events ],
- *   generatedAt: ISO string
- * }
+ * Returns summary, partner and offer rollups, recent events,
+ * and payout queue data for the admin dashboard.
  */
 
 'use strict';
@@ -55,78 +49,380 @@ module.exports = async function handler(req, res) {
 
     try {
         const sql = neon(process.env.KL_DATABASE_URL);
+        function normalizeText(value) {
+            return typeof value === 'string' ? value.trim() : '';
+        }
 
-        /* Build optional WHERE clauses */
-        const partnerFilter = partner ? sql`AND referral_partner = ${partner}` : sql``;
-        const offerFilter   = offer   ? sql`AND referral_offer   = ${offer}`   : sql``;
+        function moneyCents(value) {
+            const num = parseInt(value, 10);
+            return Number.isFinite(num) ? num : 0;
+        }
 
-        /* Summary counts */
-        const [summary] = await sql`
-            SELECT
-                COUNT(*) FILTER (WHERE event_type = 'pageview')        AS pageviews,
-                COUNT(*) FILTER (WHERE event_type = 'form_submit')     AS form_submits,
-                COUNT(*) FILTER (WHERE event_type = 'checkout_start')  AS checkout_starts,
-                COUNT(DISTINCT session_id)                              AS unique_sessions,
-                COUNT(DISTINCT referral_partner)                        AS unique_partners
-            FROM kl_referral_events
-            WHERE created_at >= ${since}
-            ${partnerFilter}
-            ${offerFilter}
-        `;
+        function isMatch(row) {
+            const rowPartner = normalizeText(row.referral_partner);
+            const rowOffer = normalizeText(row.referral_offer);
+            if (partner && rowPartner !== partner) return false;
+            if (offer && rowOffer !== offer) return false;
+            return true;
+        }
 
-        /* By partner breakdown */
-        const byPartner = await sql`
-            SELECT
-                referral_partner,
-                COUNT(*) FILTER (WHERE event_type = 'pageview')        AS pageviews,
-                COUNT(*) FILTER (WHERE event_type = 'form_submit')     AS form_submits,
-                COUNT(*) FILTER (WHERE event_type = 'checkout_start')  AS checkout_starts,
-                MIN(created_at)                                         AS first_seen,
-                MAX(created_at)                                         AS last_seen
-            FROM kl_referral_events
-            WHERE created_at >= ${since}
-              AND referral_partner IS NOT NULL
-            ${offerFilter}
-            GROUP BY referral_partner
-            ORDER BY checkout_starts DESC, form_submits DESC, pageviews DESC
-            LIMIT 50
-        `;
+        function initBucket(labelKey) {
+            return {
+                [labelKey]: '',
+                pageviews: 0,
+                form_submits: 0,
+                checkout_starts: 0,
+                payments_completed: 0,
+                gross_revenue_cents: 0,
+                payout_outstanding_cents: 0,
+                payout_paid_cents: 0,
+                first_seen: null,
+                last_seen: null
+            };
+        }
 
-        /* By offer breakdown */
-        const byOffer = await sql`
-            SELECT
-                referral_offer,
-                COUNT(*) FILTER (WHERE event_type = 'pageview')        AS pageviews,
-                COUNT(*) FILTER (WHERE event_type = 'form_submit')     AS form_submits,
-                COUNT(*) FILTER (WHERE event_type = 'checkout_start')  AS checkout_starts
-            FROM kl_referral_events
-            WHERE created_at >= ${since}
-              AND referral_offer IS NOT NULL
-            ${partnerFilter}
-            GROUP BY referral_offer
-            ORDER BY checkout_starts DESC, form_submits DESC
-            LIMIT 20
-        `;
+        function updateSeen(bucket, createdAt) {
+            if (!createdAt) return;
+            if (!bucket.first_seen || createdAt < bucket.first_seen) bucket.first_seen = createdAt;
+            if (!bucket.last_seen || createdAt > bucket.last_seen) bucket.last_seen = createdAt;
+        }
 
-        /* Recent events (no PII exposure — just metadata) */
-        const recent = await sql`
-            SELECT
-                id, event_type, referral_partner, referral_offer,
-                utm_medium, utm_campaign, package_name, amount_cents,
-                page_path, created_at
-            FROM kl_referral_events
-            WHERE created_at >= ${since}
-            ${partnerFilter}
-            ${offerFilter}
-            ORDER BY created_at DESC
-            LIMIT 20
-        `;
+        let eventRows;
+        if (partner && offer) {
+            eventRows = await sql`
+                SELECT
+                    id,
+                    event_type,
+                    referral_partner,
+                    referral_offer,
+                    amount_cents,
+                    package_name,
+                    page_path,
+                    session_id,
+                    created_at
+                FROM kl_referral_events
+                WHERE created_at >= ${since}
+                  AND referral_partner = ${partner}
+                  AND referral_offer = ${offer}
+                ORDER BY created_at DESC
+            `;
+        } else if (partner) {
+            eventRows = await sql`
+                SELECT
+                    id,
+                    event_type,
+                    referral_partner,
+                    referral_offer,
+                    amount_cents,
+                    package_name,
+                    page_path,
+                    session_id,
+                    created_at
+                FROM kl_referral_events
+                WHERE created_at >= ${since}
+                  AND referral_partner = ${partner}
+                ORDER BY created_at DESC
+            `;
+        } else if (offer) {
+            eventRows = await sql`
+                SELECT
+                    id,
+                    event_type,
+                    referral_partner,
+                    referral_offer,
+                    amount_cents,
+                    package_name,
+                    page_path,
+                    session_id,
+                    created_at
+                FROM kl_referral_events
+                WHERE created_at >= ${since}
+                  AND referral_offer = ${offer}
+                ORDER BY created_at DESC
+            `;
+        } else {
+            eventRows = await sql`
+                SELECT
+                    id,
+                    event_type,
+                    referral_partner,
+                    referral_offer,
+                    amount_cents,
+                    package_name,
+                    page_path,
+                    session_id,
+                    created_at
+                FROM kl_referral_events
+                WHERE created_at >= ${since}
+                ORDER BY created_at DESC
+            `;
+        }
+
+        let payoutRows;
+        if (partner && offer) {
+            payoutRows = await sql`
+                SELECT
+                    p.id,
+                    p.partner_slug,
+                    e.referral_offer,
+                    e.package_name,
+                    p.gross_amount_cents,
+                    p.commission_amount_cents,
+                    p.payout_status,
+                    p.payout_note,
+                    e.created_at AS event_created_at
+                FROM kl_referral_payouts p
+                JOIN kl_referral_events e ON e.id = p.referral_event_id
+                WHERE e.created_at >= ${since}
+                  AND e.referral_partner = ${partner}
+                  AND e.referral_offer = ${offer}
+                ORDER BY e.created_at DESC, p.id DESC
+            `;
+        } else if (partner) {
+            payoutRows = await sql`
+                SELECT
+                    p.id,
+                    p.partner_slug,
+                    e.referral_offer,
+                    e.package_name,
+                    p.gross_amount_cents,
+                    p.commission_amount_cents,
+                    p.payout_status,
+                    p.payout_note,
+                    e.created_at AS event_created_at
+                FROM kl_referral_payouts p
+                JOIN kl_referral_events e ON e.id = p.referral_event_id
+                WHERE e.created_at >= ${since}
+                  AND e.referral_partner = ${partner}
+                ORDER BY e.created_at DESC, p.id DESC
+            `;
+        } else if (offer) {
+            payoutRows = await sql`
+                SELECT
+                    p.id,
+                    p.partner_slug,
+                    e.referral_offer,
+                    e.package_name,
+                    p.gross_amount_cents,
+                    p.commission_amount_cents,
+                    p.payout_status,
+                    p.payout_note,
+                    e.created_at AS event_created_at
+                FROM kl_referral_payouts p
+                JOIN kl_referral_events e ON e.id = p.referral_event_id
+                WHERE e.created_at >= ${since}
+                  AND e.referral_offer = ${offer}
+                ORDER BY e.created_at DESC, p.id DESC
+            `;
+        } else {
+            payoutRows = await sql`
+                SELECT
+                    p.id,
+                    p.partner_slug,
+                    e.referral_offer,
+                    e.package_name,
+                    p.gross_amount_cents,
+                    p.commission_amount_cents,
+                    p.payout_status,
+                    p.payout_note,
+                    e.created_at AS event_created_at
+                FROM kl_referral_payouts p
+                JOIN kl_referral_events e ON e.id = p.referral_event_id
+                WHERE e.created_at >= ${since}
+                ORDER BY e.created_at DESC, p.id DESC
+            `;
+        }
+
+        const summary = {
+            pageviews: 0,
+            form_submits: 0,
+            checkout_starts: 0,
+            payments_completed: 0,
+            paid_revenue_cents: 0,
+            payout_outstanding_cents: 0,
+            payout_paid_cents: 0,
+            unique_sessions: 0,
+            unique_partners: 0
+        };
+
+        const partnerMap = new Map();
+        const offerMap = new Map();
+        const sessionSet = new Set();
+        const partnerSet = new Set();
+
+        for (const row of eventRows) {
+            if (!isMatch(row)) continue;
+            const partnerKey = normalizeText(row.referral_partner);
+            const offerKey = normalizeText(row.referral_offer);
+            const createdAt = row.created_at || null;
+
+            if (row.event_type === 'pageview') summary.pageviews += 1;
+            if (row.event_type === 'form_submit') summary.form_submits += 1;
+            if (row.event_type === 'checkout_start') summary.checkout_starts += 1;
+            if (row.event_type === 'payment_completed') {
+                summary.payments_completed += 1;
+                summary.paid_revenue_cents += moneyCents(row.amount_cents);
+            }
+
+            if (normalizeText(row.session_id)) sessionSet.add(normalizeText(row.session_id));
+            if (partnerKey) partnerSet.add(partnerKey);
+
+            if (partnerKey) {
+                if (!partnerMap.has(partnerKey)) {
+                    partnerMap.set(partnerKey, {
+                        referral_partner: partnerKey,
+                        pageviews: 0,
+                        form_submits: 0,
+                        checkout_starts: 0,
+                        payments_completed: 0,
+                        gross_revenue_cents: 0,
+                        payout_outstanding_cents: 0,
+                        payout_paid_cents: 0,
+                        first_seen: null,
+                        last_seen: null
+                    });
+                }
+                const bucket = partnerMap.get(partnerKey);
+                if (row.event_type === 'pageview') bucket.pageviews += 1;
+                if (row.event_type === 'form_submit') bucket.form_submits += 1;
+                if (row.event_type === 'checkout_start') bucket.checkout_starts += 1;
+                if (row.event_type === 'payment_completed') {
+                    bucket.payments_completed += 1;
+                    bucket.gross_revenue_cents += moneyCents(row.amount_cents);
+                }
+                updateSeen(bucket, createdAt);
+            }
+
+            if (offerKey) {
+                if (!offerMap.has(offerKey)) {
+                    offerMap.set(offerKey, {
+                        referral_offer: offerKey,
+                        pageviews: 0,
+                        form_submits: 0,
+                        checkout_starts: 0,
+                        payments_completed: 0,
+                        gross_revenue_cents: 0,
+                        first_seen: null,
+                        last_seen: null
+                    });
+                }
+                const bucket = offerMap.get(offerKey);
+                if (row.event_type === 'pageview') bucket.pageviews += 1;
+                if (row.event_type === 'form_submit') bucket.form_submits += 1;
+                if (row.event_type === 'checkout_start') bucket.checkout_starts += 1;
+                if (row.event_type === 'payment_completed') {
+                    bucket.payments_completed += 1;
+                    bucket.gross_revenue_cents += moneyCents(row.amount_cents);
+                }
+                updateSeen(bucket, createdAt);
+            }
+        }
+
+        for (const row of payoutRows) {
+            if (!isMatch(row)) continue;
+            const partnerKey = normalizeText(row.partner_slug);
+            const amount = moneyCents(row.commission_amount_cents);
+            if (row.payout_status === 'owed') summary.payout_outstanding_cents += amount;
+            if (row.payout_status === 'paid') summary.payout_paid_cents += amount;
+
+            if (partnerKey && partnerMap.has(partnerKey)) {
+                const bucket = partnerMap.get(partnerKey);
+                if (row.payout_status === 'owed') bucket.payout_outstanding_cents += amount;
+                if (row.payout_status === 'paid') bucket.payout_paid_cents += amount;
+            }
+        }
+
+        summary.unique_sessions = sessionSet.size;
+        summary.unique_partners = partnerSet.size;
+
+        const byPartner = Array.from(partnerMap.values()).sort(function (a, b) {
+            const aTime = a.last_seen ? new Date(a.last_seen).getTime() : 0;
+            const bTime = b.last_seen ? new Date(b.last_seen).getTime() : 0;
+            return bTime - aTime || a.referral_partner.localeCompare(b.referral_partner);
+        });
+
+        const byOffer = Array.from(offerMap.values()).sort(function (a, b) {
+            const aTime = a.last_seen ? new Date(a.last_seen).getTime() : 0;
+            const bTime = b.last_seen ? new Date(b.last_seen).getTime() : 0;
+            return bTime - aTime || a.referral_offer.localeCompare(b.referral_offer);
+        });
+
+        const recent = eventRows
+            .filter(isMatch)
+            .slice(0, 100)
+            .map(function (row) {
+                return {
+                    event_type: row.event_type,
+                    referral_partner: normalizeText(row.referral_partner),
+                    referral_offer: normalizeText(row.referral_offer),
+                    package_name: normalizeText(row.package_name),
+                    amount_cents: moneyCents(row.amount_cents),
+                    page_path: normalizeText(row.page_path),
+                    created_at: row.created_at
+                };
+            });
+
+        let partnerTerms;
+        if (partner) {
+            partnerTerms = await sql`
+                SELECT
+                    partner_slug,
+                    partner_name,
+                    commission_percent,
+                    is_active,
+                    notes,
+                    created_at,
+                    updated_at
+                FROM kl_referral_partner_terms
+                WHERE partner_slug = ${partner}
+                ORDER BY partner_slug ASC
+            `;
+        } else {
+            partnerTerms = await sql`
+                SELECT
+                    partner_slug,
+                    partner_name,
+                    commission_percent,
+                    is_active,
+                    notes,
+                    created_at,
+                    updated_at
+                FROM kl_referral_partner_terms
+                ORDER BY partner_slug ASC
+            `;
+        }
+
+        const payoutQueue = payoutRows
+            .filter(isMatch)
+            .sort(function (a, b) {
+                const statusA = normalizeText(a.payout_status) === 'owed' ? 0 : 1;
+                const statusB = normalizeText(b.payout_status) === 'owed' ? 0 : 1;
+                const aTime = a.event_created_at ? new Date(a.event_created_at).getTime() : 0;
+                const bTime = b.event_created_at ? new Date(b.event_created_at).getTime() : 0;
+                return statusA - statusB || bTime - aTime || Number(b.id || 0) - Number(a.id || 0);
+            })
+            .map(function (row) {
+                return {
+                    id: row.id,
+                    partner_slug: normalizeText(row.partner_slug),
+                    referral_offer: normalizeText(row.referral_offer),
+                    package_name: normalizeText(row.package_name),
+                    gross_amount_cents: moneyCents(row.gross_amount_cents),
+                    commission_amount_cents: moneyCents(row.commission_amount_cents),
+                    payout_status: normalizeText(row.payout_status),
+                    payout_method: normalizeText(row.payout_note),
+                    payout_reference: '',
+                    event_created_at: row.event_created_at
+                };
+            });
 
         return json(200, {
             summary,
             byPartner,
             byOffer,
             recent,
+            partnerTerms: partnerTerms || [],
+            payoutQueue,
             filter: { partner, offer, days, since },
             generatedAt: new Date().toISOString()
         });

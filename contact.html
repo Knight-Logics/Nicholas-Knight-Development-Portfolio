@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -143,7 +143,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap"></noscript>
-    <link rel="stylesheet" href="style.min.css?v=20260512c">
+    <link rel="stylesheet" href="style.min.css?v=20260514a">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
     <title>Contact Knight Logics | Web Design, SEO & Automation</title>
@@ -252,6 +252,14 @@
                                 <option value="discuss">Prefer to discuss</option>
                             </select>
                         </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="referredBy">Who referred you? (optional)</label>
+                        <select id="referredBy" name="referredBy">
+                            <option value="">Select a referral partner (if applicable)...</option>
+                        </select>
+                        <small style="display: block; margin-top: 4px; color: #666;">If a partner referred you, select their name here so we can track it.</small>
                     </div>
 
                     <div class="form-group">
@@ -495,6 +503,7 @@
 
     <div id="footer-container"></div>
 
+    <script src="attribution.js" defer></script>
     <script src="script.min.js?v=20260512c"></script>
     <script>
         // Google Ads conversion tracking — fires on contact form submission
@@ -506,6 +515,47 @@
                     gtag('event', 'generate_lead', { 'send_to': 'AW-18138273413' });
                 }
             });
+        })();
+    </script>
+
+    <script>
+        // Populate "Who referred you?" dropdown and track referral on form submission
+        (function() {
+            var dropdown = document.getElementById('referredBy');
+            var form = document.getElementById('consultationForm');
+            if (!dropdown) return;
+
+            // Fetch list of active referral partners
+            fetch('/api/referral-partners')
+                .then(r => r.json())
+                .then(data => {
+                    if (data.ok && data.partners && data.partners.length > 0) {
+                        data.partners.forEach(function(partner) {
+                            var opt = document.createElement('option');
+                            opt.value = partner.slug;
+                            opt.textContent = partner.displayName;
+                            dropdown.appendChild(opt);
+                        });
+                    }
+                })
+                .catch(function(err) {
+                    console.log('[referral-dropdown] Failed to fetch partners:', err.message);
+                });
+
+            // On form submission, if a partner is selected, emit referral_contact_submit event
+            if (form) {
+                form.addEventListener('submit', function() {
+                    var selectedPartner = dropdown.value;
+                    if (selectedPartner && window.klTrackReferral && typeof window.klTrackReferral === 'function') {
+                        var attr = window.klGetAttribution ? (window.klGetAttribution() || {}) : {};
+                        window.klTrackReferral('referral_contact_submit', {
+                            referralPartner: selectedPartner,
+                            source: 'contact-form-dropdown',
+                            pagePath: '/contact'
+                        });
+                    }
+                }, false);
+            }
         })();
     </script>
 </body>

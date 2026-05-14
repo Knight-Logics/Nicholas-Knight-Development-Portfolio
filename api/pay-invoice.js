@@ -142,6 +142,20 @@ async function parseJsonBody(req) {
     }
 }
 
+async function sendReferralEvent(apiBase, payload) {
+    if (!apiBase || !payload) {
+        return;
+    }
+
+    try {
+        await fetch(`${apiBase.replace(/\/$/, '')}/api/referral-event`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+        }).catch(() => {});
+    } catch (_) {}
+}
+
 module.exports = async function handler(req, res) {
     const allowedOrigin = getAllowedOrigin(req);
 
@@ -196,12 +210,14 @@ module.exports = async function handler(req, res) {
     const clientPhone   = normalizeSingleLine(body.clientPhone || '', 40);
     const description   = normalizeSingleLine(body.description || '', 500);
     const amountCents   = body.amountCents;
+    const referralPartner = normalizeSingleLine(body.referralPartner || body.kl_ref || '', 80);
+    const referralOffer = normalizeSingleLine(body.referralOffer || body.kl_offer || '', 80);
+    const utmMedium = normalizeSingleLine(body.utmMedium || body.kl_utm_medium || '', 80);
+    const utmCampaign = normalizeSingleLine(body.utmCampaign || body.kl_utm_campaign || '', 80);
+    const utmFirstUrl = normalizeSingleLine(body.utmFirstUrl || body.kl_first_url || '', 300);
+    const referralSessionId = normalizeSingleLine(body.sessionId || body.kl_session_id || '', 64);
 
-    if (!invoiceNumber) {
-        return sendJson(res, 400, { error: 'Invoice number is required.' });
-    }
-
-    if (!INVOICE_NUMBER_PATTERN.test(invoiceNumber)) {
+    if (invoiceNumber && !INVOICE_NUMBER_PATTERN.test(invoiceNumber)) {
         return sendJson(res, 400, { error: 'Invoice number contains invalid characters. Use letters, numbers, dashes, dots, or slashes only.' });
     }
 
@@ -218,12 +234,55 @@ module.exports = async function handler(req, res) {
     }
 
     const baseUrl = getBaseUrl(req);
-    const safeInvoice = encodeURIComponent(invoiceNumber);
+    const safeInvoice = invoiceNumber ? encodeURIComponent(invoiceNumber) : '';
     const amountDisplay = `$${(amountCents / 100).toFixed(2)}`;
-    const lineItemName = `Invoice #${invoiceNumber} — Knight Logics`;
+    const lineItemName = invoiceNumber ? `Invoice #${invoiceNumber} — Knight Logics` : 'Invoice Payment — Knight Logics';
     const lineItemDescription = description
         ? description.slice(0, 500)
-        : `Payment for services rendered by Knight Logics. Invoice: ${invoiceNumber}`;
+        : invoiceNumber
+            ? `Payment for services rendered by Knight Logics. Invoice: ${invoiceNumber}`
+            : 'Payment for services rendered by Knight Logics.';
+    const checkoutMetadata = {
+        paymentType: 'invoice_payment',
+        invoiceNumber,
+        clientName,
+        clientEmail,
+        clientPhone: clientPhone || 'Not provided',
+        invoiceDescription: (description || 'Invoice payment').slice(0, 200),
+        amountDisplay
+    };
+    const paymentIntentMetadata = {
+        paymentType: 'invoice_payment',
+        invoiceNumber,
+        clientName,
+        clientEmail,
+        amountDisplay
+    };
+
+    if (referralPartner) {
+        checkoutMetadata.referralPartner = referralPartner;
+        paymentIntentMetadata.referralPartner = referralPartner;
+    }
+    if (referralOffer) {
+        checkoutMetadata.referralOffer = referralOffer;
+        paymentIntentMetadata.referralOffer = referralOffer;
+    }
+    if (utmMedium) {
+        checkoutMetadata.utmMedium = utmMedium;
+        paymentIntentMetadata.utmMedium = utmMedium;
+    }
+    if (utmCampaign) {
+        checkoutMetadata.utmCampaign = utmCampaign;
+        paymentIntentMetadata.utmCampaign = utmCampaign;
+    }
+    if (utmFirstUrl) {
+        checkoutMetadata.utmFirstUrl = utmFirstUrl;
+        paymentIntentMetadata.utmFirstUrl = utmFirstUrl;
+    }
+    if (referralSessionId) {
+        checkoutMetadata.referralSessionId = referralSessionId;
+        paymentIntentMetadata.referralSessionId = referralSessionId;
+    }
 
     let session;
 
@@ -244,32 +303,37 @@ module.exports = async function handler(req, res) {
                 quantity: 1
             }],
             customer_email: clientEmail,
-            metadata: {
-                paymentType: 'invoice_payment',
-                invoiceNumber,
-                clientName,
-                clientEmail,
-                clientPhone: clientPhone || 'Not provided',
-                invoiceDescription: (description || 'Invoice payment').slice(0, 200),
-                amountDisplay
-            },
+            metadata: checkoutMetadata,
             payment_intent_data: {
-                metadata: {
-                    paymentType: 'invoice_payment',
-                    invoiceNumber,
-                    clientName,
-                    clientEmail,
-                    amountDisplay
-                },
+                metadata: paymentIntentMetadata,
                 description: lineItemName
             },
-            success_url: `${baseUrl}/pay-invoice?payment=success&invoice=${safeInvoice}&amount=${encodeURIComponent(amountDisplay)}`,
+            success_url: `${baseUrl}/pay-invoice?payment=success${safeInvoice ? `&invoice=${safeInvoice}` : ''}&amount=${encodeURIComponent(amountDisplay)}`,
             cancel_url: `${baseUrl}/pay-invoice?payment=cancelled`
         });
     } catch (err) {
         console.error('[pay-invoice] Stripe session creation failed:', err.message);
         return sendJson(res, 500, {
             error: 'Unable to create payment session. Please try again or contact support@knightlogics.com.'
+        });
+    }
+
+    if (referralPartner || referralOffer) {
+        await sendReferralEvent(baseUrl, {
+            eventType: 'checkout_start',
+            referralPartner,
+            referralOffer,
+            utmMedium,
+            utmCampaign,
+            firstUrl: utmFirstUrl,
+            pagePath: '/pay-invoice',
+            contactEmail: clientEmail,
+            contactName: clientName,
+            packageName: 'invoice_payment',
+            amountCents,
+            sessionId: referralSessionId,
+            eventSource: 'invoice_payment',
+            externalEventId: `invoice_checkout_start:${session.id}`
         });
     }
 

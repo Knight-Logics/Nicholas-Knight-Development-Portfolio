@@ -1,14 +1,18 @@
 /* attribution.js — Knight Logics referral & UTM capture
  * Captures referral partner, offer code, and UTM parameters from the URL
- * on first visit, stores them in localStorage (30-day expiry), then injects
- * hidden fields into every Formspree form and the package intake form so
- * attribution data flows into every lead submission and Stripe checkout.
+ * on first visit, stores them in both localStorage AND a 365-day cookie so
+ * attribution survives mobile cross-domain redirects (e.g. Stripe → back),
+ * persists across browser sessions, and injects hidden fields into every
+ * Formspree form and the package intake form so attribution data flows into
+ * every lead submission and Stripe checkout.
  */
 (function () {
     'use strict';
 
     var STORAGE_KEY = 'kl_attr';
-    var EXPIRY_MS = 30 * 24 * 60 * 60 * 1000; // 30 days
+    var COOKIE_NAME = 'kl_attr';
+    var COOKIE_DAYS = 365;
+    var EXPIRY_MS = COOKIE_DAYS * 24 * 60 * 60 * 1000; // 365 days
 
     /* ── Sanitize helpers ── */
     function clean(val, maxLen) {
@@ -16,22 +20,62 @@
         return val.replace(/[<>"']/g, '').trim().slice(0, maxLen || 120);
     }
 
-    /* ── LocalStorage helpers ── */
-    function readStorage() {
+    /* ── Cookie helpers (survive mobile cross-domain redirects, 365-day) ── */
+    function writeCookie(data) {
         try {
-            var raw = localStorage.getItem(STORAGE_KEY);
-            if (!raw) return null;
-            var parsed = JSON.parse(raw);
-            if (parsed.expiry && Date.now() > parsed.expiry) {
-                localStorage.removeItem(STORAGE_KEY);
-                return null;
-            }
+            var expires = new Date(Date.now() + EXPIRY_MS).toUTCString();
+            var val = encodeURIComponent(JSON.stringify(data));
+            document.cookie = COOKIE_NAME + '=' + val +
+                '; expires=' + expires +
+                '; path=/; SameSite=Lax; Secure';
+        } catch (e) {}
+    }
+
+    function readCookie() {
+        try {
+            var match = document.cookie.match(
+                new RegExp('(?:^|;)\\s*' + COOKIE_NAME + '=([^;]*)')
+            );
+            if (!match) return null;
+            var parsed = JSON.parse(decodeURIComponent(match[1]));
+            if (parsed && parsed.expiry && Date.now() > parsed.expiry) return null;
             return parsed;
         } catch (e) { return null; }
     }
 
+    /* ── LocalStorage + cookie combined helpers ── */
+    function readStorage() {
+        var fromLS = null;
+        try {
+            var raw = localStorage.getItem(STORAGE_KEY);
+            if (raw) {
+                var parsed = JSON.parse(raw);
+                if (!parsed.expiry || Date.now() <= parsed.expiry) {
+                    fromLS = parsed;
+                } else {
+                    localStorage.removeItem(STORAGE_KEY);
+                }
+            }
+        } catch (e) {}
+
+        /* If localStorage had referral data, use it */
+        if (fromLS && (fromLS.ref || fromLS.offer)) return fromLS;
+
+        /* Fall back to cookie (survives mobile Stripe redirects) */
+        var fromCookie = readCookie();
+        if (fromCookie && (fromCookie.ref || fromCookie.offer)) {
+            /* Restore into localStorage so subsequent reads are fast */
+            try { localStorage.setItem(STORAGE_KEY, JSON.stringify(fromCookie)); } catch (e) {}
+            return fromCookie;
+        }
+
+        /* Return whichever has any data at all */
+        return fromLS || fromCookie;
+    }
+
     function writeStorage(data) {
         try { localStorage.setItem(STORAGE_KEY, JSON.stringify(data)); } catch (e) {}
+        writeCookie(data);
     }
 
     /* ── Capture from current URL params ── */
@@ -80,9 +124,23 @@
             { name: 'kl_offer',       value: attr.offer    || '' },
             { name: 'kl_utm_medium',  value: attr.medium   || '' },
             { name: 'kl_utm_campaign',value: attr.campaign || '' },
-            { name: 'kl_first_url',   value: attr.firstUrl || '' }
+            { name: 'kl_first_url',   value: attr.firstUrl || '' },
+            { name: 'kl_session_id',  value: getSessionId() }
         ];
         return fields.filter(function (f) { return f.value; });
+    }
+
+    function getAttributionSnapshot() {
+        var attr = readStorage();
+        if (!attr) return null;
+        return {
+            referralPartner: attr.ref || '',
+            referralOffer: attr.offer || '',
+            utmMedium: attr.medium || '',
+            utmCampaign: attr.campaign || '',
+            firstUrl: attr.firstUrl || '',
+            sessionId: getSessionId()
+        };
     }
 
     /* ── Inject hidden inputs into a single form ── */
@@ -112,6 +170,35 @@
         /* Package intake form (POSTs JSON to /api/create-checkout-session) */
         var intakeForm = document.getElementById('starterPackageIntakeForm');
         if (intakeForm) injectIntoForm(intakeForm, fields);
+    }
+
+    function firstValue(form, names) {
+        var i;
+        for (i = 0; i < names.length; i += 1) {
+            var field = form.querySelector('[name="' + names[i] + '"]');
+            if (field && typeof field.value === 'string' && field.value.trim()) {
+                return clean(field.value, names[i] === 'email' || /email/i.test(names[i]) ? 160 : 120);
+            }
+        }
+        return '';
+    }
+
+    function attachFormSubmitTracking() {
+        var forms = document.querySelectorAll('form[action*="formspree"]');
+        var i;
+        for (i = 0; i < forms.length; i += 1) {
+            var form = forms[i];
+            if (form.dataset.klReferralSubmitTracked === '1') continue;
+            form.dataset.klReferralSubmitTracked = '1';
+            form.addEventListener('submit', function (event) {
+                var targetForm = event.currentTarget;
+                fireReferralEvent('form_submit', {
+                    contactEmail: firstValue(targetForm, ['email', '_replyto', 'clientEmail']),
+                    contactName: firstValue(targetForm, ['name', 'contactName', 'clientName', 'fullName']),
+                    packageName: firstValue(targetForm, ['serviceType', 'packageName', 'packageKey'])
+                });
+            });
+        }
     }
 
     /* ── Session ID for dedup / funnel tracking ── */
@@ -158,6 +245,7 @@
 
     /* ── Public helper for other pages to call ── */
     window.klTrackReferral = fireReferralEvent;
+    window.klGetAttribution = getAttributionSnapshot;
 
     /* ── Entry point ── */
     captureFromUrl();
@@ -165,6 +253,7 @@
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', function () {
             injectAttributionFields();
+            attachFormSubmitTracking();
             /* Fire pageview only on first page in session where ref/offer present */
             var attr = readStorage();
             if (attr && (attr.ref || attr.offer) && !sessionStorage.getItem('kl_pv_fired')) {
@@ -174,6 +263,7 @@
         });
     } else {
         injectAttributionFields();
+        attachFormSubmitTracking();
         var attr = readStorage();
         if (attr && (attr.ref || attr.offer) && !sessionStorage.getItem('kl_pv_fired')) {
             sessionStorage.setItem('kl_pv_fired', '1');
