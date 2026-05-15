@@ -4631,10 +4631,6 @@ section::before {
 }
 
 @media (max-width: 768px) {
-    #loading-screen {
-        display: none;
-    }
-
     /* Enable touch scrolling and fix mobile scroll issues */
     html, body {
         overflow-x: hidden;
@@ -4768,25 +4764,6 @@ section::before {
         filter: brightness(0.68) contrast(1.06);
     }
 
-    .title-line {
-        animation: none;
-        background: none;
-        color: #f5fbff;
-        background-clip: border-box;
-        -webkit-background-clip: border-box;
-        -webkit-text-fill-color: currentColor;
-    }
-
-    .title-line.company-name {
-        color: #64ffda;
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        font-size: clamp(2rem, 8vw, 2.8rem);
-    }
-
-    .title-line.company-name::after {
-        display: none;
-    }
-    
     /* Ensure content flows normally on mobile */
     .hero-content-wrapper {
         position: relative !important;
@@ -4800,10 +4777,10 @@ section::before {
         padding-bottom: 24px;
     }
 
-    /* Mobile: Drastically reduce hero height and padding */
+    /* Mobile: Keep hero at full height so background is visible */
     @media (max-width: 600px) {
         .hero-content-wrapper {
-            min-height: auto !important;
+            min-height: 100svh !important;
             padding-top: 20px !important;
             padding-bottom: 40px !important;
             align-items: flex-start !important;
