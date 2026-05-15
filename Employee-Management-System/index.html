@@ -1,1 +1,703 @@
-﻿<!DOCTYPE html><html lang="en"><head>    <meta charset="UTF-8">    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <meta name="description" content="Interactive Employee Management System demo featuring workforce tracking, HR metrics, performance monitoring, and payroll visualization. Built with HTML/CSS/JavaScript to showcase business application development.">    <meta name="robots" content="noindex, nofollow">    <meta name="theme-color" content="#64ffda">    <link rel="canonical" href="https://knightlogics.com/Employee-Management-System/">    <link rel="icon" type="image/png" href="../images/KnightLogicsLogo2.png" sizes="32x32">    <link rel="apple-touch-icon" href="../images/KnightLogicsLogo2.png">    <meta property="og:title" content="Knight Logics Employee Management System | Demo">    <meta property="og:description" content="Employee Management System Demo - A comprehensive HR management interface by Knight Logics with employee tracking and analytics.">    <meta property="og:url" content="https://knightlogics.com/Employee-Management-System/">    <meta property="og:image" content="https://knightlogics.com/images/PortfolioSiteLogo.jpg">    <meta property="og:type" content="website">    <meta name="twitter:card" content="summary_large_image">    <meta name="twitter:title" content="Knight Logics Employee Management System | Demo">    <meta name="twitter:description" content="Employee management system demo with HR tracking, performance monitoring, and payroll management.">    <meta name="twitter:image" content="https://knightlogics.com/images/PortfolioSiteLogo.jpg">    <script type="application/ld+json">    {      "@context": "https://schema.org",      "@type": "SoftwareApplication",      "name": "Knight Logics Employee Management System",      "description": "Employee Management System demo for HR operations and workforce tracking",      "author": {        "@type": "Person",        "name": "Nicholas Knight"      },      "applicationCategory": "BusinessApplication",      "offers": {        "@type": "Offer",        "price": "0",        "priceCurrency": "USD"      }    }    </script>    <title>Knight Logics - Employee Management System</title>    <link rel="stylesheet" href="css/styles.css">    <link rel="stylesheet" href="../style.css">    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script></head><body>    <div id="siteHeader" class="site-header-placeholder"></div>    <div id="demoBanner" class="demo-banner" role="region" aria-label="Demonstration notice">        <div class="banner-content">            <span class="banner-tag"><i class="fas fa-info-circle"></i> Demo</span>            <span>This page is an interactive demonstration of an Employee Management System. All data is sample for showcasing features. Use the left sidebar to explore: HR Dashboard, Employees, Payroll, Attendance, Performance, Benefits, and Reports.</span>            <button id="demoBannerClose" class="banner-close" aria-label="Dismiss notice">Dismiss</button>        </div>    </div>    <!-- Loading Screen -->    <div id="loadingScreen" class="loading-screen">        <div class="loading-container">            <div class="loading-logo">                <i class="fas fa-users-cog"></i>            </div>            <div class="loading-text">                <h2>Knight Logics</h2>                <p>Employee Management System</p>            </div>            <div class="loading-spinner"></div>        </div>    </div>    <!-- Main Application Container -->    <div id="appContainer" class="app-container">        <!-- Header -->        <header class="app-header">            <div class="header-left">                <div class="logo">                    <i class="fas fa-users-cog"></i>                    <span>Knight Logics HR</span>                </div>            </div>                        <div class="header-center">                <div class="search-container">                    <i class="fas fa-search"></i>                    <input type="text" id="globalSearch" placeholder="Search employees, departments, payroll...">                </div>            </div>                        <div class="header-right">                <button class="header-btn" id="quickAddBtn" title="Quick Add">                    <i class="fas fa-plus"></i>                </button>                <button class="header-btn" id="notificationsBtn" title="Notifications">                    <i class="fas fa-bell"></i>                    <span class="notification-badge">4</span>                </button>                <div class="user-profile">                    <div class="user-avatar">NK</div>                    <div class="user-info">                        <span class="user-name">Nicholas Knight</span>                        <span class="user-role">HR Director</span>                    </div>                </div>            </div>        </header>        <!-- Main Content Area -->        <div class="main-content">            <!-- Sidebar Navigation -->            <aside class="sidebar">                <nav class="nav-menu">                    <ul>                        <li class="nav-item active">                            <a href="#" class="nav-link" data-section="dashboard">                                <i class="fas fa-chart-pie"></i>                                <span>Dashboard</span>                            </a>                        </li>                        <li class="nav-item">                            <a href="#" class="nav-link" data-section="employees">                                <i class="fas fa-users"></i>                                <span>Employees</span>                            </a>                        </li>                        <li class="nav-item">                            <a href="#" class="nav-link" data-section="payroll">                                <i class="fas fa-money-check-alt"></i>                                <span>Payroll</span>                            </a>                        </li>                        <li class="nav-item">                            <a href="#" class="nav-link" data-section="attendance">                                <i class="fas fa-clock"></i>                                <span>Attendance</span>                            </a>                        </li>                        <li class="nav-item">                            <a href="#" class="nav-link" data-section="performance">                                <i class="fas fa-chart-line"></i>                                <span>Performance</span>                            </a>                        </li>                        <li class="nav-item">                            <a href="#" class="nav-link" data-section="benefits">                                <i class="fas fa-shield-alt"></i>                                <span>Benefits</span>                            </a>                        </li>                        <li class="nav-item">                            <a href="#" class="nav-link" data-section="reports">                                <i class="fas fa-file-alt"></i>                                <span>Reports</span>                            </a>                        </li>                    </ul>                </nav>                                <!-- Quick Actions -->                <div class="quick-actions">                    <h3>Quick Actions</h3>                    <button class="quick-action-btn" id="addEmployeeBtn">                        <i class="fas fa-user-plus"></i>                        <span>Add Employee</span>                    </button>                    <button class="quick-action-btn" id="processPayrollBtn">                        <i class="fas fa-calculator"></i>                        <span>Process Payroll</span>                    </button>                    <button class="quick-action-btn" id="clockInOutBtn">                        <i class="fas fa-clock"></i>                        <span>Clock In/Out</span>                    </button>                    <button class="quick-action-btn" id="generateReportBtn">                        <i class="fas fa-file-pdf"></i>                        <span>Generate Report</span>                    </button>                </div>            </aside>            <!-- Content Sections -->            <main class="content-area">                                <!-- Dashboard Section -->                <section id="dashboard-section" class="content-section active">                    <div class="section-header">                        <h1>HR Dashboard</h1>                        <p>Overview of your organization's human resources metrics</p>                    </div>                                        <!-- Statistics Cards -->                    <div class="stats-grid">                        <div class="stat-card employees">                            <div class="stat-icon">                                <i class="fas fa-users"></i>                            </div>                            <div class="stat-content">                                <div class="stat-value" id="totalEmployees">0</div>                                <div class="stat-label">Total Employees</div>                                <div class="stat-change positive">+3 new hires this month</div>                            </div>                        </div>                                                <div class="stat-card payroll">                            <div class="stat-icon">                                <i class="fas fa-dollar-sign"></i>                            </div>                            <div class="stat-content">                                <div class="stat-value" id="monthlyPayroll">$0</div>                                <div class="stat-label">Monthly Payroll</div>                                <div class="stat-change neutral">Next payroll: Oct 31st</div>                            </div>                        </div>                                                <div class="stat-card attendance">                            <div class="stat-icon">                                <i class="fas fa-clock"></i>                            </div>                            <div class="stat-content">                                <div class="stat-value" id="attendanceRate">0%</div>                                <div class="stat-label">Attendance Rate</div>                                <div class="stat-change positive">+2.5% from last month</div>                            </div>                        </div>                                                <div class="stat-card performance">                            <div class="stat-icon">                                <i class="fas fa-star"></i>                            </div>                            <div class="stat-content">                                <div class="stat-value" id="avgPerformance">0.0</div>                                <div class="stat-label">Avg Performance Score</div>                                <div class="stat-change positive">Reviews due: 12</div>                            </div>                        </div>                    </div>                                        <!-- Dashboard Content Grid -->                    <div class="dashboard-grid">                        <!-- Department Overview -->                        <div class="dashboard-card">                            <div class="card-header">                                <h3>Department Overview</h3>                                <button class="card-action">                                    <i class="fas fa-ellipsis-v"></i>                                </button>                            </div>                            <div class="card-content">                                <canvas id="departmentChart" height="200"></canvas>                            </div>                        </div>                                                <!-- Recent Activities -->                        <div class="dashboard-card">                            <div class="card-header">                                <h3>Recent HR Activities</h3>                                <a href="#" class="card-link">View All</a>                            </div>                            <div class="card-content">                                <div id="recentActivitiesList" class="activities-list">                                    <!-- Activities will be populated by JavaScript -->                                </div>                            </div>                        </div>                                                <!-- Upcoming Events -->                        <div class="dashboard-card">                            <div class="card-header">                                <h3>Upcoming Events</h3>                                <a href="#" class="card-link">View Calendar</a>                            </div>                            <div class="card-content">                                <div id="upcomingEventsList" class="events-list">                                    <!-- Events will be populated by JavaScript -->                                </div>                            </div>                        </div>                                                <!-- Performance Trends -->                        <div class="dashboard-card">                            <div class="card-header">                                <h3>Performance Trends</h3>                                <select class="period-selector">                                    <option value="3">Last 3 months</option>                                    <option value="6" selected>Last 6 months</option>                                    <option value="12">Last year</option>                                </select>                            </div>                            <div class="card-content">                                <canvas id="performanceTrendChart" height="200"></canvas>                            </div>                        </div>                                                <!-- Payroll Summary -->                        <div class="dashboard-card wide">                            <div class="card-header">                                <h3>Payroll Summary</h3>                                <div class="card-actions">                                    <button class="btn btn-outline btn-sm">Export Data</button>                                    <button class="btn btn-primary btn-sm">Process Payroll</button>                                </div>                            </div>                            <div class="card-content">                                <canvas id="payrollChart" height="150"></canvas>                            </div>                        </div>                    </div>                </section>                                <!-- Employees Section -->                <section id="employees-section" class="content-section">                    <div class="section-header">                        <h1>Employee Directory</h1>                        <div class="section-actions">                            <div class="view-toggle">                                <button class="view-btn active" data-view="grid">                                    <i class="fas fa-th"></i>                                </button>                                <button class="view-btn" data-view="list">                                    <i class="fas fa-list"></i>                                </button>                            </div>                            <button class="btn btn-primary" id="addNewEmployeeBtn">                                <i class="fas fa-user-plus"></i>                                Add Employee                            </button>                        </div>                    </div>                                        <!-- Employee Filters -->                    <div class="filters-bar">                        <div class="filter-group">                            <select class="filter-select" id="departmentFilter">                                <option value="">All Departments</option>                                <option value="engineering">Engineering</option>                                <option value="sales">Sales</option>                                <option value="marketing">Marketing</option>                                <option value="hr">Human Resources</option>                                <option value="finance">Finance</option>                            </select>                        </div>                        <div class="filter-group">                            <select class="filter-select" id="statusFilter">                                <option value="">All Status</option>                                <option value="active">Active</option>                                <option value="inactive">Inactive</option>                                <option value="on-leave">On Leave</option>                            </select>                        </div>                        <div class="filter-group">                            <input type="text" class="filter-search" id="employeeSearch" placeholder="Search employees...">                        </div>                    </div>                                        <!-- Employees Grid -->                    <div id="employeesGrid" class="employees-grid">                        <!-- Employees will be populated by JavaScript -->                    </div>                </section>                                <!-- Payroll Section -->                <section id="payroll-section" class="content-section">                    <div class="section-header">                        <h1>Payroll Management</h1>                        <div class="section-actions">                            <button class="btn btn-outline" id="importPayrollBtn">                                <i class="fas fa-upload"></i>                                Import Data                            </button>                            <button class="btn btn-primary" id="runPayrollBtn">                                <i class="fas fa-play"></i>                                Run Payroll                            </button>                        </div>                    </div>                                        <!-- Payroll Overview -->                    <div class="payroll-overview">                        <div class="payroll-card">                            <div class="payroll-stat">                                <span class="payroll-value" id="totalGrossPay">$0</span>                                <span class="payroll-label">Total Gross Pay</span>                            </div>                        </div>                        <div class="payroll-card">                            <div class="payroll-stat">                                <span class="payroll-value" id="totalDeductions">$0</span>                                <span class="payroll-label">Total Deductions</span>                            </div>                        </div>                        <div class="payroll-card">                            <div class="payroll-stat">                                <span class="payroll-value" id="totalNetPay">$0</span>                                <span class="payroll-label">Total Net Pay</span>                            </div>                        </div>                        <div class="payroll-card">                            <div class="payroll-stat">                                <span class="payroll-value" id="payrollTaxes">$0</span>                                <span class="payroll-label">Payroll Taxes</span>                            </div>                        </div>                    </div>                                        <!-- Payroll Table -->                    <div class="payroll-table-container">                        <table class="payroll-table" id="payrollTable">                            <thead>                                <tr>                                    <th>Employee</th>                                    <th>Department</th>                                    <th>Gross Pay</th>                                    <th>Deductions</th>                                    <th>Net Pay</th>                                    <th>Status</th>                                    <th>Actions</th>                                </tr>                            </thead>                            <tbody id="payrollTableBody">                                <!-- Payroll data will be populated by JavaScript -->                            </tbody>                        </table>                    </div>                </section>                                <!-- Attendance Section -->                <section id="attendance-section" class="content-section">                    <div class="section-header">                        <h1>Attendance Tracking</h1>                        <div class="section-actions">                            <button class="btn btn-outline" id="exportAttendanceBtn">                                <i class="fas fa-download"></i>                                Export Report                            </button>                            <button class="btn btn-primary" id="clockInBtn">                                <i class="fas fa-clock"></i>                                Clock In/Out                            </button>                        </div>                    </div>                                        <!-- Attendance Stats -->                    <div class="attendance-stats">                        <div class="attendance-card">                            <div class="attendance-stat">                                <span class="attendance-value present" id="presentToday">0</span>                                <span class="attendance-label">Present Today</span>                            </div>                        </div>                        <div class="attendance-card">                            <div class="attendance-stat">                                <span class="attendance-value absent" id="absentToday">0</span>                                <span class="attendance-label">Absent Today</span>                            </div>                        </div>                        <div class="attendance-card">                            <div class="attendance-stat">                                <span class="attendance-value late" id="lateToday">0</span>                                <span class="attendance-label">Late Arrivals</span>                            </div>                        </div>                        <div class="attendance-card">                            <div class="attendance-stat">                                <span class="attendance-value leave" id="onLeave">0</span>                                <span class="attendance-label">On Leave</span>                            </div>                        </div>                    </div>                                        <!-- Attendance Calendar -->                    <div class="attendance-calendar">                        <div class="calendar-header">                            <button class="calendar-nav" id="prevMonth">                                <i class="fas fa-chevron-left"></i>                            </button>                            <h3 id="currentMonth">September 2024</h3>                            <button class="calendar-nav" id="nextMonth">                                <i class="fas fa-chevron-right"></i>                            </button>                        </div>                        <div id="attendanceCalendarGrid" class="calendar-grid">                            <!-- Calendar will be populated by JavaScript -->                        </div>                    </div>                </section>                                <!-- Performance Section -->                <section id="performance-section" class="content-section">                    <div class="section-header">                        <h1>Performance Management</h1>                        <div class="section-actions">                            <button class="btn btn-outline" id="scheduleReviewBtn">                                <i class="fas fa-calendar-plus"></i>                                Schedule Review                            </button>                            <button class="btn btn-primary" id="createGoalBtn">                                <i class="fas fa-bullseye"></i>                                Create Goal                            </button>                        </div>                    </div>                                        <!-- Performance Overview -->                    <div class="performance-overview">                        <div class="performance-card">                            <div class="performance-header">                                <h3>Top Performers</h3>                            </div>                            <div class="performance-content">                                <div id="topPerformersList" class="top-performers">                                    <!-- Top performers will be populated by JavaScript -->                                </div>                            </div>                        </div>                                                <div class="performance-card">                            <div class="performance-header">                                <h3>Performance Distribution</h3>                            </div>                            <div class="performance-content">                                <canvas id="performanceDistributionChart" height="200"></canvas>                            </div>                        </div>                    </div>                                        <!-- Performance Reviews -->                    <div class="performance-reviews">                        <div class="reviews-header">                            <h3>Recent Performance Reviews</h3>                        </div>                        <div id="performanceReviewsList" class="reviews-list">                            <!-- Performance reviews will be populated by JavaScript -->                        </div>                    </div>                </section>                                <!-- Benefits Section -->                <section id="benefits-section" class="content-section">                    <div class="section-header">                        <h1>Employee Benefits</h1>                        <div class="section-actions">                            <button class="btn btn-outline" id="enrollmentReportBtn">                                <i class="fas fa-chart-bar"></i>                                Enrollment Report                            </button>                            <button class="btn btn-primary" id="manageBenefitsBtn">                                <i class="fas fa-cog"></i>                                Manage Benefits                            </button>                        </div>                    </div>                                        <!-- Benefits Overview -->                    <div class="benefits-overview">                        <div class="benefit-plan">                            <div class="plan-header">                                <h3>Health Insurance</h3>                                <span class="enrollment-rate">85% enrolled</span>                            </div>                            <div class="plan-details">                                <p>Comprehensive health coverage with dental and vision</p>                                <div class="plan-stats">                                    <span>Monthly Premium: $350</span>                                    <span>Deductible: $1,500</span>                                </div>                            </div>                        </div>                                                <div class="benefit-plan">                            <div class="plan-header">                                <h3>401(k) Retirement</h3>                                <span class="enrollment-rate">92% enrolled</span>                            </div>                            <div class="plan-details">                                <p>Company match up to 6% of salary</p>                                <div class="plan-stats">                                    <span>Avg Contribution: 8%</span>                                    <span>Vesting: 3 years</span>                                </div>                            </div>                        </div>                                                <div class="benefit-plan">                            <div class="plan-header">                                <h3>Paid Time Off</h3>                                <span class="enrollment-rate">100% enrolled</span>                            </div>                            <div class="plan-details">                                <p>Flexible PTO policy with 15 days minimum</p>                                <div class="plan-stats">                                    <span>Avg Usage: 18 days</span>                                    <span>Carryover: 5 days max</span>                                </div>                            </div>                        </div>                    </div>                                        <!-- Benefits Enrollment -->                    <div class="benefits-enrollment">                        <div class="enrollment-header">                            <h3>Benefits Enrollment Status</h3>                        </div>                        <div class="enrollment-chart">                            <canvas id="benefitsEnrollmentChart" height="300"></canvas>                        </div>                    </div>                </section>                                <!-- Reports Section -->                <section id="reports-section" class="content-section">                    <div class="section-header">                        <h1>HR Reports & Analytics</h1>                        <div class="section-actions">                            <button class="btn btn-outline" id="scheduleReportBtn">                                <i class="fas fa-clock"></i>                                Schedule Report                            </button>                            <button class="btn btn-primary" id="customReportBtn">                                <i class="fas fa-plus"></i>                                Custom Report                            </button>                        </div>                    </div>                                        <!-- Report Categories -->                    <div class="report-categories">                        <div class="report-category" onclick="window.hrSystem.generateReport('headcount')">                            <div class="category-icon">                                <i class="fas fa-users"></i>                            </div>                            <div class="category-info">                                <h3>Headcount Report</h3>                                <p>Employee count by department and role</p>                            </div>                        </div>                                                <div class="report-category" onclick="window.hrSystem.generateReport('payroll')">                            <div class="category-icon">                                <i class="fas fa-money-check-alt"></i>                            </div>                            <div class="category-info">                                <h3>Payroll Report</h3>                                <p>Salary analysis and payroll summaries</p>                            </div>                        </div>                                                <div class="report-category" onclick="window.hrSystem.generateReport('attendance')">                            <div class="category-icon">                                <i class="fas fa-clock"></i>                            </div>                            <div class="category-info">                                <h3>Attendance Report</h3>                                <p>Attendance trends and patterns</p>                            </div>                        </div>                                                <div class="report-category" onclick="window.hrSystem.generateReport('performance')">                            <div class="category-icon">                                <i class="fas fa-chart-line"></i>                            </div>                            <div class="category-info">                                <h3>Performance Report</h3>                                <p>Employee performance analytics</p>                            </div>                        </div>                                                <div class="report-category" onclick="window.hrSystem.generateReport('turnover')">                            <div class="category-icon">                                <i class="fas fa-exchange-alt"></i>                            </div>                            <div class="category-info">                                <h3>Turnover Report</h3>                                <p>Employee retention and turnover analysis</p>                            </div>                        </div>                                                <div class="report-category" onclick="window.hrSystem.generateReport('benefits')">                            <div class="category-icon">                                <i class="fas fa-shield-alt"></i>                            </div>                            <div class="category-info">                                <h3>Benefits Report</h3>                                <p>Benefits enrollment and utilization</p>                            </div>                        </div>                    </div>                                        <!-- Recent Reports -->                    <div class="recent-reports">                        <div class="reports-header">                            <h3>Recent Reports</h3>                        </div>                        <div id="recentReportsList" class="reports-list">                            <!-- Recent reports will be populated by JavaScript -->                        </div>                    </div>                </section>                            </main>        </div>    </div>    <div id="siteFooter" class="site-footer-placeholder"></div>    <script src="js/app.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive Employee Management System demo featuring workforce tracking, HR metrics, performance monitoring, and payroll visualization. Built with HTML/CSS/JavaScript to showcase business application development.">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#64ffda">
+    <link rel="canonical" href="https://knightlogics.com/Employee-Management-System/">
+    <link rel="icon" type="image/png" href="../images/KnightLogicsLogo2.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="../images/KnightLogicsLogo2.png">
+    <meta property="og:title" content="Knight Logics Employee Management System | Demo">
+    <meta property="og:description" content="Employee Management System Demo - A comprehensive HR management interface by Knight Logics with employee tracking and analytics.">
+    <meta property="og:url" content="https://knightlogics.com/Employee-Management-System/">
+    <meta property="og:image" content="https://knightlogics.com/images/PortfolioSiteLogo.jpg">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Knight Logics Employee Management System | Demo">
+    <meta name="twitter:description" content="Employee management system demo with HR tracking, performance monitoring, and payroll management.">
+    <meta name="twitter:image" content="https://knightlogics.com/images/PortfolioSiteLogo.jpg">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Knight Logics Employee Management System",
+      "description": "Employee Management System demo for HR operations and workforce tracking",
+      "author": {
+        "@type": "Person",
+        "name": "Nicholas Knight"
+      },
+      "applicationCategory": "BusinessApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    <title>Knight Logics - Employee Management System</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div id="siteHeader" class="site-header-placeholder"></div>
+    <div id="demoBanner" class="demo-banner" role="region" aria-label="Demonstration notice">
+        <div class="banner-content">
+            <span class="banner-tag"><i class="fas fa-info-circle"></i> Demo</span>
+            <span>This page is an interactive demonstration of an Employee Management System. All data is sample for showcasing features. Use the left sidebar to explore: HR Dashboard, Employees, Payroll, Attendance, Performance, Benefits, and Reports.</span>
+            <button id="demoBannerClose" class="banner-close" aria-label="Dismiss notice">Dismiss</button>
+        </div>
+    </div>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-container">
+            <div class="loading-logo">
+                <i class="fas fa-users-cog"></i>
+            </div>
+            <div class="loading-text">
+                <h2>Knight Logics</h2>
+                <p>Employee Management System</p>
+            </div>
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+
+    <!-- Main Application Container -->
+    <div id="appContainer" class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <div class="logo">
+                    <i class="fas fa-users-cog"></i>
+                    <span>Knight Logics HR</span>
+                </div>
+            </div>
+            
+            <div class="header-center">
+                <div class="search-container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="globalSearch" placeholder="Search employees, departments, payroll...">
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <button class="header-btn" id="quickAddBtn" title="Quick Add">
+                    <i class="fas fa-plus"></i>
+                </button>
+                <button class="header-btn" id="notificationsBtn" title="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">4</span>
+                </button>
+                <div class="user-profile">
+                    <div class="user-avatar">NK</div>
+                    <div class="user-info">
+                        <span class="user-name">Nicholas Knight</span>
+                        <span class="user-role">HR Director</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <!-- Sidebar Navigation -->
+            <aside class="sidebar">
+                <nav class="nav-menu">
+                    <ul>
+                        <li class="nav-item active">
+                            <a href="#" class="nav-link" data-section="dashboard">
+                                <i class="fas fa-chart-pie"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-section="employees">
+                                <i class="fas fa-users"></i>
+                                <span>Employees</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-section="payroll">
+                                <i class="fas fa-money-check-alt"></i>
+                                <span>Payroll</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-section="attendance">
+                                <i class="fas fa-clock"></i>
+                                <span>Attendance</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-section="performance">
+                                <i class="fas fa-chart-line"></i>
+                                <span>Performance</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-section="benefits">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>Benefits</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-section="reports">
+                                <i class="fas fa-file-alt"></i>
+                                <span>Reports</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h3>Quick Actions</h3>
+                    <button class="quick-action-btn" id="addEmployeeBtn">
+                        <i class="fas fa-user-plus"></i>
+                        <span>Add Employee</span>
+                    </button>
+                    <button class="quick-action-btn" id="processPayrollBtn">
+                        <i class="fas fa-calculator"></i>
+                        <span>Process Payroll</span>
+                    </button>
+                    <button class="quick-action-btn" id="clockInOutBtn">
+                        <i class="fas fa-clock"></i>
+                        <span>Clock In/Out</span>
+                    </button>
+                    <button class="quick-action-btn" id="generateReportBtn">
+                        <i class="fas fa-file-pdf"></i>
+                        <span>Generate Report</span>
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Content Sections -->
+            <main class="content-area">
+                
+                <!-- Dashboard Section -->
+                <section id="dashboard-section" class="content-section active">
+                    <div class="section-header">
+                        <h1>HR Dashboard</h1>
+                        <p>Overview of your organization's human resources metrics</p>
+                    </div>
+                    
+                    <!-- Statistics Cards -->
+                    <div class="stats-grid">
+                        <div class="stat-card employees">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="totalEmployees">0</div>
+                                <div class="stat-label">Total Employees</div>
+                                <div class="stat-change positive">+3 new hires this month</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card payroll">
+                            <div class="stat-icon">
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="monthlyPayroll">$0</div>
+                                <div class="stat-label">Monthly Payroll</div>
+                                <div class="stat-change neutral">Next payroll: Oct 31st</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card attendance">
+                            <div class="stat-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="attendanceRate">0%</div>
+                                <div class="stat-label">Attendance Rate</div>
+                                <div class="stat-change positive">+2.5% from last month</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card performance">
+                            <div class="stat-icon">
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="avgPerformance">0.0</div>
+                                <div class="stat-label">Avg Performance Score</div>
+                                <div class="stat-change positive">Reviews due: 12</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Dashboard Content Grid -->
+                    <div class="dashboard-grid">
+                        <!-- Department Overview -->
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3>Department Overview</h3>
+                                <button class="card-action">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                            <div class="card-content">
+                                <canvas id="departmentChart" height="200"></canvas>
+                            </div>
+                        </div>
+                        
+                        <!-- Recent Activities -->
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3>Recent HR Activities</h3>
+                                <a href="#" class="card-link">View All</a>
+                            </div>
+                            <div class="card-content">
+                                <div id="recentActivitiesList" class="activities-list">
+                                    <!-- Activities will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Upcoming Events -->
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3>Upcoming Events</h3>
+                                <a href="#" class="card-link">View Calendar</a>
+                            </div>
+                            <div class="card-content">
+                                <div id="upcomingEventsList" class="events-list">
+                                    <!-- Events will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Performance Trends -->
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3>Performance Trends</h3>
+                                <select class="period-selector">
+                                    <option value="3">Last 3 months</option>
+                                    <option value="6" selected>Last 6 months</option>
+                                    <option value="12">Last year</option>
+                                </select>
+                            </div>
+                            <div class="card-content">
+                                <canvas id="performanceTrendChart" height="200"></canvas>
+                            </div>
+                        </div>
+                        
+                        <!-- Payroll Summary -->
+                        <div class="dashboard-card wide">
+                            <div class="card-header">
+                                <h3>Payroll Summary</h3>
+                                <div class="card-actions">
+                                    <button class="btn btn-outline btn-sm">Export Data</button>
+                                    <button class="btn btn-primary btn-sm">Process Payroll</button>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <canvas id="payrollChart" height="150"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Employees Section -->
+                <section id="employees-section" class="content-section">
+                    <div class="section-header">
+                        <h1>Employee Directory</h1>
+                        <div class="section-actions">
+                            <div class="view-toggle">
+                                <button class="view-btn active" data-view="grid">
+                                    <i class="fas fa-th"></i>
+                                </button>
+                                <button class="view-btn" data-view="list">
+                                    <i class="fas fa-list"></i>
+                                </button>
+                            </div>
+                            <button class="btn btn-primary" id="addNewEmployeeBtn">
+                                <i class="fas fa-user-plus"></i>
+                                Add Employee
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Employee Filters -->
+                    <div class="filters-bar">
+                        <div class="filter-group">
+                            <select class="filter-select" id="departmentFilter">
+                                <option value="">All Departments</option>
+                                <option value="engineering">Engineering</option>
+                                <option value="sales">Sales</option>
+                                <option value="marketing">Marketing</option>
+                                <option value="hr">Human Resources</option>
+                                <option value="finance">Finance</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <select class="filter-select" id="statusFilter">
+                                <option value="">All Status</option>
+                                <option value="active">Active</option>
+                                <option value="inactive">Inactive</option>
+                                <option value="on-leave">On Leave</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <input type="text" class="filter-search" id="employeeSearch" placeholder="Search employees...">
+                        </div>
+                    </div>
+                    
+                    <!-- Employees Grid -->
+                    <div id="employeesGrid" class="employees-grid">
+                        <!-- Employees will be populated by JavaScript -->
+                    </div>
+                </section>
+                
+                <!-- Payroll Section -->
+                <section id="payroll-section" class="content-section">
+                    <div class="section-header">
+                        <h1>Payroll Management</h1>
+                        <div class="section-actions">
+                            <button class="btn btn-outline" id="importPayrollBtn">
+                                <i class="fas fa-upload"></i>
+                                Import Data
+                            </button>
+                            <button class="btn btn-primary" id="runPayrollBtn">
+                                <i class="fas fa-play"></i>
+                                Run Payroll
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Payroll Overview -->
+                    <div class="payroll-overview">
+                        <div class="payroll-card">
+                            <div class="payroll-stat">
+                                <span class="payroll-value" id="totalGrossPay">$0</span>
+                                <span class="payroll-label">Total Gross Pay</span>
+                            </div>
+                        </div>
+                        <div class="payroll-card">
+                            <div class="payroll-stat">
+                                <span class="payroll-value" id="totalDeductions">$0</span>
+                                <span class="payroll-label">Total Deductions</span>
+                            </div>
+                        </div>
+                        <div class="payroll-card">
+                            <div class="payroll-stat">
+                                <span class="payroll-value" id="totalNetPay">$0</span>
+                                <span class="payroll-label">Total Net Pay</span>
+                            </div>
+                        </div>
+                        <div class="payroll-card">
+                            <div class="payroll-stat">
+                                <span class="payroll-value" id="payrollTaxes">$0</span>
+                                <span class="payroll-label">Payroll Taxes</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Payroll Table -->
+                    <div class="payroll-table-container">
+                        <table class="payroll-table" id="payrollTable">
+                            <thead>
+                                <tr>
+                                    <th>Employee</th>
+                                    <th>Department</th>
+                                    <th>Gross Pay</th>
+                                    <th>Deductions</th>
+                                    <th>Net Pay</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="payrollTableBody">
+                                <!-- Payroll data will be populated by JavaScript -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+                
+                <!-- Attendance Section -->
+                <section id="attendance-section" class="content-section">
+                    <div class="section-header">
+                        <h1>Attendance Tracking</h1>
+                        <div class="section-actions">
+                            <button class="btn btn-outline" id="exportAttendanceBtn">
+                                <i class="fas fa-download"></i>
+                                Export Report
+                            </button>
+                            <button class="btn btn-primary" id="clockInBtn">
+                                <i class="fas fa-clock"></i>
+                                Clock In/Out
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Attendance Stats -->
+                    <div class="attendance-stats">
+                        <div class="attendance-card">
+                            <div class="attendance-stat">
+                                <span class="attendance-value present" id="presentToday">0</span>
+                                <span class="attendance-label">Present Today</span>
+                            </div>
+                        </div>
+                        <div class="attendance-card">
+                            <div class="attendance-stat">
+                                <span class="attendance-value absent" id="absentToday">0</span>
+                                <span class="attendance-label">Absent Today</span>
+                            </div>
+                        </div>
+                        <div class="attendance-card">
+                            <div class="attendance-stat">
+                                <span class="attendance-value late" id="lateToday">0</span>
+                                <span class="attendance-label">Late Arrivals</span>
+                            </div>
+                        </div>
+                        <div class="attendance-card">
+                            <div class="attendance-stat">
+                                <span class="attendance-value leave" id="onLeave">0</span>
+                                <span class="attendance-label">On Leave</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Attendance Calendar -->
+                    <div class="attendance-calendar">
+                        <div class="calendar-header">
+                            <button class="calendar-nav" id="prevMonth">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <h3 id="currentMonth">September 2024</h3>
+                            <button class="calendar-nav" id="nextMonth">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                        <div id="attendanceCalendarGrid" class="calendar-grid">
+                            <!-- Calendar will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Performance Section -->
+                <section id="performance-section" class="content-section">
+                    <div class="section-header">
+                        <h1>Performance Management</h1>
+                        <div class="section-actions">
+                            <button class="btn btn-outline" id="scheduleReviewBtn">
+                                <i class="fas fa-calendar-plus"></i>
+                                Schedule Review
+                            </button>
+                            <button class="btn btn-primary" id="createGoalBtn">
+                                <i class="fas fa-bullseye"></i>
+                                Create Goal
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Performance Overview -->
+                    <div class="performance-overview">
+                        <div class="performance-card">
+                            <div class="performance-header">
+                                <h3>Top Performers</h3>
+                            </div>
+                            <div class="performance-content">
+                                <div id="topPerformersList" class="top-performers">
+                                    <!-- Top performers will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="performance-card">
+                            <div class="performance-header">
+                                <h3>Performance Distribution</h3>
+                            </div>
+                            <div class="performance-content">
+                                <canvas id="performanceDistributionChart" height="200"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Performance Reviews -->
+                    <div class="performance-reviews">
+                        <div class="reviews-header">
+                            <h3>Recent Performance Reviews</h3>
+                        </div>
+                        <div id="performanceReviewsList" class="reviews-list">
+                            <!-- Performance reviews will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Benefits Section -->
+                <section id="benefits-section" class="content-section">
+                    <div class="section-header">
+                        <h1>Employee Benefits</h1>
+                        <div class="section-actions">
+                            <button class="btn btn-outline" id="enrollmentReportBtn">
+                                <i class="fas fa-chart-bar"></i>
+                                Enrollment Report
+                            </button>
+                            <button class="btn btn-primary" id="manageBenefitsBtn">
+                                <i class="fas fa-cog"></i>
+                                Manage Benefits
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Benefits Overview -->
+                    <div class="benefits-overview">
+                        <div class="benefit-plan">
+                            <div class="plan-header">
+                                <h3>Health Insurance</h3>
+                                <span class="enrollment-rate">85% enrolled</span>
+                            </div>
+                            <div class="plan-details">
+                                <p>Comprehensive health coverage with dental and vision</p>
+                                <div class="plan-stats">
+                                    <span>Monthly Premium: $350</span>
+                                    <span>Deductible: $1,500</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-plan">
+                            <div class="plan-header">
+                                <h3>401(k) Retirement</h3>
+                                <span class="enrollment-rate">92% enrolled</span>
+                            </div>
+                            <div class="plan-details">
+                                <p>Company match up to 6% of salary</p>
+                                <div class="plan-stats">
+                                    <span>Avg Contribution: 8%</span>
+                                    <span>Vesting: 3 years</span>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="benefit-plan">
+                            <div class="plan-header">
+                                <h3>Paid Time Off</h3>
+                                <span class="enrollment-rate">100% enrolled</span>
+                            </div>
+                            <div class="plan-details">
+                                <p>Flexible PTO policy with 15 days minimum</p>
+                                <div class="plan-stats">
+                                    <span>Avg Usage: 18 days</span>
+                                    <span>Carryover: 5 days max</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Benefits Enrollment -->
+                    <div class="benefits-enrollment">
+                        <div class="enrollment-header">
+                            <h3>Benefits Enrollment Status</h3>
+                        </div>
+                        <div class="enrollment-chart">
+                            <canvas id="benefitsEnrollmentChart" height="300"></canvas>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Reports Section -->
+                <section id="reports-section" class="content-section">
+                    <div class="section-header">
+                        <h1>HR Reports & Analytics</h1>
+                        <div class="section-actions">
+                            <button class="btn btn-outline" id="scheduleReportBtn">
+                                <i class="fas fa-clock"></i>
+                                Schedule Report
+                            </button>
+                            <button class="btn btn-primary" id="customReportBtn">
+                                <i class="fas fa-plus"></i>
+                                Custom Report
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Report Categories -->
+                    <div class="report-categories">
+                        <div class="report-category" onclick="window.hrSystem.generateReport('headcount')">
+                            <div class="category-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="category-info">
+                                <h3>Headcount Report</h3>
+                                <p>Employee count by department and role</p>
+                            </div>
+                        </div>
+                        
+                        <div class="report-category" onclick="window.hrSystem.generateReport('payroll')">
+                            <div class="category-icon">
+                                <i class="fas fa-money-check-alt"></i>
+                            </div>
+                            <div class="category-info">
+                                <h3>Payroll Report</h3>
+                                <p>Salary analysis and payroll summaries</p>
+                            </div>
+                        </div>
+                        
+                        <div class="report-category" onclick="window.hrSystem.generateReport('attendance')">
+                            <div class="category-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="category-info">
+                                <h3>Attendance Report</h3>
+                                <p>Attendance trends and patterns</p>
+                            </div>
+                        </div>
+                        
+                        <div class="report-category" onclick="window.hrSystem.generateReport('performance')">
+                            <div class="category-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="category-info">
+                                <h3>Performance Report</h3>
+                                <p>Employee performance analytics</p>
+                            </div>
+                        </div>
+                        
+                        <div class="report-category" onclick="window.hrSystem.generateReport('turnover')">
+                            <div class="category-icon">
+                                <i class="fas fa-exchange-alt"></i>
+                            </div>
+                            <div class="category-info">
+                                <h3>Turnover Report</h3>
+                                <p>Employee retention and turnover analysis</p>
+                            </div>
+                        </div>
+                        
+                        <div class="report-category" onclick="window.hrSystem.generateReport('benefits')">
+                            <div class="category-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="category-info">
+                                <h3>Benefits Report</h3>
+                                <p>Benefits enrollment and utilization</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Recent Reports -->
+                    <div class="recent-reports">
+                        <div class="reports-header">
+                            <h3>Recent Reports</h3>
+                        </div>
+                        <div id="recentReportsList" class="reports-list">
+                            <!-- Recent reports will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </section>
+                
+            </main>
+        </div>
+    </div>
+
+    <div id="siteFooter" class="site-footer-placeholder"></div>
+    <script src="js/app.js"></script>
+</body>
+</html>

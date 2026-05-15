@@ -1,1 +1,664 @@
-﻿<!DOCTYPE html><html lang="en"><head>    <meta charset="UTF-8">    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <meta name="description" content="Interactive Project Management System demo featuring task tracking, team collaboration, timeline visualization, and progress monitoring. Built with HTML/CSS/JavaScript to showcase business application development.">    <meta name="robots" content="noindex, nofollow">    <meta name="theme-color" content="#64ffda">    <link rel="canonical" href="https://knightlogics.com/Project-Management-System/">    <link rel="icon" type="image/png" href="../images/KnightLogicsLogo2.png" sizes="32x32">    <link rel="apple-touch-icon" href="../images/KnightLogicsLogo2.png">    <meta property="og:title" content="Knight Logics Project Management System | Demo">    <meta property="og:description" content="Project Management System Demo - A powerful project tracking interface by Knight Logics with task management and team collaboration features.">    <meta property="og:url" content="https://knightlogics.com/Project-Management-System/">    <meta property="og:image" content="https://knightlogics.com/images/PortfolioSiteLogo.jpg">    <meta property="og:type" content="website">    <meta name="twitter:card" content="summary_large_image">    <meta name="twitter:title" content="Knight Logics Project Management System | Demo">    <meta name="twitter:description" content="Project management system demo with task tracking, timeline visualization, and team collaboration.">    <meta name="twitter:image" content="https://knightlogics.com/images/PortfolioSiteLogo.jpg">    <script type="application/ld+json">    {      "@context": "https://schema.org",      "@type": "SoftwareApplication",      "name": "Knight Logics Project Management System",      "description": "Project Management System demo for team collaboration and task tracking",      "author": {        "@type": "Person",        "name": "Nicholas Knight"      },      "applicationCategory": "BusinessApplication",      "offers": {        "@type": "Offer",        "price": "0",        "priceCurrency": "USD"      }    }    </script>    <title>Knight Logics - Project Management System</title>    <link rel="stylesheet" href="css/styles.css">    <link rel="stylesheet" href="../style.css">    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script></head><body>    <div id="siteHeader" class="site-header-placeholder"></div>    <div id="demoBanner" class="demo-banner" role="region" aria-label="Demonstration notice">        <div class="banner-content">            <span class="banner-tag"><i class="fas fa-info-circle"></i> Demo</span>            <span>This page is an interactive demonstration of a Project Management System. All data is sample to showcase capabilities. Use the sidebar to explore: Dashboard, Projects, Tasks, Timeline, Team, Analytics, and Reports.</span>            <button id="demoBannerClose" class="banner-close" aria-label="Dismiss notice">Dismiss</button>        </div>    </div>    <!-- Loading Screen -->    <div id="loadingScreen" class="loading-screen">        <div class="loading-container">            <div class="loading-logo">                <i class="fas fa-tasks"></i>            </div>            <div class="loading-text">                <h2>Knight Logics</h2>                <p>Project Management System</p>            </div>            <div class="loading-spinner"></div>        </div>    </div>    <!-- Main Application Container -->    <div id="appContainer" class="app-container">        <!-- Header -->        <header class="app-header">            <div class="header-left">                <div class="logo">                    <i class="fas fa-tasks"></i>                    <span>Knight Logics PM</span>                </div>            </div>                        <div class="header-center">                <div class="search-container">                    <i class="fas fa-search"></i>                    <input type="text" id="globalSearch" placeholder="Search projects, tasks, team members...">                </div>            </div>                        <div class="header-right">                <button class="header-btn" id="quickAddBtn" title="Quick Add">                    <i class="fas fa-plus"></i>                </button>                <button class="header-btn" id="notificationsBtn" title="Notifications">                    <i class="fas fa-bell"></i>                    <span class="notification-badge">3</span>                </button>                <div class="user-profile">                    <div class="user-avatar">NK</div>                    <div class="user-info">                        <span class="user-name">Nicholas Knight</span>                        <span class="user-role">Project Manager</span>                    </div>                </div>            </div>        </header>        <!-- Main Content Area -->        <div class="main-content">            <!-- Sidebar Navigation -->            <aside class="sidebar">                <nav class="nav-menu">                    <ul>                        <li class="nav-item active">                            <a href="#" class="nav-link" data-section="dashboard">                                <i class="fas fa-chart-pie"></i>                                <span>Dashboard</span>                            </a>                        </li>                        <li class="nav-item">                            <a href="#" class="nav-link" data-section="projects">                                <i class="fas fa-folder-open"></i>                                <span>Projects</span>                            </a>                        </li>                        <li class="nav-item">                            <a href="#" class="nav-link" data-section="tasks">                                <i class="fas fa-tasks"></i>                                <span>Tasks</span>                            </a>                        </li>                        <li class="nav-item">                            <a href="#" class="nav-link" data-section="calendar">                                <i class="fas fa-calendar-alt"></i>                                <span>Calendar</span>                            </a>                        </li>                        <li class="nav-item">                            <a href="#" class="nav-link" data-section="team">                                <i class="fas fa-users"></i>                                <span>Team</span>                            </a>                        </li>                        <li class="nav-item">                            <a href="#" class="nav-link" data-section="time-tracking">                                <i class="fas fa-clock"></i>                                <span>Time Tracking</span>                            </a>                        </li>                        <li class="nav-item">                            <a href="#" class="nav-link" data-section="reports">                                <i class="fas fa-chart-bar"></i>                                <span>Reports</span>                            </a>                        </li>                    </ul>                </nav>                                <!-- Quick Actions -->                <div class="quick-actions">                    <h3>Quick Actions</h3>                    <button class="quick-action-btn" id="createProjectBtn">                        <i class="fas fa-plus"></i>                        <span>New Project</span>                    </button>                    <button class="quick-action-btn" id="createTaskBtn">                        <i class="fas fa-plus-circle"></i>                        <span>Add Task</span>                    </button>                    <button class="quick-action-btn" id="startTimerBtn">                        <i class="fas fa-play"></i>                        <span>Start Timer</span>                    </button>                    <button class="quick-action-btn" id="scheduleTaskBtn">                        <i class="fas fa-calendar-plus"></i>                        <span>Schedule Task</span>                    </button>                </div>            </aside>            <!-- Content Sections -->            <main class="content-area">                                <!-- Dashboard Section -->                <section id="dashboard-section" class="content-section active">                    <div class="section-header">                        <h1>Project Dashboard</h1>                        <p>Overview of all your projects, tasks, and team performance</p>                    </div>                                        <!-- Statistics Cards -->                    <div class="stats-grid">                        <div class="stat-card">                            <div class="stat-icon">                                <i class="fas fa-project-diagram"></i>                            </div>                            <div class="stat-content">                                <div class="stat-value" id="totalProjects">0</div>                                <div class="stat-label">Active Projects</div>                            </div>                        </div>                                                <div class="stat-card">                            <div class="stat-icon">                                <i class="fas fa-tasks"></i>                            </div>                            <div class="stat-content">                                <div class="stat-value" id="completedTasks">0</div>                                <div class="stat-label">Completed Tasks</div>                            </div>                        </div>                                                <div class="stat-card">                            <div class="stat-icon">                                <i class="fas fa-users"></i>                            </div>                            <div class="stat-content">                                <div class="stat-value" id="teamMembers">0</div>                                <div class="stat-label">Team Members</div>                            </div>                        </div>                                                <div class="stat-card">                            <div class="stat-icon">                                <i class="fas fa-clock"></i>                            </div>                            <div class="stat-content">                                <div class="stat-value" id="hoursLogged">0</div>                                <div class="stat-label">Hours This Week</div>                            </div>                        </div>                    </div>                                        <!-- Dashboard Content Grid -->                    <div class="dashboard-grid">                        <!-- Project Progress -->                        <div class="dashboard-card">                            <div class="card-header">                                <h3>Project Progress</h3>                                <button class="card-action">                                    <i class="fas fa-ellipsis-v"></i>                                </button>                            </div>                            <div class="card-content">                                <canvas id="projectProgressChart" height="200"></canvas>                            </div>                        </div>                                                <!-- Task Distribution -->                        <div class="dashboard-card">                            <div class="card-header">                                <h3>Task Distribution</h3>                                <button class="card-action">                                    <i class="fas fa-ellipsis-v"></i>                                </button>                            </div>                            <div class="card-content">                                <canvas id="taskDistributionChart" height="200"></canvas>                            </div>                        </div>                                                <!-- Recent Activities -->                        <div class="dashboard-card">                            <div class="card-header">                                <h3>Recent Activities</h3>                                <a href="#" class="card-link">View All</a>                            </div>                            <div class="card-content">                                <div id="recentActivitiesList" class="activities-list">                                    <!-- Activities will be populated by JavaScript -->                                </div>                            </div>                        </div>                                                <!-- Upcoming Deadlines -->                        <div class="dashboard-card">                            <div class="card-header">                                <h3>Upcoming Deadlines</h3>                                <a href="#" class="card-link">View Calendar</a>                            </div>                            <div class="card-content">                                <div id="upcomingDeadlinesList" class="deadlines-list">                                    <!-- Deadlines will be populated by JavaScript -->                                </div>                            </div>                        </div>                                                <!-- Team Performance -->                        <div class="dashboard-card">                            <div class="card-header">                                <h3>Team Performance</h3>                                <button class="card-action">                                    <i class="fas fa-ellipsis-v"></i>                                </button>                            </div>                            <div class="card-content">                                <div id="teamPerformanceList" class="performance-list">                                    <!-- Performance data will be populated by JavaScript -->                                </div>                            </div>                        </div>                                                <!-- Project Timeline -->                        <div class="dashboard-card wide">                            <div class="card-header">                                <h3>Project Timeline</h3>                                <div class="card-actions">                                    <select class="timeline-filter">                                        <option value="week">This Week</option>                                        <option value="month">This Month</option>                                        <option value="quarter">This Quarter</option>                                    </select>                                </div>                            </div>                            <div class="card-content">                                <canvas id="timelineChart" height="150"></canvas>                            </div>                        </div>                    </div>                </section>                                <!-- Projects Section -->                <section id="projects-section" class="content-section">                    <div class="section-header">                        <h1>Projects</h1>                        <div class="section-actions">                            <div class="view-toggle">                                <button class="view-btn active" data-view="grid">                                    <i class="fas fa-th"></i>                                </button>                                <button class="view-btn" data-view="list">                                    <i class="fas fa-list"></i>                                </button>                            </div>                            <button class="btn btn-primary" id="addProjectBtn">                                <i class="fas fa-plus"></i>                                New Project                            </button>                        </div>                    </div>                                        <!-- Project Filters -->                    <div class="filters-bar">                        <div class="filter-group">                            <select class="filter-select" id="statusFilter">                                <option value="">All Statuses</option>                                <option value="planning">Planning</option>                                <option value="active">Active</option>                                <option value="on-hold">On Hold</option>                                <option value="completed">Completed</option>                            </select>                        </div>                        <div class="filter-group">                            <select class="filter-select" id="priorityFilter">                                <option value="">All Priorities</option>                                <option value="high">High Priority</option>                                <option value="medium">Medium Priority</option>                                <option value="low">Low Priority</option>                            </select>                        </div>                        <div class="filter-group">                            <input type="text" class="filter-search" id="projectSearch" placeholder="Search projects...">                        </div>                    </div>                                        <!-- Projects Grid/List -->                    <div id="projectsContainer" class="projects-grid">                        <!-- Projects will be populated by JavaScript -->                    </div>                </section>                                <!-- Tasks Section -->                <section id="tasks-section" class="content-section">                    <div class="section-header">                        <h1>Task Management</h1>                        <div class="section-actions">                            <div class="view-toggle">                                <button class="view-btn active" data-view="kanban">                                    <i class="fas fa-columns"></i>                                </button>                                <button class="view-btn" data-view="list">                                    <i class="fas fa-list"></i>                                </button>                            </div>                            <button class="btn btn-primary" id="addTaskBtn">                                <i class="fas fa-plus"></i>                                Add Task                            </button>                        </div>                    </div>                                        <!-- Kanban Board -->                    <div id="kanbanBoard" class="kanban-board">                        <div class="kanban-column" data-status="todo">                            <div class="column-header">                                <h3>To Do</h3>                                <span class="task-count" id="todoCount">0</span>                            </div>                            <div class="column-content" id="todoTasks">                                <!-- Tasks will be populated by JavaScript -->                            </div>                        </div>                                                <div class="kanban-column" data-status="in-progress">                            <div class="column-header">                                <h3>In Progress</h3>                                <span class="task-count" id="progressCount">0</span>                            </div>                            <div class="column-content" id="progressTasks">                                <!-- Tasks will be populated by JavaScript -->                            </div>                        </div>                                                <div class="kanban-column" data-status="review">                            <div class="column-header">                                <h3>Review</h3>                                <span class="task-count" id="reviewCount">0</span>                            </div>                            <div class="column-content" id="reviewTasks">                                <!-- Tasks will be populated by JavaScript -->                            </div>                        </div>                                                <div class="kanban-column" data-status="done">                            <div class="column-header">                                <h3>Done</h3>                                <span class="task-count" id="doneCount">0</span>                            </div>                            <div class="column-content" id="doneTasks">                                <!-- Tasks will be populated by JavaScript -->                            </div>                        </div>                    </div>                </section>                                <!-- Calendar Section -->                <section id="calendar-section" class="content-section">                    <div class="section-header">                        <h1>Project Calendar</h1>                        <div class="section-actions">                            <div class="calendar-nav">                                <button class="btn btn-outline" id="prevMonth">                                    <i class="fas fa-chevron-left"></i>                                </button>                                <h3 id="currentMonth">October 2024</h3>                                <button class="btn btn-outline" id="nextMonth">                                    <i class="fas fa-chevron-right"></i>                                </button>                            </div>                            <button class="btn btn-primary" id="addEventBtn">                                <i class="fas fa-plus"></i>                                Add Event                            </button>                        </div>                    </div>                                        <!-- Calendar Grid -->                    <div id="calendarGrid" class="calendar-grid">                        <!-- Calendar will be populated by JavaScript -->                    </div>                </section>                                <!-- Team Section -->                <section id="team-section" class="content-section">                    <div class="section-header">                        <h1>Team Management</h1>                        <div class="section-actions">                            <button class="btn btn-outline" id="inviteTeamBtn">                                <i class="fas fa-user-plus"></i>                                Invite Member                            </button>                            <button class="btn btn-primary" id="manageRolesBtn">                                <i class="fas fa-user-cog"></i>                                Manage Roles                            </button>                        </div>                    </div>                                        <!-- Team Grid -->                    <div id="teamGrid" class="team-grid">                        <!-- Team members will be populated by JavaScript -->                    </div>                </section>                                <!-- Time Tracking Section -->                <section id="time-tracking-section" class="content-section">                    <div class="section-header">                        <h1>Time Tracking</h1>                        <div class="section-actions">                            <button class="btn btn-primary" id="startTrackingBtn">                                <i class="fas fa-play"></i>                                Start Timer                            </button>                        </div>                    </div>                                        <!-- Current Timer -->                    <div class="current-timer">                        <div class="timer-display">                            <div class="timer-time" id="currentTime">00:00:00</div>                            <div class="timer-task" id="currentTask">No active timer</div>                        </div>                        <div class="timer-controls">                            <button class="timer-btn" id="pauseTimerBtn" disabled>                                <i class="fas fa-pause"></i>                            </button>                            <button class="timer-btn" id="stopTimerBtn" disabled>                                <i class="fas fa-stop"></i>                            </button>                        </div>                    </div>                                        <!-- Time Entries -->                    <div class="time-entries">                        <div class="entries-header">                            <h3>Recent Time Entries</h3>                            <div class="entries-filter">                                <select id="timeFilter">                                    <option value="today">Today</option>                                    <option value="week">This Week</option>                                    <option value="month">This Month</option>                                </select>                            </div>                        </div>                        <div id="timeEntriesList" class="entries-list">                            <!-- Time entries will be populated by JavaScript -->                        </div>                    </div>                </section>                                <!-- Reports Section -->                <section id="reports-section" class="content-section">                    <div class="section-header">                        <h1>Project Reports</h1>                        <div class="section-actions">                            <button class="btn btn-outline" id="exportReportBtn">                                <i class="fas fa-download"></i>                                Export Report                            </button>                        </div>                    </div>                                        <!-- Report KPIs -->                    <div class="kpi-grid">                        <div class="kpi-card">                            <div class="kpi-value" id="projectEfficiency">0%</div>                            <div class="kpi-label">Project Efficiency</div>                        </div>                        <div class="kpi-card">                            <div class="kpi-value" id="teamUtilization">0%</div>                            <div class="kpi-label">Team Utilization</div>                        </div>                        <div class="kpi-card">                            <div class="kpi-value" id="budgetVariance">$0</div>                            <div class="kpi-label">Budget Variance</div>                        </div>                        <div class="kpi-card">                            <div class="kpi-value" id="averageCompletion">0</div>                            <div class="kpi-label">Avg. Completion Time</div>                        </div>                    </div>                                        <!-- Report Charts -->                    <div class="reports-grid">                        <div class="report-card">                            <div class="card-header">                                <h3>Project Performance</h3>                            </div>                            <div class="card-content">                                <canvas id="performanceChart" height="200"></canvas>                            </div>                        </div>                                                <div class="report-card">                            <div class="card-header">                                <h3>Time Allocation</h3>                            </div>                            <div class="card-content">                                <canvas id="timeAllocationChart" height="200"></canvas>                            </div>                        </div>                                                <div class="report-card wide">                            <div class="card-header">                                <h3>Resource Utilization</h3>                            </div>                            <div class="card-content">                                <canvas id="resourceChart" height="200"></canvas>                            </div>                        </div>                    </div>                </section>                            </main>        </div>    </div>        <div id="siteFooter" class="site-footer-placeholder"></div>        <script src="js/app.js"></script>        <script>            (function() {                async function injectChrome() {                    try {                        const headerEl = document.getElementById('siteHeader');                        const footerEl = document.getElementById('siteFooter');                        if (headerEl) {                            const h = await fetch('../header.html', { cache: 'no-store' });                            if (h.ok) headerEl.innerHTML = await h.text();                        }                        if (footerEl) {                            const f = await fetch('../footer.html', { cache: 'no-store' });                            if (f.ok) footerEl.innerHTML = await f.text();                            footerEl.style.display = 'block';                        }                        document.body.classList.add('has-site-header');                        initializeDropdown();                    } catch (e) {}                }                function initializeDropdown() {                    const navDropdowns = document.querySelectorAll('.nav-dropdown');                    if (navDropdowns.length === 0) return;                    navDropdowns.forEach(dropdown => {                        const toggle = dropdown.querySelector('.nav-dropdown-toggle');                        const menu = dropdown.querySelector('.nav-dropdown-menu');                        if (toggle && menu) {                            dropdown.addEventListener('mouseenter', () => dropdown.classList.add('active'));                            dropdown.addEventListener('mouseleave', () => dropdown.classList.remove('active'));                            toggle.addEventListener('click', (e) => {                                e.preventDefault();                                e.stopPropagation();                                dropdown.classList.toggle('active');                            });                            dropdown.querySelectorAll('.nav-dropdown-item').forEach(item => {                                item.addEventListener('click', () => dropdown.classList.remove('active'));                            });                        }                    });                    document.addEventListener('click', (e) => {                        if (!e.target.closest('.nav-dropdown')) {                            navDropdowns.forEach(dropdown => dropdown.classList.remove('active'));                        }                    });                }                function setupBanner() {                    const banner = document.getElementById('demoBanner');                    const closeBtn = document.getElementById('demoBannerClose');                    if (!banner) return;                    if (localStorage.getItem('pmsDemoBannerDismissed') === '1') {                        banner.style.display = 'none';                    }                    if (closeBtn) {                        closeBtn.addEventListener('click', () => {                            banner.style.display = 'none';                            localStorage.setItem('pmsDemoBannerDismissed', '1');                        });                    }                }                injectChrome();                setupBanner();            })();        </script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interactive Project Management System demo featuring task tracking, team collaboration, timeline visualization, and progress monitoring. Built with HTML/CSS/JavaScript to showcase business application development.">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#64ffda">
+    <link rel="canonical" href="https://knightlogics.com/Project-Management-System/">
+    <link rel="icon" type="image/png" href="../images/KnightLogicsLogo2.png" sizes="32x32">
+    <link rel="apple-touch-icon" href="../images/KnightLogicsLogo2.png">
+    <meta property="og:title" content="Knight Logics Project Management System | Demo">
+    <meta property="og:description" content="Project Management System Demo - A powerful project tracking interface by Knight Logics with task management and team collaboration features.">
+    <meta property="og:url" content="https://knightlogics.com/Project-Management-System/">
+    <meta property="og:image" content="https://knightlogics.com/images/PortfolioSiteLogo.jpg">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Knight Logics Project Management System | Demo">
+    <meta name="twitter:description" content="Project management system demo with task tracking, timeline visualization, and team collaboration.">
+    <meta name="twitter:image" content="https://knightlogics.com/images/PortfolioSiteLogo.jpg">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "Knight Logics Project Management System",
+      "description": "Project Management System demo for team collaboration and task tracking",
+      "author": {
+        "@type": "Person",
+        "name": "Nicholas Knight"
+      },
+      "applicationCategory": "BusinessApplication",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    <title>Knight Logics - Project Management System</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+</head>
+<body>
+    <div id="siteHeader" class="site-header-placeholder"></div>
+    <div id="demoBanner" class="demo-banner" role="region" aria-label="Demonstration notice">
+        <div class="banner-content">
+            <span class="banner-tag"><i class="fas fa-info-circle"></i> Demo</span>
+            <span>This page is an interactive demonstration of a Project Management System. All data is sample to showcase capabilities. Use the sidebar to explore: Dashboard, Projects, Tasks, Timeline, Team, Analytics, and Reports.</span>
+            <button id="demoBannerClose" class="banner-close" aria-label="Dismiss notice">Dismiss</button>
+        </div>
+    </div>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-container">
+            <div class="loading-logo">
+                <i class="fas fa-tasks"></i>
+            </div>
+            <div class="loading-text">
+                <h2>Knight Logics</h2>
+                <p>Project Management System</p>
+            </div>
+            <div class="loading-spinner"></div>
+        </div>
+    </div>
+
+    <!-- Main Application Container -->
+    <div id="appContainer" class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <div class="logo">
+                    <i class="fas fa-tasks"></i>
+                    <span>Knight Logics PM</span>
+                </div>
+            </div>
+            
+            <div class="header-center">
+                <div class="search-container">
+                    <i class="fas fa-search"></i>
+                    <input type="text" id="globalSearch" placeholder="Search projects, tasks, team members...">
+                </div>
+            </div>
+            
+            <div class="header-right">
+                <button class="header-btn" id="quickAddBtn" title="Quick Add">
+                    <i class="fas fa-plus"></i>
+                </button>
+                <button class="header-btn" id="notificationsBtn" title="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <div class="user-profile">
+                    <div class="user-avatar">NK</div>
+                    <div class="user-info">
+                        <span class="user-name">Nicholas Knight</span>
+                        <span class="user-role">Project Manager</span>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <!-- Sidebar Navigation -->
+            <aside class="sidebar">
+                <nav class="nav-menu">
+                    <ul>
+                        <li class="nav-item active">
+                            <a href="#" class="nav-link" data-section="dashboard">
+                                <i class="fas fa-chart-pie"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-section="projects">
+                                <i class="fas fa-folder-open"></i>
+                                <span>Projects</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-section="tasks">
+                                <i class="fas fa-tasks"></i>
+                                <span>Tasks</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-section="calendar">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>Calendar</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-section="team">
+                                <i class="fas fa-users"></i>
+                                <span>Team</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-section="time-tracking">
+                                <i class="fas fa-clock"></i>
+                                <span>Time Tracking</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" data-section="reports">
+                                <i class="fas fa-chart-bar"></i>
+                                <span>Reports</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h3>Quick Actions</h3>
+                    <button class="quick-action-btn" id="createProjectBtn">
+                        <i class="fas fa-plus"></i>
+                        <span>New Project</span>
+                    </button>
+                    <button class="quick-action-btn" id="createTaskBtn">
+                        <i class="fas fa-plus-circle"></i>
+                        <span>Add Task</span>
+                    </button>
+                    <button class="quick-action-btn" id="startTimerBtn">
+                        <i class="fas fa-play"></i>
+                        <span>Start Timer</span>
+                    </button>
+                    <button class="quick-action-btn" id="scheduleTaskBtn">
+                        <i class="fas fa-calendar-plus"></i>
+                        <span>Schedule Task</span>
+                    </button>
+                </div>
+            </aside>
+
+            <!-- Content Sections -->
+            <main class="content-area">
+                
+                <!-- Dashboard Section -->
+                <section id="dashboard-section" class="content-section active">
+                    <div class="section-header">
+                        <h1>Project Dashboard</h1>
+                        <p>Overview of all your projects, tasks, and team performance</p>
+                    </div>
+                    
+                    <!-- Statistics Cards -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="totalProjects">0</div>
+                                <div class="stat-label">Active Projects</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-tasks"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="completedTasks">0</div>
+                                <div class="stat-label">Completed Tasks</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="teamMembers">0</div>
+                                <div class="stat-label">Team Members</div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="stat-content">
+                                <div class="stat-value" id="hoursLogged">0</div>
+                                <div class="stat-label">Hours This Week</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Dashboard Content Grid -->
+                    <div class="dashboard-grid">
+                        <!-- Project Progress -->
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3>Project Progress</h3>
+                                <button class="card-action">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                            <div class="card-content">
+                                <canvas id="projectProgressChart" height="200"></canvas>
+                            </div>
+                        </div>
+                        
+                        <!-- Task Distribution -->
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3>Task Distribution</h3>
+                                <button class="card-action">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                            <div class="card-content">
+                                <canvas id="taskDistributionChart" height="200"></canvas>
+                            </div>
+                        </div>
+                        
+                        <!-- Recent Activities -->
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3>Recent Activities</h3>
+                                <a href="#" class="card-link">View All</a>
+                            </div>
+                            <div class="card-content">
+                                <div id="recentActivitiesList" class="activities-list">
+                                    <!-- Activities will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Upcoming Deadlines -->
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3>Upcoming Deadlines</h3>
+                                <a href="#" class="card-link">View Calendar</a>
+                            </div>
+                            <div class="card-content">
+                                <div id="upcomingDeadlinesList" class="deadlines-list">
+                                    <!-- Deadlines will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Team Performance -->
+                        <div class="dashboard-card">
+                            <div class="card-header">
+                                <h3>Team Performance</h3>
+                                <button class="card-action">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                            </div>
+                            <div class="card-content">
+                                <div id="teamPerformanceList" class="performance-list">
+                                    <!-- Performance data will be populated by JavaScript -->
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Project Timeline -->
+                        <div class="dashboard-card wide">
+                            <div class="card-header">
+                                <h3>Project Timeline</h3>
+                                <div class="card-actions">
+                                    <select class="timeline-filter">
+                                        <option value="week">This Week</option>
+                                        <option value="month">This Month</option>
+                                        <option value="quarter">This Quarter</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="card-content">
+                                <canvas id="timelineChart" height="150"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Projects Section -->
+                <section id="projects-section" class="content-section">
+                    <div class="section-header">
+                        <h1>Projects</h1>
+                        <div class="section-actions">
+                            <div class="view-toggle">
+                                <button class="view-btn active" data-view="grid">
+                                    <i class="fas fa-th"></i>
+                                </button>
+                                <button class="view-btn" data-view="list">
+                                    <i class="fas fa-list"></i>
+                                </button>
+                            </div>
+                            <button class="btn btn-primary" id="addProjectBtn">
+                                <i class="fas fa-plus"></i>
+                                New Project
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Project Filters -->
+                    <div class="filters-bar">
+                        <div class="filter-group">
+                            <select class="filter-select" id="statusFilter">
+                                <option value="">All Statuses</option>
+                                <option value="planning">Planning</option>
+                                <option value="active">Active</option>
+                                <option value="on-hold">On Hold</option>
+                                <option value="completed">Completed</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <select class="filter-select" id="priorityFilter">
+                                <option value="">All Priorities</option>
+                                <option value="high">High Priority</option>
+                                <option value="medium">Medium Priority</option>
+                                <option value="low">Low Priority</option>
+                            </select>
+                        </div>
+                        <div class="filter-group">
+                            <input type="text" class="filter-search" id="projectSearch" placeholder="Search projects...">
+                        </div>
+                    </div>
+                    
+                    <!-- Projects Grid/List -->
+                    <div id="projectsContainer" class="projects-grid">
+                        <!-- Projects will be populated by JavaScript -->
+                    </div>
+                </section>
+                
+                <!-- Tasks Section -->
+                <section id="tasks-section" class="content-section">
+                    <div class="section-header">
+                        <h1>Task Management</h1>
+                        <div class="section-actions">
+                            <div class="view-toggle">
+                                <button class="view-btn active" data-view="kanban">
+                                    <i class="fas fa-columns"></i>
+                                </button>
+                                <button class="view-btn" data-view="list">
+                                    <i class="fas fa-list"></i>
+                                </button>
+                            </div>
+                            <button class="btn btn-primary" id="addTaskBtn">
+                                <i class="fas fa-plus"></i>
+                                Add Task
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Kanban Board -->
+                    <div id="kanbanBoard" class="kanban-board">
+                        <div class="kanban-column" data-status="todo">
+                            <div class="column-header">
+                                <h3>To Do</h3>
+                                <span class="task-count" id="todoCount">0</span>
+                            </div>
+                            <div class="column-content" id="todoTasks">
+                                <!-- Tasks will be populated by JavaScript -->
+                            </div>
+                        </div>
+                        
+                        <div class="kanban-column" data-status="in-progress">
+                            <div class="column-header">
+                                <h3>In Progress</h3>
+                                <span class="task-count" id="progressCount">0</span>
+                            </div>
+                            <div class="column-content" id="progressTasks">
+                                <!-- Tasks will be populated by JavaScript -->
+                            </div>
+                        </div>
+                        
+                        <div class="kanban-column" data-status="review">
+                            <div class="column-header">
+                                <h3>Review</h3>
+                                <span class="task-count" id="reviewCount">0</span>
+                            </div>
+                            <div class="column-content" id="reviewTasks">
+                                <!-- Tasks will be populated by JavaScript -->
+                            </div>
+                        </div>
+                        
+                        <div class="kanban-column" data-status="done">
+                            <div class="column-header">
+                                <h3>Done</h3>
+                                <span class="task-count" id="doneCount">0</span>
+                            </div>
+                            <div class="column-content" id="doneTasks">
+                                <!-- Tasks will be populated by JavaScript -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Calendar Section -->
+                <section id="calendar-section" class="content-section">
+                    <div class="section-header">
+                        <h1>Project Calendar</h1>
+                        <div class="section-actions">
+                            <div class="calendar-nav">
+                                <button class="btn btn-outline" id="prevMonth">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <h3 id="currentMonth">October 2024</h3>
+                                <button class="btn btn-outline" id="nextMonth">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                            <button class="btn btn-primary" id="addEventBtn">
+                                <i class="fas fa-plus"></i>
+                                Add Event
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Calendar Grid -->
+                    <div id="calendarGrid" class="calendar-grid">
+                        <!-- Calendar will be populated by JavaScript -->
+                    </div>
+                </section>
+                
+                <!-- Team Section -->
+                <section id="team-section" class="content-section">
+                    <div class="section-header">
+                        <h1>Team Management</h1>
+                        <div class="section-actions">
+                            <button class="btn btn-outline" id="inviteTeamBtn">
+                                <i class="fas fa-user-plus"></i>
+                                Invite Member
+                            </button>
+                            <button class="btn btn-primary" id="manageRolesBtn">
+                                <i class="fas fa-user-cog"></i>
+                                Manage Roles
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Team Grid -->
+                    <div id="teamGrid" class="team-grid">
+                        <!-- Team members will be populated by JavaScript -->
+                    </div>
+                </section>
+                
+                <!-- Time Tracking Section -->
+                <section id="time-tracking-section" class="content-section">
+                    <div class="section-header">
+                        <h1>Time Tracking</h1>
+                        <div class="section-actions">
+                            <button class="btn btn-primary" id="startTrackingBtn">
+                                <i class="fas fa-play"></i>
+                                Start Timer
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Current Timer -->
+                    <div class="current-timer">
+                        <div class="timer-display">
+                            <div class="timer-time" id="currentTime">00:00:00</div>
+                            <div class="timer-task" id="currentTask">No active timer</div>
+                        </div>
+                        <div class="timer-controls">
+                            <button class="timer-btn" id="pauseTimerBtn" disabled>
+                                <i class="fas fa-pause"></i>
+                            </button>
+                            <button class="timer-btn" id="stopTimerBtn" disabled>
+                                <i class="fas fa-stop"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Time Entries -->
+                    <div class="time-entries">
+                        <div class="entries-header">
+                            <h3>Recent Time Entries</h3>
+                            <div class="entries-filter">
+                                <select id="timeFilter">
+                                    <option value="today">Today</option>
+                                    <option value="week">This Week</option>
+                                    <option value="month">This Month</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="timeEntriesList" class="entries-list">
+                            <!-- Time entries will be populated by JavaScript -->
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Reports Section -->
+                <section id="reports-section" class="content-section">
+                    <div class="section-header">
+                        <h1>Project Reports</h1>
+                        <div class="section-actions">
+                            <button class="btn btn-outline" id="exportReportBtn">
+                                <i class="fas fa-download"></i>
+                                Export Report
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Report KPIs -->
+                    <div class="kpi-grid">
+                        <div class="kpi-card">
+                            <div class="kpi-value" id="projectEfficiency">0%</div>
+                            <div class="kpi-label">Project Efficiency</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-value" id="teamUtilization">0%</div>
+                            <div class="kpi-label">Team Utilization</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-value" id="budgetVariance">$0</div>
+                            <div class="kpi-label">Budget Variance</div>
+                        </div>
+                        <div class="kpi-card">
+                            <div class="kpi-value" id="averageCompletion">0</div>
+                            <div class="kpi-label">Avg. Completion Time</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Report Charts -->
+                    <div class="reports-grid">
+                        <div class="report-card">
+                            <div class="card-header">
+                                <h3>Project Performance</h3>
+                            </div>
+                            <div class="card-content">
+                                <canvas id="performanceChart" height="200"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="report-card">
+                            <div class="card-header">
+                                <h3>Time Allocation</h3>
+                            </div>
+                            <div class="card-content">
+                                <canvas id="timeAllocationChart" height="200"></canvas>
+                            </div>
+                        </div>
+                        
+                        <div class="report-card wide">
+                            <div class="card-header">
+                                <h3>Resource Utilization</h3>
+                            </div>
+                            <div class="card-content">
+                                <canvas id="resourceChart" height="200"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+            </main>
+        </div>
+    </div>
+
+        <div id="siteFooter" class="site-footer-placeholder"></div>
+        <script src="js/app.js"></script>
+        <script>
+            (function() {
+                async function injectChrome() {
+                    try {
+                        const headerEl = document.getElementById('siteHeader');
+                        const footerEl = document.getElementById('siteFooter');
+                        if (headerEl) {
+                            const h = await fetch('../header.html', { cache: 'no-store' });
+                            if (h.ok) headerEl.innerHTML = await h.text();
+                        }
+                        if (footerEl) {
+                            const f = await fetch('../footer.html', { cache: 'no-store' });
+                            if (f.ok) footerEl.innerHTML = await f.text();
+                            footerEl.style.display = 'block';
+                        }
+                        document.body.classList.add('has-site-header');
+                        initializeDropdown();
+                    } catch (e) {}
+                }
+
+                function initializeDropdown() {
+                    const navDropdowns = document.querySelectorAll('.nav-dropdown');
+                    if (navDropdowns.length === 0) return;
+                    navDropdowns.forEach(dropdown => {
+                        const toggle = dropdown.querySelector('.nav-dropdown-toggle');
+                        const menu = dropdown.querySelector('.nav-dropdown-menu');
+                        if (toggle && menu) {
+                            dropdown.addEventListener('mouseenter', () => dropdown.classList.add('active'));
+                            dropdown.addEventListener('mouseleave', () => dropdown.classList.remove('active'));
+                            toggle.addEventListener('click', (e) => {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                dropdown.classList.toggle('active');
+                            });
+                            dropdown.querySelectorAll('.nav-dropdown-item').forEach(item => {
+                                item.addEventListener('click', () => dropdown.classList.remove('active'));
+                            });
+                        }
+                    });
+                    document.addEventListener('click', (e) => {
+                        if (!e.target.closest('.nav-dropdown')) {
+                            navDropdowns.forEach(dropdown => dropdown.classList.remove('active'));
+                        }
+                    });
+                }
+
+                function setupBanner() {
+                    const banner = document.getElementById('demoBanner');
+                    const closeBtn = document.getElementById('demoBannerClose');
+                    if (!banner) return;
+                    if (localStorage.getItem('pmsDemoBannerDismissed') === '1') {
+                        banner.style.display = 'none';
+                    }
+                    if (closeBtn) {
+                        closeBtn.addEventListener('click', () => {
+                            banner.style.display = 'none';
+                            localStorage.setItem('pmsDemoBannerDismissed', '1');
+                        });
+                    }
+                }
+
+                injectChrome();
+                setupBanner();
+            })();
+        </script>
+</body>
+</html>
