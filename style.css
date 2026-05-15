@@ -256,6 +256,9 @@ a:where(:not(.cta-button, .nav-link, .nav-brand-link, .nav-dropdown-toggle)):foc
 .mobile-menu-header,
 .mobile-menu-footer,
 .mobile-nav-links,
+.mobile-social-links,
+.mobile-upwork-row,
+.mobile-phone-section,
 .mobile-only,
 .read-more-btn {
     display: none;
