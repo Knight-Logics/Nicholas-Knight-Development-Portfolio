@@ -8999,7 +8999,7 @@ html {
     min-height: 520px;
     display: flex;
     align-items: center;
-    background: url('/images/websitehero.webp') top center/cover no-repeat;
+    background: url('./images/websitehero.webp') top center/cover no-repeat;
     overflow: hidden;
 }
 
@@ -9039,7 +9039,12 @@ html {
     font-weight: 700;
     line-height: 1.12;
     margin-bottom: 1rem;
-    color: #ffffff;
+    background: linear-gradient(135deg, #64ffda, #ffffff, #64ffda);
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s ease-in-out infinite;
 }
 
 .page-service-websites .svc-hero p {
