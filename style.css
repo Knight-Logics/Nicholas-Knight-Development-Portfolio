@@ -4405,9 +4405,7 @@ section::before {
     }
 
     .mobile-upwork-row {
-        display: flex;
-        justify-content: center;
-        padding: 0 16px;
+        display: block;
     }
 
     .mobile-upwork-row .nav-upwork-btn {
@@ -4416,64 +4414,6 @@ section::before {
         padding: 13px 18px;
         font-size: 0.92rem;
         border-radius: 10px;
-        display: flex;
-        align-items: center;
-    }
-
-    .mobile-social-links {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 12px;
-        padding: 12px 16px;
-    }
-
-    .mobile-social-links a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 32px;
-        height: 32px;
-        border-radius: 6px;
-        color: rgba(255, 255, 255, 0.8);
-        transition: background 0.18s, color 0.18s;
-        text-decoration: none;
-    }
-
-    .mobile-social-links a:hover {
-        background: rgba(100, 255, 218, 0.12);
-        color: #ffffff;
-    }
-
-    .mobile-phone-section {
-        display: flex;
-        justify-content: center;
-        padding: 0 16px;
-    }
-
-    .mobile-phone-section .mobile-phone-btn {
-        width: 100%;
-        justify-content: center;
-        padding: 13px 18px;
-        font-size: 0.92rem;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-    }
-
-    .mobile-menu-footer {
-        display: flex;
-        justify-content: center;
-        padding: 12px 24px;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        margin-top: auto;
-        text-align: center;
-    }
-
-    .mobile-menu-footer p {
-        margin: 0;
-        font-size: 0.85rem;
-        color: rgba(255, 255, 255, 0.6);
     }
 
     .hamburger {
@@ -4523,27 +4463,20 @@ section::before {
     .nav-menu .nav-link {
         display: flex !important;
         align-items: center;
-        width: auto;
-        padding: 12px 14px;
-        margin: 0;
-        border-radius: 8px;
+        width: calc(100% - 32px);
+        padding: 16px 20px;
+        margin: 0 16px 6px 16px;
+        border-radius: 10px;
         font-size: 15px !important;
-        font-weight: 500;
-        color: rgba(255, 255, 255, 0.88) !important;
+        font-weight: 600;
+        color: #ffffff !important;
         text-decoration: none;
-        background: none !important;
-        border: none !important;
+        background: rgba(255, 255, 255, 0.06) !important;
+        border: 1px solid rgba(255, 255, 255, 0.1) !important;
         box-shadow: none !important;
         transform: none !important;
         text-shadow: none !important;
         box-sizing: border-box;
-        transition: background 0.18s, color 0.18s !important;
-    }
-
-    .nav-menu .nav-link:hover,
-    .nav-menu .nav-link:focus-visible {
-        background: rgba(100, 255, 218, 0.12) !important;
-        color: #ffffff !important;
     }
 
     .nav-menu-overlay {
@@ -4776,9 +4709,7 @@ section::before {
     }
 
     .mobile-upwork-row {
-        display: flex;
-        justify-content: center;
-        padding: 0 16px;
+        display: block;
     }
 
     .mobile-upwork-row .nav-upwork-btn {
@@ -4787,64 +4718,6 @@ section::before {
         padding: 14px 20px;
         font-size: 0.95rem;
         border-radius: 10px;
-        display: flex;
-        align-items: center;
-    }
-
-    .mobile-social-links {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 12px;
-        padding: 12px 16px;
-    }
-
-    .mobile-social-links a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 32px;
-        height: 32px;
-        border-radius: 6px;
-        color: rgba(255, 255, 255, 0.8);
-        transition: background 0.18s, color 0.18s;
-        text-decoration: none;
-    }
-
-    .mobile-social-links a:hover {
-        background: rgba(100, 255, 218, 0.12);
-        color: #ffffff;
-    }
-
-    .mobile-phone-section {
-        display: flex;
-        justify-content: center;
-        padding: 0 16px;
-    }
-
-    .mobile-phone-section .mobile-phone-btn {
-        width: 100%;
-        justify-content: center;
-        padding: 14px 20px;
-        font-size: 0.95rem;
-        border-radius: 10px;
-        display: flex;
-        align-items: center;
-    }
-
-    .mobile-menu-footer {
-        display: flex;
-        justify-content: center;
-        padding: 12px 24px;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        margin-top: auto;
-        text-align: center;
-    }
-
-    .mobile-menu-footer p {
-        margin: 0;
-        font-size: 0.85rem;
-        color: rgba(255, 255, 255, 0.6);
     }
     
     /* Fix hero section for mobile scrolling while preserving background layers */
@@ -5084,18 +4957,18 @@ section::before {
         .nav-menu .nav-link {
             display: flex !important;
             align-items: center;
-            width: auto;
-            padding: 12px 14px;
-            margin: 0;
-            border-radius: 8px;
+            width: calc(100% - 32px);
+            padding: 16px 20px;
+            margin: 0 16px 6px 16px;
+            border-radius: 10px;
             font-size: 15px !important;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.88) !important;
+            font-weight: 600;
+            color: #ffffff !important;
             text-decoration: none;
-            background: none !important;
-            border: none !important;
+            background: rgba(255, 255, 255, 0.06) !important;
+            border: 1px solid rgba(255, 255, 255, 0.1) !important;
             box-shadow: none !important;
-            transition: background 0.18s, color 0.18s !important;
+            transition: background 0.2s ease, border-color 0.2s ease !important;
             letter-spacing: 0.2px;
             text-transform: none;
             font-family: 'Inter', sans-serif;
@@ -5104,12 +4977,6 @@ section::before {
             transform: none !important;
             text-shadow: none !important;
             box-sizing: border-box;
-        }
-
-        .nav-menu .nav-link:hover,
-        .nav-menu .nav-link:focus-visible {
-            background: rgba(100, 255, 218, 0.12) !important;
-            color: #ffffff !important;
         }
 
         /* Suppress ::after chevron on non-toggle dropdown links */
