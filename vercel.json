@@ -158,42 +158,122 @@
     },
     {
       "source": "/CRM-Management-System/index.html",
-      "destination": "/CRM-Management-System/",
+      "destination": "/service-websites",
+      "permanent": true
+    },
+    {
+      "source": "/CRM-Management-System",
+      "destination": "/service-websites",
+      "permanent": true
+    },
+    {
+      "source": "/CRM-Management-System/(.*)",
+      "destination": "/service-websites",
       "permanent": true
     },
     {
       "source": "/Employee-Management-System/index.html",
-      "destination": "/Employee-Management-System/",
+      "destination": "/service-websites",
+      "permanent": true
+    },
+    {
+      "source": "/Employee-Management-System",
+      "destination": "/service-websites",
+      "permanent": true
+    },
+    {
+      "source": "/Employee-Management-System/(.*)",
+      "destination": "/service-websites",
       "permanent": true
     },
     {
       "source": "/Project-Management-System/index.html",
-      "destination": "/Project-Management-System/",
+      "destination": "/service-websites",
+      "permanent": true
+    },
+    {
+      "source": "/Project-Management-System",
+      "destination": "/service-websites",
+      "permanent": true
+    },
+    {
+      "source": "/Project-Management-System/(.*)",
+      "destination": "/service-websites",
       "permanent": true
     },
     {
       "source": "/Ecommerce-Management-System/index.html",
-      "destination": "/Ecommerce-Management-System/",
+      "destination": "/service-ecommerce",
+      "permanent": true
+    },
+    {
+      "source": "/Ecommerce-Management-System",
+      "destination": "/service-ecommerce",
+      "permanent": true
+    },
+    {
+      "source": "/Ecommerce-Management-System/(.*)",
+      "destination": "/service-ecommerce",
       "permanent": true
     },
     {
       "source": "/Invoice-Management-System/index.html",
-      "destination": "/Invoice-Management-System/",
+      "destination": "/service-websites",
+      "permanent": true
+    },
+    {
+      "source": "/Invoice-Management-System",
+      "destination": "/service-websites",
+      "permanent": true
+    },
+    {
+      "source": "/Invoice-Management-System/(.*)",
+      "destination": "/service-websites",
       "permanent": true
     },
     {
       "source": "/Chess-Game-main/index.html",
-      "destination": "/Chess-Game-main/",
+      "destination": "/service-websites",
+      "permanent": true
+    },
+    {
+      "source": "/Chess-Game-main",
+      "destination": "/service-websites",
+      "permanent": true
+    },
+    {
+      "source": "/Chess-Game-main/(.*)",
+      "destination": "/service-websites",
       "permanent": true
     },
     {
       "source": "/Tic-Tac-Toe/index.html",
-      "destination": "/Tic-Tac-Toe/",
+      "destination": "/service-websites",
+      "permanent": true
+    },
+    {
+      "source": "/Tic-Tac-Toe",
+      "destination": "/service-websites",
+      "permanent": true
+    },
+    {
+      "source": "/Tic-Tac-Toe/(.*)",
+      "destination": "/service-websites",
       "permanent": true
     },
     {
       "source": "/JavaScript-Tic-Tac-Toe-master/index.html",
-      "destination": "/JavaScript-Tic-Tac-Toe-master/",
+      "destination": "/service-websites",
+      "permanent": true
+    },
+    {
+      "source": "/JavaScript-Tic-Tac-Toe-master",
+      "destination": "/service-websites",
+      "permanent": true
+    },
+    {
+      "source": "/JavaScript-Tic-Tac-Toe-master/(.*)",
+      "destination": "/service-websites",
       "permanent": true
     },
     {

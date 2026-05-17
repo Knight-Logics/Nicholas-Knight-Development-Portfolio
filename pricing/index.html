@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -63,11 +63,14 @@
         "@type": "ProfessionalService",
         "@id": "https://knightlogics.com/#organization",
         "name": "Knight Logics",
-        "url": "https://knightlogics.com",
+        "url": "https://knightlogics.com/",
         "description": "Tampa Bay web design, local SEO, Google Business Profile optimization, e-commerce development, CRM setup, and automation services for small businesses.",
         "telephone": "+1-813-773-5553",
         "email": "support@knightlogics.com",
         "priceRange": "$$",
+        "founder": {
+            "@id": "https://knightlogics.com/#nicholas-knight"
+        },
         "address": {
             "@type": "PostalAddress",
             "addressLocality": "Safety Harbor",
@@ -86,8 +89,10 @@
         ],
         "sameAs": [
             "https://github.com/Knight-Logics",
-            "https://www.linkedin.com/company/knight-logics/"
+            "https://www.linkedin.com/company/knight-logics/",
+            "https://www.google.com/maps/place/Knight+Logics/data=!4m2!3m1!1s0x0:0x48644c12a6309a67?hl=en&ictx=111"
         ],
+        "hasMap": "https://www.google.com/maps/place/Knight+Logics/data=!4m2!3m1!1s0x0:0x48644c12a6309a67?hl=en&ictx=111",
         "hasOfferCatalog": {
             "@type": "OfferCatalog",
             "name": "Knight Logics Pricing Catalog",
@@ -182,6 +187,8 @@
                             "@id": "https://knightlogics.com/pricing#offer-website-local-launch-plus",
                             "name": "Local Launch Plus",
                             "url": "https://knightlogics.com/pricing#websites",
+                            "price": "2997",
+                            "priceCurrency": "USD",
                             "priceSpecification": {
                                 "@type": "PriceSpecification",
                                 "priceCurrency": "USD",
@@ -242,9 +249,24 @@
                         },
                         {
                             "@type": "Offer",
+                            "@id": "https://knightlogics.com/pricing#offer-ecommerce-launch-plus",
+                            "name": "E-Commerce Launch Plus",
+                            "url": "https://knightlogics.com/pricing#ecommerce",
+                            "price": "3497",
+                            "priceCurrency": "USD",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "E-Commerce Launch Plus",
+                                "serviceType": "Expanded custom storefront for larger catalogs or deeper checkout scope"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
                             "@id": "https://knightlogics.com/pricing#offer-ecommerce-growth-store",
                             "name": "E-Commerce Growth Store",
                             "url": "https://knightlogics.com/pricing#ecommerce",
+                            "price": "3997",
+                            "priceCurrency": "USD",
                             "priceSpecification": {
                                 "@type": "PriceSpecification",
                                 "priceCurrency": "USD",
@@ -261,6 +283,8 @@
                             "@id": "https://knightlogics.com/pricing#offer-ecommerce-advanced-system",
                             "name": "Advanced E-Commerce System",
                             "url": "https://knightlogics.com/pricing#ecommerce",
+                            "price": "7500",
+                            "priceCurrency": "USD",
                             "priceSpecification": {
                                 "@type": "PriceSpecification",
                                 "priceCurrency": "USD",
@@ -285,6 +309,8 @@
                             "@id": "https://knightlogics.com/pricing#offer-growth-simple-lead-tracker",
                             "name": "Simple Lead Tracker",
                             "url": "https://knightlogics.com/pricing#growth",
+                            "price": "250",
+                            "priceCurrency": "USD",
                             "priceSpecification": {
                                 "@type": "PriceSpecification",
                                 "priceCurrency": "USD",
@@ -302,6 +328,8 @@
                             "@id": "https://knightlogics.com/pricing#offer-growth-contractor-crm-starter",
                             "name": "Contractor CRM Starter",
                             "url": "https://knightlogics.com/pricing#growth",
+                            "price": "500",
+                            "priceCurrency": "USD",
                             "priceSpecification": {
                                 "@type": "PriceSpecification",
                                 "priceCurrency": "USD",
@@ -319,6 +347,8 @@
                             "@id": "https://knightlogics.com/pricing#offer-growth-job-records-system",
                             "name": "Job Records System",
                             "url": "https://knightlogics.com/pricing#growth",
+                            "price": "750",
+                            "priceCurrency": "USD",
                             "priceSpecification": {
                                 "@type": "PriceSpecification",
                                 "priceCurrency": "USD",
@@ -336,6 +366,8 @@
                             "@id": "https://knightlogics.com/pricing#offer-growth-automated-job-records",
                             "name": "Automated Job Records",
                             "url": "https://knightlogics.com/pricing#growth",
+                            "price": "1500",
+                            "priceCurrency": "USD",
                             "priceSpecification": {
                                 "@type": "PriceSpecification",
                                 "priceCurrency": "USD",
@@ -353,6 +385,8 @@
                             "@id": "https://knightlogics.com/pricing#offer-growth-system-starter",
                             "name": "Growth System Starter",
                             "url": "https://knightlogics.com/pricing#growth",
+                            "price": "3500",
+                            "priceCurrency": "USD",
                             "priceSpecification": {
                                 "@type": "PriceSpecification",
                                 "priceCurrency": "USD",
@@ -370,6 +404,8 @@
                             "@id": "https://knightlogics.com/pricing#offer-full-growth-system",
                             "name": "Full Growth System",
                             "url": "https://knightlogics.com/pricing#growth",
+                            "price": "5000",
+                            "priceCurrency": "USD",
                             "priceSpecification": {
                                 "@type": "PriceSpecification",
                                 "priceCurrency": "USD",
@@ -387,6 +423,8 @@
                             "@id": "https://knightlogics.com/pricing#offer-custom-automation-system",
                             "name": "Custom Automation System",
                             "url": "https://knightlogics.com/pricing#growth",
+                            "price": "10000",
+                            "priceCurrency": "USD",
                             "priceSpecification": {
                                 "@type": "PriceSpecification",
                                 "priceCurrency": "USD",
@@ -410,6 +448,8 @@
                             "@id": "https://knightlogics.com/pricing#offer-monthly-visibility-lite",
                             "name": "Visibility Lite",
                             "url": "https://knightlogics.com/pricing#monthly",
+                            "price": "197",
+                            "priceCurrency": "USD",
                             "priceSpecification": {
                                 "@type": "UnitPriceSpecification",
                                 "priceCurrency": "USD",
@@ -427,6 +467,8 @@
                             "@id": "https://knightlogics.com/pricing#offer-monthly-visibility-standard",
                             "name": "Visibility Standard",
                             "url": "https://knightlogics.com/pricing#monthly",
+                            "price": "397",
+                            "priceCurrency": "USD",
                             "priceSpecification": {
                                 "@type": "UnitPriceSpecification",
                                 "priceCurrency": "USD",
@@ -444,6 +486,8 @@
                             "@id": "https://knightlogics.com/pricing#offer-monthly-visibility-pro",
                             "name": "Visibility Pro",
                             "url": "https://knightlogics.com/pricing#monthly",
+                            "price": "697",
+                            "priceCurrency": "USD",
                             "priceSpecification": {
                                 "@type": "UnitPriceSpecification",
                                 "priceCurrency": "USD",
@@ -461,6 +505,8 @@
                             "@id": "https://knightlogics.com/pricing#offer-monthly-growth-management",
                             "name": "Growth Management",
                             "url": "https://knightlogics.com/pricing#monthly",
+                            "price": "1000",
+                            "priceCurrency": "USD",
                             "priceSpecification": {
                                 "@type": "UnitPriceSpecification",
                                 "priceCurrency": "USD",
@@ -481,7 +527,7 @@
                     "@id": "https://knightlogics.com/pricing#offer-gbp-sprint",
                     "name": "Google Business Profile Sprint",
                     "url": "https://knightlogics.com/pricing#search-addons",
-                    "price": "297",
+                    "price": "397",
                     "priceCurrency": "USD",
                     "itemOffered": {
                         "@type": "Service",
@@ -517,10 +563,10 @@
             },
             {
                 "@type": "Question",
-                "name": "Can I start with a deposit instead of paying in full?",
+                "name": "Can I pay in full or start with a deposit instead of paying all at once?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Yes. Larger website, e-commerce, and automation packages can offer deposit-based checkout options through Stripe so the project can start cleanly without paying the full balance upfront."
+                    "text": "Yes. Stripe checkout is used for all package payments. Several larger packages also offer deposit-based checkout so you can reserve kickoff first and handle the remaining balance through project milestones."
                 }
             },
             {
@@ -560,20 +606,34 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" as="image" href="/images/websitehero.webp" fetchpriority="high" type="image/webp">
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap"></noscript>
-    <link rel="stylesheet" href="/style.css?v=20260507a">
+    <link rel="stylesheet" href="/style.min.css?v=20260514a">
     <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
 
     <style>
-        /* ===== Pricing Page &mdash; theme-matched to KnightLogics style.css ===== */
+        /* ===== Pricing Page — theme-matched to KnightLogics style.css ===== */
 
         /* Hero */
         .pricing-hero {
             padding: clamp(5rem, 10vw, 9rem) 0 clamp(2.5rem, 5vw, 4rem);
             text-align: center;
-            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            position: relative;
+            overflow: hidden;
+            background: url('/images/websitehero.webp') center/cover no-repeat;
+        }
+        .pricing-hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(10,10,10,0.94) 0%, rgba(10,10,10,0.72) 100%);
+            z-index: 1;
+        }
+        .pricing-hero .container {
+            position: relative;
+            z-index: 2;
         }
         .pricing-hero-kicker {
             display: inline-flex;
@@ -647,6 +707,7 @@
         }
         .pricing-section-header {
             margin-bottom: 2.5rem;
+            text-align: center;
         }
         .pricing-section-header .kicker {
             display: inline-flex;
@@ -672,6 +733,7 @@
             font-size: 1rem;
             color: #888;
             max-width: 620px;
+            margin: 0 auto;
         }
 
         /* Tables */
@@ -805,7 +867,7 @@
         }
         .pricing-card ul li:last-child { border-bottom: none; }
         .pricing-card ul li::before {
-            content: "\2713";
+            content: "✓";
             position: absolute;
             left: 0;
             color: #64ffda;
@@ -1467,6 +1529,7 @@
             <h1>Tampa Bay Web Design, Local SEO &amp; Automation Pricing</h1>
             <p class="pricing-hero-sub">Starter websites from $500. Search-ready local launch packages from $1,997. Monthly visibility plans from $197/mo.</p>
             <p class="pricing-hero-claim">Custom-coded websites, Google Business Profile support, e-commerce systems, CRM builds, and workflow automation for Tampa Bay small businesses. Pick the cleanest starting point, then scale by scope.</p>
+            <p class="pricing-hero-claim">Secure Stripe checkout is used for all packages. Larger builds can also offer deposit-based kickoff options.</p>
             <nav class="pricing-nav-pills" aria-label="Pricing sections">
                 <a href="#websites" class="pricing-nav-pill">Website Packages</a>
                 <a href="#ecommerce" class="pricing-nav-pill">E-Commerce</a>
@@ -1474,6 +1537,15 @@
                 <a href="#monthly" class="pricing-nav-pill">Monthly Plans</a>
                 <a href="#addons" class="pricing-nav-pill">Add-On Menu</a>
                 <a href="#search-addons" class="pricing-nav-pill">Search &amp; SEO</a>
+            </nav>
+            <nav class="pricing-nav-pills" aria-label="Related pricing pages">
+                <a href="/service-websites" class="pricing-nav-pill">Website Service Details</a>
+                <a href="/service-local-seo" class="pricing-nav-pill">Local SEO Services</a>
+                <a href="/service-google-business-profile" class="pricing-nav-pill">GBP Optimization</a>
+                <a href="/service-ecommerce" class="pricing-nav-pill">E-Commerce Systems</a>
+                <a href="/service-ai-automation" class="pricing-nav-pill">Automation Services</a>
+                <a href="/case-study-jns" class="pricing-nav-pill">Website Case Study</a>
+                <a href="/book-consultation" class="pricing-nav-pill">Book a Consultation</a>
             </nav>
         </div>
     </section>
@@ -1485,24 +1557,25 @@
             <div class="pricing-section-header">
                 <span class="kicker">Websites</span>
                 <h2>Website Packages</h2>
-                <p>Custom-coded from scratch &mdash; HTML, CSS, and JavaScript. No page builders, no plugin bloat, no monthly platform fees.</p>
-                <p style="font-size:0.88rem;color:#64ffda;margin-top:0.5rem;">&#10003; Every website package includes logo use, hero images, and supporting graphics &mdash; either using your existing assets or created as part of the build. No extra charge.</p>
-                <p style="font-size:0.88rem;color:#aaa;margin-top:0.65rem;">Website price jumps are based on page count, launch setup depth, analytics/search setup, and revision allowance &mdash; not vague custom markup.</p>
+                <p>Custom-coded from scratch — HTML, CSS, and JavaScript. No page builders, no plugin bloat, no monthly platform fees.</p>
+                <p style="font-size:0.88rem;color:#64ffda;margin-top:0.5rem;">✓ Every website package includes logo use, hero images, and supporting graphics — either using your existing assets or created as part of the build. No extra charge.</p>
+                <p style="font-size:0.88rem;color:#aaa;margin-top:0.65rem;">Website price jumps are based on page count, launch setup depth, analytics/search setup, and revision allowance — not vague custom markup.</p>
+                <p style="font-size:0.88rem;color:#aaa;margin-top:0.35rem;">Package bundles are priced to be a better value than buying equivalent setup work as separate line items.</p>
                 <p style="font-size:0.88rem;color:#aaa;margin-top:0.35rem;">Every package starts with the secure intake and checkout flow. The selector adjusts the package price before checkout instead of sending users off-page.</p>
             </div>
 
             <span class="pricing-sub-label">Packages</span>
-            <div class="pricing-card-row">
+            <div class="pricing-card-row pricing-card-row--4">
 
                 <div class="pricing-card">
                     <p class="pricing-card-name">Preview Launch Site</p>
                     <p class="pricing-card-price">$500</p>
                     <ul>
-                        <li>Custom-coded single-page site</li>
+                        <li>Custom-coded multi-page site (2-3 pages)</li>
                         <li>Mobile-first responsive layout</li>
                         <li>Hero, services, about, gallery, contact</li>
                         <li>Click-to-call, email, social links</li>
-                        <li>Free GitHub Pages URL &middot; 1 revision round</li>
+                        <li>Free GitHub Pages URL · 1 revision round</li>
                     </ul>
                     <p class="pricing-card-note">Example: <a href="https://farrell-electric.github.io/farrell-electric-website/" target="_blank" rel="nofollow noopener noreferrer">Farrell Electric</a></p>
                     <a href="#starter-packages" class="pricing-card-cta" data-package-key="website-preview-launch">Get a preview site</a>
@@ -1548,11 +1621,15 @@
                     <a href="#starter-packages" class="pricing-card-cta" data-package-key="website-search-foundation">Get Google-ready</a>
                 </div>
 
+            </div>
+
+            <div class="pricing-card-row pricing-card-row--3c">
+
                 <div class="pricing-card">
                     <p class="pricing-card-name">Search Foundation Plus</p>
                     <p class="pricing-card-price">$1,500</p>
                     <ul>
-                        <li>Everything in Search-Ready Starter</li>
+                        <li>Everything in Search Foundation Site</li>
                         <li>Up to 5 pages with stronger content structure</li>
                         <li>Google Search Console + sitemap + indexing</li>
                         <li>LocalBusiness schema + Open Graph tags</li>
@@ -1567,19 +1644,19 @@
                     <p class="pricing-card-name">Local Launch Site</p>
                     <p class="pricing-card-price">$1,997</p>
                     <ul>
-                        <li>Custom-coded 1&ndash;6 page site</li>
+                        <li>Custom-coded 1–6 page site</li>
                         <li>Domain, DNS, SSL + working contact form</li>
                         <li>GSC + sitemap + LocalBusiness/Service schema</li>
                         <li>GA4 + Clarity + GBP alignment</li>
                         <li>2 revision rounds + full handoff</li>
                     </ul>
-                    <p class="pricing-card-note">Pay-over-time options may appear at Stripe checkout.</p>
+                    <p class="pricing-card-note">Secure Stripe checkout. Deposit checkout is also available on select larger packages.</p>
                     <a href="#starter-packages" class="pricing-card-cta" data-package-key="website-local-seo-starter">Launch properly</a>
                 </div>
 
                 <div class="pricing-card">
                     <p class="pricing-card-name">Local Launch Plus</p>
-                    <p class="pricing-card-price">$2,997&ndash;$4,500</p>
+                    <p class="pricing-card-price">$2,997–$4,500</p>
                     <ul>
                         <li>Expanded local site structure with up to 20 pages</li>
                         <li>Service pages, city pages, gallery, FAQ, and estimate pages</li>
@@ -1615,7 +1692,7 @@
                         <li>Up to 5 products</li>
                         <li>Collection page + product cards</li>
                         <li>"Request to Buy" or inquiry CTA</li>
-                        <li>Preview link &middot; no live checkout</li>
+                        <li>Preview link · no live checkout</li>
                     </ul>
                     <a href="#starter-packages" class="pricing-card-cta" data-package-key="ecommerce-preview-catalog">Build a catalog</a>
                 </div>
@@ -1649,10 +1726,22 @@
                 </div>
 
                 <div class="pricing-card">
+                    <p class="pricing-card-name">E-Commerce Launch Plus</p>
+                    <p class="pricing-card-price">$3,497</p>
+                    <ul>
+                        <li>Everything in E-Commerce Launch</li>
+                        <li>Extended scope for 20+ products or larger catalogs</li>
+                        <li>More product-page depth and checkout-flow polish</li>
+                        <li>Better fit for stores that outgrow the starter launch</li>
+                    </ul>
+                    <a href="#starter-packages" class="pricing-card-cta" data-package-key="ecommerce-launch-plus">Expand your store</a>
+                </div>
+
+                <div class="pricing-card">
                     <p class="pricing-card-name">E-Commerce Growth Store</p>
                     <p class="pricing-card-price">$3,997+</p>
                     <ul>
-                        <li>Everything in E-Commerce Launch</li>
+                        <li>Everything in E-Commerce Launch Plus</li>
                         <li>CMS-managed products and variant support</li>
                         <li>GA4 e-commerce tracking + automated post-purchase emails</li>
                         <li>Order dashboard, stock display, and stronger reporting</li>
@@ -1662,7 +1751,7 @@
 
                 <div class="pricing-card">
                     <p class="pricing-card-name">Advanced E-Commerce System</p>
-                    <p class="pricing-card-price">$7,500&ndash;$15,000+</p>
+                    <p class="pricing-card-price">$7,500–$15,000+</p>
                     <ul>
                         <li>Dynamic product management + inventory logic</li>
                         <li>Stripe webhooks + order notifications</li>
@@ -1697,12 +1786,12 @@
                     </tr>
                     <tr>
                         <td>Store Growth<span class="desc">Product SEO, GMC, reporting, content/product updates</span></td>
-                        <td>$697&ndash;$1,500/mo</td>
+                        <td>$697–$1,500/mo</td>
                         <td>Active growth management</td>
                     </tr>
                     <tr>
                         <td>E-Commerce Operations<span class="desc">Fulfillment workflows, automations, reporting, product management</span></td>
-                        <td>$1,500&ndash;$3,000+/mo</td>
+                        <td>$1,500–$3,000+/mo</td>
                         <td>Full operations layer</td>
                     </tr>
                 </tbody>
@@ -1716,7 +1805,7 @@
             <div class="pricing-section-header">
                 <span class="kicker">Growth &amp; CRM</span>
                 <h2>Growth Systems, CRM &amp; Job Records</h2>
-                <p>Where it stops being "website work" and becomes a business operating system &mdash; lead tracking, job records, contractor documents, automation, and reporting.</p>
+                <p>Where it stops being "website work" and becomes a business operating system — lead tracking, job records, contractor documents, automation, and reporting.</p>
             </div>
 
             <span class="pricing-sub-label">Packages</span>
@@ -1724,11 +1813,11 @@
 
                 <div class="pricing-card">
                     <p class="pricing-card-name">Simple Lead Tracker</p>
-                    <p class="pricing-card-price">$250&ndash;$500</p>
+                    <p class="pricing-card-price">$250–$500</p>
                     <ul>
                         <li>Lead ID system + source field</li>
                         <li>Customer contact + service fields</li>
-                        <li>Status pipeline (New &rarr; Completed &rarr; Paid)</li>
+                        <li>Status pipeline (New → Completed → Paid)</li>
                         <li>Quote/sold amounts + notes</li>
                     </ul>
                     <a href="#starter-packages" class="pricing-card-cta" data-package-key="ops-simple-lead-tracker">Set up tracking</a>
@@ -1736,10 +1825,10 @@
 
                 <div class="pricing-card">
                     <p class="pricing-card-name">Contractor CRM Starter</p>
-                    <p class="pricing-card-price">$500&ndash;$1,500</p>
+                    <p class="pricing-card-price">$500–$1,500</p>
                     <ul>
                         <li>Pipeline stages + source tracking</li>
-                        <li>Quote &rarr; Booked &rarr; Completed &rarr; Paid</li>
+                        <li>Quote → Booked → Completed → Paid</li>
                         <li>Review request tracking</li>
                         <li>Monthly summary + commission tracking</li>
                     </ul>
@@ -1748,7 +1837,7 @@
 
                 <div class="pricing-card">
                     <p class="pricing-card-name">Job Records System</p>
-                    <p class="pricing-card-price">$750&ndash;$3,000</p>
+                    <p class="pricing-card-price">$750–$3,000</p>
                     <ul>
                         <li>Customer intake + work authorization forms</li>
                         <li>Invoice/estimate template + Lead ID</li>
@@ -1760,9 +1849,9 @@
 
                 <div class="pricing-card">
                     <p class="pricing-card-name">Automated Job Records</p>
-                    <p class="pricing-card-price">$1,500&ndash;$3,500</p>
+                    <p class="pricing-card-price">$1,500–$3,500</p>
                     <ul>
-                        <li>Form &rarr; Lead ID &rarr; Drive folder auto-creation</li>
+                        <li>Form → Lead ID → Drive folder auto-creation</li>
                         <li>File auto-save + contractor notification</li>
                         <li>Tracker auto-update + monthly summary</li>
                         <li>Zapier / Make / Apps Script powered</li>
@@ -1776,7 +1865,7 @@
                 <div class="pricing-card pricing-card--featured">
                     <div class="pricing-card-badge">Growth System</div>
                     <p class="pricing-card-name">Growth System Starter</p>
-                    <p class="pricing-card-price">$3,500&ndash;$5,000</p>
+                    <p class="pricing-card-price">$3,500–$5,000</p>
                     <ul>
                         <li>Website or upgraded existing site</li>
                         <li>Lead tracker + Lead ID + source tracking</li>
@@ -1788,7 +1877,7 @@
 
                 <div class="pricing-card">
                     <p class="pricing-card-name">Full Growth System</p>
-                    <p class="pricing-card-price">$5,000&ndash;$10,000+</p>
+                    <p class="pricing-card-price">$5,000–$10,000+</p>
                     <ul>
                         <li>Full site + search + GBP + citations</li>
                         <li>CRM + job records + call/form tracking</li>
@@ -1819,17 +1908,17 @@
                 <tbody>
                     <tr>
                         <td>Contractor Form Starter<span class="desc">Branded estimate/invoice, work authorization basics, pricing summary, signature lines</span></td>
-                        <td>$300&ndash;$750</td>
+                        <td>$300–$750</td>
                         <td>Core forms</td>
                     </tr>
                     <tr>
                         <td>Contractor Legal/Operations Form Set<span class="desc">Estimate, invoice, work authorization, T&amp;Cs, change order, payment record, completion acceptance</span></td>
-                        <td>$750&ndash;$1,500</td>
+                        <td>$750–$1,500</td>
                         <td>Full form suite</td>
                     </tr>
                     <tr>
-                        <td>Contractor Form Automation<span class="desc">Fillable form &rarr; Drive auto-save &rarr; Lead ID &rarr; folder creation &rarr; invoice/photo uploads &rarr; tracker logging</span></td>
-                        <td>$1,500&ndash;$3,000</td>
+                        <td>Contractor Form Automation<span class="desc">Fillable form → Drive auto-save → Lead ID → folder creation → invoice/photo uploads → tracker logging</span></td>
+                        <td>$1,500–$3,000</td>
                         <td>Full automation</td>
                     </tr>
                 </tbody>
@@ -1887,7 +1976,7 @@
 
                 <div class="pricing-card">
                     <p class="pricing-card-name">Growth Management</p>
-                    <p class="pricing-card-price">$1,000&ndash;$2,500+/mo</p>
+                    <p class="pricing-card-price">$1,000–$2,500+/mo</p>
                     <ul>
                         <li>Full lead tracking + CRM management</li>
                         <li>GBP + content + social posting</li>
@@ -1915,7 +2004,7 @@
                 <div class="addon-card">
                     <div class="addon-card-name">Working Contact Form</div>
                     <div class="addon-card-price">+$100</div>
-                    <div class="addon-card-desc">Form connected to your inbox via Formspree &mdash; real email leads, spam filtering, auto-reply confirmation. Not just a mailto link.</div>
+                    <div class="addon-card-desc">Form connected to your inbox via Formspree — real email leads, spam filtering, auto-reply confirmation. Not just a mailto link.</div>
                 </div>
                 <div class="addon-card">
                     <div class="addon-card-name">Business Email Setup</div>
@@ -1925,7 +2014,7 @@
                 <div class="addon-card">
                     <div class="addon-card-name">Google Voice Business Number</div>
                     <div class="addon-card-price">+$75</div>
-                    <div class="addon-card-desc">Local area code number with call forwarding, voicemail, and text &mdash; free to you after setup via Google Voice.</div>
+                    <div class="addon-card-desc">Local area code number with call forwarding, voicemail, and text — free to you after setup via Google Voice.</div>
                 </div>
                 <div class="addon-card">
                     <div class="addon-card-name">Phone &amp; Email Bundle</div>
@@ -1938,13 +2027,13 @@
             <table class="pricing-table">
                 <thead><tr><th>Service</th><th>Price</th></tr></thead>
                 <tbody>
-                    <tr><td>Basic contact form<span class="desc">Name, phone, email, message &mdash; Formspree delivery</span></td><td>$150&ndash;$300</td></tr>
-                    <tr><td>Advanced quote form<span class="desc">Multi-step form with project type, budget, timeline, photo upload</span></td><td>$400&ndash;$1,000</td></tr>
-                    <tr><td>Photo upload form<span class="desc">Add image upload capability to any form</span></td><td>+$150&ndash;$400</td></tr>
-                    <tr><td>Auto-reply email<span class="desc">Automatic confirmation email sent to the submitter</span></td><td>+$100&ndash;$250</td></tr>
-                    <tr><td>Google Sheet logging<span class="desc">Form submissions automatically logged to a Google Sheet</span></td><td>+$150&ndash;$400</td></tr>
-                    <tr><td>CRM logging<span class="desc">Form submissions routed into Airtable, Notion, or similar CRM</span></td><td>+$300&ndash;$1,000</td></tr>
-                    <tr><td>Spam protection<span class="desc">hCaptcha or Cloudflare Turnstile integration</span></td><td>+$75&ndash;$200</td></tr>
+                    <tr><td>Basic contact form<span class="desc">Name, phone, email, message — Formspree delivery</span></td><td>$150–$300</td></tr>
+                    <tr><td>Advanced quote form<span class="desc">Multi-step form with project type, budget, timeline, photo upload</span></td><td>$400–$1,000</td></tr>
+                    <tr><td>Photo upload form<span class="desc">Add image upload capability to any form</span></td><td>+$150–$400</td></tr>
+                    <tr><td>Auto-reply email<span class="desc">Automatic confirmation email sent to the submitter</span></td><td>+$100–$250</td></tr>
+                    <tr><td>Google Sheet logging<span class="desc">Form submissions automatically logged to a Google Sheet</span></td><td>+$150–$400</td></tr>
+                    <tr><td>CRM logging<span class="desc">Form submissions routed into Airtable, Notion, or similar CRM</span></td><td>+$300–$1,000</td></tr>
+                    <tr><td>Spam protection<span class="desc">hCaptcha or Cloudflare Turnstile integration</span></td><td>+$75–$200</td></tr>
                 </tbody>
             </table>
 
@@ -1963,29 +2052,29 @@
                 <div class="addon-card">
                     <div class="addon-card-name">Starter CRM Setup</div>
                     <div class="addon-card-price">+$250</div>
-                    <div class="addon-card-desc">Airtable or Notion lead tracker connected to your contact form &mdash; visible pipeline, contact log, no monthly fee required.</div>
+                    <div class="addon-card-desc">Airtable or Notion lead tracker connected to your contact form — visible pipeline, contact log, no monthly fee required.</div>
                 </div>
                 <div class="addon-card">
                     <div class="addon-card-name">Welcome Email Sequence</div>
                     <div class="addon-card-price">+$300</div>
-                    <div class="addon-card-desc">3 automated emails triggered when someone submits your form &mdash; sent via Mailchimp or MailerLite. Immediate, 24hr, and 72hr follow-up.</div>
+                    <div class="addon-card-desc">3 automated emails triggered when someone submits your form — sent via Mailchimp or MailerLite. Immediate, 24hr, and 72hr follow-up.</div>
                 </div>
             </div>
 
-            <span class="pricing-sub-label">Creative &amp; Brand Assets &mdash; Standalone Only</span>
-            <p style="font-size:0.85rem;color:#888;margin-bottom:1.2rem;">Logo creation and image work is <strong style="color:#ccc;">included in every website package</strong> &mdash; we'll use your existing logo or create one as part of the build at no extra charge. The prices below are for clients who only need design work on its own, without a website project.</p>
+            <span class="pricing-sub-label">Creative &amp; Brand Assets — Standalone Only</span>
+            <p style="font-size:0.85rem;color:#888;margin-bottom:1.2rem;">Logo creation and image work is <strong style="color:#ccc;">included in every website package</strong> — we'll use your existing logo or create one as part of the build at no extra charge. The prices below are for clients who only need design work on its own, without a website project.</p>
             <table class="pricing-table">
                 <thead><tr><th>Service</th><th>Price</th></tr></thead>
                 <tbody>
-                    <tr><td>AI-assisted logo concept<span class="desc">AI-generated concept for a brand that has nothing &mdash; delivered as PNG/SVG</span></td><td>$75&ndash;$150</td></tr>
-                    <tr><td>AI logo + cleanup package<span class="desc">AI concept plus manual vector cleanup, final PNG/SVG/PDF delivery</span></td><td>$150&ndash;$300</td></tr>
-                    <tr><td>Logo cleanup / recreation<span class="desc">Recreate a low-res or raster logo in clean vector</span></td><td>$150&ndash;$350</td></tr>
-                    <tr><td>Full AI-assisted starter brand kit<span class="desc">Logo, colors, fonts, usage guide &mdash; AI-assisted production</span></td><td>$400&ndash;$900</td></tr>
-                    <tr><td>Hero image / ad image<span class="desc">Custom graphic for hero section or ad use</span></td><td>$75&ndash;$200/image</td></tr>
-                    <tr><td>Business card design<span class="desc">Print-ready PDF, both sides</span></td><td>$100&ndash;$250</td></tr>
-                    <tr><td>Yard sign design<span class="desc">Print-ready yard sign layout</span></td><td>$100&ndash;$250</td></tr>
-                    <tr><td>Flyer / brochure<span class="desc">Single or trifold flyer design</span></td><td>$200&ndash;$500</td></tr>
-                    <tr><td>Social cover / banner set<span class="desc">Facebook, LinkedIn, and Twitter/X cover images</span></td><td>$100&ndash;$300</td></tr>
+                    <tr><td>AI-assisted logo concept<span class="desc">AI-generated concept for a brand that has nothing — delivered as PNG/SVG</span></td><td>$75–$150</td></tr>
+                    <tr><td>AI logo + cleanup package<span class="desc">AI concept plus manual vector cleanup, final PNG/SVG/PDF delivery</span></td><td>$150–$300</td></tr>
+                    <tr><td>Logo cleanup / recreation<span class="desc">Recreate a low-res or raster logo in clean vector</span></td><td>$150–$350</td></tr>
+                    <tr><td>Full AI-assisted starter brand kit<span class="desc">Logo, colors, fonts, usage guide — AI-assisted production</span></td><td>$400–$900</td></tr>
+                    <tr><td>Hero image / ad image<span class="desc">Custom graphic for hero section or ad use</span></td><td>$75–$200/image</td></tr>
+                    <tr><td>Business card design<span class="desc">Print-ready PDF, both sides</span></td><td>$100–$250</td></tr>
+                    <tr><td>Yard sign design<span class="desc">Print-ready yard sign layout</span></td><td>$100–$250</td></tr>
+                    <tr><td>Flyer / brochure<span class="desc">Single or trifold flyer design</span></td><td>$200–$500</td></tr>
+                    <tr><td>Social cover / banner set<span class="desc">Facebook, LinkedIn, and Twitter/X cover images</span></td><td>$100–$300</td></tr>
                 </tbody>
             </table>
         </div>
@@ -2005,24 +2094,25 @@
                 <thead><tr><th>Service</th><th>Price</th></tr></thead>
                 <tbody>
                     <tr><td>Domain + DNS + SSL launch<span class="desc">Connect your domain, configure DNS, and set up HTTPS</span></td><td>$250</td></tr>
-                    <tr><td>Domain migration<span class="desc">Move from one registrar or host to another</span></td><td>$200&ndash;$500</td></tr>
-                    <tr><td>Branded email guidance<span class="desc">Walk-through for setting up yourname@yourdomain.com</span></td><td>$75&ndash;$150</td></tr>
-                    <tr><td>Full branded email setup<span class="desc">Google Workspace account, MX records, DNS, and signature</span></td><td>$150&ndash;$300</td></tr>
-                    <tr><td>Extra redirects / domains<span class="desc">301 redirects, domain aliases, or parked domain routing</span></td><td>$50&ndash;$150/each</td></tr>
+                    <tr><td>Domain migration<span class="desc">Move from one registrar or host to another</span></td><td>$200–$500</td></tr>
+                    <tr><td>Branded email guidance<span class="desc">Walk-through for setting up yourname@yourdomain.com</span></td><td>$75–$150</td></tr>
+                    <tr><td>Full branded email setup<span class="desc">Google Workspace account, MX records, DNS, and signature</span></td><td>$150–$300</td></tr>
+                    <tr><td>Extra redirects / domains<span class="desc">301 redirects, domain aliases, or parked domain routing</span></td><td>$50–$150/each</td></tr>
                 </tbody>
             </table>
 
             <span class="pricing-sub-label">Search Foundation</span>
+            <p style="font-size:0.86rem;color:#aaa;margin:0 0 0.75rem;">A la carte SEO/search line items are intentionally priced above bundled package rates.</p>
             <table class="pricing-table">
                 <thead><tr><th>Service</th><th>Price</th></tr></thead>
                 <tbody>
-                    <tr><td>Search Foundation (full bundle)<span class="desc">GSC + sitemap + schema + analytics + basic keyword alignment</span></td><td>$500&ndash;$750</td></tr>
-                    <tr><td>GSC + indexing only<span class="desc">Search Console setup, sitemap submission, indexing request</span></td><td>$150&ndash;$300</td></tr>
-                    <tr><td>Basic schema markup<span class="desc">LocalBusiness, Service, FAQ, or BreadcrumbList</span></td><td>$150&ndash;$300</td></tr>
-                    <tr><td>Advanced schema markup<span class="desc">Product, Review, JobPosting, Event, or custom schema types</span></td><td>$300&ndash;$750</td></tr>
-                    <tr><td>Analytics + Clarity setup<span class="desc">GA4 and Microsoft Clarity installation and configuration</span></td><td>$100&ndash;$250</td></tr>
-                    <tr><td>GTM event tracking<span class="desc">Google Tag Manager setup with form, click, and scroll events</span></td><td>$300&ndash;$1,000</td></tr>
-                    <tr><td>Bing Webmaster Tools<span class="desc">Verification, sitemap, and basic indexing setup</span></td><td>$75&ndash;$150</td></tr>
+                    <tr><td>Search Foundation (full bundle)<span class="desc">GSC + sitemap + schema + analytics + basic keyword alignment</span></td><td>$500–$750</td></tr>
+                    <tr><td>GSC + indexing only<span class="desc">Search Console setup, sitemap submission, indexing request</span></td><td>$150–$300</td></tr>
+                    <tr><td>Basic schema markup<span class="desc">LocalBusiness, Service, FAQ, or BreadcrumbList</span></td><td>$150–$300</td></tr>
+                    <tr><td>Advanced schema markup<span class="desc">Product, Review, JobPosting, Event, or custom schema types</span></td><td>$300–$750</td></tr>
+                    <tr><td>Analytics + Clarity setup<span class="desc">GA4 and Microsoft Clarity installation and configuration</span></td><td>$100–$250</td></tr>
+                    <tr><td>GTM event tracking<span class="desc">Google Tag Manager setup with form, click, and scroll events</span></td><td>$300–$1,000</td></tr>
+                    <tr><td>Bing Webmaster Tools<span class="desc">Verification, sitemap, and basic indexing setup</span></td><td>$75–$150</td></tr>
                 </tbody>
             </table>
 
@@ -2030,8 +2120,8 @@
             <table class="pricing-table">
                 <thead><tr><th>Service</th><th>Price</th></tr></thead>
                 <tbody>
-                    <tr><td>Service-area SEO page<span class="desc">Custom-coded page targeting a specific city or service area</span></td><td>$250&ndash;$500/page</td></tr>
-                    <tr><td>High-quality local landing page<span class="desc">Longer-form SEO page with schema, CTA, and conversion structure</span></td><td>$500&ndash;$750/page</td></tr>
+                    <tr><td>Service-area SEO page<span class="desc">Custom-coded page targeting a specific city or service area</span></td><td>$250–$500/page</td></tr>
+                    <tr><td>High-quality local landing page<span class="desc">Longer-form SEO page with schema, CTA, and conversion structure</span></td><td>$500–$750/page</td></tr>
                 </tbody>
             </table>
 
@@ -2039,12 +2129,12 @@
             <table class="pricing-table">
                 <thead><tr><th>Service</th><th>Price</th></tr></thead>
                 <tbody>
-                    <tr><td>GBP Sprint<span class="desc">Category cleanup, service positioning, Q&amp;A and review templates, photo checklist</span></td><td>$397&ndash;$500</td></tr>
-                    <tr><td>GBP full optimization<span class="desc">Full category, service, description, posts, photos, and conversion setup</span></td><td>$500&ndash;$900</td></tr>
-                    <tr><td>GBP setup from scratch<span class="desc">New GBP creation, full setup, verification assistance</span></td><td>$500&ndash;$900</td></tr>
-                    <tr><td>GBP suspension / reinstatement help<span class="desc">Appeal, documentation, and re-verification support</span></td><td>$750&ndash;$1,500+</td></tr>
-                    <tr><td>Monthly GBP posts<span class="desc">1&ndash;8 branded posts per month</span></td><td>$100&ndash;$300/mo</td></tr>
-                    <tr><td>Monthly GBP management<span class="desc">Posts, updates, Q&amp;A, review requests, monitoring</span></td><td>$197&ndash;$497/mo</td></tr>
+                    <tr><td>GBP Sprint<span class="desc">Category cleanup, service positioning, Q&amp;A and review templates, photo checklist</span></td><td>$397–$500</td></tr>
+                    <tr><td>GBP full optimization<span class="desc">Full category, service, description, posts, photos, and conversion setup</span></td><td>$500–$900</td></tr>
+                    <tr><td>GBP setup from scratch<span class="desc">New GBP creation, full setup, verification assistance</span></td><td>$500–$900</td></tr>
+                    <tr><td>GBP suspension / reinstatement help<span class="desc">Appeal, documentation, and re-verification support</span></td><td>$750–$1,500+</td></tr>
+                    <tr><td>Monthly GBP posts<span class="desc">1–8 branded posts per month</span></td><td>$100–$300/mo</td></tr>
+                    <tr><td>Monthly GBP management<span class="desc">Posts, updates, Q&amp;A, review requests, monitoring</span></td><td>$197–$497/mo</td></tr>
                 </tbody>
             </table>
 
@@ -2052,9 +2142,9 @@
             <table class="pricing-table">
                 <thead><tr><th>Package</th><th>Price</th><th>Includes</th></tr></thead>
                 <tbody>
-                    <tr><td>Basic Citation Setup<span class="desc">3&ndash;5 core listings with NAP consistency check</span></td><td>$500&ndash;$750</td><td>Core listings</td></tr>
-                    <tr><td>Expanded Citation Package<span class="desc">10&ndash;25 citations across directories</span></td><td>$1,000&ndash;$1,500</td><td>Expanded reach</td></tr>
-                    <tr><td>Full Local Authority Pass<span class="desc">25&ndash;75+ citations, cleanup, spreadsheet tracking</span></td><td>$1,500&ndash;$3,000+</td><td>Full coverage</td></tr>
+                    <tr><td>Basic Citation Setup<span class="desc">3–5 core listings with NAP consistency check</span></td><td>$500–$750</td><td>Core listings</td></tr>
+                    <tr><td>Expanded Citation Package<span class="desc">10–25 citations across directories</span></td><td>$1,000–$1,500</td><td>Expanded reach</td></tr>
+                    <tr><td>Full Local Authority Pass<span class="desc">25–75+ citations, cleanup, spreadsheet tracking</span></td><td>$1,500–$3,000+</td><td>Full coverage</td></tr>
                 </tbody>
             </table>
         </div>
@@ -2077,7 +2167,7 @@
                 </article>
                 <article class="booking-faq-item">
                     <h3>Can I pay a deposit instead of the full amount?</h3>
-                    <p>Yes. Several larger packages offer deposit-based checkout through Stripe so you can reserve kickoff first and pay the remaining balance during the project milestones.</p>
+                    <p>Yes. Stripe checkout is used for all package payments. Several larger packages also offer deposit-based checkout so you can reserve kickoff first and pay the remaining balance during project milestones.</p>
                 </article>
                 <article class="booking-faq-item">
                     <h3>Do you handle Google Business Profile optimization and schema markup?</h3>
@@ -2099,7 +2189,7 @@
     <div class="pricing-cta-strip">
         <div class="container">
             <h2>Not sure where to start?</h2>
-            <p>Get a free 24-hour audit &mdash; top 3 <a href="/service-websites">website</a>, <a href="/service-google-business-profile">GBP</a>, or <a href="/service-local-seo">local SEO</a> fixes with a practical next step. No commitment.</p>
+            <p>Get a free 24-hour audit — top 3 website, GBP, or local SEO fixes with a practical next step. No commitment.</p>
             <div class="btn-row">
                 <a href="/free-website-audit" class="cta-button primary">Get Free 24-Hour Audit</a>
                 <a href="/service-websites" class="cta-button secondary">See Website Services</a>
@@ -2257,6 +2347,13 @@
                             <option value="text">Text message</option>
                         </select>
                     </div>
+                    <div class="form-group starter-package-intake-span-2">
+                        <label for="starterPackageReferralPartner">Were you referred by someone?</label>
+                        <select id="starterPackageReferralPartner" name="referralPartnerManual">
+                            <option value="">Select a company (optional)</option>
+                        </select>
+                        <p class="starter-package-intake-helper" id="starterPackageReferralStatus" style="margin-top:0.45rem;"></p>
+                    </div>
                 </div>
 
                 <div class="starter-package-dynamic-fields" id="starterPackageDynamicFields"></div>
@@ -2301,7 +2398,7 @@
     </div>
 
     <div id="footer-container"></div>
-    <script src="/pricing/package-checkout.js?v=20260512b"></script>
+    <script src="/pricing/package-checkout.js?v=20260517a"></script>
     <!-- Legacy pricing intake logic retained temporarily for reference.
     <script>
         (function () {
@@ -2317,6 +2414,7 @@
                 'ecommerce-preview-catalog': { name: 'Storefront Preview', price: '$750', family: 'ecommerce' },
                 'ecommerce-payment-links': { name: 'Payment-Link Store', price: '$1,200', family: 'ecommerce' },
                 'ecommerce-launch': { name: 'E-Commerce Launch', price: '$2,497', family: 'ecommerce' },
+                'ecommerce-launch-plus': { name: 'E-Commerce Launch Plus', price: '$3,497', family: 'ecommerce' },
                 'ecommerce-growth-store': { name: 'E-Commerce Growth Store', price: '$3,997', family: 'ecommerce' },
                 'ecommerce-advanced-system': { name: 'Advanced E-Commerce System', price: '$7,500', family: 'ecommerce' },
                 'gbp-optimization': { name: 'Google Business Profile Sprint', price: '$397', family: 'seo' },
@@ -2345,6 +2443,7 @@
                 'ecommerce-preview-catalog': { pageCountExpectation: 'small', seoExpansionNeed: 'no', sellingOnlineNeed: 'stripe-links' },
                 'ecommerce-payment-links': { pageCountExpectation: 'medium', seoExpansionNeed: 'no', sellingOnlineNeed: 'stripe-links' },
                 'ecommerce-launch': { pageCountExpectation: 'medium', seoExpansionNeed: 'no', sellingOnlineNeed: 'cart-store' },
+                'ecommerce-launch-plus': { pageCountExpectation: 'large', seoExpansionNeed: 'no', sellingOnlineNeed: 'cart-store' },
                 'ecommerce-growth-store': { pageCountExpectation: 'large', seoExpansionNeed: 'no', sellingOnlineNeed: 'cart-store' },
                 'ecommerce-advanced-system': { pageCountExpectation: 'enterprise', seoExpansionNeed: 'no', sellingOnlineNeed: 'cart-store' }
             };
@@ -2427,10 +2526,15 @@
                 }
 
                 if (sellingNeed === 'cart-store') {
-                    recommendedPackageKey = pageRank >= 3 ? 'ecommerce-growth-store' : 'ecommerce-launch';
-                    recommendationMessage = pageRank >= 3
-                        ? 'A larger storefront with checkout fits the E-Commerce Growth Store package.'
-                        : 'A real cart and storefront flow fits the E-Commerce Launch package.';
+                    if (pageRank >= 3 && packageKey === 'ecommerce-growth-store') {
+                        recommendedPackageKey = 'ecommerce-growth-store';
+                        recommendationMessage = 'A larger storefront with growth features fits the E-Commerce Growth Store package.';
+                    } else {
+                        recommendedPackageKey = pageRank >= 3 ? 'ecommerce-launch-plus' : 'ecommerce-launch';
+                        recommendationMessage = pageRank >= 3
+                            ? 'A larger storefront with checkout fits the E-Commerce Launch Plus package.'
+                            : 'A real cart and storefront flow fits the E-Commerce Launch package.';
+                    }
                 } else if (sellingNeed === 'stripe-links') {
                     recommendedPackageKey = pageRank >= 3 ? 'ecommerce-growth-store' : 'ecommerce-payment-links';
                     recommendationMessage = pageRank >= 3
@@ -2438,8 +2542,8 @@
                         : 'Simple online payments fit the Payment-Link Store package.';
                 } else if (family === 'ecommerce') {
                     if (pageRank >= 3) {
-                        recommendedPackageKey = 'ecommerce-growth-store';
-                        recommendationMessage = 'A larger catalog fits the E-Commerce Growth Store package.';
+                        recommendedPackageKey = 'ecommerce-launch-plus';
+                        recommendationMessage = 'A larger catalog fits the E-Commerce Launch Plus package.';
                     } else if (pageRank >= 2) {
                         recommendedPackageKey = 'ecommerce-payment-links';
                         recommendationMessage = 'A mid-size non-checkout storefront fits the Payment-Link Store package.';
@@ -2742,6 +2846,8 @@
         })();
     </script>
     -->
-    <script src="/script.js?v=20260509a"></script>
+    <script src="/script.min.js?v=20260512c"></script>
 </body>
 </html>
+
+

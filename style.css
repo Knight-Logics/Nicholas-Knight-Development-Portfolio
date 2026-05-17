@@ -556,7 +556,7 @@ a:where(:not(.cta-button, .nav-link, .nav-brand-link, .nav-dropdown-toggle)):foc
 
 /* Grunge texture - subtle overlay */
 .parallax-bg-mid {
-    background-image: url('./images/old-black-background-grunge-texture-dark-wallpaper-blackboard-chalkboard-room-wall.webp');
+    background-image: url('./images/Brush Background.webp');
     z-index: 2;
     opacity: 0.2;
 }

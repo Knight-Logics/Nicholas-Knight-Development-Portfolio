@@ -249,6 +249,19 @@
                         },
                         {
                             "@type": "Offer",
+                            "@id": "https://knightlogics.com/pricing#offer-ecommerce-launch-plus",
+                            "name": "E-Commerce Launch Plus",
+                            "url": "https://knightlogics.com/pricing#ecommerce",
+                            "price": "3497",
+                            "priceCurrency": "USD",
+                            "itemOffered": {
+                                "@type": "Service",
+                                "name": "E-Commerce Launch Plus",
+                                "serviceType": "Expanded custom storefront for larger catalogs or deeper checkout scope"
+                            }
+                        },
+                        {
+                            "@type": "Offer",
                             "@id": "https://knightlogics.com/pricing#offer-ecommerce-growth-store",
                             "name": "E-Commerce Growth Store",
                             "url": "https://knightlogics.com/pricing#ecommerce",
@@ -550,10 +563,10 @@
             },
             {
                 "@type": "Question",
-                "name": "Can I use financing or start with a deposit instead of paying in full?",
+                "name": "Can I pay in full or start with a deposit instead of paying all at once?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Yes. Eligible one-time Stripe checkout amounts over $800 may show Klarna or Afterpay/Clearpay. Several larger packages also offer deposit-based checkout so you can reserve kickoff first and handle the remaining balance through project milestones."
+                    "text": "Yes. Stripe checkout is used for all package payments. Several larger packages also offer deposit-based checkout so you can reserve kickoff first and handle the remaining balance through project milestones."
                 }
             },
             {
@@ -593,7 +606,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="image" href="./images/websitehero.webp" fetchpriority="high" type="image/webp">
+    <link rel="preload" as="image" href="/images/websitehero.webp" fetchpriority="high" type="image/webp">
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap"></noscript>
     <link rel="stylesheet" href="/style.min.css?v=20260514a">
@@ -609,7 +622,7 @@
             text-align: center;
             position: relative;
             overflow: hidden;
-            background: url('./images/websitehero.webp') center/cover no-repeat;
+            background: url('/images/websitehero.webp') center/cover no-repeat;
         }
         .pricing-hero::before {
             content: '';
@@ -1516,7 +1529,7 @@
             <h1>Tampa Bay Web Design, Local SEO &amp; Automation Pricing</h1>
             <p class="pricing-hero-sub">Starter websites from $500. Search-ready local launch packages from $1,997. Monthly visibility plans from $197/mo.</p>
             <p class="pricing-hero-claim">Custom-coded websites, Google Business Profile support, e-commerce systems, CRM builds, and workflow automation for Tampa Bay small businesses. Pick the cleanest starting point, then scale by scope.</p>
-            <p class="pricing-hero-claim">Eligible one-time checkout amounts over $800 may show Klarna or Afterpay/Clearpay in Stripe. Larger builds can also offer deposit-based kickoff options.</p>
+            <p class="pricing-hero-claim">Secure Stripe checkout is used for all packages. Larger builds can also offer deposit-based kickoff options.</p>
             <nav class="pricing-nav-pills" aria-label="Pricing sections">
                 <a href="#websites" class="pricing-nav-pill">Website Packages</a>
                 <a href="#ecommerce" class="pricing-nav-pill">E-Commerce</a>
@@ -1637,7 +1650,7 @@
                         <li>GA4 + Clarity + GBP alignment</li>
                         <li>2 revision rounds + full handoff</li>
                     </ul>
-                    <p class="pricing-card-note">Eligible checkout amounts over $800 may show Klarna or Afterpay/Clearpay in Stripe. Deposit checkout is also available.</p>
+                    <p class="pricing-card-note">Secure Stripe checkout. Deposit checkout is also available on select larger packages.</p>
                     <a href="#starter-packages" class="pricing-card-cta" data-package-key="website-local-seo-starter">Launch properly</a>
                 </div>
 
@@ -1713,10 +1726,22 @@
                 </div>
 
                 <div class="pricing-card">
+                    <p class="pricing-card-name">E-Commerce Launch Plus</p>
+                    <p class="pricing-card-price">$3,497</p>
+                    <ul>
+                        <li>Everything in E-Commerce Launch</li>
+                        <li>Extended scope for 20+ products or larger catalogs</li>
+                        <li>More product-page depth and checkout-flow polish</li>
+                        <li>Better fit for stores that outgrow the starter launch</li>
+                    </ul>
+                    <a href="#starter-packages" class="pricing-card-cta" data-package-key="ecommerce-launch-plus">Expand your store</a>
+                </div>
+
+                <div class="pricing-card">
                     <p class="pricing-card-name">E-Commerce Growth Store</p>
                     <p class="pricing-card-price">$3,997+</p>
                     <ul>
-                        <li>Everything in E-Commerce Launch</li>
+                        <li>Everything in E-Commerce Launch Plus</li>
                         <li>CMS-managed products and variant support</li>
                         <li>GA4 e-commerce tracking + automated post-purchase emails</li>
                         <li>Order dashboard, stock display, and stronger reporting</li>
@@ -2129,7 +2154,7 @@
         <div class="container">
             <div class="section-header fade-in">
                 <h2>Pricing FAQs</h2>
-                <p>Quick answers for Tampa Bay website pricing, local SEO scope, Google Business work, financing, and deposit options.</p>
+                <p>Quick answers for Tampa Bay website pricing, local SEO scope, Google Business work, and deposit options.</p>
             </div>
             <div class="booking-faq-grid fade-in">
                 <article class="booking-faq-item">
@@ -2141,8 +2166,8 @@
                     <p>The Search Foundation and Local Launch packages are the strongest fit when you need service-page SEO, schema, Search Console setup, and Google Business alignment. Businesses needing city pages or stronger map-pack visibility usually need Local Launch or the related add-ons.</p>
                 </article>
                 <article class="booking-faq-item">
-                    <h3>Can I use financing or pay a deposit instead of the full amount?</h3>
-                    <p>Yes. Eligible one-time Stripe checkout amounts over $800 may show Klarna or Afterpay/Clearpay. Several larger packages also offer deposit-based checkout so you can reserve kickoff first and pay the remaining balance during the project milestones.</p>
+                    <h3>Can I pay a deposit instead of the full amount?</h3>
+                    <p>Yes. Stripe checkout is used for all package payments. Several larger packages also offer deposit-based checkout so you can reserve kickoff first and pay the remaining balance during project milestones.</p>
                 </article>
                 <article class="booking-faq-item">
                     <h3>Do you handle Google Business Profile optimization and schema markup?</h3>
@@ -2322,6 +2347,13 @@
                             <option value="text">Text message</option>
                         </select>
                     </div>
+                    <div class="form-group starter-package-intake-span-2">
+                        <label for="starterPackageReferralPartner">Were you referred by someone?</label>
+                        <select id="starterPackageReferralPartner" name="referralPartnerManual">
+                            <option value="">Select a company (optional)</option>
+                        </select>
+                        <p class="starter-package-intake-helper" id="starterPackageReferralStatus" style="margin-top:0.45rem;"></p>
+                    </div>
                 </div>
 
                 <div class="starter-package-dynamic-fields" id="starterPackageDynamicFields"></div>
@@ -2366,7 +2398,7 @@
     </div>
 
     <div id="footer-container"></div>
-    <script src="/pricing/package-checkout.min.js?v=20260513a"></script>
+    <script src="/pricing/package-checkout.js?v=20260517a"></script>
     <!-- Legacy pricing intake logic retained temporarily for reference.
     <script>
         (function () {
@@ -2382,6 +2414,7 @@
                 'ecommerce-preview-catalog': { name: 'Storefront Preview', price: '$750', family: 'ecommerce' },
                 'ecommerce-payment-links': { name: 'Payment-Link Store', price: '$1,200', family: 'ecommerce' },
                 'ecommerce-launch': { name: 'E-Commerce Launch', price: '$2,497', family: 'ecommerce' },
+                'ecommerce-launch-plus': { name: 'E-Commerce Launch Plus', price: '$3,497', family: 'ecommerce' },
                 'ecommerce-growth-store': { name: 'E-Commerce Growth Store', price: '$3,997', family: 'ecommerce' },
                 'ecommerce-advanced-system': { name: 'Advanced E-Commerce System', price: '$7,500', family: 'ecommerce' },
                 'gbp-optimization': { name: 'Google Business Profile Sprint', price: '$397', family: 'seo' },
@@ -2410,6 +2443,7 @@
                 'ecommerce-preview-catalog': { pageCountExpectation: 'small', seoExpansionNeed: 'no', sellingOnlineNeed: 'stripe-links' },
                 'ecommerce-payment-links': { pageCountExpectation: 'medium', seoExpansionNeed: 'no', sellingOnlineNeed: 'stripe-links' },
                 'ecommerce-launch': { pageCountExpectation: 'medium', seoExpansionNeed: 'no', sellingOnlineNeed: 'cart-store' },
+                'ecommerce-launch-plus': { pageCountExpectation: 'large', seoExpansionNeed: 'no', sellingOnlineNeed: 'cart-store' },
                 'ecommerce-growth-store': { pageCountExpectation: 'large', seoExpansionNeed: 'no', sellingOnlineNeed: 'cart-store' },
                 'ecommerce-advanced-system': { pageCountExpectation: 'enterprise', seoExpansionNeed: 'no', sellingOnlineNeed: 'cart-store' }
             };
@@ -2492,10 +2526,15 @@
                 }
 
                 if (sellingNeed === 'cart-store') {
-                    recommendedPackageKey = pageRank >= 3 ? 'ecommerce-growth-store' : 'ecommerce-launch';
-                    recommendationMessage = pageRank >= 3
-                        ? 'A larger storefront with checkout fits the E-Commerce Growth Store package.'
-                        : 'A real cart and storefront flow fits the E-Commerce Launch package.';
+                    if (pageRank >= 3 && packageKey === 'ecommerce-growth-store') {
+                        recommendedPackageKey = 'ecommerce-growth-store';
+                        recommendationMessage = 'A larger storefront with growth features fits the E-Commerce Growth Store package.';
+                    } else {
+                        recommendedPackageKey = pageRank >= 3 ? 'ecommerce-launch-plus' : 'ecommerce-launch';
+                        recommendationMessage = pageRank >= 3
+                            ? 'A larger storefront with checkout fits the E-Commerce Launch Plus package.'
+                            : 'A real cart and storefront flow fits the E-Commerce Launch package.';
+                    }
                 } else if (sellingNeed === 'stripe-links') {
                     recommendedPackageKey = pageRank >= 3 ? 'ecommerce-growth-store' : 'ecommerce-payment-links';
                     recommendationMessage = pageRank >= 3
@@ -2503,8 +2542,8 @@
                         : 'Simple online payments fit the Payment-Link Store package.';
                 } else if (family === 'ecommerce') {
                     if (pageRank >= 3) {
-                        recommendedPackageKey = 'ecommerce-growth-store';
-                        recommendationMessage = 'A larger catalog fits the E-Commerce Growth Store package.';
+                        recommendedPackageKey = 'ecommerce-launch-plus';
+                        recommendationMessage = 'A larger catalog fits the E-Commerce Launch Plus package.';
                     } else if (pageRank >= 2) {
                         recommendedPackageKey = 'ecommerce-payment-links';
                         recommendationMessage = 'A mid-size non-checkout storefront fits the Payment-Link Store package.';

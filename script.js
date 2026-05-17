@@ -51,11 +51,6 @@ function scheduleNonCriticalInit(fn, delay = 0) {
     }
 }
 
-function useSimplifiedMobileHero() {
-    return window.matchMedia('(max-width: 768px)').matches ||
-        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-}
-
 function resolveAnchorHash(href) {
     if (!href || href === '#') return null;
 
@@ -174,8 +169,6 @@ async function loadHeaderFooter() {
 
 // Load header and footer on page load, then initialize everything
 document.addEventListener('DOMContentLoaded', function() {
-    const simplifyMobileHero = useSimplifiedMobileHero();
-
     initAnchorNavigation();
 
     // Fetch header/footer in parallel — initNavigation runs when ready, doesn't block paint
@@ -204,16 +197,11 @@ document.addEventListener('DOMContentLoaded', function() {
     // Dismiss loading screen — header/footer parallel fetch is usually done well before this
     const loadingScreen = document.getElementById('loading-screen');
     if (loadingScreen) {
-        if (simplifyMobileHero) {
+        loadingScreen.style.opacity = '0';
+        setTimeout(() => {
             loadingScreen.style.display = 'none';
             scheduleNonCriticalInit(initMainAnimations);
-        } else {
-            loadingScreen.style.opacity = '0';
-            setTimeout(() => {
-                loadingScreen.style.display = 'none';
-                scheduleNonCriticalInit(initMainAnimations);
-            }, 120);
-        }
+        }, 120);
     }
 });
 

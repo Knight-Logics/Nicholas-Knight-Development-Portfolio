@@ -37,16 +37,8 @@ Disallow: /*.py
 Disallow: /*.sql
 Disallow: /*.csv
 
-# Demo apps are intentionally omitted from the sitemap and marked noindex on-page.
-# Block legacy portfolio demos to reduce crawl waste on non-business surfaces.
-Disallow: /CRM-Management-System/
-Disallow: /Ecommerce-Management-System/
-Disallow: /Employee-Management-System/
-Disallow: /Invoice-Management-System/
-Disallow: /Project-Management-System/
-Disallow: /JavaScript-Tic-Tac-Toe-master/
-Disallow: /Tic-Tac-Toe/
-Disallow: /Chess-Game-main/
+# Legacy portfolio/demo apps are intentionally omitted from the sitemap.
+# They redirect at the platform layer so crawlers can consolidate them into current service pages.
 
 # Block URL parameters that generate junk crawl URLs
 Disallow: /*?search=

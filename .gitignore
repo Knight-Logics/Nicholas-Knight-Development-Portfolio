@@ -14,6 +14,7 @@ yarn-error.log*
 # IDE and editor files
 .vscode/
 .idea/
+*.code-workspace
 *.swp
 *.swo
 *~
@@ -48,6 +49,8 @@ build/
 # Temporary files
 *.tmp
 *.temp
+.tmp-runner-tests/
+_make_resume_pdf.py
 
 # Archive files
 *.zip
