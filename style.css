@@ -4762,25 +4762,43 @@ section::before {
         position: relative !important;
         min-height: 100svh;
         height: 100%;
+        box-sizing: border-box;
         display: flex;
         align-items: center;
         justify-content: center;
         z-index: 10;
-        padding-top: 84px;
-        padding-bottom: 24px;
+        padding: clamp(96px, 13svh, 122px) 3vw clamp(32px, 6svh, 54px);
     }
 
     /* Mobile: Keep hero at full height so background is visible */
     @media (max-width: 600px) {
         .hero-content-wrapper {
             min-height: 100svh !important;
-            padding-top: 20px !important;
-            padding-bottom: 40px !important;
+            box-sizing: border-box;
+            padding: clamp(126px, 17svh, 152px) 18px clamp(28px, 5svh, 42px) !important;
             align-items: center !important;
             justify-content: center !important;
         }
         .hero-layout {
             margin-top: 0 !important;
+            transform: translateY(16px) !important;
+        }
+        .hero-byline {
+            display: none;
+        }
+        .hero-title {
+            max-width: min(100%, 310px);
+            margin-left: auto;
+            margin-right: auto;
+            font-size: clamp(1.35rem, 7vw, 1.72rem);
+            line-height: 1.14;
+        }
+        .title-line.company-name {
+            font-size: clamp(2rem, 9vw, 2.35rem);
+            white-space: normal;
+        }
+        .hero-subtitle {
+            display: none;
         }
         .parallax-bg-near {
             opacity: 0.75 !important;
@@ -5109,8 +5127,8 @@ section::before {
         grid-template-columns: 1fr;
         gap: 1rem;
         transform: none;
-        margin-top: 20px;
-        margin-bottom: 52px;
+        margin-top: 0;
+        margin-bottom: 0;
         justify-items: center;
     }
     
@@ -5132,8 +5150,8 @@ section::before {
         grid-template-columns: 1fr;
         gap: 1rem;
         transform: none;
-        margin-top: 20px;
-        margin-bottom: 52px;
+        margin-top: 0;
+        margin-bottom: 0;
         justify-items: center;
     }
     
@@ -9692,4 +9710,45 @@ html {
     .clients-grid { gap: 10px 12px; }
     .client-badge { font-size: .76rem; padding: 7px 14px; }
     .results-grid { grid-template-columns: 1fr 1fr; }
+}
+
+/* Final mobile hero guardrails: keep the landing hero clear of the fixed logo and prevent headline clipping. */
+@media (max-width: 600px) {
+    .hero .hero-content-wrapper {
+        box-sizing: border-box !important;
+        padding: clamp(126px, 17svh, 152px) 18px clamp(28px, 5svh, 42px) !important;
+    }
+
+    .hero .hero-layout {
+        width: min(100%, 320px) !important;
+        margin: 0 auto !important;
+        transform: translateY(18px) !important;
+    }
+
+    .hero .hero-byline,
+    .hero .hero-subtitle {
+        display: none !important;
+    }
+
+    .hero .hero-title {
+        max-width: 290px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        font-size: clamp(1.28rem, 6.2vw, 1.5rem) !important;
+        line-height: 1.16 !important;
+    }
+
+    .hero .title-line.company-name {
+        font-size: clamp(1.9rem, 8.4vw, 2.25rem) !important;
+        white-space: normal !important;
+    }
+
+    .hero .title-line:not(.company-name) {
+        font-size: clamp(1.28rem, 6.2vw, 1.5rem) !important;
+    }
+
+    .hero .cta-button {
+        width: min(100%, 260px) !important;
+        max-width: 260px !important;
+    }
 }
