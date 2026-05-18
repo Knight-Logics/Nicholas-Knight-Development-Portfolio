@@ -280,7 +280,7 @@
   "rewrites": [
     {
       "source": "/ref/:partner",
-      "destination": "/index.html"
+      "destination": "/"
     },
     {
       "source": "/pricing",
