@@ -513,6 +513,8 @@
             form.addEventListener('submit', function() {
                 if (typeof gtag === 'function') {
                     gtag('event', 'generate_lead', { 'send_to': 'AW-18138273413' });
+                    // Also fire the GA4 event that Google Ads conversion "SUBMIT_LEAD_FORM" is imported from
+                    gtag('event', 'conversion_event_submit_lead_form');
                 }
             });
         })();

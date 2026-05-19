@@ -430,6 +430,11 @@
                 headers: { 'Title': 'KL Book Consultation', 'Priority': 'high', 'Tags': 'bell,calendar' },
                 body: 'Contact: ' + name + (email ? '\nEmail: ' + email : '') + (service ? '\nService: ' + service : '')
             }).catch(function() {});
+            // Google Ads conversion tracking
+            if (typeof gtag === 'function') {
+                gtag('event', 'generate_lead', { 'send_to': 'AW-18138273413' });
+                gtag('event', 'conversion_event_submit_lead_form');
+            }
         });
     })();
     </script>

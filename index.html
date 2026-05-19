@@ -3854,6 +3854,19 @@
     </script>
     <script src="attribution.js" defer></script>
     <script src="script.min.js?v=20260515e" defer></script>
+    <script>
+        // Google Ads conversion tracking — hero consultation form
+        (function() {
+            var form = document.getElementById('heroConsultationForm');
+            if (!form) return;
+            form.addEventListener('submit', function() {
+                if (typeof gtag === 'function') {
+                    gtag('event', 'generate_lead', { 'send_to': 'AW-18138273413' });
+                    gtag('event', 'conversion_event_submit_lead_form');
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
 
