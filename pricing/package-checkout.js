@@ -1617,7 +1617,8 @@
     });
 
     const params = new URLSearchParams(window.location.search);
-    const openPackageKey = params.get('openPackage');
+    const hashPackageKey = (window.location.hash || '').replace(/^#/, '').trim();
+    const openPackageKey = params.get('openPackage') || (hashPackageKey && packageCatalog[hashPackageKey] ? hashPackageKey : '');
     const purchaseState = params.get('purchase');
     const returnPackageKey = params.get('package');
 
@@ -1627,7 +1628,8 @@
         if (window.history && typeof window.history.replaceState === 'function') {
             params.delete('openPackage');
             const nextSearch = params.toString();
-            const nextUrl = `${window.location.pathname}${nextSearch ? `?${nextSearch}` : ''}${window.location.hash || ''}`;
+            const nextHash = hashPackageKey === openPackageKey ? '' : (window.location.hash || '');
+            const nextUrl = `${window.location.pathname}${nextSearch ? `?${nextSearch}` : ''}${nextHash}`;
             window.history.replaceState({}, document.title, nextUrl);
         }
     }

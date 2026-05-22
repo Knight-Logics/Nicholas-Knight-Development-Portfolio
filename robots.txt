@@ -43,6 +43,10 @@ Disallow: /*.csv
 
 # Block URL parameters that generate junk crawl URLs
 Disallow: /*?search=
+Disallow: /*openPackage=
+Disallow: /*purchase=
+Disallow: /*package=
+Disallow: /*offer=
 
 # Allow core site assets
 Allow: /images/
