@@ -3884,13 +3884,23 @@ section::before {
 /* Testimonials Section */
 /* ── Google Reviews Section ── */
 .testimonials {
-    padding: 58px 32px;
+    padding: 38px 0;
     background: rgba(15,15,15,0.9);
 }
 
+.testimonials .container {
+    width: 100%;
+    max-width: 1800px;
+}
+
+.testimonials .section-header {
+    margin-bottom: 18px;
+}
+
 .google-reviews-showcase {
-    max-width: 1120px;
-    margin: 2rem auto 0;
+    width: 100%;
+    max-width: none;
+    margin: 1.2rem auto 0;
     padding: 0;
     text-align: center;
 }
@@ -3900,7 +3910,7 @@ section::before {
     align-items: center;
     justify-content: center;
     gap: 14px;
-    margin: 0 0 1rem;
+    margin: 0 0 0.75rem;
     flex-wrap: wrap;
 }
 
@@ -3935,7 +3945,7 @@ section::before {
     align-items: center;
     gap: 10px;
     margin: 0 auto;
-    max-width: 1100px;
+    max-width: none;
 }
 
 .review-carousel-track-outer {
@@ -4090,7 +4100,7 @@ section::before {
 
 .google-review-links {
     text-align: center;
-    margin-top: 20px;
+    margin-top: 12px;
     font-size: 0.9rem;
     color: rgba(255,255,255,0.58);
 }
@@ -4110,7 +4120,7 @@ section::before {
 
 @media (max-width: 600px) {
     .testimonials {
-        padding: 44px 16px;
+        padding: 32px 0;
     }
     .google-reviews-showcase {
         padding: 0;
