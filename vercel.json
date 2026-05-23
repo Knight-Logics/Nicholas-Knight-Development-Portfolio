@@ -107,6 +107,11 @@
       "permanent": true
     },
     {
+      "source": "/case-study-evidencedesk-ai.html",
+      "destination": "/case-study-evidencedesk-ai",
+      "permanent": true
+    },
+    {
       "source": "/case-study-farrell-electric.html",
       "destination": "/case-study-farrell-electric",
       "permanent": true
