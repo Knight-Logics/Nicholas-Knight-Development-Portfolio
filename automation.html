@@ -204,6 +204,13 @@
             border-radius: 14px;
             background: rgba(255,255,255,.04);
             padding: 24px;
+            transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease, background .2s ease;
+        }
+        .automation-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(100,255,218,.45);
+            background: rgba(100,255,218,.07);
+            box-shadow: 0 12px 32px rgba(100,255,218,.12);
         }
         .automation-card-label {
             color: #64ffda;
@@ -233,6 +240,12 @@
             border-radius: 16px;
             overflow: hidden;
             background: rgba(255,255,255,.035);
+            transition: transform .2s ease, border-color .2s ease, box-shadow .2s ease;
+        }
+        .automation-demo:hover {
+            transform: translateY(-4px);
+            border-color: rgba(100,255,218,.4);
+            box-shadow: 0 12px 32px rgba(100,255,218,.1);
         }
         .automation-demo-slot {
             aspect-ratio: 16 / 9;
