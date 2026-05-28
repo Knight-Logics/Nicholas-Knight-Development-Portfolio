@@ -9737,8 +9737,9 @@ html {
 }
 .result-num {
     display: block;
-    font-size: 2.6rem;
-    font-weight: 700;
+    font-size: clamp(1.65rem, 2.5vw, 1.95rem);
+    font-weight: 600;
+    letter-spacing: 0.03em;
     color: var(--accent, #64ffda);
     line-height: 1;
 }

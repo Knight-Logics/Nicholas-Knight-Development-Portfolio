@@ -405,9 +405,6 @@
     <link rel="preload" as="image" href="./images/city%20hero.webp" fetchpriority="high" type="image/webp" media="(min-width: 1025px)">
     <link rel="preload" as="image" href="./images/CircuitBrush3.webp" fetchpriority="low" type="image/webp" media="(min-width: 1025px)">
 
-    <!-- Google Fonts: Playfair Display is non-critical on first paint -->
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap"></noscript>
-    
     <!-- Sitemap reference -->
     <link rel="sitemap" type="application/xml" href="./sitemap.xml">
     
@@ -839,9 +836,25 @@
 
         .starter-package-price {
             margin: 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            gap: 8px;
+            line-height: 1.05;
+        }
+
+        .starter-package-price-prefix {
+            color: rgba(100, 255, 218, 0.82);
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+        }
+
+        .starter-package-price-value {
             color: #64ffda;
-            font-size: 1.95rem;
-            font-weight: 800;
+            font-size: 1.46rem;
+            font-weight: 700;
             line-height: 1;
         }
 
@@ -1536,8 +1549,7 @@
             }
         }
     </style>
-    <link rel="preload" as="style" href="style.css?v=20260528k" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="style.css?v=20260528k"></noscript>
+    <link rel="stylesheet" href="style.css?v=20260528m">
     <!-- Non-critical brand-font CSS loads after first paint. Font Awesome removed — icons are inline SVGs. -->
     <script>
         window.addEventListener('load', function () {
@@ -1958,7 +1970,7 @@
                         <span class="starter-package-tag">Entry Point</span>
                         <div class="starter-package-head">
                             <h3>Preview Launch Site</h3>
-                            <p class="starter-package-price">$500</p>
+                            <p class="starter-package-price"><span class="starter-package-price-value">$500</span></p>
                         </div>
                         <p class="starter-package-desc">A professional custom-coded page to show customers fast. Use the selector to confirm whether this stays a simple preview or needs a bigger live package first.</p>
                         <ul class="starter-package-points">
@@ -1976,7 +1988,7 @@
                         <span class="starter-package-tag">Most Popular</span>
                         <div class="starter-package-head">
                             <h3>Local Launch Site</h3>
-                            <p class="starter-package-price">from $700</p>
+                            <p class="starter-package-price"><span class="starter-package-price-prefix">from</span><span class="starter-package-price-value">$700</span></p>
                         </div>
                         <p class="starter-package-desc">Start with the configurator, choose the page depth and SEO needs, then the modal will move you to the right flat package before checkout.</p>
                         <ul class="starter-package-points">
@@ -1995,7 +2007,7 @@
                         <span class="starter-package-tag">E-Commerce</span>
                         <div class="starter-package-head">
                             <h3>Storefront Packages</h3>
-                            <p class="starter-package-price">from $750</p>
+                            <p class="starter-package-price"><span class="starter-package-price-prefix">from</span><span class="starter-package-price-value">$750</span></p>
                         </div>
                         <p class="starter-package-desc">Pick the selling flow you need first. The selector will separate a preview catalog, payment-link store, and full cart storefront before checkout.</p>
                         <ul class="starter-package-points">
@@ -2014,7 +2026,7 @@
                         <span class="starter-package-tag">Growth System</span>
                         <div class="starter-package-head">
                             <h3>Growth &amp; Automation System</h3>
-                            <p class="starter-package-price">custom from $3,500</p>
+                            <p class="starter-package-price"><span class="starter-package-price-prefix">custom from</span><span class="starter-package-price-value">$3,500</span></p>
                         </div>
                         <p class="starter-package-desc">The system behind the site — lead tracking, CRM, automated follow-up, reporting, and business workflow automation built around your operation.</p>
                         <ul class="starter-package-points">
