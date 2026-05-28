@@ -742,6 +742,10 @@
             max-width: 620px;
             margin: 0 auto;
         }
+        /* Ensure FAQ section subtitle is visible before JS runs (prevents WAVE opacity=0 contrast false-positive) */
+        .booking-faq-section .section-header p {
+            opacity: 1;
+        }
 
         /* Tables */
         .pricing-table {
