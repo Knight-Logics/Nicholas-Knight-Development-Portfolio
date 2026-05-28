@@ -124,7 +124,7 @@ async function loadHeaderFooter() {
         const tryFetch = async (urls) => {
             for (const url of urls) {
                 try {
-                    const res = await fetch(url, { cache: 'no-store' });
+                    const res = await fetch(url, { cache: 'default' });
                     if (res.ok) {
                         return await res.text();
                     }

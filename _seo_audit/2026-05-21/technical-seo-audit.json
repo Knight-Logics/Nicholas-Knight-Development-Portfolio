@@ -1,0 +1,1139 @@
+{
+  "generatedAt": "2026-05-21T20:17:51.500Z",
+  "siteBase": "https://knightlogics.com",
+  "pages": [
+    {
+      "file": "index.html",
+      "exists": true,
+      "url": "https://knightlogics.com/",
+      "title": "Custom Websites & Local SEO — Tampa Bay | Knight Logics",
+      "descriptionLength": 126,
+      "canonical": "https://knightlogics.com/",
+      "robots": "",
+      "h1s": [
+        "Knight Logics Custom Websites &amp; Local SEO"
+      ],
+      "jsonLdBlocks": 7,
+      "invalidJsonLdBlocks": [],
+      "schemaTypes": [
+        "Answer",
+        "BreadcrumbList",
+        "City",
+        "ContactPoint",
+        "FAQPage",
+        "GeoCoordinates",
+        "ImageObject",
+        "ListItem",
+        "LocalBusiness",
+        "Offer",
+        "OfferCatalog",
+        "Organization",
+        "Person",
+        "Place",
+        "PostalAddress",
+        "ProfessionalService",
+        "Question",
+        "Service",
+        "SiteNavigationElement",
+        "State",
+        "WebPage",
+        "WebSite"
+      ],
+      "packageKeys": [
+        "ecommerce-preview-catalog",
+        "website-local-seo-starter",
+        "website-preview-launch"
+      ],
+      "imageCount": 19,
+      "missingAlt": 0,
+      "issues": []
+    },
+    {
+      "file": "pricing.html",
+      "exists": true,
+      "url": "https://knightlogics.com/pricing",
+      "title": "Knight Logics Pricing | Web, SEO & Automation",
+      "descriptionLength": 126,
+      "canonical": "https://knightlogics.com/pricing",
+      "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+      "h1s": [
+        "Tampa Bay Web Design, Local SEO &amp; Automation Pricing"
+      ],
+      "jsonLdBlocks": 3,
+      "invalidJsonLdBlocks": [],
+      "schemaTypes": [
+        "AdministrativeArea",
+        "Answer",
+        "BreadcrumbList",
+        "City",
+        "FAQPage",
+        "ListItem",
+        "Offer",
+        "OfferCatalog",
+        "PostalAddress",
+        "PriceSpecification",
+        "ProfessionalService",
+        "Question",
+        "Service",
+        "UnitPriceSpecification",
+        "WebPage"
+      ],
+      "packageKeys": [
+        "ecommerce-advanced-system",
+        "ecommerce-growth-store",
+        "ecommerce-launch",
+        "ecommerce-launch-plus",
+        "ecommerce-payment-links",
+        "ecommerce-preview-catalog",
+        "gbp-optimization",
+        "monthly-growth-management",
+        "monthly-local-seo-starter",
+        "monthly-visibility-pro",
+        "monthly-visibility-standard",
+        "ops-automated-job-records",
+        "ops-contractor-crm-starter",
+        "ops-custom-automation-system",
+        "ops-full-growth-system",
+        "ops-growth-system-starter",
+        "ops-job-records-system",
+        "ops-simple-lead-tracker",
+        "website-live-essential",
+        "website-live-plus",
+        "website-local-launch-max",
+        "website-local-launch-plus",
+        "website-local-seo-starter",
+        "website-preview-launch",
+        "website-search-foundation",
+        "website-search-foundation-plus"
+      ],
+      "imageCount": 0,
+      "missingAlt": 0,
+      "issues": []
+    },
+    {
+      "file": "service-websites.html",
+      "exists": true,
+      "url": "https://knightlogics.com/service-websites",
+      "title": "Custom Website Design & Local SEO | Knight Logics",
+      "descriptionLength": 127,
+      "canonical": "https://knightlogics.com/service-websites",
+      "robots": "",
+      "h1s": [
+        "Custom Websites That Rank &amp; Convert"
+      ],
+      "jsonLdBlocks": 4,
+      "invalidJsonLdBlocks": [],
+      "schemaTypes": [
+        "Answer",
+        "BreadcrumbList",
+        "City",
+        "FAQPage",
+        "HowTo",
+        "HowToStep",
+        "ListItem",
+        "LocalBusiness",
+        "Offer",
+        "OfferCatalog",
+        "Organization",
+        "Place",
+        "PostalAddress",
+        "ProfessionalService",
+        "Question",
+        "Service",
+        "State",
+        "WebPage"
+      ],
+      "packageKeys": [],
+      "imageCount": 7,
+      "missingAlt": 0,
+      "issues": []
+    },
+    {
+      "file": "service-local-seo.html",
+      "exists": true,
+      "url": "https://knightlogics.com/service-local-seo",
+      "title": "Local SEO Services & Technical SEO | Knight Logics",
+      "descriptionLength": 154,
+      "canonical": "https://knightlogics.com/service-local-seo",
+      "robots": "",
+      "h1s": [
+        "Local SEO that fixes the actual bottlenecks."
+      ],
+      "jsonLdBlocks": 3,
+      "invalidJsonLdBlocks": [],
+      "schemaTypes": [
+        "Answer",
+        "BreadcrumbList",
+        "City",
+        "FAQPage",
+        "ListItem",
+        "LocalBusiness",
+        "Offer",
+        "OfferCatalog",
+        "Organization",
+        "Place",
+        "PostalAddress",
+        "ProfessionalService",
+        "Question",
+        "Service",
+        "State",
+        "WebPage"
+      ],
+      "packageKeys": [],
+      "imageCount": 0,
+      "missingAlt": 0,
+      "issues": []
+    },
+    {
+      "file": "service-google-business-profile.html",
+      "exists": true,
+      "url": "https://knightlogics.com/service-google-business-profile",
+      "title": "Google Business Profile Optimization | Knight Logics",
+      "descriptionLength": 145,
+      "canonical": "https://knightlogics.com/service-google-business-profile",
+      "robots": "",
+      "h1s": [
+        "Google Business Profile work that improves trust and map-pack readiness."
+      ],
+      "jsonLdBlocks": 3,
+      "invalidJsonLdBlocks": [],
+      "schemaTypes": [
+        "Answer",
+        "BreadcrumbList",
+        "City",
+        "FAQPage",
+        "ListItem",
+        "LocalBusiness",
+        "Offer",
+        "OfferCatalog",
+        "Organization",
+        "PostalAddress",
+        "ProfessionalService",
+        "Question",
+        "Service",
+        "State",
+        "WebPage"
+      ],
+      "packageKeys": [],
+      "imageCount": 0,
+      "missingAlt": 0,
+      "issues": []
+    },
+    {
+      "file": "service-ai-automation.html",
+      "exists": true,
+      "url": "https://knightlogics.com/service-ai-automation",
+      "title": "Business Automation & API Integration | Knight Logics",
+      "descriptionLength": 135,
+      "canonical": "https://knightlogics.com/service-ai-automation",
+      "robots": "",
+      "h1s": [
+        "Automation, APIs &amp; Internal Tools"
+      ],
+      "jsonLdBlocks": 4,
+      "invalidJsonLdBlocks": [],
+      "schemaTypes": [
+        "Answer",
+        "BreadcrumbList",
+        "City",
+        "FAQPage",
+        "HowTo",
+        "HowToStep",
+        "ListItem",
+        "LocalBusiness",
+        "Offer",
+        "OfferCatalog",
+        "Organization",
+        "Place",
+        "PostalAddress",
+        "ProfessionalService",
+        "Question",
+        "Service",
+        "State",
+        "WebPage"
+      ],
+      "packageKeys": [],
+      "imageCount": 4,
+      "missingAlt": 0,
+      "issues": []
+    },
+    {
+      "file": "service-ecommerce.html",
+      "exists": true,
+      "url": "https://knightlogics.com/service-ecommerce",
+      "title": "E-Commerce Development | Knight Logics",
+      "descriptionLength": 116,
+      "canonical": "https://knightlogics.com/service-ecommerce",
+      "robots": "",
+      "h1s": [
+        "E-Commerce &amp; Data Systems"
+      ],
+      "jsonLdBlocks": 4,
+      "invalidJsonLdBlocks": [],
+      "schemaTypes": [
+        "Answer",
+        "BreadcrumbList",
+        "City",
+        "FAQPage",
+        "HowTo",
+        "HowToStep",
+        "ListItem",
+        "LocalBusiness",
+        "Offer",
+        "OfferCatalog",
+        "Organization",
+        "Place",
+        "PostalAddress",
+        "ProfessionalService",
+        "Question",
+        "Service",
+        "State",
+        "WebPage"
+      ],
+      "packageKeys": [],
+      "imageCount": 1,
+      "missingAlt": 0,
+      "issues": []
+    },
+    {
+      "file": "service-desktop-apps.html",
+      "exists": true,
+      "url": "https://knightlogics.com/service-desktop-apps",
+      "title": "Custom Desktop Applications & Software | Knight Logics",
+      "descriptionLength": 138,
+      "canonical": "https://knightlogics.com/service-desktop-apps",
+      "robots": "",
+      "h1s": [
+        "Desktop Applications &amp; Custom Software"
+      ],
+      "jsonLdBlocks": 3,
+      "invalidJsonLdBlocks": [],
+      "schemaTypes": [
+        "Answer",
+        "BreadcrumbList",
+        "FAQPage",
+        "ListItem",
+        "LocalBusiness",
+        "Offer",
+        "OfferCatalog",
+        "Organization",
+        "Place",
+        "PostalAddress",
+        "ProfessionalService",
+        "Question",
+        "Service",
+        "WebPage"
+      ],
+      "packageKeys": [],
+      "imageCount": 3,
+      "missingAlt": 0,
+      "issues": []
+    },
+    {
+      "file": "free-website-audit.html",
+      "exists": true,
+      "url": "https://knightlogics.com/free-website-audit",
+      "title": "Free Website Audit for Local Businesses | Knight Logics",
+      "descriptionLength": 143,
+      "canonical": "https://knightlogics.com/free-website-audit",
+      "robots": "",
+      "h1s": [
+        "Free Website + Google Business Profile Audit"
+      ],
+      "jsonLdBlocks": 3,
+      "invalidJsonLdBlocks": [],
+      "schemaTypes": [
+        "AdministrativeArea",
+        "Answer",
+        "BreadcrumbList",
+        "City",
+        "FAQPage",
+        "ListItem",
+        "Offer",
+        "OfferCatalog",
+        "Organization",
+        "ProfessionalService",
+        "Question",
+        "Service",
+        "WebPage"
+      ],
+      "packageKeys": [],
+      "imageCount": 0,
+      "missingAlt": 0,
+      "issues": []
+    },
+    {
+      "file": "home-service-websites.html",
+      "exists": true,
+      "url": "https://knightlogics.com/home-service-websites",
+      "title": "Home Service Website Design for Contractors | Knight Logics",
+      "descriptionLength": 146,
+      "canonical": "https://knightlogics.com/home-service-websites",
+      "robots": "",
+      "h1s": [
+        "Home Service Website Design for Contractors, Trades, and Local Service Businesses"
+      ],
+      "jsonLdBlocks": 1,
+      "invalidJsonLdBlocks": [],
+      "schemaTypes": [
+        "Article",
+        "BreadcrumbList",
+        "ImageObject",
+        "ListItem",
+        "Organization",
+        "Person",
+        "WebPage"
+      ],
+      "packageKeys": [],
+      "imageCount": 0,
+      "missingAlt": 0,
+      "issues": []
+    },
+    {
+      "file": "book-consultation.html",
+      "exists": true,
+      "url": "https://knightlogics.com/book-consultation",
+      "title": "Book a Consultation | Knight Logics",
+      "descriptionLength": 139,
+      "canonical": "https://knightlogics.com/book-consultation",
+      "robots": "",
+      "h1s": [
+        "Book a Consultation With Knight Logics"
+      ],
+      "jsonLdBlocks": 2,
+      "invalidJsonLdBlocks": [],
+      "schemaTypes": [
+        "Answer",
+        "BreadcrumbList",
+        "FAQPage",
+        "ListItem",
+        "Question",
+        "WebPage"
+      ],
+      "packageKeys": [],
+      "imageCount": 0,
+      "missingAlt": 0,
+      "issues": []
+    },
+    {
+      "file": "contact.html",
+      "exists": true,
+      "url": "https://knightlogics.com/contact",
+      "title": "Contact Knight Logics | Web Design, SEO & Automation",
+      "descriptionLength": 139,
+      "canonical": "https://knightlogics.com/contact",
+      "robots": "",
+      "h1s": [
+        "Contact Knight Logics — Tampa Bay Web Design & SEO"
+      ],
+      "jsonLdBlocks": 2,
+      "invalidJsonLdBlocks": [],
+      "schemaTypes": [
+        "Answer",
+        "BreadcrumbList",
+        "ContactPage",
+        "ContactPoint",
+        "FAQPage",
+        "ListItem",
+        "Organization",
+        "Question"
+      ],
+      "packageKeys": [],
+      "imageCount": 5,
+      "missingAlt": 0,
+      "issues": []
+    },
+    {
+      "file": "case-study-knight-group.html",
+      "exists": true,
+      "url": "https://knightlogics.com/case-study-knight-group",
+      "title": "Knight Group Case Study | Knight Logics",
+      "descriptionLength": 137,
+      "canonical": "https://knightlogics.com/case-study-knight-group",
+      "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+      "h1s": [
+        "Growth System — Knight Group"
+      ],
+      "jsonLdBlocks": 2,
+      "invalidJsonLdBlocks": [],
+      "schemaTypes": [
+        "Article",
+        "BreadcrumbList",
+        "ImageObject",
+        "ListItem",
+        "Organization",
+        "Person",
+        "Service",
+        "WebPage"
+      ],
+      "packageKeys": [],
+      "imageCount": 0,
+      "missingAlt": 0,
+      "issues": []
+    },
+    {
+      "file": "case-study-screen-team.html",
+      "exists": true,
+      "url": "https://knightlogics.com/case-study-screen-team",
+      "title": "Screen Team LLC Case Study | Knight Logics",
+      "descriptionLength": 130,
+      "canonical": "https://knightlogics.com/case-study-screen-team",
+      "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+      "h1s": [
+        "Growth System — Screen Team LLC"
+      ],
+      "jsonLdBlocks": 2,
+      "invalidJsonLdBlocks": [],
+      "schemaTypes": [
+        "Article",
+        "BreadcrumbList",
+        "ImageObject",
+        "ListItem",
+        "Organization",
+        "Person",
+        "WebPage"
+      ],
+      "packageKeys": [],
+      "imageCount": 0,
+      "missingAlt": 0,
+      "issues": []
+    },
+    {
+      "file": "case-study-jns.html",
+      "exists": true,
+      "url": "https://knightlogics.com/case-study-jns",
+      "title": "Local Launch Plus Case Study — JNSBuilds.com | Knight Logics",
+      "descriptionLength": 146,
+      "canonical": "https://knightlogics.com/case-study-jns",
+      "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+      "h1s": [
+        "Local Launch Plus — JNS Construction"
+      ],
+      "jsonLdBlocks": 2,
+      "invalidJsonLdBlocks": [],
+      "schemaTypes": [
+        "Article",
+        "BreadcrumbList",
+        "ImageObject",
+        "ListItem",
+        "Organization",
+        "Person",
+        "Service",
+        "WebPage"
+      ],
+      "packageKeys": [],
+      "imageCount": 0,
+      "missingAlt": 0,
+      "issues": []
+    },
+    {
+      "file": "case-study-sals-painting.html",
+      "exists": true,
+      "url": "https://knightlogics.com/case-study-sals-painting",
+      "title": "Sal's Painting Case Study | Knight Logics",
+      "descriptionLength": 15,
+      "canonical": "https://knightlogics.com/case-study-sals-painting",
+      "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+      "h1s": [
+        "Search-Ready Starter — Sal's Painting & Basic Renovations"
+      ],
+      "jsonLdBlocks": 2,
+      "invalidJsonLdBlocks": [],
+      "schemaTypes": [
+        "Article",
+        "BreadcrumbList",
+        "ImageObject",
+        "ListItem",
+        "Organization",
+        "Person",
+        "WebPage"
+      ],
+      "packageKeys": [],
+      "imageCount": 0,
+      "missingAlt": 0,
+      "issues": []
+    },
+    {
+      "file": "case-study-moms-resin-tables.html",
+      "exists": true,
+      "url": "https://knightlogics.com/case-study-moms-resin-tables",
+      "title": "Mom's Resin Tables Case Study | Knight Logics",
+      "descriptionLength": 131,
+      "canonical": "https://knightlogics.com/case-study-moms-resin-tables",
+      "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+      "h1s": [
+        "E-Commerce Launch &mdash; Mom's Resin Tables"
+      ],
+      "jsonLdBlocks": 2,
+      "invalidJsonLdBlocks": [],
+      "schemaTypes": [
+        "Article",
+        "BreadcrumbList",
+        "ImageObject",
+        "ListItem",
+        "Organization",
+        "Person",
+        "WebPage"
+      ],
+      "packageKeys": [],
+      "imageCount": 0,
+      "missingAlt": 0,
+      "issues": []
+    },
+    {
+      "file": "case-study-farrell-electric.html",
+      "exists": true,
+      "url": "https://knightlogics.com/case-study-farrell-electric",
+      "title": "Farrell Electric Case Study | Knight Logics",
+      "descriptionLength": 144,
+      "canonical": "https://knightlogics.com/case-study-farrell-electric",
+      "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+      "h1s": [
+        "Preview Launch Site — Farrell Electric"
+      ],
+      "jsonLdBlocks": 2,
+      "invalidJsonLdBlocks": [],
+      "schemaTypes": [
+        "Article",
+        "BreadcrumbList",
+        "ImageObject",
+        "ListItem",
+        "Organization",
+        "Person",
+        "Service",
+        "WebPage"
+      ],
+      "packageKeys": [],
+      "imageCount": 0,
+      "missingAlt": 0,
+      "issues": []
+    },
+    {
+      "file": "case-study-knight-logics.html",
+      "exists": true,
+      "url": "https://knightlogics.com/case-study-knight-logics",
+      "title": "KnightLogics.com Case Study | Knight Logics",
+      "descriptionLength": 135,
+      "canonical": "https://knightlogics.com/case-study-knight-logics",
+      "robots": "index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1",
+      "h1s": [
+        "Portfolio & Local SEO — KnightLogics.com"
+      ],
+      "jsonLdBlocks": 2,
+      "invalidJsonLdBlocks": [],
+      "schemaTypes": [
+        "Article",
+        "BreadcrumbList",
+        "ImageObject",
+        "ListItem",
+        "Service",
+        "WebPage"
+      ],
+      "packageKeys": [],
+      "imageCount": 5,
+      "missingAlt": 0,
+      "issues": []
+    },
+    {
+      "file": "pixelforge-ai.html",
+      "exists": true,
+      "url": "https://knightlogics.com/pixelforge-ai",
+      "title": "PixelForge AI Video Upscaler | Knight Logics",
+      "descriptionLength": 120,
+      "canonical": "https://knightlogics.com/pixelforge-ai",
+      "robots": "",
+      "h1s": [
+        "PixelForge AI"
+      ],
+      "jsonLdBlocks": 2,
+      "invalidJsonLdBlocks": [],
+      "schemaTypes": [
+        "BreadcrumbList",
+        "ListItem",
+        "Offer",
+        "Organization",
+        "SoftwareApplication"
+      ],
+      "packageKeys": [],
+      "imageCount": 1,
+      "missingAlt": 0,
+      "issues": []
+    },
+    {
+      "file": "display-control-plus.html",
+      "exists": true,
+      "url": "https://knightlogics.com/display-control-plus",
+      "title": "Display Control+ | Knight Logics",
+      "descriptionLength": 122,
+      "canonical": "https://knightlogics.com/display-control-plus",
+      "robots": "",
+      "h1s": [
+        "Display Control+"
+      ],
+      "jsonLdBlocks": 2,
+      "invalidJsonLdBlocks": [],
+      "schemaTypes": [
+        "BreadcrumbList",
+        "ListItem",
+        "Offer",
+        "Organization",
+        "SoftwareApplication"
+      ],
+      "packageKeys": [],
+      "imageCount": 1,
+      "missingAlt": 0,
+      "issues": []
+    },
+    {
+      "file": "videoforge.html",
+      "exists": true,
+      "url": "https://knightlogics.com/videoforge",
+      "title": "VideoForge Studio | Knight Logics",
+      "descriptionLength": 133,
+      "canonical": "https://knightlogics.com/videoforge",
+      "robots": "",
+      "h1s": [
+        "VideoForge Studio"
+      ],
+      "jsonLdBlocks": 2,
+      "invalidJsonLdBlocks": [],
+      "schemaTypes": [
+        "BreadcrumbList",
+        "ListItem",
+        "Offer",
+        "Organization",
+        "SoftwareApplication"
+      ],
+      "packageKeys": [],
+      "imageCount": 1,
+      "missingAlt": 0,
+      "issues": []
+    },
+    {
+      "file": "auto-vid-compiler.html",
+      "exists": true,
+      "url": "https://knightlogics.com/auto-vid-compiler",
+      "title": "Auto Vid Compiler | Knight Logics",
+      "descriptionLength": 129,
+      "canonical": "https://knightlogics.com/auto-vid-compiler",
+      "robots": "",
+      "h1s": [
+        "Auto Vid Compiler"
+      ],
+      "jsonLdBlocks": 2,
+      "invalidJsonLdBlocks": [],
+      "schemaTypes": [
+        "BreadcrumbList",
+        "ListItem",
+        "Offer",
+        "Organization",
+        "SoftwareApplication"
+      ],
+      "packageKeys": [],
+      "imageCount": 1,
+      "missingAlt": 0,
+      "issues": []
+    },
+    {
+      "file": "web-designer-safety-harbor.html",
+      "exists": true,
+      "url": "https://knightlogics.com/web-designer-safety-harbor",
+      "title": "Web Designer in Safety Harbor, FL | Knight Logics",
+      "descriptionLength": 139,
+      "canonical": "https://knightlogics.com/web-designer-safety-harbor",
+      "robots": "",
+      "h1s": [
+        "Web Designer in Safety Harbor, FL — What Local Businesses Actually Need"
+      ],
+      "jsonLdBlocks": 1,
+      "invalidJsonLdBlocks": [],
+      "schemaTypes": [
+        "Article",
+        "BreadcrumbList",
+        "ImageObject",
+        "ListItem",
+        "Organization",
+        "Person",
+        "WebPage"
+      ],
+      "packageKeys": [],
+      "imageCount": 0,
+      "missingAlt": 0,
+      "issues": []
+    },
+    {
+      "file": "web-designer-clearwater.html",
+      "exists": true,
+      "url": "https://knightlogics.com/web-designer-clearwater",
+      "title": "Web Designer in Clearwater, FL | Knight Logics",
+      "descriptionLength": 147,
+      "canonical": "https://knightlogics.com/web-designer-clearwater",
+      "robots": "",
+      "h1s": [
+        "Web Designer in Clearwater, FL - What Local Businesses Need to Compete"
+      ],
+      "jsonLdBlocks": 1,
+      "invalidJsonLdBlocks": [],
+      "schemaTypes": [
+        "Article",
+        "BreadcrumbList",
+        "ImageObject",
+        "ListItem",
+        "Organization",
+        "Person",
+        "WebPage"
+      ],
+      "packageKeys": [],
+      "imageCount": 0,
+      "missingAlt": 0,
+      "issues": []
+    },
+    {
+      "file": "web-designer-st-petersburg.html",
+      "exists": true,
+      "url": "https://knightlogics.com/web-designer-st-petersburg",
+      "title": "Web Designer in St. Petersburg, FL | Knight Logics",
+      "descriptionLength": 151,
+      "canonical": "https://knightlogics.com/web-designer-st-petersburg",
+      "robots": "",
+      "h1s": [
+        "Web Designer in St. Petersburg, FL - Why Clean Structure Beats Pretty Noise"
+      ],
+      "jsonLdBlocks": 1,
+      "invalidJsonLdBlocks": [],
+      "schemaTypes": [
+        "Article",
+        "BreadcrumbList",
+        "ImageObject",
+        "ListItem",
+        "Organization",
+        "Person",
+        "WebPage"
+      ],
+      "packageKeys": [],
+      "imageCount": 0,
+      "missingAlt": 0,
+      "issues": []
+    },
+    {
+      "file": "web-designer-tampa.html",
+      "exists": true,
+      "url": "https://knightlogics.com/web-designer-tampa",
+      "title": "Web Designer in Tampa, FL | Knight Logics",
+      "descriptionLength": 155,
+      "canonical": "https://knightlogics.com/web-designer-tampa",
+      "robots": "",
+      "h1s": [
+        "Web Designer in Tampa, FL - What a Site Needs in a Harder Market"
+      ],
+      "jsonLdBlocks": 1,
+      "invalidJsonLdBlocks": [],
+      "schemaTypes": [
+        "Article",
+        "BreadcrumbList",
+        "ImageObject",
+        "ListItem",
+        "Organization",
+        "Person",
+        "WebPage"
+      ],
+      "packageKeys": [],
+      "imageCount": 0,
+      "missingAlt": 0,
+      "issues": []
+    }
+  ],
+  "pricing": {
+    "visiblePackageKeyCount": 26,
+    "visiblePackageKeys": [
+      "ecommerce-advanced-system",
+      "ecommerce-growth-store",
+      "ecommerce-launch",
+      "ecommerce-launch-plus",
+      "ecommerce-payment-links",
+      "ecommerce-preview-catalog",
+      "gbp-optimization",
+      "monthly-growth-management",
+      "monthly-local-seo-starter",
+      "monthly-visibility-pro",
+      "monthly-visibility-standard",
+      "ops-automated-job-records",
+      "ops-contractor-crm-starter",
+      "ops-custom-automation-system",
+      "ops-full-growth-system",
+      "ops-growth-system-starter",
+      "ops-job-records-system",
+      "ops-simple-lead-tracker",
+      "website-live-essential",
+      "website-live-plus",
+      "website-local-launch-max",
+      "website-local-launch-plus",
+      "website-local-seo-starter",
+      "website-preview-launch",
+      "website-search-foundation",
+      "website-search-foundation-plus"
+    ],
+    "schemaOfferCount": 26,
+    "offers": [
+      {
+        "id": "https://knightlogics.com/pricing#offer-website-preview-launch",
+        "name": "Preview Launch Site",
+        "price": "500",
+        "priceCurrency": "USD",
+        "url": "https://knightlogics.com/pricing#websites",
+        "itemOffered": "Preview Launch Site",
+        "serviceType": "Custom-coded preview website"
+      },
+      {
+        "id": "https://knightlogics.com/pricing#offer-website-essential-launch",
+        "name": "Essential Launch Site",
+        "price": "700",
+        "priceCurrency": "USD",
+        "url": "https://knightlogics.com/pricing#websites",
+        "itemOffered": "Essential Launch Site",
+        "serviceType": "Custom website launch"
+      },
+      {
+        "id": "https://knightlogics.com/pricing#offer-website-essential-plus",
+        "name": "Essential Launch Plus",
+        "price": "850",
+        "priceCurrency": "USD",
+        "url": "https://knightlogics.com/pricing#websites",
+        "itemOffered": "Essential Launch Plus",
+        "serviceType": "Custom website launch with deeper local setup"
+      },
+      {
+        "id": "https://knightlogics.com/pricing#offer-website-search-foundation",
+        "name": "Search Foundation Site",
+        "price": "1200",
+        "priceCurrency": "USD",
+        "url": "https://knightlogics.com/pricing#websites",
+        "itemOffered": "Search Foundation Site",
+        "serviceType": "Search-ready website with technical SEO baseline"
+      },
+      {
+        "id": "https://knightlogics.com/pricing#offer-website-search-foundation-plus",
+        "name": "Search Foundation Plus",
+        "price": "1500",
+        "priceCurrency": "USD",
+        "url": "https://knightlogics.com/pricing#websites",
+        "itemOffered": "Search Foundation Plus",
+        "serviceType": "Search foundation website with expanded SEO and launch depth"
+      },
+      {
+        "id": "https://knightlogics.com/pricing#offer-website-local-launch",
+        "name": "Local Launch Site",
+        "price": "1997",
+        "priceCurrency": "USD",
+        "url": "https://knightlogics.com/pricing#websites",
+        "itemOffered": "Local Launch Site",
+        "serviceType": "Local SEO website package"
+      },
+      {
+        "id": "https://knightlogics.com/pricing#offer-website-local-launch-plus",
+        "name": "Local Launch Plus",
+        "price": "2997",
+        "priceCurrency": "USD",
+        "url": "https://knightlogics.com/pricing#websites",
+        "itemOffered": "Local Launch Plus",
+        "serviceType": "Advanced local growth website build"
+      },
+      {
+        "id": "https://knightlogics.com/pricing#offer-website-local-launch-max",
+        "name": "Local Launch Max",
+        "price": "4500",
+        "priceCurrency": "USD",
+        "url": "https://knightlogics.com/pricing#websites",
+        "itemOffered": "Local Launch Max",
+        "serviceType": "Expanded local service website package with deeper page structure and launch support"
+      },
+      {
+        "id": "https://knightlogics.com/pricing#offer-ecommerce-storefront-preview",
+        "name": "Storefront Preview",
+        "price": "750",
+        "priceCurrency": "USD",
+        "url": "https://knightlogics.com/pricing#ecommerce",
+        "itemOffered": "Storefront Preview",
+        "serviceType": "Custom-coded product catalog preview"
+      },
+      {
+        "id": "https://knightlogics.com/pricing#offer-ecommerce-payment-link-store",
+        "name": "Payment-Link Store",
+        "price": "1200",
+        "priceCurrency": "USD",
+        "url": "https://knightlogics.com/pricing#ecommerce",
+        "itemOffered": "Payment-Link Store",
+        "serviceType": "Custom storefront with Stripe payment links"
+      },
+      {
+        "id": "https://knightlogics.com/pricing#offer-ecommerce-launch",
+        "name": "E-Commerce Launch",
+        "price": "2497",
+        "priceCurrency": "USD",
+        "url": "https://knightlogics.com/pricing#ecommerce",
+        "itemOffered": "E-Commerce Launch",
+        "serviceType": "Custom e-commerce website development"
+      },
+      {
+        "id": "https://knightlogics.com/pricing#offer-ecommerce-launch-plus",
+        "name": "E-Commerce Launch Plus",
+        "price": "3497",
+        "priceCurrency": "USD",
+        "url": "https://knightlogics.com/pricing#ecommerce",
+        "itemOffered": "E-Commerce Launch Plus",
+        "serviceType": "Expanded custom storefront for larger catalogs or deeper checkout scope"
+      },
+      {
+        "id": "https://knightlogics.com/pricing#offer-ecommerce-growth-store",
+        "name": "E-Commerce Growth Store",
+        "price": "3997",
+        "priceCurrency": "USD",
+        "url": "https://knightlogics.com/pricing#ecommerce",
+        "itemOffered": "E-Commerce Growth Store",
+        "serviceType": "Growth-focused e-commerce system with reporting and automations"
+      },
+      {
+        "id": "https://knightlogics.com/pricing#offer-ecommerce-advanced-system",
+        "name": "Advanced E-Commerce System",
+        "price": "7500",
+        "priceCurrency": "USD",
+        "url": "https://knightlogics.com/pricing#ecommerce",
+        "itemOffered": "Advanced E-Commerce System",
+        "serviceType": "Custom e-commerce platform with inventory, webhooks, and reporting"
+      },
+      {
+        "id": "https://knightlogics.com/pricing#offer-growth-simple-lead-tracker",
+        "name": "Simple Lead Tracker",
+        "price": "250",
+        "priceCurrency": "USD",
+        "url": "https://knightlogics.com/pricing#growth",
+        "itemOffered": "Simple Lead Tracker",
+        "serviceType": "Lead source and pipeline tracking setup"
+      },
+      {
+        "id": "https://knightlogics.com/pricing#offer-growth-contractor-crm-starter",
+        "name": "Contractor CRM Starter",
+        "price": "500",
+        "priceCurrency": "USD",
+        "url": "https://knightlogics.com/pricing#growth",
+        "itemOffered": "Contractor CRM Starter",
+        "serviceType": "Contractor CRM and pipeline setup"
+      },
+      {
+        "id": "https://knightlogics.com/pricing#offer-growth-job-records-system",
+        "name": "Job Records System",
+        "price": "750",
+        "priceCurrency": "USD",
+        "url": "https://knightlogics.com/pricing#growth",
+        "itemOffered": "Job Records System",
+        "serviceType": "Job intake, records, and document system"
+      },
+      {
+        "id": "https://knightlogics.com/pricing#offer-growth-automated-job-records",
+        "name": "Automated Job Records",
+        "price": "1500",
+        "priceCurrency": "USD",
+        "url": "https://knightlogics.com/pricing#growth",
+        "itemOffered": "Automated Job Records",
+        "serviceType": "Automated job records and workflow integration"
+      },
+      {
+        "id": "https://knightlogics.com/pricing#offer-growth-system-starter",
+        "name": "Growth System Starter",
+        "price": "3500",
+        "priceCurrency": "USD",
+        "url": "https://knightlogics.com/pricing#growth",
+        "itemOffered": "Growth System Starter",
+        "serviceType": "Lead tracking and business growth system"
+      },
+      {
+        "id": "https://knightlogics.com/pricing#offer-full-growth-system",
+        "name": "Full Growth System",
+        "price": "5000",
+        "priceCurrency": "USD",
+        "url": "https://knightlogics.com/pricing#growth",
+        "itemOffered": "Full Growth System",
+        "serviceType": "Full local growth, CRM, and reporting system"
+      },
+      {
+        "id": "https://knightlogics.com/pricing#offer-custom-automation-system",
+        "name": "Custom Automation System",
+        "price": "10000",
+        "priceCurrency": "USD",
+        "url": "https://knightlogics.com/pricing#growth",
+        "itemOffered": "Custom Automation System",
+        "serviceType": "Custom CRM, routing, and AI-assisted reporting system"
+      },
+      {
+        "id": "https://knightlogics.com/pricing#offer-monthly-visibility-lite",
+        "name": "Visibility Lite",
+        "price": "197",
+        "priceCurrency": "USD",
+        "url": "https://knightlogics.com/pricing#monthly",
+        "itemOffered": "Visibility Lite",
+        "serviceType": "Monthly local visibility maintenance"
+      },
+      {
+        "id": "https://knightlogics.com/pricing#offer-monthly-visibility-standard",
+        "name": "Visibility Standard",
+        "price": "397",
+        "priceCurrency": "USD",
+        "url": "https://knightlogics.com/pricing#monthly",
+        "itemOffered": "Visibility Standard",
+        "serviceType": "Monthly website and GBP management"
+      },
+      {
+        "id": "https://knightlogics.com/pricing#offer-monthly-visibility-pro",
+        "name": "Visibility Pro",
+        "price": "697",
+        "priceCurrency": "USD",
+        "url": "https://knightlogics.com/pricing#monthly",
+        "itemOffered": "Visibility Pro",
+        "serviceType": "Monthly visibility and citation support"
+      },
+      {
+        "id": "https://knightlogics.com/pricing#offer-monthly-growth-management",
+        "name": "Growth Management",
+        "price": "1000",
+        "priceCurrency": "USD",
+        "url": "https://knightlogics.com/pricing#monthly",
+        "itemOffered": "Growth Management",
+        "serviceType": "Monthly growth operations, tracking, and automation support"
+      },
+      {
+        "id": "https://knightlogics.com/pricing#offer-gbp-sprint",
+        "name": "Google Business Profile Sprint",
+        "price": "397",
+        "priceCurrency": "USD",
+        "url": "https://knightlogics.com/pricing#search-addons",
+        "itemOffered": "Google Business Profile Sprint",
+        "serviceType": "Google Business Profile optimization"
+      }
+    ],
+    "visibleWithoutJsCatalog": [],
+    "jsCatalogNamesWithoutOffer": [],
+    "incompleteOffers": [],
+    "socialPackagePricingNote": ""
+  },
+  "sitemap": {
+    "urlCount": 39,
+    "missingLocalFiles": [],
+    "missingCanonicalSelfReference": []
+  },
+  "summary": {
+    "jsonLdBlocks": 65,
+    "invalidJsonLdBlocks": 0,
+    "issueCount": 0
+  },
+  "liveVerificationQueue": [
+    "https://knightlogics.com/",
+    "https://knightlogics.com/pricing",
+    "https://knightlogics.com/service-websites",
+    "https://knightlogics.com/service-local-seo",
+    "https://knightlogics.com/service-google-business-profile",
+    "https://knightlogics.com/free-website-audit",
+    "https://knightlogics.com/case-study-knight-group",
+    "https://knightlogics.com/case-study-screen-team",
+    "https://knightlogics.com/case-study-jns"
+  ]
+}
