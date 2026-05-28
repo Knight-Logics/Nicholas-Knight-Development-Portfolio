@@ -2490,7 +2490,7 @@ section::before {
 }
 
 .services-section-break-sub {
-    color: rgba(255, 255, 255, 0.68);
+    color: rgba(255, 255, 255, 0.88);
     font-size: 0.97rem;
     line-height: 1.65;
     max-width: 580px;
@@ -2556,7 +2556,7 @@ section::before {
 }
 
 .service-proof-list li {
-    color: rgba(255, 255, 255, 0.74);
+    color: rgba(255, 255, 255, 0.90);
     font-size: 0.94rem;
     line-height: 1.5;
     margin-bottom: 0.45rem;
@@ -2585,7 +2585,7 @@ section::before {
 }
 
 .services-showcase-header p {
-    color: rgba(255, 255, 255, 0.75);
+    color: rgba(255, 255, 255, 0.90);
     line-height: 1.65;
     margin: 0;
 }
@@ -3083,7 +3083,7 @@ section::before {
 .about-badge-label {
     display: block;
     font-size: 0.72rem;
-    color: rgba(255, 255, 255, 0.45);
+    color: rgba(255, 255, 255, 0.72);
     text-transform: uppercase;
     letter-spacing: 0.09em;
 }

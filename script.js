@@ -973,14 +973,14 @@ function initNavigation() {
 
     // Close menu on escape key
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape' && navMenu.classList.contains('active')) {
+        if (e.key === 'Escape' && navMenu && navMenu.classList.contains('active')) {
             toggleMobileMenu();
         }
     });
 
     // Handle window resize - close menu if screen gets larger
     window.addEventListener('resize', () => {
-        if (window.innerWidth > 768 && navMenu.classList.contains('active')) {
+        if (window.innerWidth > 768 && navMenu && navMenu.classList.contains('active')) {
             toggleMobileMenu();
         }
     });
@@ -988,6 +988,7 @@ function initNavigation() {
     // Navbar scroll effect
     let lastScrollTop = 0;
     window.addEventListener('scroll', () => {
+        if (!navbar) return;
         const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
         
         if (scrollTop > 100) {

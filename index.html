@@ -1536,8 +1536,8 @@
             }
         }
     </style>
-    <link rel="preload" as="style" href="style.css?v=20260528g" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="style.css?v=20260528g"></noscript>
+    <link rel="preload" as="style" href="style.css?v=20260528h" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="style.css?v=20260528h"></noscript>
     <!-- Non-critical brand-font CSS loads after first paint. Font Awesome removed — icons are inline SVGs. -->
     <script>
         window.addEventListener('load', function () {
@@ -2535,7 +2535,7 @@
                 <!-- 4-column quick-info strip -->
                 <div class="contact-info-strip">
                     <!-- Email chip: copy to clipboard -->
-                    <div class="contact-info-chip contact-chip-interactive" onclick="copyEmail(this)" title="Click to copy email">
+                    <div class="contact-info-chip contact-chip-interactive" onclick="copyEmail(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();copyEmail(this);}" role="button" tabindex="0" title="Click to copy email">
                         <svg class="fi" aria-hidden="true"><use href="#fi-copy"/></svg>
                         <div>
                             <strong>Email</strong>
@@ -2544,7 +2544,7 @@
                         <span class="chip-copy-hint"><svg class="fi" aria-hidden="true"><use href="#fi-copy"/></svg></span>
                     </div>
                     <!-- Phone chip: call / text dropdown -->
-                    <div class="contact-info-chip contact-chip-interactive contact-chip-phone" onclick="togglePhoneMenu(this)" title="Call or text us">
+                    <div class="contact-info-chip contact-chip-interactive contact-chip-phone" onclick="togglePhoneMenu(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();togglePhoneMenu(this);}" role="button" tabindex="0" title="Call or text us">
                         <svg class="fi" aria-hidden="true"><use href="#fi-phone"/></svg>
                         <div>
                             <strong>Phone / Text</strong>
@@ -2557,7 +2557,7 @@
                         </div>
                     </div>
                     <!-- Service Area chip: opens map modal -->
-                    <div class="contact-info-chip contact-chip-interactive" onclick="openMapModal()" title="View service area map">
+                    <div class="contact-info-chip contact-chip-interactive" onclick="openMapModal()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openMapModal();}" role="button" tabindex="0" title="View service area map">
                         <svg class="fi" aria-hidden="true"><use href="#fi-map-location-dot"/></svg>
                         <div>
                             <strong>Service Area</strong>
@@ -3930,7 +3930,7 @@
         })();
     </script>
     <script src="attribution.js" defer></script>
-    <script src="script.min.js?v=20260528g" defer></script>
+    <script src="script.min.js?v=20260528h" defer></script>
     <script>
         // Google Ads conversion tracking — hero consultation form
         (function() {
