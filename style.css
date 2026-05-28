@@ -4014,7 +4014,7 @@ section::before {
     width: 42px;
     height: 42px;
     border-radius: 50%;
-    color: #fff;
+    color: #07151d;
     font-size: 1.1rem;
     font-weight: 700;
     display: flex;
@@ -4035,7 +4035,7 @@ section::before {
 }
 
 .review-stars {
-    color: #FBBC04;
+    color: #8a5a00;
     font-size: 1rem;
     letter-spacing: 1px;
 }
@@ -4061,7 +4061,7 @@ section::before {
     height: 44px;
     font-size: 1.45rem;
     cursor: pointer;
-    color: #64ffda;
+    color: #0b4b57;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -4078,7 +4078,10 @@ section::before {
 }
 
 .review-carousel-btn:disabled {
-    opacity: 0.35;
+    opacity: 1;
+    background: #f3f4f6;
+    border-color: #cbd5e1;
+    color: #64748b;
     cursor: default;
 }
 

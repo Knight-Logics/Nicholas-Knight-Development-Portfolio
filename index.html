@@ -1536,8 +1536,8 @@
             }
         }
     </style>
-    <link rel="preload" as="style" href="style.css?v=20260528i" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="style.css?v=20260528i"></noscript>
+    <link rel="preload" as="style" href="style.css?v=20260528j" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="style.css?v=20260528j"></noscript>
     <!-- Non-critical brand-font CSS loads after first paint. Font Awesome removed — icons are inline SVGs. -->
     <script>
         window.addEventListener('load', function () {
@@ -2575,7 +2575,7 @@
                 </div>
 
                 <!-- Map Modal -->
-                <div id="mapModal" class="chip-map-modal" onclick="closeMapModal(event)" onkeydown="if(event.key==='Escape'){event.preventDefault();closeMapModal(event);}">
+                <div id="mapModal" class="chip-map-modal" onclick="closeMapModal(event)" onkeydown="if(event.key==='Escape'||event.key==='Enter'||event.key===' '){event.preventDefault();closeMapModal(event);}" role="button" tabindex="0" aria-label="Close service area map">
                     <div class="chip-map-inner">
                         <button class="chip-map-close" onclick="closeMapModal(event)">&times;</button>
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d901796.8024175643!2d-82.53818595!3d28.00479355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x67445fbcc25df4ab%3A0x48644c12a6309a67!2sKnight%20Logics!5e0!3m2!1sen!2sus!4v1775166692857!5m2!1sen!2sus" width="100%" height="400" style="border:0;border-radius:8px;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -2745,7 +2745,7 @@
     <!-- ══ FAQ Section ══ -->
     <section class="section-faq" style="padding: 90px 0; background: #0a0a0a;">
         <div class="container">
-            <div class="section-header fade-in">
+            <div class="section-header">
                 <h2>Frequently Asked Questions</h2>
                 <p>Quick answers to what Tampa Bay business owners ask most before getting started.</p>
             </div>
@@ -2776,7 +2776,7 @@
 
     <section style="padding: 36px 0 56px; background: #050505; border-top: 1px solid rgba(100,255,218,0.08);">
         <div class="container" style="max-width: 1100px;">
-            <div class="section-header fade-in" style="margin-bottom: 18px;">
+            <div class="section-header" style="margin-bottom: 18px;">
                 <h2 style="font-size: clamp(1.4rem, 2vw, 1.9rem);">Site Index &amp; Policy Pages</h2>
                 <p>Direct HTML links to all services, case studies, consultation, policy, and AI summary pages so the full site structure is reachable without relying on scripted navigation.</p>
             </div>
