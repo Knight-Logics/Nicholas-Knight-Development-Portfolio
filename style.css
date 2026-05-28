@@ -555,7 +555,7 @@ a:where(:not(.cta-button, .nav-link, .nav-brand-link, .nav-dropdown-toggle)):foc
 
 /* City background - NEVER MOVES (Darker for better contrast) */
 .parallax-bg-far {
-    background-image: url('./images/websitehero.webp');
+    background-image: url('./images/websitehero.webp?v=20260528a');
     z-index: 1;
     opacity: 0.7;
     filter: brightness(0.6) contrast(1.1);
@@ -4778,7 +4778,7 @@ section::before {
 
     .parallax-bg-far {
         display: block;
-        background-image: url('./images/website-hero-mobile.webp');
+        background-image: url('./images/website-hero-mobile.webp?v=20260528a');
         background-attachment: scroll;
         background-position: center center !important;
         opacity: 0.70;
@@ -8606,7 +8606,7 @@ html {
 }
 
 .page-service-local-seo .svc-hero {
-    background: url('./images/websitehero.webp') top center/cover no-repeat;
+    background: url('./images/websitehero.webp?v=20260528a') top center/cover no-repeat;
 }
 
 .page-service-google-business-profile .svc-hero {
@@ -8895,7 +8895,7 @@ html {
     min-height: 520px;
     display: flex;
     align-items: center;
-    background: url('./images/websitehero.webp') top center/cover no-repeat;
+    background: url('./images/websitehero.webp?v=20260528a') top center/cover no-repeat;
     overflow: hidden;
 }
 
@@ -9818,5 +9818,5 @@ html {
 .displayplus-hero,
 .videoforge-hero,
 .pixelforge-hero {
-    background: linear-gradient(135deg, rgba(5, 10, 20, 0.94) 0%, rgba(5, 10, 20, 0.72) 100%), url('/images/websitehero.webp') top center / cover no-repeat !important;
+    background: linear-gradient(135deg, rgba(5, 10, 20, 0.94) 0%, rgba(5, 10, 20, 0.72) 100%), url('/images/websitehero.webp?v=20260528a') top center / cover no-repeat !important;
 }
