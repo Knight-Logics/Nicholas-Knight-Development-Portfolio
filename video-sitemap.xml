@@ -40,4 +40,14 @@
       <video:family_friendly>yes</video:family_friendly>
     </video:video>
   </url>
+  <url>
+    <loc>https://knightlogics.com/pixelforge-ai</loc>
+    <video:video>
+      <video:thumbnail_loc>https://img.youtube.com/vi/6Rk3b037s8o/maxresdefault.jpg</video:thumbnail_loc>
+      <video:title>PixelForge AI — Introduction &amp; Feature Overview</video:title>
+      <video:description>Introduction video for PixelForge AI, a Windows desktop app for local AI video upscaling with Real-ESRGAN, compare previews, ETA estimates, and automatic GitHub updates.</video:description>
+      <video:player_loc>https://www.youtube.com/embed/6Rk3b037s8o</video:player_loc>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
 </urlset>
