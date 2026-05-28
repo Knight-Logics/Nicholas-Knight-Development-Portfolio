@@ -37,6 +37,11 @@ Disallow: /*.ps1
 Disallow: /*.py
 Disallow: /*.sql
 Disallow: /*.csv
+Disallow: /gallagher.json
+Disallow: /knightlogics.json
+Disallow: /knightlogics-rerun.json
+Disallow: /percepture.json
+Disallow: /thirteen05.json
 
 # Legacy portfolio/demo apps are intentionally omitted from the sitemap.
 # They redirect at the platform layer so crawlers can consolidate them into current service pages.
