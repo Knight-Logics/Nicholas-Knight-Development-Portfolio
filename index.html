@@ -400,9 +400,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <!-- LCP hero images — mobile gets smaller file, desktop gets full res -->
-    <link rel="preload" as="image" href="./images/city-hero-mobile.webp" fetchpriority="high" type="image/webp" media="(max-width: 1024px)">
-    <link rel="preload" as="image" href="./images/city%20hero.webp" fetchpriority="high" type="image/webp" media="(min-width: 1025px)">
+    <!-- LCP hero images use a desktop WebP plus a tighter mobile crop -->
+        <link rel="preload" as="image" href="./images/website-hero-mobile.webp" fetchpriority="high" type="image/webp" media="(max-width: 1024px)">
+        <link rel="preload" as="image" href="./images/websitehero.webp" fetchpriority="high" type="image/webp" media="(min-width: 1025px)">
     <link rel="preload" as="image" href="./images/CircuitBrush3.webp" fetchpriority="low" type="image/webp" media="(min-width: 1025px)">
 
     <!-- Sitemap reference -->
@@ -478,10 +478,11 @@
             background-size: cover;
         }
         .parallax-bg-far {
-            background-image: url('./images/city hero.webp');
+            background-image: url('./images/websitehero.webp');
             z-index: 1;
             opacity: 0.7;
             filter: brightness(0.6) contrast(1.1);
+            background-position: center 18%;
         }
         .parallax-bg-mid { display: none; }
         .parallax-bg-near {
@@ -698,8 +699,9 @@
             .hero-form-shell { display: none; }
             .parallax-bg-far {
                 display: block;
-                background-image: url('./images/city hero.webp');
+                background-image: url('./images/website-hero-mobile.webp');
                 background-attachment: scroll;
+                background-position: center center;
                 opacity: 0.70;
                 filter: brightness(0.6) contrast(1.1);
             }

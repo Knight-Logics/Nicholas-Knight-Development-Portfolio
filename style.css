@@ -555,13 +555,13 @@ a:where(:not(.cta-button, .nav-link, .nav-brand-link, .nav-dropdown-toggle)):foc
 
 /* City background - NEVER MOVES (Darker for better contrast) */
 .parallax-bg-far {
-    background-image: url('./images/city hero.webp');
+    background-image: url('./images/websitehero.webp');
     z-index: 1;
     opacity: 0.7;
     filter: brightness(0.6) contrast(1.1);
     transform: none !important;
     background-attachment: fixed;
-    background-position: center center !important;
+    background-position: center 18% !important;
     background-size: cover !important;
 }
 
@@ -648,12 +648,13 @@ a:where(:not(.cta-button, .nav-link, .nav-brand-link, .nav-dropdown-toggle)):foc
 
 .hero-form-card {
     width: 340px;
-    background: rgba(7, 18, 30, 0.78);
+    background: linear-gradient(180deg, rgba(7, 18, 30, 0.5) 0%, rgba(7, 18, 30, 0.6) 100%);
     border: 1px solid rgba(100, 255, 218, 0.22);
     border-radius: 24px;
     padding: 0.9rem 1.4rem 0.8rem;
-    backdrop-filter: blur(18px);
-    box-shadow: 0 22px 48px rgba(0, 0, 0, 0.38);
+    backdrop-filter: blur(20px) saturate(125%);
+    -webkit-backdrop-filter: blur(20px) saturate(125%);
+    box-shadow: 0 22px 48px rgba(0, 0, 0, 0.32);
 }
 
 .hero-form-header {
@@ -4777,8 +4778,9 @@ section::before {
 
     .parallax-bg-far {
         display: block;
-        background-image: url('./images/city hero.webp');
+        background-image: url('./images/website-hero-mobile.webp');
         background-attachment: scroll;
+        background-position: center center !important;
         opacity: 0.70;
         filter: brightness(0.6) contrast(1.1);
     }
@@ -9736,16 +9738,24 @@ html {
     text-align: center;
 }
 .result-num {
-    display: block;
-    font-size: clamp(1.65rem, 2.5vw, 1.95rem);
-    font-weight: 600;
-    letter-spacing: 0.03em;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 70px;
+        padding: 8px 14px;
+        border: 1px solid rgba(100,255,218,.2);
+        border-radius: 999px;
+        background: rgba(10,25,47,.7);
+        font-size: 1.12rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
     color: var(--accent, #64ffda);
     line-height: 1;
 }
 .result-label {
     display: block;
-    font-size: .82rem;
+        font-size: .86rem;
+        font-weight: 500;
     color: var(--text-muted, #8892b0);
     margin-top: 10px;
     line-height: 1.5;
