@@ -1107,14 +1107,17 @@
         }
 
         .starter-package-configurator-head {
-            display: flex;
-            justify-content: space-between;
-            gap: 18px;
-            align-items: flex-start;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            grid-template-rows: auto auto;
+            column-gap: 16px;
+            row-gap: 4px;
+            align-items: baseline;
         }
 
         .starter-package-configurator-label {
-            margin: 0 0 6px;
+            grid-column: 1 / -1;
+            margin: 0;
             color: #64ffda;
             font-size: 0.78rem;
             font-weight: 700;
@@ -1123,6 +1126,7 @@
         }
 
         .starter-package-configurator-title {
+            grid-column: 1;
             margin: 0;
             color: #ffffff;
             font-size: 1.1rem;
@@ -1130,24 +1134,29 @@
         }
 
         .starter-package-configurator-copy {
-            margin: 6px 0 0;
+            grid-column: 1 / -1;
+            margin: 2px 0 0;
             color: rgba(255, 255, 255, 0.72);
-            line-height: 1.6;
+            line-height: 1.5;
+            font-size: 0.9rem;
         }
 
         .starter-package-configurator-price {
-            flex: 0 0 auto;
+            grid-column: 2;
+            grid-row: 2;
             color: #64ffda;
-            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
             font-weight: 800;
             line-height: 1;
             text-align: right;
+            white-space: nowrap;
         }
 
         .starter-package-configurator-meta {
             margin: 0;
             color: rgba(255, 255, 255, 0.66);
-            line-height: 1.65;
+            line-height: 1.55;
+            font-size: 0.875rem;
         }
 
         .starter-package-intake-grid {
@@ -2330,12 +2339,10 @@
 
                 <div class="starter-package-configurator" id="starterPackageConfigurator">
                     <div class="starter-package-configurator-head">
-                        <div>
-                            <p class="starter-package-configurator-label" id="starterPackageConfiguratorLabel">Secure Checkout</p>
-                            <p class="starter-package-configurator-title" id="starterPackageConfiguratorTitle">Starter package</p>
-                            <p class="starter-package-configurator-copy" id="starterPackageConfiguratorCopy">This starter form is just enough to get the project moving cleanly before secure Stripe checkout.</p>
-                        </div>
-                        <div class="starter-package-configurator-price" id="starterPackageConfiguratorPrice"></div>
+                        <p class="starter-package-configurator-label" id="starterPackageConfiguratorLabel">Secure Checkout</p>
+                        <p class="starter-package-configurator-title" id="starterPackageConfiguratorTitle">Starter package</p>
+                        <p class="starter-package-configurator-price" id="starterPackageConfiguratorPrice"></p>
+                        <p class="starter-package-configurator-copy" id="starterPackageConfiguratorCopy">This starter form is just enough to get the project moving cleanly before secure Stripe checkout.</p>
                     </div>
                     <p class="starter-package-configurator-meta" id="starterPackageConfiguratorMeta">Starter files can be attached now, and larger folders or videos can be sent by share link now or after payment.</p>
                 </div>
