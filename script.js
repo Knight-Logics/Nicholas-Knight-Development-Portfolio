@@ -511,12 +511,25 @@ function initLayeredParallax() {
     }
     
     function preventKeyScroll(e) {
-        if (isInLandingMode) {
-            const scrollKeys = [32, 33, 34, 35, 36, 37, 38, 39, 40]; // Space, Page Up/Down, Home, End, Arrow keys
-            if (scrollKeys.includes(e.keyCode)) {
-                e.preventDefault();
-                return false;
+        if (!isInLandingMode) return;
+        // Space (32), Page Down (34), Down Arrow (40), Enter (13) advance the parallax
+        const advanceKeys = [13, 32, 34, 40];
+        // Up Arrow (38), Page Up (33) reverse it; Home (36), End (35), Left/Right (37,39) block
+        const blockKeys = [33, 35, 36, 37, 38, 39];
+        if (advanceKeys.includes(e.keyCode)) {
+            e.preventDefault();
+            scrollActionCount = Math.min(scrollActionCount + 1, maxLandingScrolls);
+            updateForestEffect();
+            if (scrollActionCount >= maxLandingScrolls) exitLandingModeFunction();
+            return false;
+        }
+        if (blockKeys.includes(e.keyCode)) {
+            e.preventDefault();
+            if (e.keyCode === 38 || e.keyCode === 33) { // Up / Page Up — reverse
+                scrollActionCount = Math.max(scrollActionCount - 1, 0);
+                updateForestEffect();
             }
+            return false;
         }
     }
     
