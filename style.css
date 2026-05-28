@@ -4055,13 +4055,13 @@ section::before {
 
 .review-carousel-btn {
     background: #fff;
-    border: 2px solid #e0e0e0;
+    border: 2px solid #cbd5e1;
     border-radius: 50%;
     width: 44px;
     height: 44px;
     font-size: 1.45rem;
     cursor: pointer;
-    color: #0b4b57;
+    color: #1f2937;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -4079,9 +4079,9 @@ section::before {
 
 .review-carousel-btn:disabled {
     opacity: 1;
-    background: #f3f4f6;
+    background: #ffffff;
     border-color: #cbd5e1;
-    color: #64748b;
+    color: #475569;
     cursor: default;
 }
 
