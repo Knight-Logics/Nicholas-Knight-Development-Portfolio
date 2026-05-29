@@ -152,8 +152,15 @@ a:where(:not(.cta-button, .nav-link, .nav-brand-link, .nav-dropdown-toggle)):foc
     align-items: center;
     gap: 10px;
     text-decoration: none;
+    color: #eef7ff;
     cursor: pointer;
     transition: all 0.3s ease;
+}
+
+.nav-brand-link:visited,
+.nav-brand-link:hover,
+.nav-brand-link:focus {
+    color: #eef7ff;
 }
 
 .nav-brand-link:hover {
@@ -175,6 +182,7 @@ a:where(:not(.cta-button, .nav-link, .nav-brand-link, .nav-dropdown-toggle)):foc
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     font-size: 2.2rem;
     font-weight: 600;
+    color: #eef7ff;
     background: linear-gradient(135deg, #64ffda, #ffffff, #64ffda);
     background-size: 200% 200%;
     background-clip: text;
@@ -194,11 +202,12 @@ a:where(:not(.cta-button, .nav-link, .nav-brand-link, .nav-dropdown-toggle)):foc
 .brand-text-wrap {
     display: flex;
     flex-direction: column;
+    color: #eef7ff;
     line-height: 1.3;
 }
 .nav-tagline {
     font-size: 0.95rem;
-    color: #b8b8b8;
+    color: #d7e0ea;
     letter-spacing: 0.4px;
     margin-top: 6px;
 }
@@ -1471,7 +1480,7 @@ section::before {
 
 .section-header p {
     font-size: 20px;
-    color: #bdbdbd;
+    color: #d7e0ea;
     font-weight: 300;
     transform: translateY(20px);
     opacity: 0;
@@ -4025,7 +4034,7 @@ section::before {
     width: 42px;
     height: 42px;
     border-radius: 50%;
-    color: #07151d;
+    color: #ffffff;
     font-size: 1.1rem;
     font-weight: 700;
     display: flex;
@@ -4046,7 +4055,7 @@ section::before {
 }
 
 .review-stars {
-    color: #8a5a00;
+    color: #6b3f00;
     font-size: 1rem;
     letter-spacing: 1px;
 }
@@ -4065,14 +4074,14 @@ section::before {
 }
 
 .review-carousel-btn {
-    background: #fff;
-    border: 2px solid #cbd5e1;
+    background: #12202c;
+    border: 2px solid rgba(100, 255, 218, 0.42);
     border-radius: 50%;
     width: 44px;
     height: 44px;
     font-size: 1.45rem;
     cursor: pointer;
-    color: #1f2937;
+    color: #f8fbff;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -4090,9 +4099,9 @@ section::before {
 
 .review-carousel-btn:disabled {
     opacity: 1;
-    background: #ffffff;
-    border-color: #cbd5e1;
-    color: #475569;
+    background: #1d2d3b;
+    border-color: rgba(148, 163, 184, 0.8);
+    color: #f1f5f9;
     cursor: default;
 }
 
