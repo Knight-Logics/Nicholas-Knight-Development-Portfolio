@@ -398,11 +398,10 @@ function initLayeredParallax() {
         
         // City background stays COMPLETELY STATIC (never moves)
         if (cityBg) {
-            const isUltrawide = window.innerWidth >= 1900;
             cityBg.style.transform = 'none';
             cityBg.style.transformOrigin = 'center center';
-            cityBg.style.backgroundPosition = isUltrawide ? 'center top' : 'center center';
-            cityBg.style.backgroundSize = isUltrawide ? '100% auto' : 'cover';
+            cityBg.style.backgroundPosition = 'center center';
+            cityBg.style.backgroundSize = 'cover';
             cityBg.style.opacity = Math.min(0.8 + (progress * 0.3), 1);
         }
         
