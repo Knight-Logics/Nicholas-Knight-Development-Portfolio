@@ -402,8 +402,9 @@
 
     <!-- LCP hero images use a desktop WebP plus a tighter mobile crop -->
         <link rel="preload" as="image" href="./images/website-hero-mobile.webp?v=20260528a" fetchpriority="high" type="image/webp" media="(max-width: 1024px)">
-        <link rel="preload" as="image" href="./images/websitehero-hd.webp?v=20260529a" fetchpriority="high" type="image/webp" media="(min-width: 2560px)">
-        <link rel="preload" as="image" href="./images/websitehero.webp?v=20260529a" fetchpriority="high" type="image/webp" media="(min-width: 1025px) and (max-width: 2559px)">
+        <link rel="preload" as="image" href="./images/websitehero-hd.webp?v=20260529a" fetchpriority="high" type="image/webp" media="(min-width: 1900px)">
+        <link rel="preload" as="image" href="./images/websitehero.webp?v=20260529a" fetchpriority="high" type="image/webp" media="(min-width: 1025px) and (max-width: 1899px)">
+    <link rel="preload" as="image" href="./images/CircuitBrush3.webp" fetchpriority="low" type="image/webp" media="(min-width: 1025px)">
 
     <!-- Sitemap reference -->
     <link rel="sitemap" type="application/xml" href="./sitemap.xml">
@@ -484,13 +485,18 @@
             filter: brightness(0.6) contrast(1.1);
             background-position: center 18%;
         }
-        @media (min-width: 2560px) {
+        @media (min-width: 1900px) {
             .parallax-bg-far {
                 background-image: url('./images/websitehero-hd.webp?v=20260529a');
             }
         }
         .parallax-bg-mid { display: none; }
-        .parallax-bg-near { display: none; }
+        .parallax-bg-near {
+            background-image: url('./images/CircuitBrush3.webp');
+            z-index: 3;
+            opacity: 0.8;
+            filter: brightness(0.72) contrast(1.12);
+        }
         .hero + section {
             margin-top: 100vh;
             position: relative;
@@ -705,8 +711,17 @@
                 opacity: 0.70;
                 filter: brightness(0.6) contrast(1.1);
             }
-            .parallax-bg-mid { display: none; }
-            .parallax-bg-near { display: none; }
+            .parallax-bg-mid { display: block; opacity: 0.2; }
+            .parallax-bg-near {
+                background-image: url('./images/CircuitBrush3.webp');
+                background-size: 100vw 100vh;
+                background-position: center center;
+                transform: translate3d(0, 0, 0) scale(1.10);
+                transform-origin: center center;
+                will-change: transform, opacity;
+                opacity: 0.9;
+                filter: brightness(0.72) contrast(1.15);
+            }
         }
         @media (max-width: 600px) {
             .hero-content-wrapper {
