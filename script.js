@@ -822,6 +822,13 @@ function initNavigation() {
     const navLinks = document.querySelectorAll('.nav-link');
     const navbar = document.querySelector('.navbar');
 
+    function closeNavigationUI() {
+        if (navMenu) navMenu.classList.remove('active');
+        if (hamburger) hamburger.classList.remove('active');
+        if (navMenuOverlay) navMenuOverlay.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+
     // Enhanced hamburger menu toggle with overlay
     function toggleMobileMenu() {
         if (!navMenu || !hamburger || !navMenuOverlay) return;
@@ -1011,8 +1018,7 @@ function initNavigation() {
         e.preventDefault();
         
         // Close mobile menu if open
-        navMenu.classList.remove('active');
-        hamburger.classList.remove('active');
+        closeNavigationUI();
         
         // Get hero section
         const heroSection = document.querySelector('#hero');
@@ -1071,8 +1077,7 @@ function initNavigation() {
                 e.preventDefault();
                 
                 // Close mobile menu if open
-                navMenu.classList.remove('active');
-                hamburger.classList.remove('active');
+                closeNavigationUI();
                 
                 const targetSection = document.querySelector(targetId);
                 if (targetSection) {
