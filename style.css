@@ -569,7 +569,7 @@ a:where(:not(.cta-button, .nav-link, .nav-brand-link, .nav-dropdown-toggle)):foc
     opacity: 0.7;
     filter: brightness(0.6) contrast(1.1);
     transform: none !important;
-    background-attachment: scroll;
+    background-attachment: fixed;
     background-position: top center !important;
     background-size: cover !important;
 }
@@ -4798,6 +4798,7 @@ section::before {
     .parallax-bg-far {
         display: block;
         background-image: url('./images/website-hero-mobile.webp?v=20260529sharp');
+        background-attachment: scroll;
         background-position: center center !important;
         opacity: 0.70;
         filter: brightness(0.6) contrast(1.1);
