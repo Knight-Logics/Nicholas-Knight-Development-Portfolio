@@ -846,11 +846,19 @@
             margin-bottom: 0.28rem;
         }
         .pricing-card-price {
-            font-size: 1.55rem;
+            display: inline-flex;
+            align-items: baseline;
+            gap: 0.32rem;
+            padding: 0.4rem 0.72rem;
+            border: 1px solid rgba(100,255,218,0.18);
+            border-radius: 999px;
+            background: rgba(100,255,218,0.08);
+            font-size: 1rem;
             font-weight: 700;
-            color: #64ffda;
-            margin: 0 0 0.65rem;
-            line-height: 1.15;
+            letter-spacing: 0.01em;
+            color: #e6fff7;
+            margin: 0 0 0.8rem;
+            line-height: 1.24;
         }
         .pricing-card-desc {
             font-size: 0.87rem;
@@ -1546,7 +1554,7 @@
                 <a href="#search-addons" class="pricing-nav-pill">Search &amp; SEO</a>
             </nav>
             <nav class="pricing-nav-pills" aria-label="Related pricing pages">
-                <a href="/service-websites" class="pricing-nav-pill">Website Service Details</a>
+                <a href="/service-websites#pricing" class="pricing-nav-pill">Website Service Details</a>
                 <a href="/service-local-seo" class="pricing-nav-pill">Local SEO Services</a>
                 <a href="/service-google-business-profile" class="pricing-nav-pill">GBP Optimization</a>
                 <a href="/service-ecommerce" class="pricing-nav-pill">E-Commerce Systems</a>
@@ -2199,7 +2207,7 @@
             <p>Get a free 24-hour audit — top 3 website, GBP, or local SEO fixes with a practical next step. No commitment.</p>
             <div class="btn-row">
                 <a href="/free-website-audit" class="cta-button primary">Get Free 24-Hour Audit</a>
-                <a href="/service-websites" class="cta-button secondary">See Website Services</a>
+                <a href="/service-websites#website-proof" class="cta-button secondary">See Website Services</a>
             </div>
         </div>
     </div>
@@ -2875,28 +2883,6 @@
         })();
     </script>
     -->
-    <script>
-        (function () {
-            function addPricePrefixes() {
-                document.querySelectorAll('.pricing-card-price').forEach(function (price) {
-                    if (price.querySelector('.pricing-card-price-prefix')) {
-                        return;
-                    }
-
-                    var prefix = document.createElement('span');
-                    prefix.className = 'pricing-card-price-prefix';
-                    prefix.textContent = 'Price';
-                    price.insertBefore(prefix, price.firstChild);
-                });
-            }
-
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', addPricePrefixes);
-            } else {
-                addPricePrefixes();
-            }
-        })();
-    </script>
     <script src="/script.min.js?v=20260512c"></script>
 </body>
 </html>

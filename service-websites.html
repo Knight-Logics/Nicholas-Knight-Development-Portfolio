@@ -238,10 +238,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         .page-service-websites .svc-pricing-price {
-            font-size: clamp(1.6rem, 2.5vw, 2rem);
+            display: inline-flex;
+            align-items: baseline;
+            gap: 0.34rem;
+            padding: 0.42rem 0.78rem;
+            border: 1px solid rgba(100, 255, 218, 0.18);
+            border-radius: 999px;
+            background: rgba(100, 255, 218, 0.08);
+            font-size: clamp(1rem, 1.6vw, 1.16rem);
             font-weight: 700;
-            line-height: 1.08;
-            margin-bottom: 12px;
+            letter-spacing: 0.01em;
+            line-height: 1.24;
+            color: #e6fff7;
+            margin-bottom: 14px;
         }
 
         .page-service-websites .svc-pricing-price-prefix {
@@ -252,6 +261,11 @@
             text-transform: uppercase;
             color: rgba(100, 255, 218, 0.78);
             margin-bottom: 6px;
+        }
+
+        .page-service-websites .svc-pricing-price-note {
+            font-size: 0.92em;
+            color: rgba(230, 255, 247, 0.82);
         }
     </style>
 
@@ -1237,7 +1251,7 @@
                 <p>Start with the page that best matches your situation if you are comparing providers, planning a rebuild, or fixing local visibility.</p>
             </div>
             <div class="svc-cta-row fade-in" style="justify-content:center; flex-wrap:wrap; gap:14px;">
-                <a href="/free-website-audit" class="btn-secondary" aria-label="Request your free website audit">Free Website Audit</a>
+                <a href="/free-website-audit?source=service-websites-local-landing" class="btn-secondary" aria-label="Request your free website audit">Free Website Audit</a>
                 <a href="/home-service-websites" class="btn-secondary">Home Service Websites</a>
                 <a href="/web-designer-safety-harbor" class="btn-secondary">Safety Harbor</a>
                 <a href="/web-designer-clearwater" class="btn-secondary">Clearwater</a>
@@ -1285,28 +1299,6 @@
         <a href="/disclaimer">Disclaimer</a>
     </nav>
 </div>
-    <script>
-        (function () {
-            function addPricePrefixes() {
-                document.querySelectorAll('.svc-pricing-price').forEach(function (price) {
-                    if (price.querySelector('.svc-pricing-price-prefix')) {
-                        return;
-                    }
-
-                    var prefix = document.createElement('span');
-                    prefix.className = 'svc-pricing-price-prefix';
-                    prefix.textContent = 'Price';
-                    price.insertBefore(prefix, price.firstChild);
-                });
-            }
-
-            if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', addPricePrefixes);
-            } else {
-                addPricePrefixes();
-            }
-        })();
-    </script>
 </body>
 </html>
 
