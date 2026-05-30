@@ -254,10 +254,20 @@ function initLayeredParallax() {
     // Check if user navigated to a specific section (has hash in URL)
     const hasHash = window.location.hash && window.location.hash.length > 1;
 
-    // Note: prefers-reduced-motion is intentionally NOT checked here.
-    // This landing animation is a core brand experience and must always play.
-    // OS-level motion settings (Windows/macOS) should not suppress it.
-    
+    // Respect reduced-motion preference: skip scroll lock + hide door layers,
+    // but leave the hero background visible so the page scrolls normally.
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) {
+        isInLandingMode = false;
+        unlockLandingScroll();
+        if (codeForest) { codeForest.style.display = 'none'; codeForest.style.opacity = '0'; }
+        if (grungeLayer) { grungeLayer.style.display = 'none'; grungeLayer.style.opacity = '0'; }
+        if (scrollIndicator) { scrollIndicator.style.display = 'none'; }
+        applyStaticHeroLayout();
+        exitLandingMode = null;
+        return;
+    }
+
     let scrollActionCount = 0;
     let lastScrollY = 0;
     let lastScrollPosition = 0; // Track scroll position for re-entry detection
