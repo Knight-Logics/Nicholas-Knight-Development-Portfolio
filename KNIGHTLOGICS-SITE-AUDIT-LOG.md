@@ -22,10 +22,14 @@ It tracks the main site source of truth, the work completed, what was audited an
 - The hero image confusion on 2026-05-29 was not a second live repo. Production already had the new image bytes, but the homepage still referenced the older cache-busting query string until it was bumped.
 - The decisive runtime root cause was CSS cascade plus cache-version drift: `index.html` had newer inline hero URLs, but the later-loaded `style.css` still set `.parallax-bg-far` to `websitehero.webp?v=20260529sharp`, so the browser kept rendering the old hero URL even after the new image bytes were deployed.
 - The fix path is to treat hero cache busting as one change set: update the hero URLs in `index.html`, `style.css`, `style.min.css`, and any direct page-level `websitehero` preload/background references, then bump the stylesheet query strings on the pages that load those stylesheets.
-- Current unified hero cache version: `20260529hero2`.
+- Current active homepage performance/door cache version: `20260530perf1`.
+- Current mobile hero image cache version: `20260530hero1`.
+- Current verified production commit: `48e29fc fix: optimize landing hero performance`.
+- The homepage door/parallax asset `images/CircuitBrush3.webp` was optimized from about `1,035,520` bytes to `144,696` bytes while preserving alpha. The mobile/tablet path uses `images/CircuitBrush3-mobile.webp`.
+- Live post-deploy Lighthouse mobile baseline: performance `91`, accessibility `100`, best practices `100`, SEO `100`, FCP `1.5s`, LCP `3.5s`, TBT `0ms`, CLS `0.036`, image-delivery savings `0 bytes`.
 - For live freshness checks, compare the actual live asset size or headers and the query strings in the loaded DOM before assuming deployment drift.
 - For hero incidents specifically, do not stop at checking the image file bytes. Validate the computed `background-image` value of `.parallax-bg-far` or the page-specific hero container on the rendered page.
-- The next full re-scan should happen only after the live homepage clearly reflects the latest pushed hero query string and assets.
+- The live homepage has been verified serving the latest pushed `20260530perf1` query strings and optimized asset bytes.
 
 ## Hero Runtime Playbook
 
@@ -37,12 +41,13 @@ Use this exact sequence whenever the homepage hero or shared hero backgrounds ar
   - shared hero rules in `style.css`
   - shared hero rules in `style.min.css`
   - any direct page-level preloads or background URLs that still point at `websitehero.webp`
-3. Bump the stylesheet query strings for the pages that load the changed CSS files so browsers request the new stylesheet.
+3. Bump the stylesheet and script query strings for the pages that load the changed CSS or JS files so browsers request the new files.
 4. Validate locally by checking computed CSS, not just file contents.
-5. Push from `E:\KnightLogics-Growth-System\MainSite` on `main`.
-6. Validate live by checking the computed `background-image` URL on the rendered page with a cache-busting page URL.
+5. For landing scroll changes, verify mouse-wheel exit behavior at mobile-width desktop viewports and normal desktop widths.
+6. Push from `E:\KnightLogics-Growth-System\MainSite` on `main`.
+7. Validate live by checking the computed `background-image` URL on the rendered page with a cache-busting page URL.
 
-If step 6 still shows the old query string, the problem is runtime CSS selection or stale stylesheet delivery, not missing image bytes.
+If step 7 still shows the old query string, the problem is runtime CSS selection or stale stylesheet delivery, not missing image bytes.
 
 ## Knight Logics Off-Site Authority Status
 
@@ -96,6 +101,14 @@ Use this section to avoid redoing listings that are already live, and to keep a 
 3. Verify or create the remaining high-trust entity profiles next: `BBB`, `Bing Places`, and `DesignRush`.
 4. Convert submitted-only directory items into verified live listings, then finish account-completion blockers: `ChamberofCommerce.com`, `Hotfrog`, `Foursquare`, `EZlocal`, and logged-in `Alignable` optimization.
 
+### 2026-05-30 Recrawl Check After The Raw-HTML Link Expansion
+
+- GSC Performance was refreshed recently enough to confirm demand, but not impact from the newest crawl-fallback deploy: last update `3.5 hours ago`, `43` clicks, `7.97K` impressions, `0.5%` CTR, average position `53.8`, with the top live query cluster still concentrated on St. Petersburg web-design intent.
+- GSC Links still looks stale relative to the current codebase: external links total `4` (`github.com` `3`, `x.com` `1`), internal links total `42`, and `/projects` still appears with `16` internal links even though a direct code scan of current `MainSite` `.html` and `.js` files returned `NO_MATCHES` for literal `/projects`.
+- GSC Pages is also too stale to judge the newest internal-link rollout yet: last update `5/24/26`, `33` indexed, `32` not indexed, and `21` pages still `Crawled - currently not indexed`.
+- Semrush could not provide a trustworthy post-deploy movement check on 2026-05-30. The account hit the current free limit, Domain Overview and Backlinks degraded behind `Limits exceeded`, and Organic Positions returned placeholder `ebay.com` rows instead of valid Knight Logics rankings.
+- Working conclusion: treat the latest crawl-fallback deployment as live but not yet reprocessed by Google/Semrush enough to measure. Use GSC demand data plus the standing authority plan to drive the next sprint rather than waiting on another stale report refresh.
+
 ## Completed Work
 
 ### Repo-Level And Site Foundation Work Already Completed
@@ -124,6 +137,12 @@ Use this section to avoid redoing listings that are already live, and to keep a 
 - Bumped the homepage stylesheet cache version to help the latest CSS break stale browser caches after publish refresh.
 - Confirmed locally that the homepage now computes `.parallax-bg-far` from `websitehero.webp?v=20260529hero2` after the cascade fix, rather than the stale `20260529sharp` URL.
 - Unified the active hero cache version across `index.html`, `style.css`, `style.min.css`, and direct page-level `websitehero` preload/background references.
+- Fixed the small desktop-width mouse-wheel scroll path so the landing hero/parallax sequence exits correctly at mobile-sized desktop viewports.
+- Optimized `images/CircuitBrush3.webp` from about `1,035,520` bytes to `144,696` bytes while preserving transparency.
+- Added the mobile/tablet door asset `images/CircuitBrush3-mobile.webp` and aligned `index.html` plus `style.css` so small and tablet-width viewports do not pull the heavy desktop door asset.
+- Deferred GA and Clarity auto-loads so Lighthouse and first paint are not dominated by third-party analytics, while real user interaction still loads tracking.
+- Added reduced-motion handling so reduced-motion users and Lighthouse audits do not enter the landing parallax lock.
+- Verified the deployed live site after Vercel served commit `48e29fc`: `412px` viewport loads the mobile door and exits on wheel scroll, desktop loads the optimized desktop door, and live Lighthouse mobile reports performance `91`.
 
 ## Commit Log For The Homepage Hero Work
 
@@ -137,6 +156,7 @@ Historical note: one older commit message used `pages rebuild`, but the current 
 - `b64c74a` - regenerate sharper HD hero source
 - `0fa1381` - ultrawide hero sizing fix
 - `62f62c3` - restore CircuitBrush3 parallax and serve sharper HD hero on large screens
+- `48e29fc` - optimize landing hero performance, door assets, analytics timing, and reduced-motion behavior
 
 ## What Was Audited And Validated
 
@@ -153,7 +173,7 @@ Historical note: one older commit message used `pages rebuild`, but the current 
 - Asset inspection and comparison for `websitehero.webp`, `websitehero-hd.webp`, and `websitehero-uw.webp`.
 - Verification that the homepage now resolves to the HD hero asset on the ultrawide breakpoint locally.
 - HTML/CSS problem checks on the touched homepage files, which came back clean.
-- Git verification that local HEAD and `origin/main` match at `c8666a1`.
+- Git verification that local HEAD and `origin/main` match at `48e29fc` after the performance push.
 
 ### Root Cause Fixes Confirmed
 
@@ -177,16 +197,16 @@ Historical note: one older commit message used `pages rebuild`, but the current 
 
 ### Important Audit Limitation Right Now
 
-- A fresh post-push full re-scan has not yet been completed for `c8666a1`.
-- The blocking reason is deployment freshness: the pushed commit is confirmed on `origin/main`, but the public homepage check still appeared stale when last verified.
+- The homepage was rechecked live after `48e29fc` with Playwright and Lighthouse, but a full multi-page QA/audit sweep has not yet been rerun after that performance commit.
+- The next broad sweep should focus on top money pages and conversion paths, not on reopening the now-resolved stale-hero deployment question.
 
 ## Open Items
 
 ### Immediate
 
-- Confirm the live site is serving the `c8666a1` homepage version.
-- If the live site is still stale, trigger another publish refresh and recheck with cache-busting.
-- Once the live homepage is current, run a fresh post-deploy audit pass.
+- Keep the documentation consolidation current by using `E:\KnightLogics-Growth-System\WORKSPACE-OPERATING-MANUAL.md` and `E:\KnightLogics-Growth-System\WORKSPACE-DOCUMENTATION-INDEX.md` before adding more standalone `.md` strategy files.
+- Re-run a full post-deploy QA/audit pass after any new homepage hero, parallax, pricing, checkout, or conversion-path change.
+- Treat the next site sprint as growth/conversion work unless a fresh audit finds a real technical regression.
 
 ### Site Work Still Pending From The Standing SEO / Growth Plan
 
@@ -270,11 +290,11 @@ Historical note: one older commit message used `pages rebuild`, but the current 
 
 ## Recommended Next Re-Scan Sequence
 
-Run this only after the live homepage clearly reflects `c8666a1`:
+Run this after meaningful homepage, pricing, checkout, service-page, or conversion-path changes:
 
 1. Homepage live-source freshness check with cache-busting.
-2. Homepage WAVE rerun.
-3. Homepage PageSpeed / Lighthouse rerun.
+2. Homepage WAVE rerun when markup/accessibility changes are included.
+3. Homepage PageSpeed / Lighthouse rerun when performance, visual, or script behavior changes are included.
 4. Spot-check top money pages:
    - `service-websites`
    - `service-local-seo`
