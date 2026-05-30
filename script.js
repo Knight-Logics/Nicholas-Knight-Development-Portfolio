@@ -1092,8 +1092,8 @@ function initNavigation() {
     });
 
     // Home navigation handlers - trigger landing mode
-    const homeNavLink = document.getElementById('nav-home');
     const logoHomeLink = document.getElementById('logo-home');
+    const mobileLogoHomeLink = document.getElementById('mobile-logo-home');
     
     function triggerLandingMode(e) {
         e.preventDefault();
@@ -1146,13 +1146,9 @@ function initNavigation() {
         console.log('Manually entered landing mode');
     }
     
-    if (homeNavLink) {
-        homeNavLink.addEventListener('click', triggerLandingMode);
-    }
-    
-    if (logoHomeLink) {
-        logoHomeLink.addEventListener('click', triggerLandingMode);
-    }
+    [logoHomeLink, mobileLogoHomeLink].filter(Boolean).forEach((link) => {
+        link.addEventListener('click', triggerLandingMode);
+    });
 
     // CTA button handlers - exit landing mode and navigate
     const ctaButtons = document.querySelectorAll('.cta-button');
@@ -2542,24 +2538,39 @@ window.portfolioFunctions = {
 
 function copyEmail(chip) {
     const email = chip.querySelector('.chip-email-addr').textContent.trim();
+    const hint = chip.querySelector('.chip-copy-hint');
+    const originalHint = hint ? (hint.dataset.originalHtml || hint.innerHTML) : '';
+
+    if (hint && !hint.dataset.originalHtml) {
+        hint.dataset.originalHtml = originalHint;
+    }
+
     navigator.clipboard.writeText(email).then(() => {
-        const hint = chip.querySelector('.chip-copy-hint');
-        hint.innerHTML = '<i class="fas fa-check"></i>';
+        if (!hint) {
+            return;
+        }
+
+        hint.textContent = 'Copied';
         hint.classList.add('copied');
         setTimeout(() => {
-            hint.innerHTML = '<i class="fas fa-copy"></i>';
+            hint.innerHTML = originalHint;
             hint.classList.remove('copied');
         }, 2000);
     });
 }
 
+function closePhoneMenus() {
+    document.querySelectorAll('.contact-chip-phone.open').forEach(chip => {
+        chip.classList.remove('open');
+        chip.setAttribute('aria-expanded', 'false');
+    });
+}
+
 function togglePhoneMenu(chip) {
     const isOpen = chip.classList.contains('open');
-    // close any other open phone chips
-    document.querySelectorAll('.contact-chip-phone.open').forEach(c => {
-        c.classList.remove('open');
-        c.setAttribute('aria-expanded', 'false');
-    });
+
+    closePhoneMenus();
+
     if (!isOpen) {
         chip.classList.add('open');
         chip.setAttribute('aria-expanded', 'true');
@@ -2567,21 +2578,92 @@ function togglePhoneMenu(chip) {
 }
 
 function openMapModal() {
-    document.getElementById('mapModal').classList.add('open');
+    const modal = document.getElementById('mapModal');
+    if (!modal) {
+        return;
+    }
+
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+
+    const dialog = modal.querySelector('.chip-map-inner');
+    if (dialog) {
+        dialog.focus();
+    }
 }
 
 function closeMapModal(e) {
-    if (e.target === e.currentTarget || e.currentTarget.classList.contains('chip-map-close')) {
-        document.getElementById('mapModal').classList.remove('open');
+    const modal = document.getElementById('mapModal');
+    if (!modal) {
+        return;
+    }
+
+    const shouldClose = !e
+        || e.target === e.currentTarget
+        || (e.currentTarget && e.currentTarget.classList.contains('chip-map-close'));
+
+    if (shouldClose) {
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
     }
 }
 
+document.querySelectorAll('.work-read-more').forEach(button => {
+    button.addEventListener('click', () => toggleWorkContent(button));
+});
+
+const contactEmailChip = document.getElementById('contactEmailChip');
+if (contactEmailChip) {
+    contactEmailChip.addEventListener('click', () => copyEmail(contactEmailChip));
+}
+
+const contactPhoneChip = document.getElementById('contactPhoneChip');
+if (contactPhoneChip) {
+    contactPhoneChip.addEventListener('click', () => togglePhoneMenu(contactPhoneChip));
+    contactPhoneChip.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            togglePhoneMenu(contactPhoneChip);
+        }
+    });
+
+    contactPhoneChip.querySelectorAll('.chip-phone-menu a').forEach(link => {
+        link.addEventListener('click', (event) => {
+            event.stopPropagation();
+        });
+    });
+}
+
+const serviceAreaChip = document.getElementById('serviceAreaChip');
+if (serviceAreaChip) {
+    serviceAreaChip.addEventListener('click', openMapModal);
+}
+
+const mapModal = document.getElementById('mapModal');
+if (mapModal) {
+    mapModal.addEventListener('click', closeMapModal);
+}
+
+document.querySelectorAll('.chip-map-close').forEach(button => {
+    button.addEventListener('click', closeMapModal);
+});
+
 // Close phone menu when clicking outside
 document.addEventListener('click', function(e) {
     if (!e.target.closest('.contact-chip-phone')) {
-        document.querySelectorAll('.contact-chip-phone.open').forEach(c => c.classList.remove('open'));
+        closePhoneMenus();
+    }
+});
+
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        closePhoneMenus();
+
+        if (mapModal && mapModal.classList.contains('open')) {
+            closeMapModal();
+        }
     }
 });
 

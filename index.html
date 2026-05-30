@@ -2407,7 +2407,7 @@
                         <div class="work-content">
                             <p class="work-preview">Automatically trims clip endings, adds intro + music, and compiles a YouTube-ready video using FFmpeg.</p>
                             <p class="work-full" style="display: none;">Open-source Windows app for gamers/streamers: select a folder of short clips, extract the last 5&ndash;30 seconds from each, prepend an intro, overlay background music, and export one seamless highlight compilation ready for upload. Ships as a standalone .exe with bundled FFmpeg and sample assets. Note: the .exe must run with the included folders (FFmpeg, intros, music, icons) in the same directory.</p>
-                            <button class="work-read-more" onclick="toggleWorkContent(this)">Read More</button>
+                            <button class="work-read-more">Read More</button>
                         </div>
                         <div class="tech-stack">
                             <span>Python</span>
@@ -2432,7 +2432,7 @@
                         <div class="work-content">
                             <p class="work-preview">ManCaves.Store - Custom-coded e-commerce solution replacing Shopify for cost efficiency...</p>
                             <p class="work-full" style="display: none;">ManCaves.Store - Custom-coded e-commerce solution replacing Shopify for cost efficiency and flexibility. Features dynamic inventory management, Firebase authentication, Snipcart integration, and automated product data parsing with Python/Selenium.</p>
-                            <button class="work-read-more" onclick="toggleWorkContent(this)">Read More</button>
+                            <button class="work-read-more">Read More</button>
                         </div>
                         <div class="tech-stack">
                             <span>JavaScript</span>
@@ -2454,7 +2454,7 @@
                         <div class="work-content">
                             <p class="work-preview">Knight Group LLC - Family handyman business with complete digital infrastructure...</p>
                             <p class="work-full" style="display: none;">Knight Group LLC - Family handyman business I own and run, created for my brother to operate while I handle all electronic aspects. Complete digital infrastructure including website development, Google Business optimization, rich text indexing, PageSpeed Insights improvements, automated booking systems, and targeted ad campaigns.</p>
-                            <button class="work-read-more" onclick="toggleWorkContent(this)">Read More</button>
+                            <button class="work-read-more">Read More</button>
                         </div>
                         <div class="tech-stack">
                             <span>Google Analytics</span>
@@ -2475,7 +2475,7 @@
                         <div class="work-content">
                             <p class="work-preview">Windows background utility that monitors idle time and launches a burn-in-safe overlay/screen saver with tray controls.</p>
                             <p class="work-full" style="display: none;">Windows-only, customizable screen saver for OLED/LED panels. Monitors keyboard/mouse idle time, then launches a configurable overlay to mitigate burn-in (dimming/shifting/overlays). Runs from the system tray, supports auto-updates, and stores settings in config.json with logging for troubleshooting. Ships as a lightweight single-file GUI build with installer scripts.</p>
-                            <button class="work-read-more" onclick="toggleWorkContent(this)">Read More</button>
+                            <button class="work-read-more">Read More</button>
                         </div>
                         <div class="tech-stack">
                             <span>Python</span>
@@ -2589,7 +2589,7 @@
                 <!-- 4-column quick-info strip -->
                 <div class="contact-info-strip">
                     <!-- Email chip: copy to clipboard -->
-                    <button type="button" class="contact-info-chip contact-chip-interactive" onclick="copyEmail(this)" title="Click to copy email" aria-label="Copy support@knightlogics.com to clipboard" style="width:100%;text-align:left;font:inherit;appearance:none;-webkit-appearance:none;">
+                    <button type="button" class="contact-info-chip contact-chip-interactive" id="contactEmailChip" title="Click to copy email" aria-label="Copy support@knightlogics.com to clipboard" style="width:100%;text-align:left;font:inherit;appearance:none;-webkit-appearance:none;">
                         <svg class="fi" aria-hidden="true"><use href="#fi-copy"/></svg>
                         <span style="display:flex;flex-direction:column;gap:3px;">
                             <strong>Email</strong>
@@ -2598,20 +2598,20 @@
                         <span class="chip-copy-hint"><svg class="fi" aria-hidden="true"><use href="#fi-copy"/></svg></span>
                     </button>
                     <!-- Phone chip: call / text dropdown -->
-                    <div class="contact-info-chip contact-chip-interactive contact-chip-phone" role="button" onclick="togglePhoneMenu(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();togglePhoneMenu(this);}" aria-haspopup="true" aria-expanded="false" tabindex="0" title="Call or text us">
+                    <div class="contact-info-chip contact-chip-interactive contact-chip-phone" id="contactPhoneChip" role="button" aria-haspopup="true" aria-expanded="false" tabindex="0" title="Call or text us">
                         <svg class="fi" aria-hidden="true"><use href="#fi-phone"/></svg>
                         <div>
                             <strong>Phone / Text</strong>
                             <span>(813) 773-5553</span>
                         </div>
                         <svg class="fi chip-chevron" aria-hidden="true"><use href="#fi-chevron-down"/></svg>
-                        <div class="chip-phone-menu">
-                            <a href="tel:+18137735553" onclick="event.stopPropagation()"><svg class="fi" aria-hidden="true"><use href="#fi-phone"/></svg> Call</a>
-                            <a href="sms:+18137735553" onclick="event.stopPropagation()"><svg class="fi" aria-hidden="true"><use href="#fi-comment-sms"/></svg> Text</a>
+                        <div class="chip-phone-menu" id="contactPhoneMenu">
+                            <a href="tel:+18137735553"><svg class="fi" aria-hidden="true"><use href="#fi-phone"/></svg> Call</a>
+                            <a href="sms:+18137735553"><svg class="fi" aria-hidden="true"><use href="#fi-comment-sms"/></svg> Text</a>
                         </div>
                     </div>
                     <!-- Service Area chip: opens map modal -->
-                    <button type="button" class="contact-info-chip contact-chip-interactive" onclick="openMapModal()" title="View service area map" aria-label="Open the Knight Logics service area map" aria-haspopup="dialog" aria-controls="mapModal" style="width:100%;text-align:left;font:inherit;appearance:none;-webkit-appearance:none;">
+                    <button type="button" class="contact-info-chip contact-chip-interactive" id="serviceAreaChip" title="View service area map" aria-label="Open the Knight Logics service area map" aria-haspopup="dialog" aria-controls="mapModal" style="width:100%;text-align:left;font:inherit;appearance:none;-webkit-appearance:none;">
                         <svg class="fi" aria-hidden="true"><use href="#fi-map-location-dot"/></svg>
                         <span style="display:flex;flex-direction:column;gap:3px;">
                             <strong>Service Area</strong>
@@ -2629,9 +2629,9 @@
                 </div>
 
                 <!-- Map Modal -->
-                <div id="mapModal" class="chip-map-modal" onclick="closeMapModal(event)" onkeydown="if(event.key==='Escape'){event.preventDefault();closeMapModal(event);}" aria-hidden="true">
+                <div id="mapModal" class="chip-map-modal" aria-hidden="true">
                     <div class="chip-map-inner" role="dialog" aria-modal="true" aria-label="Service area map" tabindex="-1">
-                        <button class="chip-map-close" onclick="closeMapModal(event)" aria-label="Close service area map">&times;</button>
+                        <button type="button" class="chip-map-close" aria-label="Close service area map">&times;</button>
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d901796.8024175643!2d-82.53818595!3d28.00479355!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x67445fbcc25df4ab%3A0x48644c12a6309a67!2sKnight%20Logics!5e0!3m2!1sen!2sus!4v1775166692857!5m2!1sen!2sus" height="400" style="border:0;border-radius:8px;width:100%;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
                 </div>
@@ -4033,7 +4033,7 @@
         }());
     </script>
     <script src="attribution.js" defer></script>
-    <script src="script.js?v=20260530landing5" defer></script>
+    <script src="script.js?v=20260530landing6" defer></script>
     <script>
         // Google Ads conversion tracking  hero consultation form
         (function() {
