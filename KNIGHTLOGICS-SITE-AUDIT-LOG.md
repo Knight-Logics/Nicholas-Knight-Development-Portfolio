@@ -12,13 +12,13 @@ It tracks the main site source of truth, the work completed, what was audited an
 - Canonical site folder: `E:\KnightLogics-Growth-System\MainSite`
 - Canonical workspace: `E:\KnightLogics-Growth-System`
 - Authoritative git worktree for edits and pushes: `E:\KnightLogics-Growth-System\MainSite` on branch `main`
-- Detached validation snapshot: `E:\KnightLogics-Growth-System\_mainsite_deploy_20260529b` at older commit `5ead838`; not authoritative and not the production trigger
 - Live production host: Vercel project `knight-logics-checkout`
 - Production trigger: push `origin/main` from `E:\KnightLogics-Growth-System\MainSite`
+- Removed confusion source on 2026-05-30: stale local worktree `E:\KnightLogics-Growth-System\_mainsite_deploy_20260529b` and stale Vercel project `_mainsite_deploy_20260529b` were removed. A pre-removal patch is archived at `E:\KnightLogics-Growth-System\_mainsite_deploy_20260529b_dirty_before_removal.patch`.
 
 ## Current Snapshot
 
-- `MainSite` is the source-of-truth worktree. `_mainsite_deploy_20260529b` is a stale detached snapshot and should not be used as evidence that production missed a push.
+- `MainSite` is the source-of-truth worktree. There is no longer a second KnightLogics.com Vercel project or detached validation worktree to compare against.
 - The hero image confusion on 2026-05-29 was not a second live repo. Production already had the new image bytes, but the homepage still referenced the older cache-busting query string until it was bumped.
 - The decisive runtime root cause was CSS cascade plus cache-version drift: `index.html` had newer inline hero URLs, but the later-loaded `style.css` still set `.parallax-bg-far` to `websitehero.webp?v=20260529sharp`, so the browser kept rendering the old hero URL even after the new image bytes were deployed.
 - The fix path is to treat hero cache busting as one change set: update the hero URLs in `index.html`, `style.css`, `style.min.css`, and any direct page-level `websitehero` preload/background references, then bump the stylesheet query strings on the pages that load those stylesheets.

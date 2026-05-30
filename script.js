@@ -51,6 +51,10 @@ function scheduleNonCriticalInit(fn, delay = 0) {
     }
 }
 
+function setLandingViewportHeight() {
+    document.documentElement.style.setProperty('--landing-viewport-height', `${window.innerHeight}px`);
+}
+
 function resolveAnchorHash(href) {
     if (!href || href === '#') return null;
 
@@ -169,6 +173,13 @@ async function loadHeaderFooter() {
 
 // Load header and footer on page load, then initialize everything
 document.addEventListener('DOMContentLoaded', function() {
+    setLandingViewportHeight();
+    window.addEventListener('resize', setLandingViewportHeight, { passive: true });
+    window.addEventListener('orientationchange', setLandingViewportHeight);
+    if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', setLandingViewportHeight, { passive: true });
+    }
+
     initAnchorNavigation();
 
     // Fetch header/footer in parallel — initNavigation runs when ready, doesn't block paint
@@ -239,17 +250,12 @@ function initLayeredParallax() {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (isMobile && prefersReducedMotion) {
         isInLandingMode = false;
-        document.body.classList.remove('landing-mode');
-        document.body.style.overflow = '';
-        document.body.style.position = '';
-        document.body.style.width = '';
-        document.body.style.height = '';
-        document.body.style.top = '';
-        document.body.style.left = '';
+        unlockLandingScroll();
 
         if (heroSection) {
             heroSection.style.display = 'block';
             heroSection.style.opacity = '1';
+            heroSection.style.pointerEvents = 'auto';
         }
 
         if (scrollIndicator) {
@@ -268,15 +274,33 @@ function initLayeredParallax() {
     let isScrollbarScrolling = false;
     const maxLandingScrolls = 3; // Stay on landing screen for 3 scroll actions
 
+    function lockLandingScroll() {
+        document.body.classList.add('landing-mode');
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
+        document.body.style.height = '';
+        document.body.style.top = '';
+        document.body.style.left = '';
+    }
+
+    function unlockLandingScroll() {
+        document.body.classList.remove('landing-mode');
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
+        document.body.style.height = '';
+        document.body.style.top = '';
+        document.body.style.left = '';
+    }
+
     function getForestBaseScale() {
         const viewportWidth = window.innerWidth;
         const viewportHeight = window.innerHeight;
 
-        if (viewportWidth >= 1400 && viewportHeight <= 900) return 1.10;
-        if (viewportWidth >= 1200) return 1.06;
-        if (viewportWidth >= 1025) return 1.02;
-        if (viewportWidth >= 768) return 0.99;
-        return 0.96;
+        if (viewportWidth <= 480) return 1.12;
+        if (viewportWidth >= 1400 && viewportHeight <= 900) return 1.12;
+        return 1.10;
     }
 
     codeForest.style.setProperty('transform', `translate3d(0, 0, 0) scale(${getForestBaseScale()})`, 'important');
@@ -305,7 +329,9 @@ function initLayeredParallax() {
         landingLog('📱 Touch move detected, isInLandingMode:', isInLandingMode);
         if (!isInLandingMode) return;
         
-        e.preventDefault();
+        if (e.deltaY < 0 && e.cancelable) {
+            e.preventDefault();
+        }
         e.stopPropagation();
         const touchY = e.touches[0].clientY;
         const deltaY = touchStartY - touchY;
@@ -348,8 +374,6 @@ function initLayeredParallax() {
             }
             return;
         }
-        
-        e.preventDefault();
         
         // Count scroll actions (wheel events)
         if (e.deltaY > 0) { // Scrolling down
@@ -450,8 +474,8 @@ function initLayeredParallax() {
             
             setTimeout(() => {
                 heroSection.style.display = 'none';
-                document.body.classList.remove('landing-mode');
-                document.body.style.overflow = 'auto';
+                heroSection.style.pointerEvents = 'none';
+                unlockLandingScroll();
                 
                 // Remove the hero spacer margin so no black gap remains
                 const heroNextSection = document.querySelector('.hero + section');
@@ -460,11 +484,13 @@ function initLayeredParallax() {
                 // Scroll to About section (first after hero) with proper positioning
                 const aboutSection = document.querySelector('.about') || document.querySelector('#about');
                 if (aboutSection) {
-                    const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 80;
-                    const offsetTop = aboutSection.offsetTop - navbarHeight + 30;
-                    window.scrollTo({
-                        top: Math.max(0, offsetTop),
-                        behavior: 'smooth'
+                    requestAnimationFrame(() => {
+                        const navbarHeight = document.querySelector('.navbar')?.offsetHeight || 80;
+                        const offsetTop = aboutSection.offsetTop - navbarHeight + 30;
+                        window.scrollTo({
+                            top: Math.max(0, offsetTop),
+                            behavior: 'smooth'
+                        });
                     });
                 }
                 
@@ -495,17 +521,20 @@ function initLayeredParallax() {
                     
                     setTimeout(() => {
                         heroSection.style.display = 'none';
-                        document.body.style.overflow = 'auto';
+                        heroSection.style.pointerEvents = 'none';
+                        unlockLandingScroll();
                         
                         // Scroll to the hash target instead of about section
                         const targetSection = document.querySelector(window.location.hash);
                         if (targetSection) {
-                            const offsetTop = targetSection.offsetTop - 100;
-                            window.scrollTo({
-                                top: offsetTop,
-                                behavior: 'smooth'
+                            requestAnimationFrame(() => {
+                                const offsetTop = targetSection.offsetTop - 100;
+                                window.scrollTo({
+                                    top: offsetTop,
+                                    behavior: 'smooth'
+                                });
+                                landingLog('Scrolled to hash target:', window.location.hash);
                             });
-                            landingLog('Scrolled to hash target:', window.location.hash);
                         }
                     }, 800);
                 }
@@ -549,10 +578,10 @@ function initLayeredParallax() {
         
         if (heroSection) {
             heroSection.style.display = 'flex';
+            heroSection.style.pointerEvents = 'auto';
             heroSection.style.opacity = '1';
             heroSection.style.transition = 'opacity 0.5s ease-in';
-            document.body.classList.add('landing-mode');
-            document.body.style.overflow = 'hidden';
+            lockLandingScroll();
             
             // Restore the hero spacer margin when re-entering landing mode
             const heroNextSection = document.querySelector('.hero + section');
@@ -577,43 +606,30 @@ function initLayeredParallax() {
         
         const currentScrollTop = window.pageYOffset || document.documentElement.scrollTop;
         const scrollDelta = currentScrollTop - lastScrollbarPosition;
+        const scrollRange = Math.max(1, window.innerHeight * 0.75);
+        const nativeProgress = Math.min(Math.max(currentScrollTop / scrollRange, 0), 1);
         
-        // Ignore tiny movements and initial position resets
-        if (Math.abs(scrollDelta) > 10 && currentScrollTop > 5) {
-            landingLog('📜 Scrollbar movement detected:', scrollDelta, 'Current position:', currentScrollTop);
+        // Ignore tiny initial movements, but keep native wheel/scrollbar progress intact.
+        if (Math.abs(scrollDelta) > 3 || currentScrollTop > 5) {
+            landingLog('📜 Native scroll detected:', scrollDelta, 'Current position:', currentScrollTop, 'Progress:', nativeProgress);
             
-            if (scrollDelta > 0) { // Scrolling down with scrollbar
-                scrollBarActionCount++;
-                isScrollbarScrolling = true;
-                
-                landingLog('📜 Scrollbar action count:', scrollBarActionCount, '/', maxLandingScrolls);
-                
-                // Use the same visual effect as wheel scrolling
-                scrollActionCount = Math.min(scrollBarActionCount, maxLandingScrolls);
-                updateForestEffect();
-                
-                // Exit landing mode after max scrollbar actions
-                if (scrollBarActionCount >= maxLandingScrolls) {
-                    landingLog('📜 Scrollbar exit threshold reached');
-                    exitLandingModeFunction();
-                    return;
-                }
-                
-                // Prevent further scrolling by resetting position after effect update
-                setTimeout(() => {
-                    if (isInLandingMode) {
-                        window.scrollTo({ top: 0, behavior: 'auto' });
-                        isScrollbarScrolling = false;
-                    }
-                }, 50);
-                
-            } else if (scrollDelta < 0) { // Scrolling up with scrollbar
+            if (scrollDelta > 0 || nativeProgress > 0) {
+                scrollBarActionCount = Math.max(scrollBarActionCount, Math.ceil(nativeProgress * maxLandingScrolls));
+                scrollActionCount = Math.max(scrollActionCount, Math.min(scrollBarActionCount, maxLandingScrolls));
+            } else if (scrollDelta < 0) {
                 scrollBarActionCount = Math.max(scrollBarActionCount - 1, 0);
-                scrollActionCount = scrollBarActionCount;
-                updateForestEffect();
+                scrollActionCount = Math.max(0, Math.min(scrollActionCount, scrollBarActionCount));
             }
+
+            isScrollbarScrolling = nativeProgress > 0 && nativeProgress < 1;
+            updateForestEffect();
             
             lastScrollbarPosition = currentScrollTop;
+
+            if (nativeProgress >= 1 || scrollActionCount >= maxLandingScrolls) {
+                landingLog('📜 Native scroll exit threshold reached');
+                exitLandingModeFunction();
+            }
         }
     }
 
@@ -639,9 +655,9 @@ function initLayeredParallax() {
     
     // Initialize landing mode
     if (heroSection) {
-        document.body.classList.add('landing-mode');
-        document.body.style.overflow = 'hidden'; // Prevent page scrolling initially
+        lockLandingScroll();
         heroSection.style.display = 'flex';
+        heroSection.style.pointerEvents = 'auto';
         heroSection.style.opacity = '1';
     }
     
@@ -1051,14 +1067,21 @@ function initNavigation() {
         heroSection.style.top = '0';
         heroSection.style.left = '0';
         heroSection.style.width = '100%';
-        heroSection.style.height = '100vh';
+        heroSection.style.height = 'var(--landing-viewport-height, 100vh)';
         heroSection.style.display = 'flex';
+        heroSection.style.pointerEvents = 'auto';
         heroSection.style.opacity = '1';
         heroSection.style.zIndex = '1000';
         heroSection.style.transition = 'opacity 0.5s ease-in';
         
-        // Prevent scrolling
-        document.body.style.overflow = 'hidden';
+        // Keep native scrolling available for desktop mouse wheels and browser responsive mode.
+        document.body.classList.add('landing-mode');
+        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.width = '';
+        document.body.style.height = '';
+        document.body.style.top = '';
+        document.body.style.left = '';
         
         // Scroll to top
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1099,7 +1122,14 @@ function initNavigation() {
                         
                         setTimeout(() => {
                             heroSection.style.display = 'none';
-                            document.body.style.overflow = 'auto';
+                            heroSection.style.pointerEvents = 'none';
+                            document.body.classList.remove('landing-mode');
+                            document.body.style.overflow = '';
+                            document.body.style.position = '';
+                            document.body.style.width = '';
+                            document.body.style.height = '';
+                            document.body.style.top = '';
+                            document.body.style.left = '';
                             
                             // Scroll to target section
                             const offsetTop = targetSection.offsetTop - 100;
@@ -1158,7 +1188,14 @@ function initNavigation() {
                         
                         setTimeout(() => {
                             heroSection.style.display = 'none';
-                            document.body.style.overflow = 'auto';
+                            heroSection.style.pointerEvents = 'none';
+                            document.body.classList.remove('landing-mode');
+                            document.body.style.overflow = '';
+                            document.body.style.position = '';
+                            document.body.style.width = '';
+                            document.body.style.height = '';
+                            document.body.style.top = '';
+                            document.body.style.left = '';
                             
                             // Scroll to the clicked target instead of about section
                             const offsetTop = targetSection.offsetTop - 80;

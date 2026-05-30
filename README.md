@@ -46,7 +46,14 @@ This portfolio site is positioned around practical delivery: AI-assisted automat
 ### Platforms & Workflow
 - **Git/GitHub**: Source control and public proof of work
 - **VS Code**: Primary development environment
-- **GitHub Pages / Custom Domain**: Deployment for public-facing portfolio assets
+- **Vercel / Custom Domain**: Deployment for public-facing portfolio assets
+
+## Deployment Note
+
+- Authoritative local worktree for site edits and pushes: `E:\KnightLogics-Growth-System\MainSite` on branch `main`
+- Live production host: Vercel project `knight-logics-checkout`
+- Removed confusion source on 2026-05-30: the stale `_mainsite_deploy_20260529b` local worktree and matching stale Vercel project were removed. A pre-removal patch is archived at `E:\KnightLogics-Growth-System\_mainsite_deploy_20260529b_dirty_before_removal.patch`.
+- If the live site looks stale after a push, check asset query strings and live response headers before assuming the push missed production
 
 ## 🎮 Projects Showcase
 

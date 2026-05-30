@@ -422,6 +422,7 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
+        :root { --landing-viewport-height: 100vh; }
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
@@ -463,7 +464,8 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100vh;
+            height: var(--landing-viewport-height, 100vh);
+            min-height: 100svh;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -513,6 +515,10 @@
             background-image: url('./images/CircuitBrush3.webp');
             z-index: 3;
             opacity: 0.9;
+            background-size: 100% 100%;
+            background-position: center center;
+            transform-origin: center center;
+            transform: translate3d(0, 0, 0) scale(1.10);
             filter: brightness(0.72) contrast(1.15);
         }
         .hero + section {
@@ -520,7 +526,7 @@
             z-index: 500;
         }
         body.landing-mode .hero + section {
-            margin-top: 100vh;
+            margin-top: var(--landing-viewport-height, 100vh);
         }
         .hero-content-wrapper {
             position: relative;
@@ -699,10 +705,10 @@
                 top: 0;
                 left: 0;
                 width: 100%;
-                min-height: 100vh;
-                height: 100vh;
+                min-height: 100svh;
+                height: var(--landing-viewport-height, 100vh);
             }
-            body.landing-mode .hero + section { margin-top: 100vh; }
+            body.landing-mode .hero + section { margin-top: var(--landing-viewport-height, 100vh); }
             .hero-content-wrapper {
                 min-height: 100svh;
                 height: 100%;
@@ -739,7 +745,7 @@
             .parallax-bg-mid { display: block; opacity: 0.2; }
             .parallax-bg-near {
                 background-image: url('./images/CircuitBrush3.webp');
-                background-size: 100vw 100vh;
+                background-size: 100% 100%;
                 background-position: center center;
                 transform: translate3d(0, 0, 0) scale(1.10);
                 transform-origin: center center;
@@ -1585,8 +1591,8 @@
             }
         }
     </style>
-    <link rel="preload" href="style.css?v=20260530hero4" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="style.css?v=20260530hero4"></noscript>
+    <link rel="preload" href="style.css?v=20260530hero5" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="style.css?v=20260530hero5"></noscript>
     <!-- Non-critical brand-font CSS loads after first paint. Font Awesome removed  icons are inline SVGs. -->
     <script>
         window.addEventListener('load', function () {
@@ -4006,7 +4012,7 @@
         }());
     </script>
     <script src="attribution.js" defer></script>
-    <script src="script.min.js?v=20260528l" defer></script>
+    <script src="script.js?v=20260530landing2" defer></script>
     <script>
         // Google Ads conversion tracking  hero consultation form
         (function() {
@@ -4022,4 +4028,3 @@
     </script>
 </body>
 </html>
-

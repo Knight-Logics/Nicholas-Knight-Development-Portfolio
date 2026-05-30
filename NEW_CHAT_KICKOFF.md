@@ -17,7 +17,7 @@ Paste this (or the relevant site block) at the start of a new Copilot Chat sessi
 ```
 I'm Nicholas Knight, owner of Knight Logics — a small web/automation agency in Tampa Bay.
 I have multiple client and brand websites I'm optimizing. Each site gets its own chat session.
-I have a reference guide at: KnightLogics-clean-sync/WEB_OPTIMIZATION_REFERENCE.md covering all standard techniques.
+I have a reference guide at: E:\KnightLogics-Growth-System\MainSite\WEB_OPTIMIZATION_REFERENCE.md covering all standard techniques.
 
 Standard optimization checklist we apply to every site:
 - JSON-LD structured data (LocalBusiness or relevant type, Breadcrumbs on inner pages)
@@ -45,11 +45,13 @@ My key rules:
 ### Knight Logics (knightlogics.com) — KEEP THIS CHAT OPEN, don't start a new one
 ```
 Site: knightlogics.com
-Repo local path: c:\Users\nknig\Downloads\KnightLogics-clean-sync
-GitHub: Knight-Logics/Nicholas-Knight-Development-Portfolio (main branch → GitHub Pages)
-Last commit: 2eb248a — mobile nav touch fix
-Status: Fully optimized through April 2026 session. See WEB_OPTIMIZATION_REFERENCE.md in repo.
-Pending: GSC sitemap resubmission, Bing WMT setup, real Google reviews when available.
+Authoritative local path: E:\KnightLogics-Growth-System\MainSite
+GitHub: Knight-Logics/Nicholas-Knight-Development-Portfolio (main branch)
+Production host: Vercel project knight-logics-checkout
+Production trigger: push origin/main from E:\KnightLogics-Growth-System\MainSite
+Do not edit/deploy from: old C:\Users\nknig\Downloads\KnightLogics-clean-sync copies/zips. The stale E:\KnightLogics-Growth-System\_mainsite_deploy_20260529b detached validation worktree and matching Vercel project were removed.
+Status source: E:\KnightLogics-Growth-System\LIVE_MIGRATION_STATUS.md and MainSite\KNIGHTLOGICS-SITE-AUDIT-LOG.md
+Cache check: if production looks stale, compare the live HTML asset query strings and response headers before assuming the wrong repo deployed.
 ```
 
 ---
