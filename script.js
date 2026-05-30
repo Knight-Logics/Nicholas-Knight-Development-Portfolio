@@ -260,6 +260,16 @@ function initLayeredParallax() {
         isInLandingMode = false;
         unlockLandingScroll();
 
+        // When landing motion is disabled, hide door/parallax foreground layers.
+        if (codeForest) {
+            codeForest.style.display = 'none';
+            codeForest.style.opacity = '0';
+        }
+        if (grungeLayer) {
+            grungeLayer.style.display = 'none';
+            grungeLayer.style.opacity = '0';
+        }
+
         if (heroSection) {
             applyStaticHeroLayout();
         }

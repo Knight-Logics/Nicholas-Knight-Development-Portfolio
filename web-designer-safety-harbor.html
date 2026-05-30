@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -100,8 +100,7 @@
     }
     </script>
 
-    <link rel="preload" as="style" href="style.min.css?v=20260529roi2" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="style.min.css?v=20260529roi2"></noscript>
+    <link rel="stylesheet" href="style.min.css?v=20260530hero6">
 
     <style>
         .city-hero-layout {
@@ -139,6 +138,19 @@
             font-size: .9rem;
             font-family: inherit;
         }
+        .city-form-group select {
+            appearance: none;
+            -webkit-appearance: none;
+            background-image:
+                linear-gradient(45deg, transparent 50%, rgba(255, 255, 255, .78) 50%),
+                linear-gradient(135deg, rgba(255, 255, 255, .78) 50%, transparent 50%);
+            background-position:
+                calc(100% - 18px) calc(50% - 3px),
+                calc(100% - 12px) calc(50% - 3px);
+            background-repeat: no-repeat;
+            background-size: 6px 6px;
+            padding-right: 34px;
+        }
         .city-form-group textarea { min-height: 70px; resize: vertical; }
         .city-form-submit {
             width: 100%;
@@ -152,6 +164,18 @@
             cursor: pointer;
             margin-top: 8px;
             font-family: inherit;
+        }
+        .city-hero-layout .services-panel-link,
+        .city-hero-layout .services-panel-link:visited {
+            color: #64ffda !important;
+            -webkit-text-fill-color: #64ffda !important;
+        }
+        .city-hero-layout .services-panel-link--solid,
+        .city-hero-layout .services-panel-link--solid:visited {
+            background: linear-gradient(135deg, #64ffda, #4ecdc4) !important;
+            border-color: transparent !important;
+            color: #0a0a0a !important;
+            -webkit-text-fill-color: #0a0a0a !important;
         }
         @media (max-width: 900px) {
             .city-hero-layout { grid-template-columns: 1fr; }
@@ -178,7 +202,7 @@
                     <h1 style="font-size: clamp(1.9rem, 4vw, 2.8rem); margin: 0 0 18px; line-height: 1.2;">Web Design for Safety Harbor, FL &mdash; Local, Fast, and Built to Convert</h1>
                     <p style="font-size: 1.08rem; color: #a8b2c8; line-height: 1.7; margin-bottom: 28px;">Safety Harbor businesses need more than a pretty homepage. The site has to support local search, reinforce the Google Business Profile, and make the next step obvious on mobile. Knight Logics builds hand-coded websites that stay fast, structured, and conversion-focused for Pinellas County search.</p>
                     <div style="display:flex; gap:12px; flex-wrap:wrap;">
-                        <a href="/free-website-audit" class="services-panel-link">Get a Free Audit</a>
+                        <a href="/free-website-audit" class="services-panel-link services-panel-link--solid">Get a Free Audit</a>
                         <a href="/contact" class="services-panel-link" style="background:transparent; border:1px solid rgba(100,255,218,.4);">Talk to Nicholas &rarr;</a>
                     </div>
                 </div>
@@ -303,7 +327,7 @@
                 <p style="font-size: 1.05rem; color: #e6f1ff; margin: 0 0 16px; font-weight: 600;">If your Safety Harbor site exists but isn&rsquo;t pulling local leads, start with the audit.</p>
                 <p style="font-size: .9rem; margin: 0 0 20px;">Knight Logics will review the structure, local intent coverage, GBP alignment, and conversion path before recommending any rebuild or cleanup scope.</p>
                 <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
-                    <a href="/free-website-audit" class="services-panel-link">Get a Free Audit</a>
+                    <a href="/free-website-audit" class="services-panel-link services-panel-link--solid">Get a Free Audit</a>
                     <a href="/contact" class="services-panel-link" style="background:transparent; border:1px solid rgba(100,255,218,.4);">Contact Nicholas &rarr;</a>
                 </div>
             </div>
@@ -329,7 +353,29 @@
         </div>
     </section>
 
-    <div id="footer-container"></div>
+    <div id="footer-container">
+    <nav class="crawl-fallback-links" aria-label="Site links">
+        <a href="/service-websites">Website Services</a>
+        <a href="/service-local-seo">Local SEO</a>
+        <a href="/service-google-business-profile">Google Business Profile</a>
+        <a href="/free-website-audit">Free Website Audit</a>
+        <a href="/case-studies">Case Studies</a>
+        <a href="/automation">Automation Systems</a>
+        <a href="/case-study-evidencedesk-ai">EvidenceDesk AI Case Study</a>
+        <a href="/case-study-knight-logics">Knight Logics Case Study</a>
+        <a href="/web-designer-safety-harbor">Web Designer Safety Harbor</a>
+        <a href="/web-designer-palm-harbor">Web Designer Palm Harbor</a>
+        <a href="/web-designer-clearwater">Web Designer Clearwater</a>
+        <a href="/web-designer-st-petersburg">Web Designer St. Petersburg</a>
+        <a href="/web-designer-tampa">Web Designer Tampa</a>
+        <a href="/llms.txt">LLMs.txt</a>
+        <a href="/llms-full.txt">LLMs Full</a>
+        <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/terms-of-service">Terms of Service</a>
+        <a href="/refund-policy">Refund Policy</a>
+        <a href="/disclaimer">Disclaimer</a>
+    </nav>
+</div>
 
     <script src="script.min.js?v=20260512a" defer></script>
 </body>

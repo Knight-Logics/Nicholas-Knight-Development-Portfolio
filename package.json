@@ -4,11 +4,18 @@
   "scripts": {
     "dev": "npx serve -l 4178 .",
     "dev:local": "npx serve -l 4178 .",
+    "qa:screenshots": "node scripts/qa-screenshot-matrix.js",
+    "qa:screenshots:services": "node scripts/qa-screenshot-matrix.js --profile=knightlogics-services",
+    "qa:screenshots:client-demo": "node scripts/qa-screenshot-matrix.js --profile=client-demo",
+    "qa:lighthouse": "node scripts/qa-lighthouse.js",
     "stripe:sync-catalog": "node scripts/sync-knightlogics-stripe-catalog.js"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",
     "busboy": "^1.6.0",
     "stripe": "^22.1.0"
+  },
+  "devDependencies": {
+    "playwright": "^1.60.0"
   }
 }

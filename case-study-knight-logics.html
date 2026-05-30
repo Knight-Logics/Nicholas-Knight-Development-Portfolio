@@ -1,743 +1,1506 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Case study: KnightLogics.com portfolio site built to prove technical SEO, accessibility, speed, rich results, and conversion structure.">
-    <meta name="author" content="Nicholas Knight">
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="Case Study: KnightLogics.com | Knight Logics">
-    <meta property="og:description" content="95 Desktop Performance &mdash; 100 Accessibility &mdash; 100 SEO. How I built and optimized the Knight Logics portfolio website.">
-    <meta property="og:url" content="https://knightlogics.com/case-study-knight-logics">
-    <meta property="og:site_name" content="Knight Logics">
-    <meta property="og:image" content="https://knightlogics.com/images/KnightLogicsLogo2.png">
-    <meta property="og:image:width" content="1024">
-    <meta property="og:image:height" content="1024">
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Case Study: KnightLogics.com | Knight Logics">
-    <meta name="twitter:image" content="https://knightlogics.com/images/KnightLogicsLogo2.png">
-    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
-    <link rel="canonical" href="https://knightlogics.com/case-study-knight-logics">
-
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VX36QR7HJW"></script>
-    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-VX36QR7HJW');gtag('config','AW-18138273413');</script>
-
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "BreadcrumbList",
-        "itemListElement": [
-            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://knightlogics.com"},
-            {"@type": "ListItem", "position": 2, "name": "Automation Systems", "item": "https://knightlogics.com/automation"},
-            {"@type": "ListItem", "position": 3, "name": "Case Study: KnightLogics.com", "item": "https://knightlogics.com/case-study-knight-logics"}
-        ]
-    }
-    </script>
-
-    <script type="application/ld+json">
-    {
-        "@context": "https://schema.org",
-        "@type": "Article",
-        "@id": "https://knightlogics.com/case-study-knight-logics#article",
-        "headline": "KnightLogics.com Portfolio Website and Local SEO Case Study",
-        "description": "How I designed and optimized my own portfolio site to demonstrate everything Knight Logics offers: 95 Desktop Performance, 100 Accessibility, rich results, and full technical SEO.",
-        "url": "https://knightlogics.com/case-study-knight-logics",
-        "mainEntityOfPage": {
-            "@type": "WebPage",
-            "@id": "https://knightlogics.com/case-study-knight-logics"
-        },
-        "image": {
-            "@type": "ImageObject",
-            "url": "https://knightlogics.com/images/KnightLogicsLogo2.png",
-            "width": 1024,
-            "height": 1024
-        },
-        "datePublished": "2026-03-01",
-        "dateModified": "2026-04-28",
-        "inLanguage": "en-US",
-        "author": {
-            "@id": "https://knightlogics.com/#nicholas-knight",
-            "name": "Nicholas Knight",
-            "url": "https://knightlogics.com/nicholas-knight"
-        },
-        "publisher": {
-            "@id": "https://knightlogics.com/#organization",
-            "name": "Knight Logics",
-            "url": "https://knightlogics.com/",
-            "logo": {
-                "@type": "ImageObject",
-                "url": "https://knightlogics.com/images/KnightLogicsLogo2.png",
-                "width": 1024,
-                "height": 1024
-            }
-        },
-        "about": {
-            "@type": "Service",
-            "name": "Custom Website Design & Local SEO",
-            "provider": {
-                "@id": "https://knightlogics.com/#organization",
-                "name": "Knight Logics"
-            }
-        }
-    }
-    </script>
-    <link rel="shortcut icon" href="/favicon.ico">
-    <link rel="icon" type="image/png" href="/images/KnightLogicsLogo2.png" sizes="1024x1024">
-    <link rel="apple-touch-icon" href="/images/KnightLogicsLogo2.png">
-    <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#6de1ff">
-    <link rel="stylesheet" href="style.min.css?v=20260514a">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
-
-    <title>KnightLogics.com Case Study | Knight Logics</title>
-
-    <style>
-        /* -- Case Study Shared Layout -- */
-        .cs-hero {
-            position: relative;
-            min-height: 420px;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(rgba(0,0,0,0.82), rgba(0,0,0,0.82)), url('./images/city%20hero.webp') top center/cover no-repeat;
-            overflow: hidden;
-            border-bottom: 1px solid rgba(100,255,218,0.1);
-        }
-        .cs-hero-inner {
-            position: relative;
-            z-index: 2;
-            padding: 100px 0 70px;
-            max-width: 820px;
-        }
-        .cs-breadcrumb {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.78);
-            margin-bottom: 24px;
-            flex-wrap: wrap;
-        }
-        .cs-breadcrumb a { color: rgba(100,255,218,0.7); text-decoration: none; }
-        .cs-breadcrumb a:hover { color: #64ffda; }
-        .cs-breadcrumb span { color: rgba(255,255,255,0.78); }
-        .cs-type-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            padding: 5px 14px;
-            border-radius: 999px;
-            background: rgba(100,255,218,0.1);
-            border: 1px solid rgba(100,255,218,0.25);
-            color: #64ffda;
-            font-size: 0.75rem;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 16px;
-        }
-        .cs-hero h1 {
-            font-size: clamp(2rem, 4vw, 3.4rem);
-            font-weight: 700;
-            line-height: 1.12;
-            margin-bottom: 14px;
-            color: #ffffff;
-        }
-        .cs-hero h1 span {
-            background: linear-gradient(135deg, #64ffda, #ffffff, #64ffda);
-            background-size: 200% 200%;
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            animation: shimmer 3s ease-in-out infinite;
-        }
-        .cs-hero-sub {
-            font-size: clamp(0.95rem, 1.4vw, 1.1rem);
-            color: rgba(255,255,255,0.75);
-            line-height: 1.65;
-            margin-bottom: 28px;
-            max-width: 620px;
-        }
-        .cs-hero-actions {
-            display: flex;
-            gap: 12px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-        .cs-btn-live {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 11px 22px;
-            border-radius: 999px;
-            background: #64ffda;
-            color: #000; /* Ensure readable contrast */
-            font-weight: 700;
-            font-size: 0.9rem;
-            text-decoration: none;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .cs-btn-live:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(100,255,218,0.3); }
-        .cs-btn-back {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 11px 20px;
-            border-radius: 999px;
-            border: 1px solid rgba(255,255,255,0.18);
-            color: rgba(255,255,255,0.75);
-            font-size: 0.9rem;
-            text-decoration: none;
-            transition: border-color 0.2s, color 0.2s;
-        }
-        .cs-btn-back:hover { border-color: rgba(100,255,218,0.4); color: #64ffda; }
-
-        .cs-scores {
-            background: rgba(10,15,10,0.98);
-            border-bottom: 1px solid rgba(100,255,218,0.1);
-            padding: 28px 0;
-        }
-        .cs-scores-grid {
-            display: flex;
-            gap: 0;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-        .cs-score-item {
-            text-align: center;
-            padding: 12px 40px;
-            border-right: 1px solid rgba(255,255,255,0.08);
-        }
-        .cs-score-item:last-child { border-right: none; }
-        .cs-score-num {
-            display: block;
-            font-size: 2rem;
-            font-weight: 800;
-            color: #64ffda;
-            line-height: 1;
-            margin-bottom: 4px;
-        }
-        .cs-score-label {
-            font-size: 0.76rem;
-            color: rgba(255,255,255,0.78);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
-        .cs-overview {
-            padding: 80px 0;
-            background: #0d0d0d;
-        }
-        .cs-overview-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.6fr;
-            gap: 64px;
-            align-items: start;
-        }
-        .cs-section-label {
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-            color: #64ffda;
-            margin-bottom: 12px;
-        }
-        .cs-overview h2 {
-            font-size: clamp(1.5rem, 2.5vw, 2rem);
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 20px;
-            line-height: 1.2;
-        }
-        .cs-overview p {
-            font-size: 0.96rem;
-            color: rgba(255,255,255,0.72);
-            line-height: 1.7;
-            margin-bottom: 16px;
-        }
-        .cs-tech-stack {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-bottom: 28px;
-        }
-        .cs-tag {
-            padding: 5px 14px;
-            border-radius: 999px;
-            background: rgba(100,255,218,0.08);
-            border: 1px solid rgba(100,255,218,0.2);
-            color: #64ffda;
-            font-size: 0.78rem;
-            font-weight: 600;
-        }
-        .cs-deliverables {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        .cs-deliverables li {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            font-size: 0.92rem;
-            color: rgba(255,255,255,0.78);
-            line-height: 1.5;
-        }
-        .cs-deliverables li i {
-            color: #64ffda;
-            font-size: 0.85rem;
-            margin-top: 3px;
-            flex-shrink: 0;
-        }
-
-            .cs-preview {
-                padding: 80px 0;
-                background: linear-gradient(135deg, #0a0a0a 0%, #0f1724 100%);
-            }
-            .cs-preview-grid {
-                display: grid;
-                grid-template-columns: 1.35fr 0.7fr;
-                gap: 28px;
-                align-items: start;
-            }
-            .cs-preview-card {
-                border-radius: 16px;
-                overflow: hidden;
-                background: rgba(255,255,255,0.04);
-                border: 1px solid rgba(100,255,218,0.12);
-            }
-            .cs-preview-card--mobile {
-                max-width: 430px;
-                justify-self: center;
-            }
-            .cs-preview-label {
-                padding: 14px 20px;
-                border-bottom: 1px solid rgba(255,255,255,0.06);
-                font-size: 0.8rem;
-                font-weight: 700;
-                text-transform: uppercase;
-                letter-spacing: 0.1em;
-                color: rgba(255,255,255,0.78);
-                display: flex;
-                align-items: center;
-                gap: 8px;
-            }
-            .cs-preview-label i { color: #64ffda; }
-            .cs-preview-card img {
-                width: 100%;
-                display: block;
-            }
-
-        .cs-performance {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #0a0a0a 0%, #0f1724 100%);
-        }
-        .cs-section-header { margin-bottom: 48px; }
-        .cs-section-header h2 {
-            font-size: clamp(1.5rem, 2.5vw, 2rem);
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 10px;
-        }
-        .cs-section-header p {
-            font-size: 0.96rem;
-            color: rgba(255,255,255,0.78);
-            max-width: 580px;
-        }
-        .cs-perf-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 28px;
-        }
-        .cs-perf-card {
-            border-radius: 16px;
-            overflow: hidden;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(100,255,218,0.12);
-        }
-        .cs-perf-label {
-            padding: 14px 20px;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: rgba(255,255,255,0.78);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .cs-perf-label i { color: #64ffda; }
-        .cs-perf-card img { width: 100%; display: block; }
-        .cs-placeholder {
-            aspect-ratio: 4/3;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            background: linear-gradient(135deg, rgba(100,255,218,0.04), rgba(10,10,10,0.9));
-            padding: 40px;
-            text-align: center;
-        }
-        .cs-placeholder i {
-            font-size: 2.4rem;
-            color: rgba(100,255,218,0.3);
-            margin-bottom: 12px;
-        }
-        .cs-placeholder p {
-            font-size: 0.88rem;
-            color: rgba(255,255,255,0.78);
-            line-height: 1.55;
-            margin: 0;
-            font-style: italic;
-        }
-
-        .cs-search {
-            padding: 80px 0;
-            background: #0d0d0d;
-        }
-        .cs-search-img {
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid rgba(100,255,218,0.12);
-            max-width: 860px;
-        }
-        .cs-search-img img { width: 100%; display: block; }
-
-        .cs-rich {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #0a0a0a 0%, #0f1724 100%);
-        }
-        .cs-rich-header {
-            display: flex;
-            align-items: flex-end;
-            justify-content: space-between;
-            margin-bottom: 40px;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-        .cs-rich-header h2 {
-            font-size: clamp(1.5rem, 2.5vw, 2rem);
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 8px;
-        }
-        .cs-rich-header p {
-            font-size: 0.92rem;
-            color: rgba(255,255,255,0.78);
-        }
-        .cs-btn-test {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            border-radius: 999px;
-            border: 1px solid rgba(100,255,218,0.3);
-            color: #64ffda;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-decoration: none;
-            white-space: nowrap;
-            transition: background 0.2s, border-color 0.2s;
-        }
-        .cs-btn-test:hover { background: rgba(100,255,218,0.08); border-color: rgba(100,255,218,0.6); }
-        .cs-rich-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-        }
-        .cs-rich-card {
-            border-radius: 14px;
-            overflow: hidden;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(100,255,218,0.1);
-        }
-        .cs-rich-card-label {
-            padding: 12px 18px;
-            border-bottom: 1px solid rgba(255,255,255,0.06);
-            font-size: 0.76rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: rgba(255,255,255,0.78);
-        }
-        .cs-rich-card img { width: 100%; display: block; }
-
-        .cs-cta {
-            padding: 72px 0;
-            background: #0a0a0a;
-            text-align: center;
-            border-top: 1px solid rgba(100,255,218,0.08);
-        }
-        .cs-cta h2 {
-            font-size: clamp(1.4rem, 2.5vw, 1.9rem);
-            font-weight: 700;
-            color: #ffffff;
-            margin-bottom: 12px;
-        }
-        .cs-cta p {
-            font-size: 0.98rem;
-            color: rgba(255,255,255,0.78);
-            margin-bottom: 28px;
-            max-width: 520px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        .cs-cta-row {
-            display: flex;
-            gap: 14px;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .cs-gbp-inline {
-            display: flex; align-items: center; gap: 14px;
-            margin-top: 20px;
-            background: rgba(255,255,255,0.04);
-            border: 1px solid rgba(100,255,218,0.15);
-            border-radius: 14px; padding: 16px 20px;
-            max-width: 50%;
-        }
-        .cs-gbp-glogo {
-            width: 38px; height: 38px; flex-shrink: 0;
-            background: #fff; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.1rem; font-weight: 900; color: #4285F4;
-            font-family: Arial, sans-serif;
-        }
-        .cs-gbp-info { flex: 1; min-width: 0; }
-        .cs-gbp-info h3 { font-size: 0.9rem; font-weight: 700; color: #fff; margin-bottom: 2px; }
-        .cs-gbp-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(100,255,218,0.08); border: 1px solid rgba(100,255,218,0.25); border-radius: 999px; padding: 3px 10px; font-size: 0.72rem; color: #64ffda; margin-bottom: 2px; }
-        .cs-gbp-meta { font-size: 0.76rem; color: rgba(255,255,255,0.70); }
-        .cs-gbp-link {
-            display: inline-flex; align-items: center; gap: 6px;
-            padding: 7px 14px; border-radius: 999px;
-            border: 1px solid rgba(100,255,218,0.3); color: #64ffda;
-            font-size: 0.78rem; font-weight: 600; text-decoration: none;
-            white-space: nowrap; flex-shrink: 0;
-            transition: background 0.2s, border-color 0.2s;
-        }
-        .cs-gbp-link:hover { background: rgba(100,255,218,0.08); border-color: rgba(100,255,218,0.6); }
-
-        @media (max-width: 860px) {
-            .cs-overview-grid { grid-template-columns: 1fr; gap: 36px; }
-            .cs-preview-grid { grid-template-columns: 1fr; }
-            .cs-preview-card--mobile { max-width: 100%; }
-            .cs-perf-grid { grid-template-columns: 1fr; }
-            .cs-rich-grid { grid-template-columns: 1fr; }
-            .cs-score-item { padding: 12px 20px; }
-            .cs-gbp-inline { max-width: 100%; }
-        }
-        @media (max-width: 600px) {
-            .cs-rich-header { flex-direction: column; align-items: flex-start; }
-            .cs-gbp-inline { flex-wrap: wrap; }
-            .cs-gbp-link { white-space: normal; flex-shrink: 1; }
-        }
-    </style>
-    <!-- Microsoft Clarity -->
-    <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "wgj5b5rrss");
-    </script></head>
-<body>
-    <div id="header-container"></div>
-
-    <!-- -- HERO -- -->
-    <section class="cs-hero">
-        <div class="container">
-            <div class="cs-hero-inner fade-in">
-                <nav class="cs-breadcrumb" aria-label="Breadcrumb">
-                    <a href="/">Home</a>
-                    <span>/</span>
-                    <a href="/automation">Case Studies</a>
-                    <span>/</span>
-                    <span>KnightLogics.com</span>
-                </nav>
-                <div class="cs-type-badge"><i class="fas fa-id-card"></i> Portfolio Website</div>
-                <h1><span>Portfolio & Local SEO &mdash; KnightLogics.com</span></h1>
-                <p class="cs-hero-sub">This site is itself a demonstration of what I build. Knight Logics is a multi-page portfolio and service hub built with custom HTML, CSS, and JavaScript &mdash; no frameworks, no CMS. 95 Desktop Performance. 100 Accessibility. 100 SEO. Indexed, schema-verified, and GA4-tracked from day one.</p>
-                <div class="cs-hero-actions">
-                    <a href="https://www.knightlogics.com/" class="cs-btn-live" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i> View Live Site</a>
-                    <a href="/automation" class="cs-btn-back"><i class="fas fa-arrow-left"></i> All Case Studies</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- -- SCORE STRIP -- -->
-    <div class="cs-scores">
-        <div class="container">
-            <div class="cs-scores-grid">
-                <div class="cs-score-item">
-                    <span class="cs-score-num">95</span>
-                    <span class="cs-score-label">Desktop Performance</span>
-                </div>
-                <div class="cs-score-item">
-                    <span class="cs-score-num">86</span>
-                    <span class="cs-score-label">Mobile Performance</span>
-                </div>
-                <div class="cs-score-item">
-                    <span class="cs-score-num">100</span>
-                    <span class="cs-score-label">SEO Score</span>
-                </div>
-                <div class="cs-score-item">
-                    <span class="cs-score-num">100</span>
-                    <span class="cs-score-label">Accessibility</span>
-                </div>
-                <div class="cs-score-item">
-                    <span class="cs-score-num">8</span>
-                    <span class="cs-score-label">Schema Types</span>
-                </div>
-                <div class="cs-score-item">
-                    <span class="cs-score-num">23</span>
-                    <span class="cs-score-label">Pages Built</span>
-                </div>
-            </div>
-            <div style="display:flex; justify-content:center; padding-top:24px;">
-                <a href="https://pagespeed.web.dev/report?url=https%3A%2F%2Fknightlogics.com" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; background:#64ffda; color:#000; padding:12px 24px; border-radius:4px; font-weight:700; text-decoration:none;"><i class="fas fa-gauge-high"></i> Test This Page's Lighthouse Scores</a>
-            </div>
-        </div>
-    </div>
-
-    <!-- -- GBP PROOF -- -->
-    <div class="container">
-        <div class="cs-gbp-inline">
-            <div class="cs-gbp-glogo">G</div>
-            <div class="cs-gbp-info">
-                <h3>Knight Logics</h3>
-                <div class="cs-gbp-badge"><i class="fas fa-circle-check"></i> Verified Business</div>
-                <div class="cs-gbp-meta">Software Company &mdash; Tampa Bay, FL</div>
-            </div>
-            <a href="https://share.google/gIhppCVmkN4IgaOFo" target="_blank" rel="noopener" class="cs-gbp-link">
-                <i class="fas fa-arrow-up-right-from-square"></i> View on Google
-            </a>
-        </div>
-    </div>
-
-    <!-- -- OVERVIEW / THE BUILD -- -->
-    <section class="cs-overview">
-        <div class="container">
-            <div class="cs-overview-grid">
-                <div>
-                    <p class="cs-section-label"><i class="fas fa-wrench"></i> The Build</p>
-                    <h2>A Portfolio That Practices What It Preaches</h2>
-                    <div class="cs-tech-stack" aria-label="Tech stack">
-                        <span class="cs-tag">HTML5</span>
-                        <span class="cs-tag">CSS3</span>
-                        <span class="cs-tag">Vanilla JS</span>
-                        <span class="cs-tag">Vercel</span>
-                        <span class="cs-tag">GA4 Analytics</span>
-                        <span class="cs-tag">JSON-LD Schema</span>
-                        <span class="cs-tag">Google Search Console</span>
-                        <span class="cs-tag">WebP Images</span>
-                    </div>
-                    <p>If the goal is to sell website development, the website that sells it has to be the best example of it. KnightLogics.com was built to that standard &mdash; hand-coded, performance-first, and fully instrumented with analytics and structured data from the start.</p>
-                    <p>The site has multiple service pages, a project showcase system, contact forms, policy pages, and a structured content hierarchy that Google can crawl and understand. The header and footer load dynamically via JavaScript fetch, keeping the codebase clean without a backend or build system.</p>
-                    <p>Every page carries full SEO metadata, Open Graph tags, Twitter Cards, canonical links, and JSON-LD schema. Google Analytics 4 is integrated for conversion tracking, and the site is verified and monitored in Google Search Console.</p>
-                </div>
-                <div>
-                    <p class="cs-section-label"><i class="fas fa-list-check"></i> What Was Built</p>
-                    <ul class="cs-deliverables">
-                        <li><i class="fas fa-check-circle"></i> Multi-page portfolio: home, projects, 4 service pages, contact, policy pages</li>
-                        <li><i class="fas fa-check-circle"></i> Dynamic header/footer loading via JS fetch &mdash; DRY architecture, no build step</li>
-                        <li><i class="fas fa-check-circle"></i> Project showcase with demo videos and live links</li>
-                        <li><i class="fas fa-check-circle"></i> Person + Organization JSON-LD schema for entity establishment</li>
-                        <li><i class="fas fa-check-circle"></i> Service schema on each service page with areaServed</li>
-                        <li><i class="fas fa-check-circle"></i> BreadcrumbList on all inner pages</li>
-                        <li><i class="fas fa-check-circle"></i> Open Graph + Twitter Card meta on every page</li>
-                        <li><i class="fas fa-check-circle"></i> Google Analytics 4 with custom config</li>
-                        <li><i class="fas fa-check-circle"></i> Sitemap.xml submitted to Google Search Console</li>
-                        <li><i class="fas fa-check-circle"></i> 100/100 Accessibility &mdash; full WCAG compliance</li>
-                        <li><i class="fas fa-check-circle"></i> Hosted on Vercel with edge CDN and automatic HTTPS</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- -- SEARCH CONSOLE -- -->
-    <section class="cs-search">
-        <div class="container">
-            <div class="cs-section-header fade-in">
-                <p class="cs-section-label"><i class="fas fa-magnifying-glass"></i> Google Search Console</p>
-                <h2>Indexed &amp; Verified</h2>
-                <p>Site submitted to Google Search Console with sitemap. All pages crawled and indexed successfully.</p>
-            </div>
-            <div class="cs-search-img fade-in">
-                <img src="./images/KnightLogics%20-%20Indexed.png" alt="Google Search Console showing KnightLogics.com pages indexed successfully" loading="lazy" width="1200" height="700">
-            </div>
-        </div>
-    </section>
-
-    <!-- -- RICH RESULTS -- -->
-    <section class="cs-rich">
-        <div class="container">
-            <div class="cs-rich-header fade-in">
-                <div>
-                    <p class="cs-section-label"><i class="fas fa-code"></i> Structured Data</p>
-                    <h2>Rich Results Validation</h2>
-                    <p>Latest live Rich Results output for the homepage reports <strong>4 valid items</strong>: Breadcrumbs, FAQ, Local businesses, and Organization.</p>
-                </div>
-                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                    <a href="https://search.google.com/test/rich-results/result?id=SdPXpe0kS-KYQ-FEqc9bEg" target="_blank" rel="noopener" class="cs-btn-test"><i class="fas fa-arrow-up-right-from-square"></i> View Saved Test</a>
-                    <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fknightlogics.com%2F" target="_blank" rel="noopener" class="cs-btn-back"><i class="fas fa-rotate-right"></i> Run Live Test</a>
-                </div>
-            </div>
-            <p class="fade-in" style="margin: 0 0 16px; color: rgba(255,255,255,0.78); font-size: 0.88rem;">Live run status (2026-05-09): this panel is synced to a live Rich Results run from the authenticated shared browser session.</p>
-            <div class="fade-in" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(100,255,218,0.12); border-radius: 14px; padding: 24px; margin-bottom: 24px;">
-                <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 18px;">
-                    <div style="background: rgba(100,255,218,0.04); border: 1px solid rgba(100,255,218,0.10); border-radius: 10px; padding: 16px 18px; min-width: 220px;"><div style="font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.78); margin-bottom: 8px;">Valid Items (Live Test)</div><div style="font-size: 1.05rem; font-weight: 800; color: #fff;">4 detected</div></div>
-                    <div style="background: rgba(100,255,218,0.04); border: 1px solid rgba(100,255,218,0.10); border-radius: 10px; padding: 16px 18px; min-width: 220px;"><div style="font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.78); margin-bottom: 8px;">Detected Families</div><div style="font-size: 1.05rem; font-weight: 800; color: #fff;">4 types</div></div>
-                </div>
-                <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px;">
-                    <div style="background: rgba(100,255,218,0.04); border: 1px solid rgba(100,255,218,0.10); border-radius: 10px; padding: 16px 18px;"><div style="font-weight: 800; color: #fff; margin-bottom: 8px;">Breadcrumbs (1 valid item)</div><div style="font-size: 0.86rem; color: rgba(255,255,255,0.78);">Improves displayed result paths and helps Google read page structure clearly.</div></div>
-                    <div style="background: rgba(100,255,218,0.04); border: 1px solid rgba(100,255,218,0.10); border-radius: 10px; padding: 16px 18px;"><div style="font-weight: 800; color: #fff; margin-bottom: 8px;">FAQ (1 valid item)</div><div style="font-size: 0.86rem; color: rgba(255,255,255,0.78);">Supports richer SERP presentation and can answer buyer objections before click-through.</div></div>
-                    <div style="background: rgba(100,255,218,0.04); border: 1px solid rgba(100,255,218,0.10); border-radius: 10px; padding: 16px 18px;"><div style="font-weight: 800; color: #fff; margin-bottom: 8px;">Local businesses (1 valid item)</div><div style="font-size: 0.86rem; color: rgba(255,255,255,0.78);">Improves local-intent relevance for Tampa Bay service searches and geo-context.</div></div>
-                    <div style="background: rgba(100,255,218,0.04); border: 1px solid rgba(100,255,218,0.10); border-radius: 10px; padding: 16px 18px;"><div style="font-weight: 800; color: #fff; margin-bottom: 8px;">Organization (1 valid item)</div><div style="font-size: 0.86rem; color: rgba(255,255,255,0.78);">Reinforces entity-level trust and consistent brand understanding in Google systems.</div></div>
-                </div>
-                <p style="margin-top: 18px; color: rgba(255,255,255,0.78); font-size: 0.9rem;">Source: live Rich Results run for https://knightlogics.com/ (result id: ziMvNGmO_OEwjigAkAubtA).</p>
-            </div>
-            <div class="cs-rich-grid fade-in">
-                <div class="cs-rich-card">
-                    <div class="cs-rich-card-label">Overall &mdash; All Schema Types Detected</div>
-                    <img src="./images/KnightLogics%20-%20%20Rich%20Main.png" alt="Knight Logics Rich Results snapshot panel" loading="lazy" width="900" height="500">
-                </div>
-                <div class="cs-rich-card">
-                    <div class="cs-rich-card-label">Local Business Schema</div>
-                    <img src="./images/KnightLogics%20-%20Rich%20Local.png" alt="Knight Logics Rich Results Test &mdash; Local Business schema valid" loading="lazy" width="900" height="500">
-                </div>
-                <div class="cs-rich-card">
-                    <div class="cs-rich-card-label">Organization Schema</div>
-                    <img src="./images/KnightLogics%20-%20Rich%20Organization.png" alt="Knight Logics Rich Results Test &mdash; Organization schema valid" loading="lazy" width="900" height="500">
-                </div>
-                <div class="cs-rich-card">
-                    <div class="cs-rich-card-label">Breadcrumb Schema</div>
-                    <img src="./images/KnightLogics%20-%20Breadcrumbs.png" alt="Knight Logics Rich Results Test &mdash; Breadcrumb schema valid" loading="lazy" width="900" height="500">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- -- CTA -- -->
-    <section class="cs-cta">
-        <div class="container">
-            <h2>Want a Site Built to These Standards?</h2>
-            <p>Every project gets the same attention to performance, SEO, and structured data &mdash; whether it's a one-page landing site or a full multi-service portfolio.</p>
-            <div class="cs-cta-row">
-                <a href="/contact" class="btn-primary">Start a Project</a>
-                <a href="/automation" class="btn-secondary">See All Case Studies</a>
-            </div>
-        </div>
-    </section>
-
-    <div id="footer-container"></div>
-    <script src="script.min.js?v=20260528a"></script>
-</body>
-</html>
-
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="Case study: KnightLogics.com portfolio site built to prove technical SEO, accessibility, speed, rich results, and conversion structure.">
+
+    <meta name="author" content="Nicholas Knight">
+
+    <meta property="og:type" content="article">
+
+    <meta property="og:title" content="Case Study: KnightLogics.com | Knight Logics">
+
+    <meta property="og:description" content="95 Desktop Performance &mdash; 100 Accessibility &mdash; 100 SEO. How I built and optimized the Knight Logics portfolio website.">
+
+    <meta property="og:url" content="https://knightlogics.com/case-study-knight-logics">
+
+    <meta property="og:site_name" content="Knight Logics">
+
+    <meta property="og:image" content="https://knightlogics.com/images/KnightLogicsLogo2.png">
+
+    <meta property="og:image:width" content="1024">
+
+    <meta property="og:image:height" content="1024">
+
+    <meta name="twitter:card" content="summary_large_image">
+
+    <meta name="twitter:title" content="Case Study: KnightLogics.com | Knight Logics">
+
+    <meta name="twitter:image" content="https://knightlogics.com/images/KnightLogicsLogo2.png">
+
+    <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
+
+    <link rel="canonical" href="https://knightlogics.com/case-study-knight-logics">
+
+
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-VX36QR7HJW"></script>
+
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-VX36QR7HJW');gtag('config','AW-18138273413');</script>
+
+
+
+    <script type="application/ld+json">
+
+    {
+
+        "@context": "https://schema.org",
+
+        "@type": "BreadcrumbList",
+
+        "itemListElement": [
+
+            {"@type": "ListItem", "position": 1, "name": "Home", "item": "https://knightlogics.com"},
+
+            {"@type": "ListItem", "position": 2, "name": "Automation Systems", "item": "https://knightlogics.com/automation"},
+
+            {"@type": "ListItem", "position": 3, "name": "Case Study: KnightLogics.com", "item": "https://knightlogics.com/case-study-knight-logics"}
+
+        ]
+
+    }
+
+    </script>
+
+
+
+    <script type="application/ld+json">
+
+    {
+
+        "@context": "https://schema.org",
+
+        "@type": "Article",
+
+        "@id": "https://knightlogics.com/case-study-knight-logics#article",
+
+        "headline": "KnightLogics.com Portfolio Website and Local SEO Case Study",
+
+        "description": "How I designed and optimized my own portfolio site to demonstrate everything Knight Logics offers: 95 Desktop Performance, 100 Accessibility, rich results, and full technical SEO.",
+
+        "url": "https://knightlogics.com/case-study-knight-logics",
+
+        "mainEntityOfPage": {
+
+            "@type": "WebPage",
+
+            "@id": "https://knightlogics.com/case-study-knight-logics"
+
+        },
+
+        "image": {
+
+            "@type": "ImageObject",
+
+            "url": "https://knightlogics.com/images/KnightLogicsLogo2.png",
+
+            "width": 1024,
+
+            "height": 1024
+
+        },
+
+        "datePublished": "2026-03-01",
+
+        "dateModified": "2026-04-28",
+
+        "inLanguage": "en-US",
+
+        "author": {
+
+            "@id": "https://knightlogics.com/#nicholas-knight",
+
+            "name": "Nicholas Knight",
+
+            "url": "https://knightlogics.com/nicholas-knight"
+
+        },
+
+        "publisher": {
+
+            "@id": "https://knightlogics.com/#organization",
+
+            "name": "Knight Logics",
+
+            "url": "https://knightlogics.com/",
+
+            "logo": {
+
+                "@type": "ImageObject",
+
+                "url": "https://knightlogics.com/images/KnightLogicsLogo2.png",
+
+                "width": 1024,
+
+                "height": 1024
+
+            }
+
+        },
+
+        "about": {
+
+            "@type": "Service",
+
+            "name": "Custom Website Design & Local SEO",
+
+            "provider": {
+
+                "@id": "https://knightlogics.com/#organization",
+
+                "name": "Knight Logics"
+
+            }
+
+        }
+
+    }
+
+    </script>
+
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <link rel="icon" type="image/png" href="/images/KnightLogicsLogo2.png" sizes="1024x1024">
+
+    <link rel="apple-touch-icon" href="/images/KnightLogicsLogo2.png">
+
+    <link rel="manifest" href="/manifest.json">
+
+    <meta name="theme-color" content="#6de1ff">
+
+    <link rel="stylesheet" href="style.min.css?v=20260530hero6">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+
+
+    <title>KnightLogics.com Case Study | Knight Logics</title>
+
+
+
+    <style>
+
+        /* -- Case Study Shared Layout -- */
+
+        .cs-hero {
+
+            position: relative;
+
+            min-height: 420px;
+
+            display: flex;
+
+            align-items: center;
+
+            background: linear-gradient(rgba(0,0,0,0.82), rgba(0,0,0,0.82)), url('./images/city%20hero.webp') top center/cover no-repeat;
+
+            overflow: hidden;
+
+            border-bottom: 1px solid rgba(100,255,218,0.1);
+
+        }
+
+        .cs-hero-inner {
+
+            position: relative;
+
+            z-index: 2;
+
+            padding: 100px 0 70px;
+
+            max-width: 820px;
+
+        }
+
+        .cs-breadcrumb {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            font-size: 0.8rem;
+
+            color: rgba(255,255,255,0.78);
+
+            margin-bottom: 24px;
+
+            flex-wrap: wrap;
+
+        }
+
+        .cs-breadcrumb a { color: rgba(100,255,218,0.7); text-decoration: none; }
+
+        .cs-breadcrumb a:hover { color: #64ffda; }
+
+        .cs-breadcrumb span { color: rgba(255,255,255,0.78); }
+
+        .cs-type-badge {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 6px;
+
+            padding: 5px 14px;
+
+            border-radius: 999px;
+
+            background: rgba(100,255,218,0.1);
+
+            border: 1px solid rgba(100,255,218,0.25);
+
+            color: #64ffda;
+
+            font-size: 0.75rem;
+
+            font-weight: 700;
+
+            letter-spacing: 0.1em;
+
+            text-transform: uppercase;
+
+            margin-bottom: 16px;
+
+        }
+
+        .cs-hero h1 {
+
+            font-size: clamp(2rem, 4vw, 3.4rem);
+
+            font-weight: 700;
+
+            line-height: 1.12;
+
+            margin-bottom: 14px;
+
+            color: #ffffff;
+
+        }
+
+        .cs-hero h1 span {
+
+            background: linear-gradient(135deg, #64ffda, #ffffff, #64ffda);
+
+            background-size: 200% 200%;
+
+            background-clip: text;
+
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+
+            animation: shimmer 3s ease-in-out infinite;
+
+        }
+
+        .cs-hero-sub {
+
+            font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+
+            color: rgba(255,255,255,0.75);
+
+            line-height: 1.65;
+
+            margin-bottom: 28px;
+
+            max-width: 620px;
+
+        }
+
+        .cs-hero-actions {
+
+            display: flex;
+
+            gap: 12px;
+
+            flex-wrap: wrap;
+
+            align-items: center;
+
+        }
+
+        .cs-btn-live {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 11px 22px;
+
+            border-radius: 999px;
+
+            background: #64ffda;
+
+            color: #000; /* Ensure readable contrast */
+
+            font-weight: 700;
+
+            font-size: 0.9rem;
+
+            text-decoration: none;
+
+            transition: transform 0.2s, box-shadow 0.2s;
+
+        }
+
+        .cs-btn-live:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(100,255,218,0.3); }
+
+        .cs-btn-back {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 11px 20px;
+
+            border-radius: 999px;
+
+            border: 1px solid rgba(255,255,255,0.18);
+
+            color: rgba(255,255,255,0.75);
+
+            font-size: 0.9rem;
+
+            text-decoration: none;
+
+            transition: border-color 0.2s, color 0.2s;
+
+        }
+
+        .cs-btn-back:hover { border-color: rgba(100,255,218,0.4); color: #64ffda; }
+
+
+
+        .cs-scores {
+
+            background: rgba(10,15,10,0.98);
+
+            border-bottom: 1px solid rgba(100,255,218,0.1);
+
+            padding: 28px 0;
+
+        }
+
+        .cs-scores-grid {
+
+            display: flex;
+
+            gap: 0;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+        }
+
+        .cs-score-item {
+
+            text-align: center;
+
+            padding: 12px 40px;
+
+            border-right: 1px solid rgba(255,255,255,0.08);
+
+        }
+
+        .cs-score-item:last-child { border-right: none; }
+
+        .cs-score-num {
+
+            display: block;
+
+            font-size: 2rem;
+
+            font-weight: 800;
+
+            color: #64ffda;
+
+            line-height: 1;
+
+            margin-bottom: 4px;
+
+        }
+
+        .cs-score-label {
+
+            font-size: 0.76rem;
+
+            color: rgba(255,255,255,0.78);
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.08em;
+
+        }
+
+
+
+        .cs-overview {
+
+            padding: 80px 0;
+
+            background: #0d0d0d;
+
+        }
+
+        .cs-overview-grid {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1.6fr;
+
+            gap: 64px;
+
+            align-items: start;
+
+        }
+
+        .cs-section-label {
+
+            font-size: 0.75rem;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.12em;
+
+            color: #64ffda;
+
+            margin-bottom: 12px;
+
+        }
+
+        .cs-overview h2 {
+
+            font-size: clamp(1.5rem, 2.5vw, 2rem);
+
+            font-weight: 700;
+
+            color: #ffffff;
+
+            margin-bottom: 20px;
+
+            line-height: 1.2;
+
+        }
+
+        .cs-overview p {
+
+            font-size: 0.96rem;
+
+            color: rgba(255,255,255,0.72);
+
+            line-height: 1.7;
+
+            margin-bottom: 16px;
+
+        }
+
+        .cs-tech-stack {
+
+            display: flex;
+
+            flex-wrap: wrap;
+
+            gap: 8px;
+
+            margin-bottom: 28px;
+
+        }
+
+        .cs-tag {
+
+            padding: 5px 14px;
+
+            border-radius: 999px;
+
+            background: rgba(100,255,218,0.08);
+
+            border: 1px solid rgba(100,255,218,0.2);
+
+            color: #64ffda;
+
+            font-size: 0.78rem;
+
+            font-weight: 600;
+
+        }
+
+        .cs-deliverables {
+
+            list-style: none;
+
+            padding: 0;
+
+            margin: 0;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 12px;
+
+        }
+
+        .cs-deliverables li {
+
+            display: flex;
+
+            align-items: flex-start;
+
+            gap: 10px;
+
+            font-size: 0.92rem;
+
+            color: rgba(255,255,255,0.78);
+
+            line-height: 1.5;
+
+        }
+
+        .cs-deliverables li i {
+
+            color: #64ffda;
+
+            font-size: 0.85rem;
+
+            margin-top: 3px;
+
+            flex-shrink: 0;
+
+        }
+
+
+
+            .cs-preview {
+
+                padding: 80px 0;
+
+                background: linear-gradient(135deg, #0a0a0a 0%, #0f1724 100%);
+
+            }
+
+            .cs-preview-grid {
+
+                display: grid;
+
+                grid-template-columns: 1.35fr 0.7fr;
+
+                gap: 28px;
+
+                align-items: start;
+
+            }
+
+            .cs-preview-card {
+
+                border-radius: 16px;
+
+                overflow: hidden;
+
+                background: rgba(255,255,255,0.04);
+
+                border: 1px solid rgba(100,255,218,0.12);
+
+            }
+
+            .cs-preview-card--mobile {
+
+                max-width: 430px;
+
+                justify-self: center;
+
+            }
+
+            .cs-preview-label {
+
+                padding: 14px 20px;
+
+                border-bottom: 1px solid rgba(255,255,255,0.06);
+
+                font-size: 0.8rem;
+
+                font-weight: 700;
+
+                text-transform: uppercase;
+
+                letter-spacing: 0.1em;
+
+                color: rgba(255,255,255,0.78);
+
+                display: flex;
+
+                align-items: center;
+
+                gap: 8px;
+
+            }
+
+            .cs-preview-label i { color: #64ffda; }
+
+            .cs-preview-card img {
+
+                width: 100%;
+
+                display: block;
+
+            }
+
+
+
+        .cs-performance {
+
+            padding: 80px 0;
+
+            background: linear-gradient(135deg, #0a0a0a 0%, #0f1724 100%);
+
+        }
+
+        .cs-section-header { margin-bottom: 48px; }
+
+        .cs-section-header h2 {
+
+            font-size: clamp(1.5rem, 2.5vw, 2rem);
+
+            font-weight: 700;
+
+            color: #ffffff;
+
+            margin-bottom: 10px;
+
+        }
+
+        .cs-section-header p {
+
+            font-size: 0.96rem;
+
+            color: rgba(255,255,255,0.78);
+
+            max-width: 580px;
+
+        }
+
+        .cs-perf-grid {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 28px;
+
+        }
+
+        .cs-perf-card {
+
+            border-radius: 16px;
+
+            overflow: hidden;
+
+            background: rgba(255,255,255,0.04);
+
+            border: 1px solid rgba(100,255,218,0.12);
+
+        }
+
+        .cs-perf-label {
+
+            padding: 14px 20px;
+
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+
+            font-size: 0.8rem;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.1em;
+
+            color: rgba(255,255,255,0.78);
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+        }
+
+        .cs-perf-label i { color: #64ffda; }
+
+        .cs-perf-card img { width: 100%; display: block; }
+
+        .cs-placeholder {
+
+            aspect-ratio: 4/3;
+
+            display: flex;
+
+            flex-direction: column;
+
+            align-items: center;
+
+            justify-content: center;
+
+            background: linear-gradient(135deg, rgba(100,255,218,0.04), rgba(10,10,10,0.9));
+
+            padding: 40px;
+
+            text-align: center;
+
+        }
+
+        .cs-placeholder i {
+
+            font-size: 2.4rem;
+
+            color: rgba(100,255,218,0.3);
+
+            margin-bottom: 12px;
+
+        }
+
+        .cs-placeholder p {
+
+            font-size: 0.88rem;
+
+            color: rgba(255,255,255,0.78);
+
+            line-height: 1.55;
+
+            margin: 0;
+
+            font-style: italic;
+
+        }
+
+
+
+        .cs-search {
+
+            padding: 80px 0;
+
+            background: #0d0d0d;
+
+        }
+
+        .cs-search-img {
+
+            border-radius: 16px;
+
+            overflow: hidden;
+
+            border: 1px solid rgba(100,255,218,0.12);
+
+            max-width: 860px;
+
+        }
+
+        .cs-search-img img { width: 100%; display: block; }
+
+
+
+        .cs-rich {
+
+            padding: 80px 0;
+
+            background: linear-gradient(135deg, #0a0a0a 0%, #0f1724 100%);
+
+        }
+
+        .cs-rich-header {
+
+            display: flex;
+
+            align-items: flex-end;
+
+            justify-content: space-between;
+
+            margin-bottom: 40px;
+
+            flex-wrap: wrap;
+
+            gap: 16px;
+
+        }
+
+        .cs-rich-header h2 {
+
+            font-size: clamp(1.5rem, 2.5vw, 2rem);
+
+            font-weight: 700;
+
+            color: #ffffff;
+
+            margin-bottom: 8px;
+
+        }
+
+        .cs-rich-header p {
+
+            font-size: 0.92rem;
+
+            color: rgba(255,255,255,0.78);
+
+        }
+
+        .cs-btn-test {
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 10px 20px;
+
+            border-radius: 999px;
+
+            border: 1px solid rgba(100,255,218,0.3);
+
+            color: #64ffda;
+
+            font-size: 0.85rem;
+
+            font-weight: 600;
+
+            text-decoration: none;
+
+            white-space: nowrap;
+
+            transition: background 0.2s, border-color 0.2s;
+
+        }
+
+        .cs-btn-test:hover { background: rgba(100,255,218,0.08); border-color: rgba(100,255,218,0.6); }
+
+        .cs-rich-grid {
+
+            display: grid;
+
+            grid-template-columns: repeat(2, 1fr);
+
+            gap: 24px;
+
+        }
+
+        .cs-rich-card {
+
+            border-radius: 14px;
+
+            overflow: hidden;
+
+            background: rgba(255,255,255,0.04);
+
+            border: 1px solid rgba(100,255,218,0.1);
+
+        }
+
+        .cs-rich-card-label {
+
+            padding: 12px 18px;
+
+            border-bottom: 1px solid rgba(255,255,255,0.06);
+
+            font-size: 0.76rem;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.1em;
+
+            color: rgba(255,255,255,0.78);
+
+        }
+
+        .cs-rich-card img { width: 100%; display: block; }
+
+
+
+        .cs-cta {
+
+            padding: 72px 0;
+
+            background: #0a0a0a;
+
+            text-align: center;
+
+            border-top: 1px solid rgba(100,255,218,0.08);
+
+        }
+
+        .cs-cta h2 {
+
+            font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+
+            font-weight: 700;
+
+            color: #ffffff;
+
+            margin-bottom: 12px;
+
+        }
+
+        .cs-cta p {
+
+            font-size: 0.98rem;
+
+            color: rgba(255,255,255,0.78);
+
+            margin-bottom: 28px;
+
+            max-width: 520px;
+
+            margin-left: auto;
+
+            margin-right: auto;
+
+        }
+
+        .cs-cta-row {
+
+            display: flex;
+
+            gap: 14px;
+
+            justify-content: center;
+
+            flex-wrap: wrap;
+
+        }
+
+
+
+        .cs-gbp-inline {
+
+            display: flex; align-items: center; gap: 14px;
+
+            margin-top: 20px;
+
+            background: rgba(255,255,255,0.04);
+
+            border: 1px solid rgba(100,255,218,0.15);
+
+            border-radius: 14px; padding: 16px 20px;
+
+            max-width: 50%;
+
+        }
+
+        .cs-gbp-glogo {
+
+            width: 38px; height: 38px; flex-shrink: 0;
+
+            background: #fff; border-radius: 50%;
+
+            display: flex; align-items: center; justify-content: center;
+
+            font-size: 1.1rem; font-weight: 900; color: #4285F4;
+
+            font-family: Arial, sans-serif;
+
+        }
+
+        .cs-gbp-info { flex: 1; min-width: 0; }
+
+        .cs-gbp-info h3 { font-size: 0.9rem; font-weight: 700; color: #fff; margin-bottom: 2px; }
+
+        .cs-gbp-badge { display: inline-flex; align-items: center; gap: 6px; background: rgba(100,255,218,0.08); border: 1px solid rgba(100,255,218,0.25); border-radius: 999px; padding: 3px 10px; font-size: 0.72rem; color: #64ffda; margin-bottom: 2px; }
+
+        .cs-gbp-meta { font-size: 0.76rem; color: rgba(255,255,255,0.70); }
+
+        .cs-gbp-link {
+
+            display: inline-flex; align-items: center; gap: 6px;
+
+            padding: 7px 14px; border-radius: 999px;
+
+            border: 1px solid rgba(100,255,218,0.3); color: #64ffda;
+
+            font-size: 0.78rem; font-weight: 600; text-decoration: none;
+
+            white-space: nowrap; flex-shrink: 0;
+
+            transition: background 0.2s, border-color 0.2s;
+
+        }
+
+        .cs-gbp-link:hover { background: rgba(100,255,218,0.08); border-color: rgba(100,255,218,0.6); }
+
+
+
+        @media (max-width: 860px) {
+
+            .cs-overview-grid { grid-template-columns: 1fr; gap: 36px; }
+
+            .cs-preview-grid { grid-template-columns: 1fr; }
+
+            .cs-preview-card--mobile { max-width: 100%; }
+
+            .cs-perf-grid { grid-template-columns: 1fr; }
+
+            .cs-rich-grid { grid-template-columns: 1fr; }
+
+            .cs-score-item { padding: 12px 20px; }
+
+            .cs-gbp-inline { max-width: 100%; }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .cs-rich-header { flex-direction: column; align-items: flex-start; }
+
+            .cs-gbp-inline { flex-wrap: wrap; }
+
+            .cs-gbp-link { white-space: normal; flex-shrink: 1; }
+
+        }
+
+    </style>
+
+    <!-- Microsoft Clarity -->
+
+    <script type="text/javascript">
+
+        (function(c,l,a,r,i,t,y){
+
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+
+        })(window, document, "clarity", "script", "wgj5b5rrss");
+
+    </script></head>
+
+<body>
+
+    <div id="header-container"></div>
+
+
+
+    <!-- -- HERO -- -->
+
+    <section class="cs-hero">
+
+        <div class="container">
+
+            <div class="cs-hero-inner fade-in">
+
+                <nav class="cs-breadcrumb" aria-label="Breadcrumb">
+
+                    <a href="/">Home</a>
+
+                    <span>/</span>
+
+                    <a href="/case-studies">Case Studies</a>
+
+                    <span>/</span>
+
+                    <span>KnightLogics.com</span>
+
+                </nav>
+
+                <div class="cs-type-badge"><i class="fas fa-id-card"></i> Portfolio Website</div>
+
+                <h1><span>Portfolio & Local SEO &mdash; KnightLogics.com</span></h1>
+
+                <p class="cs-hero-sub">This site is itself a demonstration of what I build. Knight Logics is a multi-page portfolio and service hub built with custom HTML, CSS, and JavaScript &mdash; no frameworks, no CMS. 95 Desktop Performance. 100 Accessibility. 100 SEO. Indexed, schema-verified, and GA4-tracked from day one.</p>
+
+                <div class="cs-hero-actions">
+
+                    <a href="https://knightlogics.com/" class="cs-btn-live" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i> View Live Site</a>
+
+                    <a href="/case-studies" class="cs-btn-back"><i class="fas fa-arrow-left"></i> All Case Studies</a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- -- SCORE STRIP -- -->
+
+    <div class="cs-scores">
+
+        <div class="container">
+
+            <div class="cs-scores-grid">
+
+                <div class="cs-score-item">
+
+                    <span class="cs-score-num">95</span>
+
+                    <span class="cs-score-label">Desktop Performance</span>
+
+                </div>
+
+                <div class="cs-score-item">
+
+                    <span class="cs-score-num">86</span>
+
+                    <span class="cs-score-label">Mobile Performance</span>
+
+                </div>
+
+                <div class="cs-score-item">
+
+                    <span class="cs-score-num">100</span>
+
+                    <span class="cs-score-label">SEO Score</span>
+
+                </div>
+
+                <div class="cs-score-item">
+
+                    <span class="cs-score-num">100</span>
+
+                    <span class="cs-score-label">Accessibility</span>
+
+                </div>
+
+                <div class="cs-score-item">
+
+                    <span class="cs-score-num">8</span>
+
+                    <span class="cs-score-label">Schema Types</span>
+
+                </div>
+
+                <div class="cs-score-item">
+
+                    <span class="cs-score-num">23</span>
+
+                    <span class="cs-score-label">Pages Built</span>
+
+                </div>
+
+            </div>
+
+            <div style="display:flex; justify-content:center; padding-top:24px;">
+
+                <a href="https://pagespeed.web.dev/report?url=https%3A%2F%2Fknightlogics.com" target="_blank" rel="noopener" style="display:inline-flex; align-items:center; gap:8px; background:#64ffda; color:#000; padding:12px 24px; border-radius:4px; font-weight:700; text-decoration:none;"><i class="fas fa-gauge-high"></i> Test This Page's Lighthouse Scores</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- -- GBP PROOF -- -->
+
+    <div class="container">
+
+        <div class="cs-gbp-inline">
+
+            <div class="cs-gbp-glogo">G</div>
+
+            <div class="cs-gbp-info">
+
+                <h3>Knight Logics</h3>
+
+                <div class="cs-gbp-badge"><i class="fas fa-circle-check"></i> Verified Business</div>
+
+                <div class="cs-gbp-meta">Software Company &mdash; Tampa Bay, FL</div>
+
+            </div>
+
+            <a href="https://share.google/gIhppCVmkN4IgaOFo" target="_blank" rel="noopener" class="cs-gbp-link">
+
+                <i class="fas fa-arrow-up-right-from-square"></i> View on Google
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- -- OVERVIEW / THE BUILD -- -->
+
+    <section class="cs-overview">
+
+        <div class="container">
+
+            <div class="cs-overview-grid">
+
+                <div>
+
+                    <p class="cs-section-label"><i class="fas fa-wrench"></i> The Build</p>
+
+                    <h2>A Portfolio That Practices What It Preaches</h2>
+
+                    <div class="cs-tech-stack" aria-label="Tech stack">
+
+                        <span class="cs-tag">HTML5</span>
+
+                        <span class="cs-tag">CSS3</span>
+
+                        <span class="cs-tag">Vanilla JS</span>
+
+                        <span class="cs-tag">Vercel</span>
+
+                        <span class="cs-tag">GA4 Analytics</span>
+
+                        <span class="cs-tag">JSON-LD Schema</span>
+
+                        <span class="cs-tag">Google Search Console</span>
+
+                        <span class="cs-tag">WebP Images</span>
+
+                    </div>
+
+                    <p>If the goal is to sell website development, the website that sells it has to be the best example of it. KnightLogics.com was built to that standard &mdash; hand-coded, performance-first, and fully instrumented with analytics and structured data from the start.</p>
+
+                    <p>The site has multiple service pages, a project showcase system, contact forms, policy pages, and a structured content hierarchy that Google can crawl and understand. The header and footer load dynamically via JavaScript fetch, keeping the codebase clean without a backend or build system.</p>
+
+                    <p>Every page carries full SEO metadata, Open Graph tags, Twitter Cards, canonical links, and JSON-LD schema. Google Analytics 4 is integrated for conversion tracking, and the site is verified and monitored in Google Search Console.</p>
+
+                </div>
+
+                <div>
+
+                    <p class="cs-section-label"><i class="fas fa-list-check"></i> What Was Built</p>
+
+                    <ul class="cs-deliverables">
+
+                        <li><i class="fas fa-check-circle"></i> Multi-page portfolio: home, projects, 4 service pages, contact, policy pages</li>
+
+                        <li><i class="fas fa-check-circle"></i> Dynamic header/footer loading via JS fetch &mdash; DRY architecture, no build step</li>
+
+                        <li><i class="fas fa-check-circle"></i> Project showcase with demo videos and live links</li>
+
+                        <li><i class="fas fa-check-circle"></i> Person + Organization JSON-LD schema for entity establishment</li>
+
+                        <li><i class="fas fa-check-circle"></i> Service schema on each service page with areaServed</li>
+
+                        <li><i class="fas fa-check-circle"></i> BreadcrumbList on all inner pages</li>
+
+                        <li><i class="fas fa-check-circle"></i> Open Graph + Twitter Card meta on every page</li>
+
+                        <li><i class="fas fa-check-circle"></i> Google Analytics 4 with custom config</li>
+
+                        <li><i class="fas fa-check-circle"></i> Sitemap.xml submitted to Google Search Console</li>
+
+                        <li><i class="fas fa-check-circle"></i> 100/100 Accessibility &mdash; full WCAG compliance</li>
+
+                        <li><i class="fas fa-check-circle"></i> Hosted on Vercel with edge CDN and automatic HTTPS</li>
+
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- -- SEARCH CONSOLE -- -->
+
+    <section class="cs-search">
+
+        <div class="container">
+
+            <div class="cs-section-header fade-in">
+
+                <p class="cs-section-label"><i class="fas fa-magnifying-glass"></i> Google Search Console</p>
+
+                <h2>Indexed &amp; Verified</h2>
+
+                <p>Site submitted to Google Search Console with sitemap. All pages crawled and indexed successfully.</p>
+
+            </div>
+
+            <div class="cs-search-img fade-in">
+
+                <img src="./images/KnightLogics%20-%20Indexed.png" alt="Google Search Console showing KnightLogics.com pages indexed successfully" loading="lazy" width="1200" height="700">
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- -- RICH RESULTS -- -->
+
+    <section class="cs-rich">
+
+        <div class="container">
+
+            <div class="cs-rich-header fade-in">
+
+                <div>
+
+                    <p class="cs-section-label"><i class="fas fa-code"></i> Structured Data</p>
+
+                    <h2>Rich Results Validation</h2>
+
+                    <p>Latest live Rich Results output for the homepage reports <strong>4 valid items</strong>: Breadcrumbs, FAQ, Local businesses, and Organization.</p>
+
+                </div>
+
+                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+
+                    <a href="https://search.google.com/test/rich-results/result?id=SdPXpe0kS-KYQ-FEqc9bEg" target="_blank" rel="noopener" class="cs-btn-test"><i class="fas fa-arrow-up-right-from-square"></i> View Saved Test</a>
+
+                    <a href="https://search.google.com/test/rich-results?url=https%3A%2F%2Fknightlogics.com%2F" target="_blank" rel="noopener" class="cs-btn-back"><i class="fas fa-rotate-right"></i> Run Live Test</a>
+
+                </div>
+
+            </div>
+
+            <p class="fade-in" style="margin: 0 0 16px; color: rgba(255,255,255,0.78); font-size: 0.88rem;">Live run status (2026-05-09): this panel is synced to a live Rich Results run from the authenticated shared browser session.</p>
+
+            <div class="fade-in" style="background: rgba(255,255,255,0.03); border: 1px solid rgba(100,255,218,0.12); border-radius: 14px; padding: 24px; margin-bottom: 24px;">
+
+                <div style="display: flex; flex-wrap: wrap; gap: 14px; margin-bottom: 18px;">
+
+                    <div style="background: rgba(100,255,218,0.04); border: 1px solid rgba(100,255,218,0.10); border-radius: 10px; padding: 16px 18px; min-width: 220px;"><div style="font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.78); margin-bottom: 8px;">Valid Items (Live Test)</div><div style="font-size: 1.05rem; font-weight: 800; color: #fff;">4 detected</div></div>
+
+                    <div style="background: rgba(100,255,218,0.04); border: 1px solid rgba(100,255,218,0.10); border-radius: 10px; padding: 16px 18px; min-width: 220px;"><div style="font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.78); margin-bottom: 8px;">Detected Families</div><div style="font-size: 1.05rem; font-weight: 800; color: #fff;">4 types</div></div>
+
+                </div>
+
+                <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px;">
+
+                    <div style="background: rgba(100,255,218,0.04); border: 1px solid rgba(100,255,218,0.10); border-radius: 10px; padding: 16px 18px;"><div style="font-weight: 800; color: #fff; margin-bottom: 8px;">Breadcrumbs (1 valid item)</div><div style="font-size: 0.86rem; color: rgba(255,255,255,0.78);">Improves displayed result paths and helps Google read page structure clearly.</div></div>
+
+                    <div style="background: rgba(100,255,218,0.04); border: 1px solid rgba(100,255,218,0.10); border-radius: 10px; padding: 16px 18px;"><div style="font-weight: 800; color: #fff; margin-bottom: 8px;">FAQ (1 valid item)</div><div style="font-size: 0.86rem; color: rgba(255,255,255,0.78);">Supports richer SERP presentation and can answer buyer objections before click-through.</div></div>
+
+                    <div style="background: rgba(100,255,218,0.04); border: 1px solid rgba(100,255,218,0.10); border-radius: 10px; padding: 16px 18px;"><div style="font-weight: 800; color: #fff; margin-bottom: 8px;">Local businesses (1 valid item)</div><div style="font-size: 0.86rem; color: rgba(255,255,255,0.78);">Improves local-intent relevance for Tampa Bay service searches and geo-context.</div></div>
+
+                    <div style="background: rgba(100,255,218,0.04); border: 1px solid rgba(100,255,218,0.10); border-radius: 10px; padding: 16px 18px;"><div style="font-weight: 800; color: #fff; margin-bottom: 8px;">Organization (1 valid item)</div><div style="font-size: 0.86rem; color: rgba(255,255,255,0.78);">Reinforces entity-level trust and consistent brand understanding in Google systems.</div></div>
+
+                </div>
+
+                <p style="margin-top: 18px; color: rgba(255,255,255,0.78); font-size: 0.9rem;">Source: live Rich Results run for https://knightlogics.com/ (result id: ziMvNGmO_OEwjigAkAubtA).</p>
+
+            </div>
+
+            <div class="cs-rich-grid fade-in">
+
+                <div class="cs-rich-card">
+
+                    <div class="cs-rich-card-label">Overall &mdash; All Schema Types Detected</div>
+
+                    <img src="./images/KnightLogics%20-%20%20Rich%20Main.png" alt="Knight Logics Rich Results snapshot panel" loading="lazy" width="900" height="500">
+
+                </div>
+
+                <div class="cs-rich-card">
+
+                    <div class="cs-rich-card-label">Local Business Schema</div>
+
+                    <img src="./images/KnightLogics%20-%20Rich%20Local.png" alt="Knight Logics Rich Results Test &mdash; Local Business schema valid" loading="lazy" width="900" height="500">
+
+                </div>
+
+                <div class="cs-rich-card">
+
+                    <div class="cs-rich-card-label">Organization Schema</div>
+
+                    <img src="./images/KnightLogics%20-%20Rich%20Organization.png" alt="Knight Logics Rich Results Test &mdash; Organization schema valid" loading="lazy" width="900" height="500">
+
+                </div>
+
+                <div class="cs-rich-card">
+
+                    <div class="cs-rich-card-label">Breadcrumb Schema</div>
+
+                    <img src="./images/KnightLogics%20-%20Breadcrumbs.png" alt="Knight Logics Rich Results Test &mdash; Breadcrumb schema valid" loading="lazy" width="900" height="500">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- -- CTA -- -->
+
+    <section class="cs-cta">
+
+        <div class="container">
+
+            <h2>Want a Site Built to These Standards?</h2>
+
+            <p>Every project gets the same attention to performance, SEO, and structured data &mdash; whether it's a one-page landing site or a full multi-service portfolio.</p>
+
+            <div class="cs-cta-row">
+
+                <a href="/contact" class="btn-primary">Start a Project</a>
+
+                <a href="/case-studies" class="btn-secondary">See All Case Studies</a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <div id="footer-container">
+    <nav class="crawl-fallback-links" aria-label="Site links">
+        <a href="/service-websites">Website Services</a>
+        <a href="/service-local-seo">Local SEO</a>
+        <a href="/service-google-business-profile">Google Business Profile</a>
+        <a href="/free-website-audit">Free Website Audit</a>
+        <a href="/case-studies">Case Studies</a>
+        <a href="/automation">Automation Systems</a>
+        <a href="/case-study-evidencedesk-ai">EvidenceDesk AI Case Study</a>
+        <a href="/case-study-knight-logics">Knight Logics Case Study</a>
+        <a href="/web-designer-safety-harbor">Web Designer Safety Harbor</a>
+        <a href="/web-designer-palm-harbor">Web Designer Palm Harbor</a>
+        <a href="/web-designer-clearwater">Web Designer Clearwater</a>
+        <a href="/web-designer-st-petersburg">Web Designer St. Petersburg</a>
+        <a href="/web-designer-tampa">Web Designer Tampa</a>
+        <a href="/llms.txt">LLMs.txt</a>
+        <a href="/llms-full.txt">LLMs Full</a>
+        <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/terms-of-service">Terms of Service</a>
+        <a href="/refund-policy">Refund Policy</a>
+        <a href="/disclaimer">Disclaimer</a>
+    </nav>
+</div>
+
+    <script src="script.min.js?v=20260528a"></script>
+
+</body>
+
+</html>
+
+
+

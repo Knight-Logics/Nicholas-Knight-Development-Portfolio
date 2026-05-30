@@ -39,32 +39,6 @@
     <priority>0.92</priority>
   </url>
 
-  <!-- AI / LLM Summary Files -->
-  <url>
-    <loc>https://knightlogics.com/llms.txt</loc>
-    <lastmod>2026-05-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.35</priority>
-  </url>
-  <url>
-    <loc>https://knightlogics.com/llms-full.txt</loc>
-    <lastmod>2026-05-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.35</priority>
-  </url>
-  <url>
-    <loc>https://knightlogics.com/humans.txt</loc>
-    <lastmod>2026-05-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  <url>
-    <loc>https://knightlogics.com/.well-known/security.txt</loc>
-    <lastmod>2026-05-12</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.2</priority>
-  </url>
-
   <!-- Service Pages -->
   <url>
     <loc>https://knightlogics.com/service-websites</loc>
@@ -80,13 +54,13 @@
   </url>
   <url>
     <loc>https://knightlogics.com/service-local-seo</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
     <loc>https://knightlogics.com/service-google-business-profile</loc>
-    <lastmod>2026-05-12</lastmod>
+    <lastmod>2026-05-30</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.88</priority>
   </url>
@@ -115,6 +89,12 @@
     <lastmod>2026-05-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://knightlogics.com/case-studies</loc>
+    <lastmod>2026-05-30</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.86</priority>
   </url>
   <url>
     <loc>https://knightlogics.com/referral-program</loc>

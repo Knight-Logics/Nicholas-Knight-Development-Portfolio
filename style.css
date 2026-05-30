@@ -3991,6 +3991,12 @@ body.reduced-motion .hero {
     z-index: 1;
 }
 
+body.reduced-motion .parallax-bg-near,
+body.reduced-motion .parallax-bg-mid {
+    display: none !important;
+    opacity: 0 !important;
+}
+
 body.reduced-motion .hero + section {
     margin-top: 0;
 }
