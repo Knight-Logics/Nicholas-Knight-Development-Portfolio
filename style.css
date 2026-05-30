@@ -564,7 +564,7 @@ a:where(:not(.cta-button, .nav-link, .nav-brand-link, .nav-dropdown-toggle)):foc
 
 /* City background - NEVER MOVES (Darker for better contrast) */
 .parallax-bg-far {
-    background-image: url('./images/websitehero-1920.webp?v=20260529sharp');
+    background-image: url('./images/websitehero-1920.webp?v=20260529hero2');
     z-index: 1;
     opacity: 0.7;
     filter: brightness(0.6) contrast(1.1);
@@ -576,19 +576,19 @@ a:where(:not(.cta-button, .nav-link, .nav-brand-link, .nav-dropdown-toggle)):foc
 
 @media (min-width: 1600px) {
     .parallax-bg-far {
-        background-image: url('./images/websitehero.webp?v=20260529sharp');
+        background-image: url('./images/websitehero.webp?v=20260529hero2');
     }
 }
 
 @media (min-width: 2560px) {
     .parallax-bg-far {
-        background-image: url('./images/websitehero-hd.webp?v=20260529sharp');
+        background-image: url('./images/websitehero-hd.webp?v=20260529hero2');
     }
 }
 
 @media (min-width: 3200px) {
     .parallax-bg-far {
-        background-image: url('./images/websitehero-hd.webp?v=20260529sharp');
+        background-image: url('./images/websitehero-hd.webp?v=20260529hero2');
     }
 }
 
@@ -4797,7 +4797,7 @@ section::before {
 
     .parallax-bg-far {
         display: block;
-        background-image: url('./images/website-hero-mobile.webp?v=20260529sharp');
+        background-image: url('./images/website-hero-mobile.webp?v=20260529hero2');
         background-attachment: scroll;
         background-position: center center !important;
         opacity: 0.70;
@@ -8625,7 +8625,7 @@ html {
 }
 
 .page-service-local-seo .svc-hero {
-    background: url('./images/websitehero.webp?v=20260529sharp') top center/cover no-repeat;
+    background: url('./images/websitehero.webp?v=20260529hero2') top center/cover no-repeat;
 }
 
 .page-service-google-business-profile .svc-hero {
@@ -8914,7 +8914,7 @@ html {
     min-height: 520px;
     display: flex;
     align-items: center;
-    background: url('./images/websitehero.webp?v=20260529sharp') top center/cover no-repeat;
+    background: url('./images/websitehero.webp?v=20260529hero2') top center/cover no-repeat;
     overflow: hidden;
 }
 
@@ -9836,5 +9836,5 @@ html {
 .displayplus-hero,
 .videoforge-hero,
 .pixelforge-hero {
-    background: linear-gradient(135deg, rgba(5, 10, 20, 0.94) 0%, rgba(5, 10, 20, 0.72) 100%), url('/images/websitehero.webp?v=20260529sharp') top center / cover no-repeat !important;
+    background: linear-gradient(135deg, rgba(5, 10, 20, 0.94) 0%, rgba(5, 10, 20, 0.72) 100%), url('/images/websitehero.webp?v=20260529hero2') top center / cover no-repeat !important;
 }
