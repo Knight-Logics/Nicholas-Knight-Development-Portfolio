@@ -67,13 +67,8 @@
       "permanent": true
     },
     {
-      "source": "/case-studies",
-      "destination": "/automation",
-      "permanent": true
-    },
-    {
       "source": "/case-studies.html",
-      "destination": "/automation",
+      "destination": "/case-studies",
       "permanent": true
     },
     {
@@ -330,6 +325,10 @@
     {
       "source": "/service-ai-automation",
       "destination": "/service-ai-automation.html"
+    },
+    {
+      "source": "/case-studies",
+      "destination": "/case-studies.html"
     },
     {
       "source": "/automation",
@@ -680,7 +679,7 @@
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=86400, stale-while-revalidate=604800"
+          "value": "public, max-age=31536000, immutable"
         }
       ]
     },
@@ -689,7 +688,7 @@
       "headers": [
         {
           "key": "Cache-Control",
-          "value": "public, max-age=86400, stale-while-revalidate=604800"
+          "value": "public, max-age=31536000, immutable"
         }
       ]
     }

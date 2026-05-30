@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="ahrefs-site-verification" content="164950ba064336681cc8d71736f9428046c8454a1f658de119efd6c38808144f">
-    <meta name="description" content="Need Tampa Bay web design that actually generates leads? Knight Logics builds hand-coded small business websites with local SEO, Google Business optimization, and automation for Tampa Bay service businesses.">
+    <meta name="description" content="Custom websites, local SEO, GBP optimization, and automation for Tampa Bay service businesses. Start with a free website and visibility audit.">
     <meta name="keywords" content="custom website design Tampa Bay, local SEO services Tampa, Google Business Profile optimization Tampa, small business web design Florida, website designer Tampa Bay, SEO services Tampa Bay, affordable web design Pinellas County, lead generation website Tampa, business automation Tampa, workflow automation small business, hand-coded website, custom software development Tampa Bay, Knight Logics, Nicholas Knight">
     <meta name="author" content="Nicholas Knight">
     
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Tampa Bay Web Design & Local SEO | Small Business Websites | Knight Logics">
-    <meta property="og:description" content="Need Tampa Bay web design that actually generates leads? Knight Logics builds hand-coded small business websites with local SEO, Google Business optimization, and automation for Tampa Bay service businesses.">
+    <meta property="og:title" content="Tampa Bay Web Design & Local SEO | Knight Logics">
+    <meta property="og:description" content="Custom websites, local SEO, GBP optimization, and automation for Tampa Bay service businesses. Start with a free website and visibility audit.">
     <meta property="og:url" content="https://knightlogics.com/">
     <meta property="og:site_name" content="Knight Logics">
     <meta property="og:image" content="https://knightlogics.com/images/KnightLogicsLogo2.webp">
@@ -21,8 +21,8 @@
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Tampa Bay Web Design & Local SEO | Small Business Websites | Knight Logics">
-    <meta name="twitter:description" content="Need Tampa Bay web design that actually generates leads? Knight Logics builds hand-coded small business websites with local SEO, Google Business optimization, and automation for Tampa Bay service businesses.">
+    <meta name="twitter:title" content="Tampa Bay Web Design & Local SEO | Knight Logics">
+    <meta name="twitter:description" content="Custom websites, local SEO, GBP optimization, and automation for Tampa Bay service businesses. Start with a free website and visibility audit.">
     <meta name="twitter:image" content="https://knightlogics.com/images/KnightLogicsLogo2.webp">
     
     <!-- Google Analytics - deferred until after page paint to avoid blocking render -->
@@ -32,17 +32,28 @@
         gtag('js', new Date());
         gtag('config', 'G-VX36QR7HJW');
         gtag('config', 'AW-18138273413');
+
+        var gaLoaded = false;
+
         function _loadGA() {
+            if (gaLoaded) {
+                return;
+            }
+
+            gaLoaded = true;
             var s = document.createElement('script');
             s.async = true;
             s.src = 'https://www.googletagmanager.com/gtag/js?id=G-VX36QR7HJW';
             document.head.appendChild(s);
         }
-        if ('requestIdleCallback' in window) {
-            requestIdleCallback(_loadGA, { timeout: 5000 });
-        } else {
-            window.addEventListener('load', function() { setTimeout(_loadGA, 3000); });
-        }
+
+        window.addEventListener('pointerdown', _loadGA, { once: true, passive: true });
+        window.addEventListener('touchstart', _loadGA, { once: true, passive: true });
+        window.addEventListener('scroll', _loadGA, { once: true, passive: true });
+        window.addEventListener('keydown', _loadGA, { once: true });
+        window.addEventListener('load', function() {
+            setTimeout(_loadGA, 45000);
+        }, { once: true });
     </script>
     
     <!-- Breadcrumb Schema -->
@@ -401,12 +412,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
     <!-- LCP hero images use high-quality responsive WebP variants generated from the 5200px master -->
-        <link rel="preload" as="image" href="./images/website-hero-mobile.webp?v=20260529hero2" fetchpriority="high" type="image/webp" media="(max-width: 1024px)">
+        <link rel="preload" as="image" href="./images/website-hero-mobile-optimized.webp?v=20260530hero1" fetchpriority="high" type="image/webp" media="(max-width: 1024px)">
         <link rel="preload" as="image" href="./images/websitehero-hd.webp?v=20260530hero3" fetchpriority="high" type="image/webp" media="(min-width: 3200px)">
         <link rel="preload" as="image" href="./images/websitehero-hd.webp?v=20260530hero3" fetchpriority="high" type="image/webp" media="(min-width: 2560px) and (max-width: 3199px)">
         <link rel="preload" as="image" href="./images/websitehero.webp?v=20260530hero3" fetchpriority="high" type="image/webp" media="(min-width: 1600px) and (max-width: 2559px)">
         <link rel="preload" as="image" href="./images/websitehero-1920.webp?v=20260530hero3" fetchpriority="high" type="image/webp" media="(min-width: 1025px) and (max-width: 1599px)">
-    <link rel="preload" as="image" href="./images/CircuitBrush3.webp" fetchpriority="low" type="image/webp" media="(min-width: 1025px)">
+    <link rel="preload" as="image" href="./images/CircuitBrush3.webp?v=20260530perf1" fetchpriority="low" type="image/webp" media="(min-width: 1025px)">
 
     <!-- Sitemap reference -->
     <link rel="sitemap" type="application/xml" href="./sitemap.xml">
@@ -422,7 +433,7 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         html { scroll-behavior: smooth; }
-        :root { --landing-viewport-height: 100vh; }
+        :root { --landing-viewport-height: 100svh; }
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
@@ -512,7 +523,7 @@
         }
         .parallax-bg-mid { display: none; }
         .parallax-bg-near {
-            background-image: url('./images/CircuitBrush3.webp');
+            background-image: url('./images/CircuitBrush3.webp?v=20260530perf1');
             z-index: 3;
             opacity: 0.9;
             background-size: 100% 100%;
@@ -736,7 +747,7 @@
             .hero-form-shell { display: none; }
             .parallax-bg-far {
                 display: block;
-                background-image: url('./images/website-hero-mobile.webp?v=20260529hero2');
+                background-image: url('./images/website-hero-mobile-optimized.webp?v=20260530hero1');
                 background-attachment: scroll;
                 background-position: center center;
                 opacity: 0.82;
@@ -744,7 +755,7 @@
             }
             .parallax-bg-mid { display: block; opacity: 0.2; }
             .parallax-bg-near {
-                background-image: url('./images/CircuitBrush3.webp');
+                background-image: url('./images/CircuitBrush3-mobile.webp?v=20260530perf1');
                 background-size: 100% 100%;
                 background-position: center center;
                 transform: translate3d(0, 0, 0) scale(1.10);
@@ -779,6 +790,17 @@
             .hero-subtitle {
                 display: none;
             }
+        }
+
+        body.reduced-motion .hero {
+            position: relative;
+            top: auto;
+            left: auto;
+            z-index: 1;
+        }
+
+        body.reduced-motion .hero + section {
+            margin-top: 0;
         }
     
         /* content-visibility: skip painting off-screen sections until scroll */
@@ -1591,7 +1613,8 @@
             }
         }
     </style>
-    <link rel="stylesheet" href="style.css?v=20260530hero7">
+    <link rel="preload" href="style.css?v=20260530perf1" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="style.css?v=20260530perf1"></noscript>
     <!-- Non-critical brand-font CSS loads after first paint. Font Awesome removed  icons are inline SVGs. -->
     <script>
         window.addEventListener('load', function () {
@@ -1601,20 +1624,41 @@
             document.head.appendChild(playfair);
         }, { once: true });
     </script>
-    <title>Tampa Bay Web Design & Local SEO | Small Business Websites | Knight Logics</title>
+    <title>Tampa Bay Web Design & Local SEO | Knight Logics</title>
     <!-- Microsoft Clarity (deferred until after load to protect first paint) -->
     <script type="text/javascript">
-        window.addEventListener('load', function () {
-            setTimeout(function () {
+        (function () {
+            var clarityLoaded = false;
+
+            function loadClarity() {
+                if (clarityLoaded) {
+                    return;
+                }
+
+                clarityLoaded = true;
                 (function(c,l,a,r,i,t,y){
                     c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
                     t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
                     y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
                 })(window, document, "clarity", "script", "wgj5b5rrss");
-            }, 2500);
-        }, { once: true });
+            }
+
+            window.addEventListener('pointerdown', loadClarity, { once: true, passive: true });
+            window.addEventListener('touchstart', loadClarity, { once: true, passive: true });
+            window.addEventListener('scroll', loadClarity, { once: true, passive: true });
+            window.addEventListener('keydown', loadClarity, { once: true });
+            window.addEventListener('load', function () {
+                setTimeout(loadClarity, 45000);
+            }, { once: true });
+        })();
     </script></head>
-<body>
+    <body class="landing-mode">
+<script>
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        document.body.classList.add('reduced-motion');
+        document.body.classList.remove('landing-mode');
+    }
+</script>
 <a href="#about" class="skip-link">Skip to main content</a>
 <svg style="display:none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
   <symbol id="fi-chevron-down" viewBox="0 0 512 512"><path d="M233.4 406.6c12.5 12.5 32.8 12.5 45.3 0l192-192c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L256 338.7 86.6 169.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3l192 192z"/></symbol>
@@ -1633,14 +1677,6 @@
   <symbol id="fi-map-location-dot" viewBox="0 0 576 512"><path d="M408 120c0 54.6-73.1 151.9-105.2 192c-7.7 9.6-22 9.6-29.6 0C241.1 271.9 168 174.6 168 120C168 53.7 221.7 0 288 0s120 53.7 120 120zm8 80.4c3.5-6.9 6.7-13.8 9.6-20.6c.5-1.2 1-2.5 1.5-3.7l116-46.4C558.9 123.4 576 135 576 152V422.8c0 9.8-6 18.6-15.1 22.3L416 503V200.4zM137.6 138.3c2.4 14.1 7.2 28.3 12.8 41.5c2.9 6.8 6.1 13.7 9.6 20.6V451.8L32.9 502.7C17.1 509 0 497.4 0 480.4V209.6c0-9.8 6-18.6 15.1-22.3l122.6-49zM327.8 332c13.9-17.4 35.7-45.7 56.2-77V504.3L192 449.4V255c20.5 31.3 42.3 59.6 56.2 77c20.5 25.6 59.1 25.6 79.6 0zM288 152a40 40 0 1 0 0-80 40 40 0 1 0 0 80z"/></symbol>
   <symbol id="fi-phone" viewBox="0 0 512 512"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C12.1 30.2 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.8-12.1 38.6-29.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></symbol>
 </svg>
-    <!-- Loading Screen -->
-    <div id="loading-screen">
-        <div class="loader">
-            <div class="spinner"></div>
-            <p>Loading Portfolio...</p>
-        </div>
-    </div>
-
     <!-- Header will be loaded here -->
     <div id="header-container"></div>
 
@@ -2654,7 +2690,7 @@
                 <!-- Social chips -->
                 <div class="contact-social-row">
                     <a href="https://github.com/Knight-Logics" target="_blank" rel="noopener noreferrer" class="contact-social-chip">
-                        <img src="./images/GithubIcon.webp" alt="" width="32" height="32" loading="lazy">
+                        <img src="./images/GithubIcon.webp" alt="GitHub" width="32" height="32" loading="lazy">
                         <span>GitHub</span>
                     </a>
                     <a href="https://www.linkedin.com/company/knight-logics/" target="_blank" rel="noopener noreferrer" class="contact-social-chip">
@@ -4033,7 +4069,7 @@
         }());
     </script>
     <script src="attribution.js" defer></script>
-    <script src="script.js?v=20260530landing6" defer></script>
+    <script src="script.js?v=20260530perf1" defer></script>
     <script>
         // Google Ads conversion tracking  hero consultation form
         (function() {

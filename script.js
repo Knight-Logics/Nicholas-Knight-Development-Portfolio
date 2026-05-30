@@ -52,6 +52,10 @@ function scheduleNonCriticalInit(fn, delay = 0) {
 }
 
 function setLandingViewportHeight() {
+    if (window.CSS && typeof window.CSS.supports === 'function' && window.CSS.supports('height', '100svh')) {
+        return;
+    }
+
     document.documentElement.style.setProperty('--landing-viewport-height', `${window.innerHeight}px`);
 }
 
@@ -252,7 +256,7 @@ function initLayeredParallax() {
 
     // Respect accessibility preferences: reduced motion users keep a static hero.
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (isHandheldTouchDevice && prefersReducedMotion) {
+    if (prefersReducedMotion) {
         isInLandingMode = false;
         unlockLandingScroll();
 
