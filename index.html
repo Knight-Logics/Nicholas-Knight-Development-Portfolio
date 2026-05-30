@@ -402,10 +402,10 @@
 
     <!-- LCP hero images use high-quality responsive WebP variants generated from the 5200px master -->
         <link rel="preload" as="image" href="./images/website-hero-mobile.webp?v=20260529hero2" fetchpriority="high" type="image/webp" media="(max-width: 1024px)">
-        <link rel="preload" as="image" href="./images/websitehero-hd.webp?v=20260529hero2" fetchpriority="high" type="image/webp" media="(min-width: 3200px)">
-        <link rel="preload" as="image" href="./images/websitehero-hd.webp?v=20260529hero2" fetchpriority="high" type="image/webp" media="(min-width: 2560px) and (max-width: 3199px)">
-        <link rel="preload" as="image" href="./images/websitehero.webp?v=20260529hero2" fetchpriority="high" type="image/webp" media="(min-width: 1600px) and (max-width: 2559px)">
-        <link rel="preload" as="image" href="./images/websitehero-1920.webp?v=20260529hero2" fetchpriority="high" type="image/webp" media="(min-width: 1025px) and (max-width: 1599px)">
+        <link rel="preload" as="image" href="./images/websitehero-hd.webp?v=20260530hero3" fetchpriority="high" type="image/webp" media="(min-width: 3200px)">
+        <link rel="preload" as="image" href="./images/websitehero-hd.webp?v=20260530hero3" fetchpriority="high" type="image/webp" media="(min-width: 2560px) and (max-width: 3199px)">
+        <link rel="preload" as="image" href="./images/websitehero.webp?v=20260530hero3" fetchpriority="high" type="image/webp" media="(min-width: 1600px) and (max-width: 2559px)">
+        <link rel="preload" as="image" href="./images/websitehero-1920.webp?v=20260530hero3" fetchpriority="high" type="image/webp" media="(min-width: 1025px) and (max-width: 1599px)">
     <link rel="preload" as="image" href="./images/CircuitBrush3.webp" fetchpriority="low" type="image/webp" media="(min-width: 1025px)">
 
     <!-- Sitemap reference -->
@@ -483,7 +483,7 @@
             background-size: cover;
         }
         .parallax-bg-far {
-            background-image: url('./images/websitehero-1920.webp?v=20260529hero2');
+            background-image: url('./images/websitehero-1920.webp?v=20260530hero3');
             z-index: 1;
             opacity: 0.82;
             filter: brightness(0.82) contrast(1.05);
@@ -491,21 +491,21 @@
         }
         @media (min-width: 1600px) {
             .parallax-bg-far {
-                background-image: url('./images/websitehero.webp?v=20260529hero2');
+                background-image: url('./images/websitehero.webp?v=20260530hero3');
                 background-size: cover;
                 background-position: top center;
             }
         }
         @media (min-width: 2560px) {
             .parallax-bg-far {
-                background-image: url('./images/websitehero-hd.webp?v=20260529hero2');
+                background-image: url('./images/websitehero-hd.webp?v=20260530hero3');
                 background-size: cover;
                 background-position: top center;
             }
         }
         @media (min-width: 3200px) {
             .parallax-bg-far {
-                background-image: url('./images/websitehero-hd.webp?v=20260529hero2');
+                background-image: url('./images/websitehero-hd.webp?v=20260530hero3');
                 background-size: cover;
                 background-position: top center;
             }
@@ -1591,8 +1591,7 @@
             }
         }
     </style>
-    <link rel="preload" href="style.css?v=20260530hero5" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="style.css?v=20260530hero5"></noscript>
+    <link rel="stylesheet" href="style.css?v=20260530hero7">
     <!-- Non-critical brand-font CSS loads after first paint. Font Awesome removed  icons are inline SVGs. -->
     <script>
         window.addEventListener('load', function () {
@@ -2013,7 +2012,7 @@
                         <span class="starter-package-tag">Entry Point</span>
                         <div class="starter-package-head">
                             <h3>Preview Launch Site</h3>
-                            <p class="starter-package-price"><span class="starter-package-price-value">$500</span></p>
+                            <p class="starter-package-price"><span class="starter-package-price-prefix">from</span><span class="starter-package-price-value">$500</span></p>
                         </div>
                         <p class="starter-package-desc">A professional custom-coded page to show customers fast. Use the selector to confirm whether this stays a simple preview or needs a bigger live package first.</p>
                         <ul class="starter-package-points">
@@ -2190,7 +2189,7 @@
                         <div class="starter-package-configurator-head">
                             <div>
                                 <p class="starter-package-configurator-label">Live Package Builder</p>
-                                <p class="starter-package-configurator-title" id="starterPackageConfiguratorTitle">Choose the structure first</p>
+                                <h3 class="starter-package-configurator-title" id="starterPackageConfiguratorTitle">Choose the structure first</h3>
                                 <p class="starter-package-configurator-copy" id="starterPackageConfiguratorCopy">Pick the scope and this modal will match it to the right flat package before checkout.</p>
                             </div>
                             <div class="starter-package-configurator-price" id="starterPackageConfiguratorPrice">$1,997</div>
@@ -2590,14 +2589,14 @@
                 <!-- 4-column quick-info strip -->
                 <div class="contact-info-strip">
                     <!-- Email chip: copy to clipboard -->
-                    <div class="contact-info-chip contact-chip-interactive" onclick="copyEmail(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();copyEmail(this);}" role="button" tabindex="0" title="Click to copy email">
+                    <button type="button" class="contact-info-chip contact-chip-interactive" onclick="copyEmail(this)" title="Click to copy email" aria-label="Copy support@knightlogics.com to clipboard" style="width:100%;text-align:left;font:inherit;appearance:none;-webkit-appearance:none;">
                         <svg class="fi" aria-hidden="true"><use href="#fi-copy"/></svg>
-                        <div>
+                        <span style="display:flex;flex-direction:column;gap:3px;">
                             <strong>Email</strong>
                             <span class="chip-email-addr">support@knightlogics.com</span>
-                        </div>
+                        </span>
                         <span class="chip-copy-hint"><svg class="fi" aria-hidden="true"><use href="#fi-copy"/></svg></span>
-                    </div>
+                    </button>
                     <!-- Phone chip: call / text dropdown -->
                     <div class="contact-info-chip contact-chip-interactive contact-chip-phone" role="button" onclick="togglePhoneMenu(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();togglePhoneMenu(this);}" aria-haspopup="true" aria-expanded="false" tabindex="0" title="Call or text us">
                         <svg class="fi" aria-hidden="true"><use href="#fi-phone"/></svg>
@@ -2612,14 +2611,14 @@
                         </div>
                     </div>
                     <!-- Service Area chip: opens map modal -->
-                    <div class="contact-info-chip contact-chip-interactive" onclick="openMapModal()" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();openMapModal();}" role="button" tabindex="0" title="View service area map">
+                    <button type="button" class="contact-info-chip contact-chip-interactive" onclick="openMapModal()" title="View service area map" aria-label="Open the Knight Logics service area map" aria-haspopup="dialog" aria-controls="mapModal" style="width:100%;text-align:left;font:inherit;appearance:none;-webkit-appearance:none;">
                         <svg class="fi" aria-hidden="true"><use href="#fi-map-location-dot"/></svg>
-                        <div>
+                        <span style="display:flex;flex-direction:column;gap:3px;">
                             <strong>Service Area</strong>
                             <span>Remote worldwide &bull; On-site Tampa Bay</span>
-                        </div>
+                        </span>
                         <svg class="fi chip-ext" aria-hidden="true"><use href="#fi-arrow-up-right-from-square"/></svg>
-                    </div>
+                    </button>
                     <div class="contact-info-chip">
                         <svg class="fi" aria-hidden="true"><use href="#fi-bolt"/></svg>
                         <div>
@@ -2871,7 +2870,29 @@
     </section>
 
     <!-- Footer will be loaded here -->
-    <div id="footer-container"></div>
+    <div id="footer-container">
+    <nav class="crawl-fallback-links" aria-label="Site links">
+        <a href="/service-websites">Website Services</a>
+        <a href="/service-local-seo">Local SEO</a>
+        <a href="/service-google-business-profile">Google Business Profile</a>
+        <a href="/free-website-audit">Free Website Audit</a>
+        <a href="/case-studies">Case Studies</a>
+        <a href="/automation">Automation Systems</a>
+        <a href="/case-study-evidencedesk-ai">EvidenceDesk AI Case Study</a>
+        <a href="/case-study-knight-logics">Knight Logics Case Study</a>
+        <a href="/web-designer-safety-harbor">Web Designer Safety Harbor</a>
+        <a href="/web-designer-palm-harbor">Web Designer Palm Harbor</a>
+        <a href="/web-designer-clearwater">Web Designer Clearwater</a>
+        <a href="/web-designer-st-petersburg">Web Designer St. Petersburg</a>
+        <a href="/web-designer-tampa">Web Designer Tampa</a>
+        <a href="/llms.txt">LLMs.txt</a>
+        <a href="/llms-full.txt">LLMs Full</a>
+        <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/terms-of-service">Terms of Service</a>
+        <a href="/refund-policy">Refund Policy</a>
+        <a href="/disclaimer">Disclaimer</a>
+    </nav>
+</div>
 
     <!-- Mobile sticky CTA + bottom sheet form drawer -->
     <div class="mobile-cta-bar" id="mobileCTABar">

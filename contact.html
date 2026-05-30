@@ -145,11 +145,9 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap"></noscript>
-    <link rel="stylesheet" href="style.min.css?v=20260519a">
-    <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap">
+    <link rel="stylesheet" href="style.min.css?v=20260530hero6">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>Contact Knight Logics | Web Design, SEO & Automation</title>
     <!-- Microsoft Clarity -->
     <script type="text/javascript">
@@ -284,14 +282,14 @@
             <!-- 4-column quick-info strip -->
             <div class="contact-info-strip">
                 <!-- Email chip: copy to clipboard -->
-                <div class="contact-info-chip contact-chip-interactive" onclick="copyEmail(this)" title="Click to copy email">
+                <button type="button" class="contact-info-chip contact-chip-interactive" onclick="copyEmail(this)" title="Click to copy email" aria-label="Copy support@knightlogics.com to clipboard" style="width:100%;text-align:left;font:inherit;appearance:none;-webkit-appearance:none;">
                     <i class="fas fa-copy"></i>
-                    <div>
+                    <span style="display:flex;flex-direction:column;gap:3px;">
                         <strong>Email</strong>
                         <span class="chip-email-addr">support@knightlogics.com</span>
-                    </div>
+                    </span>
                     <span class="chip-copy-hint"><i class="fas fa-copy"></i></span>
-                </div>
+                </button>
                 <!-- Phone chip: call / text dropdown -->
                 <div class="contact-info-chip contact-chip-interactive contact-chip-phone" role="button" onclick="togglePhoneMenu(this)" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();togglePhoneMenu(this);}" aria-haspopup="true" aria-expanded="false" tabindex="0" title="Call or text us">
                     <i class="fas fa-phone"></i>
@@ -306,14 +304,14 @@
                     </div>
                 </div>
                 <!-- Service Area chip: opens map modal -->
-                <div class="contact-info-chip contact-chip-interactive" onclick="openMapModal()" title="View service area map">
+                <button type="button" class="contact-info-chip contact-chip-interactive" onclick="openMapModal()" title="View service area map" aria-label="Open the Knight Logics service area map" aria-haspopup="dialog" aria-controls="mapModal" style="width:100%;text-align:left;font:inherit;appearance:none;-webkit-appearance:none;">
                     <i class="fas fa-map-location-dot"></i>
-                    <div>
+                    <span style="display:flex;flex-direction:column;gap:3px;">
                         <strong>Service Area</strong>
                         <span>Remote worldwide &bull; On-site Tampa Bay</span>
-                    </div>
+                    </span>
                     <i class="fas fa-arrow-up-right-from-square chip-ext"></i>
-                </div>
+                </button>
                 <div class="contact-info-chip">
                     <i class="fas fa-bolt"></i>
                     <div>
@@ -505,7 +503,29 @@
 
 
 
-    <div id="footer-container"></div>
+    <div id="footer-container">
+    <nav class="crawl-fallback-links" aria-label="Site links">
+        <a href="/service-websites">Website Services</a>
+        <a href="/service-local-seo">Local SEO</a>
+        <a href="/service-google-business-profile">Google Business Profile</a>
+        <a href="/free-website-audit">Free Website Audit</a>
+        <a href="/case-studies">Case Studies</a>
+        <a href="/automation">Automation Systems</a>
+        <a href="/case-study-evidencedesk-ai">EvidenceDesk AI Case Study</a>
+        <a href="/case-study-knight-logics">Knight Logics Case Study</a>
+        <a href="/web-designer-safety-harbor">Web Designer Safety Harbor</a>
+        <a href="/web-designer-palm-harbor">Web Designer Palm Harbor</a>
+        <a href="/web-designer-clearwater">Web Designer Clearwater</a>
+        <a href="/web-designer-st-petersburg">Web Designer St. Petersburg</a>
+        <a href="/web-designer-tampa">Web Designer Tampa</a>
+        <a href="/llms.txt">LLMs.txt</a>
+        <a href="/llms-full.txt">LLMs Full</a>
+        <a href="/privacy-policy">Privacy Policy</a>
+        <a href="/terms-of-service">Terms of Service</a>
+        <a href="/refund-policy">Refund Policy</a>
+        <a href="/disclaimer">Disclaimer</a>
+    </nav>
+</div>
 
     <script src="attribution.js" defer></script>
     <script src="script.min.js?v=20260528a"></script>
