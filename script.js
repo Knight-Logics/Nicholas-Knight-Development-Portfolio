@@ -453,6 +453,10 @@ function initLayeredParallax() {
                 document.body.classList.remove('landing-mode');
                 document.body.style.overflow = 'auto';
                 
+                // Remove the hero spacer margin so no black gap remains
+                const heroNextSection = document.querySelector('.hero + section');
+                if (heroNextSection) heroNextSection.style.marginTop = '0';
+                
                 // Scroll to About section (first after hero) with proper positioning
                 const aboutSection = document.querySelector('.about') || document.querySelector('#about');
                 if (aboutSection) {
@@ -549,6 +553,10 @@ function initLayeredParallax() {
             heroSection.style.transition = 'opacity 0.5s ease-in';
             document.body.classList.add('landing-mode');
             document.body.style.overflow = 'hidden';
+            
+            // Restore the hero spacer margin when re-entering landing mode
+            const heroNextSection = document.querySelector('.hero + section');
+            if (heroNextSection) heroNextSection.style.marginTop = '';
         }
         
         updateForestEffect();
