@@ -516,9 +516,11 @@
             filter: brightness(0.72) contrast(1.15);
         }
         .hero + section {
-            margin-top: 100vh;
             position: relative;
             z-index: 500;
+        }
+        body.landing-mode .hero + section {
+            margin-top: 100vh;
         }
         .hero-content-wrapper {
             position: relative;
@@ -700,7 +702,7 @@
                 min-height: 100vh;
                 height: 100vh;
             }
-            .hero + section { margin-top: 100vh; }
+            body.landing-mode .hero + section { margin-top: 100vh; }
             .hero-content-wrapper {
                 min-height: 100svh;
                 height: 100%;

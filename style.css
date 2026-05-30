@@ -616,9 +616,12 @@ a:where(:not(.cta-button, .nav-link, .nav-brand-link, .nav-dropdown-toggle)):foc
 
 /* Content after hero section */
 .hero + section {
-    margin-top: 100vh;
     position: relative;
     z-index: 500;
+}
+
+body.landing-mode .hero + section {
+    margin-top: 100vh;
 }
 
 /* Hero Content Wrapper */
@@ -4791,7 +4794,7 @@ section::before {
         overflow: hidden !important;
     }
     
-    .hero + section {
+    body.landing-mode .hero + section {
         margin-top: 100vh;
     }
 
