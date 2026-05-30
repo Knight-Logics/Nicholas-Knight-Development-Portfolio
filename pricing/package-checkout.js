@@ -343,7 +343,7 @@
         }
     };
 
-    const productionCheckoutApiBase = 'https://knight-logics-local-preview.vercel.app';
+    const productionCheckoutApiBase = 'https://knightlogics.com';
     const splitHostedProductionHosts = new Set(['knightlogics.com', 'www.knightlogics.com']);
     const uploadFileLimit = 2 * 1024 * 1024;
     const uploadTotalLimit = 4 * 1024 * 1024;

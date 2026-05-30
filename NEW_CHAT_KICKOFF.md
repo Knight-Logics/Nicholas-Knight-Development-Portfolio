@@ -49,7 +49,7 @@ Authoritative local path: E:\KnightLogics-Growth-System\MainSite
 GitHub: Knight-Logics/Nicholas-Knight-Development-Portfolio (main branch)
 Production host: Vercel project knight-logics-checkout
 Production trigger: push origin/main from E:\KnightLogics-Growth-System\MainSite
-Do not edit/deploy from: old C:\Users\nknig\Downloads\KnightLogics-clean-sync copies/zips. The stale E:\KnightLogics-Growth-System\_mainsite_deploy_20260529b detached validation worktree and matching Vercel project were removed.
+Do not edit/deploy from: old Downloads copies/zips. They were removed. The stale E:\KnightLogics-Growth-System\_mainsite_deploy_20260529b detached validation worktree and matching Vercel project were also removed.
 Status source: E:\KnightLogics-Growth-System\LIVE_MIGRATION_STATUS.md and MainSite\KNIGHTLOGICS-SITE-AUDIT-LOG.md
 Cache check: if production looks stale, compare the live HTML asset query strings and response headers before assuming the wrong repo deployed.
 ```
