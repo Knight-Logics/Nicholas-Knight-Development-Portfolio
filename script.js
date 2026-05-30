@@ -253,9 +253,7 @@ function initLayeredParallax() {
         unlockLandingScroll();
 
         if (heroSection) {
-            heroSection.style.display = 'block';
-            heroSection.style.opacity = '1';
-            heroSection.style.pointerEvents = 'auto';
+            applyStaticHeroLayout();
         }
 
         if (scrollIndicator) {
@@ -292,6 +290,46 @@ function initLayeredParallax() {
         document.body.style.height = '';
         document.body.style.top = '';
         document.body.style.left = '';
+    }
+
+    function applyLandingHeroLayout() {
+        if (!heroSection) return;
+
+        heroSection.style.position = 'fixed';
+        heroSection.style.top = '0';
+        heroSection.style.left = '0';
+        heroSection.style.width = '100%';
+        heroSection.style.height = 'var(--landing-viewport-height, 100vh)';
+        heroSection.style.minHeight = '100svh';
+        heroSection.style.display = 'flex';
+        heroSection.style.alignItems = 'center';
+        heroSection.style.justifyContent = 'center';
+        heroSection.style.overflow = 'hidden';
+        heroSection.style.zIndex = '1000';
+        heroSection.style.pointerEvents = 'auto';
+    }
+
+    function applyStaticHeroLayout() {
+        if (!heroSection) return;
+
+        heroSection.style.position = 'relative';
+        heroSection.style.top = 'auto';
+        heroSection.style.left = 'auto';
+        heroSection.style.width = '100%';
+        heroSection.style.height = 'var(--landing-viewport-height, 100vh)';
+        heroSection.style.minHeight = '100svh';
+        heroSection.style.display = 'flex';
+        heroSection.style.alignItems = 'center';
+        heroSection.style.justifyContent = 'center';
+        heroSection.style.overflow = 'hidden';
+        heroSection.style.zIndex = '1';
+        heroSection.style.pointerEvents = 'auto';
+        heroSection.style.opacity = '1';
+
+        const heroNextSection = document.querySelector('.hero + section');
+        if (heroNextSection) {
+            heroNextSection.style.marginTop = '0';
+        }
     }
 
     function getForestBaseScale() {
@@ -577,8 +615,7 @@ function initLayeredParallax() {
         isInLandingMode = true;
         
         if (heroSection) {
-            heroSection.style.display = 'flex';
-            heroSection.style.pointerEvents = 'auto';
+            applyLandingHeroLayout();
             heroSection.style.opacity = '1';
             heroSection.style.transition = 'opacity 0.5s ease-in';
             lockLandingScroll();
@@ -655,9 +692,8 @@ function initLayeredParallax() {
     
     // Initialize landing mode
     if (heroSection) {
+        applyLandingHeroLayout();
         lockLandingScroll();
-        heroSection.style.display = 'flex';
-        heroSection.style.pointerEvents = 'auto';
         heroSection.style.opacity = '1';
     }
     
