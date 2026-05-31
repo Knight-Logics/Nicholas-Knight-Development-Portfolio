@@ -1,0 +1,102 @@
+{
+  "ratingValue": 5,
+  "reviewCount": 9,
+  "reviews": [
+    {
+      "name": "Krikor Kochayan",
+      "meta": "13 reviews - 2 photos",
+      "date": "20 hours ago",
+      "text": "Absolutely outstanding experience with Knight Logics from start to finish. Their ecommerce store was seamless to use and delivered exactly what we needed.",
+      "stars": 5,
+      "avatarColor": "#156f43",
+      "replied": true,
+      "ownerReply": {
+        "name": "Knight Logics",
+        "date": "14 hours ago",
+        "text": "You're the best! Thanks!"
+      }
+    },
+    {
+      "name": "Charles McRaven",
+      "meta": "4 reviews - 0 photos",
+      "date": "Yesterday",
+      "text": "Great experience.",
+      "stars": 5,
+      "avatarColor": "#b42318",
+      "replied": false
+    },
+    {
+      "name": "Rafael Naschpitz Muller",
+      "meta": "0 reviews - 0 photos",
+      "date": "Yesterday",
+      "text": "Great experience with Knight Logics. Professional, reliable, and easy to work with from start to finish. They delivered high-quality work and exceeded my expectations. Highly recommended!",
+      "stars": 5,
+      "avatarColor": "#1d4ed8",
+      "replied": false
+    },
+    {
+      "name": "Connor McCollum",
+      "meta": "1 review - 0 photos",
+      "date": "1 week ago",
+      "text": "Phenomenal service! Knight Logics was by far the best solution for building our website and online business marketing.",
+      "stars": 5,
+      "avatarColor": "#186a3b",
+      "replied": true,
+      "ownerReply": {
+        "name": "Knight Logics",
+        "date": "1 week ago",
+        "text": "Thanks a lot!"
+      }
+    },
+    {
+      "name": "Chris Westcott",
+      "meta": "5 reviews - 0 photos",
+      "date": "3 weeks ago",
+      "text": "Absolutely great business! Went above and beyond to help with my website and business marketing. I highly recommend them.",
+      "stars": 5,
+      "avatarColor": "#b42318",
+      "replied": false
+    },
+    {
+      "name": "JEANNE Knight",
+      "meta": "3 reviews - 1 photo",
+      "date": "3 weeks ago",
+      "text": "He put together a nice e-commerce site showing all the cool tables that I made. Also has the ability to request custom work directly.",
+      "stars": 5,
+      "avatarColor": "#8a5a00",
+      "replied": false
+    },
+    {
+      "name": "Azusa Okamoto",
+      "meta": "Local Guide - 246 reviews - 355 photos",
+      "date": "3 weeks ago",
+      "text": "Thank you so much for the professional and prompt support! From the start to the final delivery, everything was clear and smooth.",
+      "stars": 5,
+      "avatarColor": "#1d4ed8",
+      "replied": true,
+      "ownerReply": {
+        "name": "Knight Logics",
+        "date": "3 weeks ago",
+        "text": "You're the best =D"
+      }
+    },
+    {
+      "name": "Jay Fuse",
+      "meta": "Local Guide - 20 reviews - 2 photos",
+      "date": "3 weeks ago",
+      "text": "He built a website, did the SEO, optimized GBP, automated a CRM system and my media manager. Crazy work, 10/10.",
+      "stars": 5,
+      "avatarColor": "#17623b",
+      "replied": false
+    },
+    {
+      "name": "Decyfer Down",
+      "meta": "4 reviews - 0 photos",
+      "date": "5 weeks ago",
+      "text": "This is a 10/10, and I would recommend for everybody. Hands-down, the best video compiler app I have ever used.",
+      "stars": 5,
+      "avatarColor": "#1d4ed8",
+      "replied": false
+    }
+  ]
+}

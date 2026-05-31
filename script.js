@@ -1434,17 +1434,67 @@ function initGoogleReviewsCarousel() {
 
     carousels.forEach((carousel) => {
         const track = carousel.querySelector('.review-carousel-track');
-        const cards = track ? Array.from(track.querySelectorAll('.review-card')) : [];
         const prevBtn = carousel.querySelector('.review-carousel-btn.prev');
         const nextBtn = carousel.querySelector('.review-carousel-btn.next');
         const showcase = carousel.closest('.google-reviews-showcase');
         const dotsContainer = showcase ? showcase.querySelector('.review-carousel-dots') : null;
+        const summaryEl = showcase ? showcase.querySelector('.google-reviews-summary') : null;
+        const filterButtons = showcase ? Array.from(showcase.querySelectorAll('[data-review-filter]')) : [];
 
-        if (!track || !cards.length || !prevBtn || !nextBtn || !dotsContainer) return;
+        if (!track || !prevBtn || !nextBtn || !dotsContainer || !showcase) return;
 
+        const seedEl = showcase.querySelector('#google-reviews-seed');
+        let cards = [];
+        let currentFilter = 'all';
         let currentIndex = 0;
+        let allReviews = [];
+        let filteredReviews = [];
 
-        carousel.classList.toggle('single-review', cards.length === 1);
+        const escapeHtml = (value) => String(value || '')
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+
+        const getInitial = (name) => {
+            const clean = String(name || '').trim();
+            return clean ? clean.charAt(0).toUpperCase() : '?';
+        };
+
+        const formatStars = (count) => {
+            const stars = Math.max(1, Math.min(5, Number(count) || 5));
+            return '★'.repeat(stars);
+        };
+
+        const hasOwnerReply = (review) => {
+            if (typeof review.replied === 'boolean') return review.replied;
+            return !!(review.ownerReply && review.ownerReply.text);
+        };
+
+        const reviewCardMarkup = (review) => {
+            const reply = review.ownerReply;
+            const replyMarkup = hasOwnerReply(review) && reply && reply.text
+                ? `<div class="review-owner-reply"><div class="review-owner-reply-head"><span class="review-owner-reply-name">${escapeHtml(reply.name || 'Knight Logics')}</span><span class="review-owner-reply-date">${escapeHtml(reply.date || '')}</span></div><p class="review-owner-reply-text">${escapeHtml(reply.text)}</p></div>`
+                : '';
+
+            return `<article class="review-card" data-review-replied="${hasOwnerReply(review) ? 'true' : 'false'}"><div class="review-card-header"><div class="review-avatar" style="background:${escapeHtml(review.avatarColor || '#1d4ed8')};">${escapeHtml(getInitial(review.name))}</div><div><div class="review-name">${escapeHtml(review.name)}</div><div class="review-meta">${escapeHtml(review.meta || '')}</div></div></div><div class="review-stars" role="img" aria-label="${escapeHtml(String(Number(review.stars) || 5))} stars">${formatStars(review.stars)}</div><p class="review-text">${escapeHtml(review.text || '')}</p><div class="review-date">${escapeHtml(review.date || '')}</div>${replyMarkup}</article>`;
+        };
+
+        const applySummary = (payload) => {
+            if (!summaryEl) return;
+            const rating = Number(payload.ratingValue || 5).toFixed(1);
+            const count = Number(payload.reviewCount || allReviews.length || 0);
+            summaryEl.textContent = `${rating} · ${count} reviews`;
+        };
+
+        const updateFilterButtons = () => {
+            filterButtons.forEach((button) => {
+                const isActive = button.getAttribute('data-review-filter') === currentFilter;
+                button.classList.toggle('active', isActive);
+                button.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+            });
+        };
 
         const visibleCount = () => {
             if (window.innerWidth <= 768) return 1;
@@ -1464,9 +1514,9 @@ function initGoogleReviewsCarousel() {
         };
 
         const updateButtons = () => {
-            const singlePage = pageCount() <= 1;
-            prevBtn.disabled = singlePage;
-            nextBtn.disabled = singlePage;
+            const singlePage = pageCount() <= 1 || cards.length === 0;
+            prevBtn.disabled = singlePage || currentIndex <= 0;
+            nextBtn.disabled = singlePage || currentIndex >= maxIndex();
         };
 
         const update = () => {
@@ -1484,6 +1534,71 @@ function initGoogleReviewsCarousel() {
             });
 
             updateButtons();
+        };
+
+        const applyFilter = (filterKey) => {
+            currentFilter = filterKey;
+
+            if (filterKey === 'replied') {
+                filteredReviews = allReviews.filter((review) => hasOwnerReply(review));
+            } else if (filterKey === 'unreplied') {
+                filteredReviews = allReviews.filter((review) => !hasOwnerReply(review));
+            } else {
+                filteredReviews = allReviews.slice();
+            }
+
+            if (!filteredReviews.length) {
+                track.innerHTML = '<article class="review-card"><p class="review-text">No reviews in this filter yet.</p></article>';
+                cards = Array.from(track.querySelectorAll('.review-card'));
+                currentIndex = 0;
+                carousel.classList.add('single-review');
+                buildDots();
+                update();
+                updateFilterButtons();
+                return;
+            }
+
+            track.innerHTML = filteredReviews.map((review) => reviewCardMarkup(review)).join('');
+            cards = Array.from(track.querySelectorAll('.review-card'));
+            currentIndex = 0;
+            carousel.classList.toggle('single-review', cards.length === 1);
+            buildDots();
+            update();
+            updateFilterButtons();
+        };
+
+        const parseSeedPayload = () => {
+            if (!seedEl) return null;
+            try {
+                return JSON.parse(seedEl.textContent || '{}');
+            } catch (error) {
+                console.warn('Google review seed parse failed:', error);
+                return null;
+            }
+        };
+
+        const loadReviews = async () => {
+            let payload = null;
+            try {
+                const response = await fetch(`./data/google-reviews.json?v=20260530a`, { cache: 'no-store' });
+                if (response.ok) {
+                    payload = await response.json();
+                }
+            } catch (error) {
+                console.warn('Google review feed fetch failed, using seed data:', error);
+            }
+
+            if (!payload) {
+                payload = parseSeedPayload();
+            }
+
+            if (!payload || !Array.isArray(payload.reviews)) {
+                payload = { ratingValue: 5, reviewCount: 0, reviews: [] };
+            }
+
+            allReviews = payload.reviews.slice();
+            applySummary(payload);
+            applyFilter('all');
         };
 
         const buildDots = () => {
@@ -1516,6 +1631,13 @@ function initGoogleReviewsCarousel() {
             update();
         });
 
+        filterButtons.forEach((button) => {
+            button.addEventListener('click', () => {
+                const filterKey = button.getAttribute('data-review-filter') || 'all';
+                applyFilter(filterKey);
+            });
+        });
+
         let resizeTimer;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimer);
@@ -1525,8 +1647,7 @@ function initGoogleReviewsCarousel() {
             }, 140);
         });
 
-        buildDots();
-        requestAnimationFrame(update);
+        loadReviews();
     });
 }
 
