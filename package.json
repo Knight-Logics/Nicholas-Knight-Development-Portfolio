@@ -8,7 +8,8 @@
     "qa:screenshots:services": "node scripts/qa-screenshot-matrix.js --profile=knightlogics-services",
     "qa:screenshots:client-demo": "node scripts/qa-screenshot-matrix.js --profile=client-demo",
     "qa:lighthouse": "node scripts/qa-lighthouse.js",
-    "stripe:sync-catalog": "node scripts/sync-knightlogics-stripe-catalog.js"
+    "stripe:sync-catalog": "node scripts/sync-knightlogics-stripe-catalog.js",
+    "reviews:sync-google": "node scripts/sync-google-reviews.js"
   },
   "dependencies": {
     "@neondatabase/serverless": "^1.1.0",
