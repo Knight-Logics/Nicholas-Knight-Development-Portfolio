@@ -7428,6 +7428,17 @@ html {
     transition: bottom 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
+body.landing-mode .pwa-install-banner,
+body.landing-mode #kl-chat-launcher {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
+body.landing-mode .pwa-install-banner.pwa-visible {
+    bottom: -140px !important;
+}
+
 .pwa-install-banner.pwa-visible {
     bottom: 20px;
 }
@@ -9894,13 +9905,13 @@ html {
 @media (max-width: 600px) {
     .hero .hero-content-wrapper {
         box-sizing: border-box !important;
-        padding: clamp(92px, 11svh, 108px) 18px clamp(92px, 12svh, 112px) !important;
+        padding: clamp(94px, 11svh, 108px) 18px clamp(68px, 9svh, 84px) !important;
     }
 
     .hero .hero-layout {
         width: min(100%, 320px) !important;
         margin: 0 auto !important;
-        transform: translateY(-20px) !important;
+        transform: translateY(10px) !important;
     }
 
     .hero .hero-byline,
@@ -9938,12 +9949,12 @@ html {
 
 @media (max-width: 600px) and (max-height: 820px) {
     .hero .hero-content-wrapper {
-        padding: clamp(80px, 9svh, 92px) 16px calc(124px + env(safe-area-inset-bottom)) !important;
+        padding: clamp(84px, 10svh, 98px) 16px calc(88px + env(safe-area-inset-bottom)) !important;
     }
 
     .hero .hero-layout {
         width: min(100%, 300px) !important;
-        transform: translateY(-42px) !important;
+        transform: translateY(2px) !important;
         gap: 0.7rem !important;
     }
 
