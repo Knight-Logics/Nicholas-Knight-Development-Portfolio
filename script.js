@@ -1998,7 +1998,7 @@ function initChatLauncher(config) {
         @media (max-width: 768px) {
             #kl-chat-launcher {
                 right: 16px;
-                bottom: 86px;
+                bottom: 160px;
                 width: 54px;
                 height: 54px;
             }

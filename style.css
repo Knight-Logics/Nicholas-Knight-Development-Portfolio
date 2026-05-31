@@ -4934,13 +4934,13 @@ body.reduced-motion .hero + section {
         .hero-content-wrapper {
             min-height: 100svh !important;
             box-sizing: border-box;
-            padding: clamp(126px, 17svh, 152px) 18px clamp(28px, 5svh, 42px) !important;
+            padding: clamp(96px, 12svh, 112px) 18px clamp(84px, 11svh, 104px) !important;
             align-items: center !important;
             justify-content: center !important;
         }
         .hero-layout {
             margin-top: 0 !important;
-            transform: translateY(16px) !important;
+            transform: translateY(-10px) !important;
         }
         .hero-byline {
             display: none;
@@ -8598,6 +8598,10 @@ html {
     .mobile-cta-pill:active {
         transform: scale(0.96);
         box-shadow: 0 4px 16px rgba(100, 255, 218, 0.3);
+    }
+
+    .pwa-install-banner.pwa-visible {
+        bottom: calc(92px + env(safe-area-inset-bottom));
     }
 
     /* Backdrop */
