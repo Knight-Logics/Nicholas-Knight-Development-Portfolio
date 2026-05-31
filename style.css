@@ -7439,6 +7439,12 @@ body.landing-mode .pwa-install-banner.pwa-visible {
     bottom: -140px !important;
 }
 
+body.kl-pwa-banner-visible #kl-chat-launcher {
+    opacity: 0 !important;
+    visibility: hidden !important;
+    pointer-events: none !important;
+}
+
 .pwa-install-banner.pwa-visible {
     bottom: 20px;
 }

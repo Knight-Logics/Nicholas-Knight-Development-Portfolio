@@ -2799,10 +2799,15 @@ document.addEventListener('keydown', function(event) {
         if (localStorage.getItem(STORAGE_KEY)) return;
         if (!bannerEl) bannerEl = buildBanner();
         // Small delay so the CSS transition fires
-        setTimeout(() => bannerEl.classList.add('pwa-visible'), 50);
+        setTimeout(() => {
+            if (!bannerEl) return;
+            bannerEl.classList.add('pwa-visible');
+            document.body.classList.add('kl-pwa-banner-visible');
+        }, 50);
     }
 
     function hideBanner(persist) {
+        document.body.classList.remove('kl-pwa-banner-visible');
         if (bannerEl) {
             bannerEl.classList.remove('pwa-visible');
             setTimeout(() => {
