@@ -3,9 +3,11 @@
 const { neon } = require('@neondatabase/serverless');
 const crypto = require('crypto');
 const {
+    getStaticPartner,
     normalizeDisplayName,
     normalizeOffer,
-    normalizeSlug
+    normalizeSlug,
+    titleFromSlug
 } = require('./referral-roster');
 
 function sendJson(res, statusCode, payload) {
@@ -129,6 +131,50 @@ module.exports = async function handler(req, res) {
                     slug: partner.partner_slug,
                     displayName: partner.partner_name,
                     latestOffer: partner.latest_offer || ''
+                }
+            });
+        }
+
+        if (action === 'set_partner_active' || action === 'remove_partner') {
+            const partnerSlug = normSlug(body.partnerSlug || body.partner, 80);
+            const requestedActive = action === 'remove_partner' ? false : body.isActive !== false;
+            const staticPartner = getStaticPartner(partnerSlug);
+            const partnerName = normalizeDisplayName(
+                body.partnerName || body.displayName || (staticPartner && staticPartner.displayName) || titleFromSlug(partnerSlug),
+                partnerSlug,
+                120
+            );
+            const latestOffer = normalizeOffer(
+                body.latestOffer || body.offerCode || body.offer || (staticPartner && staticPartner.latestOffer) || '',
+                80
+            );
+
+            if (!partnerSlug) {
+                return sendJson(res, 400, { error: 'Partner slug is required.' });
+            }
+
+            await ensurePartnerTermsTable(sql);
+            const [partner] = await sql`
+                INSERT INTO kl_referral_partner_terms
+                    (partner_slug, partner_name, latest_offer, commission_percent, is_active, notes)
+                VALUES
+                    (${partnerSlug}, ${partnerName}, ${latestOffer || null}, 0, ${requestedActive}, ${requestedActive ? 'Restored from referral dashboard' : 'Removed from referral dashboard'})
+                ON CONFLICT (partner_slug) DO UPDATE SET
+                    partner_name = COALESCE(EXCLUDED.partner_name, kl_referral_partner_terms.partner_name),
+                    latest_offer = COALESCE(EXCLUDED.latest_offer, kl_referral_partner_terms.latest_offer),
+                    is_active = EXCLUDED.is_active,
+                    notes = EXCLUDED.notes,
+                    updated_at = NOW()
+                RETURNING partner_slug, partner_name, latest_offer, is_active
+            `;
+
+            return sendJson(res, 200, {
+                ok: true,
+                partner: {
+                    slug: partner.partner_slug,
+                    displayName: partner.partner_name,
+                    latestOffer: partner.latest_offer || '',
+                    isActive: partner.is_active !== false
                 }
             });
         }

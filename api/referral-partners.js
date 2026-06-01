@@ -51,9 +51,8 @@ module.exports = async function handler(req, res) {
                 const sql = neon(databaseUrl);
                 await ensurePartnerTermsTable(sql);
                 dynamicRows = await sql`
-                    SELECT partner_slug, partner_name, latest_offer
+                    SELECT partner_slug, partner_name, latest_offer, is_active
                     FROM kl_referral_partner_terms
-                    WHERE is_active = TRUE
                     ORDER BY partner_name ASC, partner_slug ASC
                 `;
             } catch (dbError) {

@@ -67,21 +67,38 @@ function isStaticApprovedPayoutAttribution(partnerSlug, offerCode) {
     return !normalizedOffer || expectedOffer === normalizedOffer;
 }
 
-function mergeReferralPartners(dynamicRows) {
+function isActiveValue(value) {
+    return value !== false && value !== 0 && value !== 'false';
+}
+
+function mergeReferralPartners(dynamicRows, options = {}) {
+    const includeInactive = Boolean(options.includeInactive);
     const partnersBySlug = new Map();
 
     STATIC_REFERRAL_PARTNERS.forEach((partner) => {
-        partnersBySlug.set(partner.slug, { ...partner, source: 'static' });
+        partnersBySlug.set(partner.slug, { ...partner, source: 'static', isActive: true });
     });
 
     (dynamicRows || []).forEach((row) => {
         const slug = normalizeSlug(row.partner_slug || row.slug || '');
         if (!slug) return;
+        const staticPartner = getStaticPartner(slug);
+        const active = isActiveValue(row.is_active);
+
+        if (!active && !includeInactive) {
+            partnersBySlug.delete(slug);
+            return;
+        }
+
         partnersBySlug.set(slug, {
             slug,
-            displayName: normalizeDisplayName(row.partner_name || row.displayName || '', slug),
-            latestOffer: normalizeOffer(row.latest_offer || row.latestOffer || ''),
-            source: 'database'
+            displayName: normalizeDisplayName(
+                row.partner_name || row.displayName || (staticPartner && staticPartner.displayName) || '',
+                slug
+            ),
+            latestOffer: normalizeOffer(row.latest_offer || row.latestOffer || (staticPartner && staticPartner.latestOffer) || ''),
+            source: 'database',
+            isActive: active
         });
     });
 
@@ -94,6 +111,7 @@ module.exports = {
     STATIC_REFERRAL_PARTNERS,
     cleanText,
     getStaticPartner,
+    isActiveValue,
     isStaticApprovedPayoutAttribution,
     mergeReferralPartners,
     normalizeDisplayName,

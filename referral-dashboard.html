@@ -395,6 +395,11 @@
             border-color: transparent;
         }
         .mini-btn--paid:hover { opacity: 0.85; background: var(--accent); }
+        .mini-btn--danger {
+            color: #ffaaaa;
+            border-color: rgba(255,107,107,0.35);
+        }
+        .mini-btn--danger:hover { background: rgba(255,107,107,0.1); }
         .status-pill {
             display: inline-block;
             padding: 2px 8px;
@@ -411,6 +416,10 @@
         .status-pill--paid {
             background: rgba(100,255,218,0.12);
             color: var(--accent);
+        }
+        .status-pill--inactive {
+            background: rgba(168,178,193,0.12);
+            color: var(--muted);
         }
 
         /* ── Error / loading states ── */
@@ -580,6 +589,24 @@
         </div>
     </div>
 
+    <!-- Partner roster -->
+    <p class="section-title">Partner Roster</p>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>Partner</th>
+                    <th>Slug</th>
+                    <th>Offer</th>
+                    <th>Status</th>
+                    <th>Source</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="partnerRosterBody"><tr><td colspan="6" class="state-msg">Loading…</td></tr></tbody>
+        </table>
+    </div>
+
     <!-- By partner table -->
     <p class="section-title">By Partner</p>
     <div class="table-wrap">
@@ -684,6 +711,16 @@
         var btn = e.target.closest('[data-payout-id]');
         if (!btn) return;
         markPayoutPaid(btn.getAttribute('data-payout-id'), btn.getAttribute('data-amount-cents'));
+    });
+    document.getElementById('partnerRosterBody').addEventListener('click', function (e) {
+        var btn = e.target.closest('[data-partner-slug]');
+        if (!btn) return;
+        setPartnerActive(
+            btn.getAttribute('data-partner-slug'),
+            btn.getAttribute('data-partner-name'),
+            btn.getAttribute('data-partner-offer'),
+            btn.getAttribute('data-partner-active') === 'true'
+        );
     });
 
     /* ── Link builder ── */
@@ -1043,6 +1080,7 @@
                 document.getElementById('auth-gate').style.display = 'none';
                 document.getElementById('dashboard').style.display = 'block';
                 renderSummary(data.summary);
+                renderPartnerRoster(data.partnerRoster);
                 renderByPartner(data.byPartner);
                 renderByOffer(data.byOffer);
                 renderPayoutQueue(data.payoutQueue);
@@ -1112,6 +1150,38 @@
         document.getElementById('sumCommissionPaid').textContent = money(s && s.payout_paid_cents);
         document.getElementById('sumSessions').textContent = n(s && s.unique_sessions);
         document.getElementById('sumPartners').textContent = n(s && s.unique_partners);
+    }
+
+    function renderPartnerRoster(rows) {
+        var tb = document.getElementById('partnerRosterBody');
+        rows = Array.isArray(rows) ? rows.slice() : [];
+        if (!rows.length) {
+            tb.innerHTML = '<tr><td colspan="6" class="state-msg">No referral partners configured yet.</td></tr>';
+            return;
+        }
+
+        rows.sort(function (a, b) {
+            var activeA = a.isActive === false ? 1 : 0;
+            var activeB = b.isActive === false ? 1 : 0;
+            return activeA - activeB || String(a.displayName || a.slug).localeCompare(String(b.displayName || b.slug));
+        });
+
+        tb.innerHTML = rows.map(function (r) {
+            var active = r.isActive !== false;
+            var status = active
+                ? '<span class="status-pill status-pill--paid">active</span>'
+                : '<span class="status-pill status-pill--inactive">removed</span>';
+            var actionClass = active ? 'mini-btn mini-btn--danger' : 'mini-btn mini-btn--paid';
+            var actionText = active ? 'Remove' : 'Restore';
+            return '<tr>' +
+                '<td>' + esc(r.displayName || r.slug) + '</td>' +
+                '<td class="td-mono">' + esc(r.slug) + '</td>' +
+                '<td class="td-mono">' + esc(r.latestOffer || '') + '</td>' +
+                '<td>' + status + '</td>' +
+                '<td class="td-muted">' + esc(r.source || '') + '</td>' +
+                '<td><button class="' + actionClass + '" data-partner-slug="' + escAttr(r.slug) + '" data-partner-name="' + escAttr(r.displayName || r.slug) + '" data-partner-offer="' + escAttr(r.latestOffer || '') + '" data-partner-active="' + String(!active) + '">' + actionText + '</button></td>' +
+                '</tr>';
+        }).join('');
     }
 
     function renderByPartner(rows) {
@@ -1199,6 +1269,38 @@
                 '<td class="td-muted" style="white-space:nowrap;font-size:0.82rem;">' + fmtTs(r.created_at) + '</td>' +
                 '</tr>';
         }).join('');
+    }
+
+    function setPartnerActive(slug, name, offer, isActive) {
+        if (!secret || !slug) return;
+        var label = name || slug;
+        if (!isActive && !window.confirm('Remove ' + label + ' from referral dropdowns? Historical events and payout records will stay intact.')) {
+            return;
+        }
+
+        fetch(SITE + '/api/referral-admin', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+                secret: secret,
+                action: 'set_partner_active',
+                partnerSlug: slug,
+                partnerName: name || slug,
+                latestOffer: offer || '',
+                isActive: isActive
+            })
+        })
+        .then(function (r) { return r.json().then(function (data) { return { ok: r.ok, data: data }; }); })
+        .then(function (result) {
+            if (!result.ok) {
+                alert(result.data && result.data.error ? result.data.error : 'Could not update partner.');
+                return;
+            }
+            loadStats();
+        })
+        .catch(function () {
+            alert('Could not update partner.');
+        });
     }
 
     function markPayoutPaid(payoutId, amountCentsStr) {

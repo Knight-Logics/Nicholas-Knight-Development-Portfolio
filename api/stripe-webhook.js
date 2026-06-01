@@ -87,8 +87,6 @@ async function ensurePartnerTermsTable(sql) {
 
 async function isApprovedPayoutAttribution(sql, partnerSlug, offerCode) {
     if (!partnerSlug) return false;
-    if (isStaticApprovedPayoutAttribution(partnerSlug, offerCode)) return true;
-
     const normalizedSlug = normalizeSlug(partnerSlug);
     const normalizedOffer = normalizeOffer(offerCode);
     if (!normalizedSlug) return false;
@@ -101,13 +99,16 @@ async function isApprovedPayoutAttribution(sql, partnerSlug, offerCode) {
             WHERE partner_slug = ${normalizedSlug}
             LIMIT 1
         `;
-        if (!partner || partner.is_active === false) return false;
-        const expectedOffer = normalizeOffer(partner.latest_offer || '');
-        return !expectedOffer || !normalizedOffer || expectedOffer === normalizedOffer;
+        if (partner) {
+            if (partner.is_active === false) return false;
+            const expectedOffer = normalizeOffer(partner.latest_offer || '');
+            return !expectedOffer || !normalizedOffer || expectedOffer === normalizedOffer;
+        }
     } catch (error) {
         console.error('[stripe-webhook] Partner approval lookup failed:', error && error.message);
-        return false;
     }
+
+    return isStaticApprovedPayoutAttribution(partnerSlug, offerCode);
 }
 
 async function ensurePayout(sql, referralEventId, partnerSlug, offerCode, grossAmountCents, contactEmail) {

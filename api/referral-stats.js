@@ -17,6 +17,22 @@
 'use strict';
 
 const { neon } = require('@neondatabase/serverless');
+const { mergeReferralPartners } = require('./referral-roster');
+
+async function ensurePartnerTermsTable(sql) {
+    await sql`
+        CREATE TABLE IF NOT EXISTS kl_referral_partner_terms (
+            partner_slug        VARCHAR(80) PRIMARY KEY,
+            partner_name        VARCHAR(120),
+            commission_percent  NUMERIC(6,3) NOT NULL DEFAULT 0,
+            is_active           BOOLEAN NOT NULL DEFAULT TRUE,
+            notes               TEXT,
+            created_at          TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+            updated_at          TIMESTAMPTZ NOT NULL DEFAULT NOW()
+        )
+    `;
+    await sql`ALTER TABLE kl_referral_partner_terms ADD COLUMN IF NOT EXISTS latest_offer VARCHAR(80)`;
+}
 
 module.exports = async function handler(req, res) {
     const json = (status, data) => {
@@ -362,12 +378,15 @@ module.exports = async function handler(req, res) {
                 };
             });
 
+        await ensurePartnerTermsTable(sql);
+
         let partnerTerms;
         if (partner) {
             partnerTerms = await sql`
                 SELECT
                     partner_slug,
                     partner_name,
+                    latest_offer,
                     commission_percent,
                     is_active,
                     notes,
@@ -382,6 +401,7 @@ module.exports = async function handler(req, res) {
                 SELECT
                     partner_slug,
                     partner_name,
+                    latest_offer,
                     commission_percent,
                     is_active,
                     notes,
@@ -391,6 +411,22 @@ module.exports = async function handler(req, res) {
                 ORDER BY partner_slug ASC
             `;
         }
+
+        const allPartnerTerms = partner
+            ? await sql`
+                SELECT
+                    partner_slug,
+                    partner_name,
+                    latest_offer,
+                    commission_percent,
+                    is_active,
+                    notes,
+                    created_at,
+                    updated_at
+                FROM kl_referral_partner_terms
+                ORDER BY partner_slug ASC
+            `
+            : partnerTerms;
 
         const payoutQueue = payoutRows
             .filter(isMatch)
@@ -422,6 +458,7 @@ module.exports = async function handler(req, res) {
             byOffer,
             recent,
             partnerTerms: partnerTerms || [],
+            partnerRoster: mergeReferralPartners(allPartnerTerms || [], { includeInactive: true }),
             payoutQueue,
             filter: { partner, offer, days, since },
             generatedAt: new Date().toISOString()
