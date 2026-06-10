@@ -4,6 +4,11 @@
       "NODEJS_HELPERS": "0"
     }
   },
+  "functions": {
+    "api/whistle-stop-social.js": {
+      "maxDuration": 60
+    }
+  },
   "cleanUrls": true,
   "redirects": [
     {

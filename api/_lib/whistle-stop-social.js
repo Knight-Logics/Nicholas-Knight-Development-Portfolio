@@ -162,32 +162,51 @@ function createOauth1Header(method, url, extraParams = {}) {
 
 function parseMediaBase64(mediaBase64) {
   if (!mediaBase64 || typeof mediaBase64 !== 'string') return null;
-  const match = mediaBase64.match(/^data:(image\/[a-z0-9.+-]+);base64,(.+)$/i);
+  const match = mediaBase64.match(/^data:((?:image|video)\/[a-z0-9.+-]+);base64,(.+)$/i);
   if (!match) return null;
   const mime = match[1].toLowerCase();
   const buffer = Buffer.from(match[2], 'base64');
   if (!buffer.length) return null;
-  const ext =
-    mime === 'image/png' ? 'png' : mime === 'image/webp' ? 'webp' : mime === 'image/gif' ? 'gif' : 'jpg';
-  return { mime, buffer, filename: `upload.${ext}` };
+
+  const extByMime = {
+    'image/png': 'png',
+    'image/webp': 'webp',
+    'image/gif': 'gif',
+    'image/jpeg': 'jpg',
+    'image/jpg': 'jpg',
+    'video/mp4': 'mp4',
+    'video/quicktime': 'mov',
+    'video/webm': 'webm',
+    'video/x-m4v': 'm4v',
+  };
+  const ext = extByMime[mime] || (mime.startsWith('video/') ? 'mp4' : 'jpg');
+  let kind = 'image';
+  if (mime === 'image/gif') kind = 'gif';
+  else if (mime.startsWith('video/')) kind = 'video';
+
+  return { mime, buffer, filename: `upload.${ext}`, kind };
 }
 
-async function postFacebook(text, mediaBase64) {
-  const pageId = process.env.WS_FB_PAGE_ID;
-  const token = process.env.WS_FB_PAGE_ACCESS_TOKEN;
-  if (!pageId || !token) {
-    throw new Error('Facebook Graph API not configured (WS_FB_PAGE_ID / WS_FB_PAGE_ACCESS_TOKEN).');
-  }
+async function postFacebookTextOnly(text, pageId, token) {
+  const body = new URLSearchParams({ message: text, access_token: token });
+  const res = await fetch(`https://graph.facebook.com/v19.0/${pageId}/feed`, { method: 'POST', body });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(`Facebook feed error ${res.status}: ${JSON.stringify(data)}`);
+  return data;
+}
 
-  const media = parseMediaBase64(mediaBase64);
-  if (!media) {
-    const body = new URLSearchParams({ message: text, access_token: token });
-    const res = await fetch(`https://graph.facebook.com/v19.0/${pageId}/feed`, { method: 'POST', body });
-    const data = await res.json().catch(() => ({}));
-    if (!res.ok) throw new Error(`Facebook feed error ${res.status}: ${JSON.stringify(data)}`);
-    return data;
-  }
+async function postFacebookWithVideo(text, media, pageId, token) {
+  const uploadForm = new FormData();
+  uploadForm.append('source', new Blob([media.buffer], { type: media.mime }), media.filename);
+  uploadForm.append('description', text);
+  uploadForm.append('access_token', token);
+  const res = await fetch(`https://graph.facebook.com/v19.0/${pageId}/videos`, { method: 'POST', body: uploadForm });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(`Facebook video upload error ${res.status}: ${JSON.stringify(data)}`);
+  return data;
+}
 
+async function postFacebookWithPhoto(text, media, pageId, token) {
   const uploadForm = new FormData();
   uploadForm.append('source', new Blob([media.buffer], { type: media.mime }), media.filename);
   uploadForm.append('published', 'false');
@@ -198,11 +217,8 @@ async function postFacebook(text, mediaBase64) {
   });
   const uploadData = await uploadRes.json().catch(() => ({}));
   if (!uploadRes.ok) {
-    const body = new URLSearchParams({ message: text, access_token: token });
-    const res = await fetch(`https://graph.facebook.com/v19.0/${pageId}/feed`, { method: 'POST', body });
-    const data = await res.json().catch(() => ({}));
-    if (!res.ok) throw new Error(`Facebook photo fallback failed ${res.status}: ${JSON.stringify(data)}`);
-    return { ...data, mediaWarning: 'Photo upload failed; posted text only.' };
+    const fallback = await postFacebookTextOnly(text, pageId, token);
+    return { ...fallback, mediaWarning: 'Photo upload failed; posted text only.' };
   }
 
   const postForm = new URLSearchParams({
@@ -216,16 +232,113 @@ async function postFacebook(text, mediaBase64) {
   return postData;
 }
 
-async function uploadXMedia(buffer, mime, filename) {
+async function postFacebook(text, mediaBase64) {
+  const pageId = process.env.WS_FB_PAGE_ID;
+  const token = process.env.WS_FB_PAGE_ACCESS_TOKEN;
+  if (!pageId || !token) {
+    throw new Error('Facebook Graph API not configured (WS_FB_PAGE_ID / WS_FB_PAGE_ACCESS_TOKEN).');
+  }
+
+  const media = parseMediaBase64(mediaBase64);
+  if (!media) return postFacebookTextOnly(text, pageId, token);
+  if (media.kind === 'gif' || media.kind === 'video') {
+    return postFacebookWithVideo(text, media, pageId, token);
+  }
+  return postFacebookWithPhoto(text, media, pageId, token);
+}
+
+function buildXUploadUrl(endpoint, params = {}) {
+  const query = new URLSearchParams(params).toString();
+  return query ? `${endpoint}?${query}` : endpoint;
+}
+
+async function runXUploadCommand(method, endpoint, params, body) {
+  const res = await fetch(buildXUploadUrl(endpoint, params), {
+    method,
+    headers: { Authorization: createOauth1Header(method, endpoint, params) },
+    body,
+  });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(`X media upload error ${res.status}: ${JSON.stringify(data)}`);
+  return data;
+}
+
+async function waitForXMediaProcessing(endpoint, mediaId, processingInfo) {
+  let info = processingInfo || null;
+  for (let attempt = 0; attempt < 20; attempt += 1) {
+    if (!info) return;
+    if (info.state === 'succeeded') return;
+    if (info.state === 'failed') {
+      throw new Error(`X media processing failed: ${JSON.stringify(info.error || info)}`);
+    }
+    const waitMs = Math.max(Number(info.check_after_secs || 2), 1) * 1000;
+    await new Promise((resolve) => setTimeout(resolve, waitMs));
+    const status = await runXUploadCommand('GET', endpoint, { command: 'STATUS', media_id: mediaId });
+    info = status.processing_info || null;
+  }
+  throw new Error(`X media processing timeout for media_id ${mediaId}`);
+}
+
+async function uploadXChunkedMedia(buffer, mime, filename, mediaCategory) {
+  const endpoint = 'https://upload.twitter.com/1.1/media/upload.json';
+  const initData = await runXUploadCommand('POST', endpoint, {
+    command: 'INIT',
+    total_bytes: String(buffer.length),
+    media_type: mime,
+    media_category: mediaCategory,
+  });
+  if (!initData.media_id_string) {
+    throw new Error(`X media INIT missing media_id_string: ${JSON.stringify(initData)}`);
+  }
+
+  const mediaId = initData.media_id_string;
+  const chunkSize = 4 * 1024 * 1024;
+  for (let segmentIndex = 0, offset = 0; offset < buffer.length; segmentIndex += 1, offset += chunkSize) {
+    const chunk = buffer.subarray(offset, Math.min(offset + chunkSize, buffer.length));
+    const form = new FormData();
+    form.append('media', new Blob([chunk], { type: mime }), filename);
+    await runXUploadCommand(
+      'POST',
+      endpoint,
+      { command: 'APPEND', media_id: mediaId, segment_index: String(segmentIndex) },
+      form
+    );
+  }
+
+  const finalizeData = await runXUploadCommand('POST', endpoint, {
+    command: 'FINALIZE',
+    media_id: mediaId,
+  });
+  await waitForXMediaProcessing(endpoint, mediaId, finalizeData.processing_info);
+  return mediaId;
+}
+
+async function uploadXMediaSimple(buffer, mime, filename) {
   const endpoint = 'https://upload.twitter.com/1.1/media/upload.json';
   const form = new FormData();
   form.append('media', new Blob([buffer], { type: mime }), filename);
-  const headers = { Authorization: createOauth1Header('POST', endpoint) };
-  const res = await fetch(endpoint, { method: 'POST', headers, body: form });
+  const res = await fetch(endpoint, {
+    method: 'POST',
+    headers: { Authorization: createOauth1Header('POST', endpoint) },
+    body: form,
+  });
   const data = await res.json().catch(() => ({}));
   if (!res.ok) throw new Error(`X media upload error ${res.status}: ${JSON.stringify(data)}`);
   if (!data.media_id_string) throw new Error('X media upload missing media_id_string');
   return data.media_id_string;
+}
+
+async function uploadXMediaFromParsed(media) {
+  if (!process.env.WS_X_API_KEY) {
+    throw new Error('X media upload requires OAuth1 keys (WS_X_API_KEY + secret + tokens).');
+  }
+  if (media.kind === 'gif') {
+    return uploadXChunkedMedia(media.buffer, media.mime, media.filename, 'tweet_gif');
+  }
+  if (media.kind === 'video') {
+    return uploadXChunkedMedia(media.buffer, media.mime, media.filename, 'tweet_video');
+  }
+  return uploadXMediaSimple(media.buffer, media.mime, media.filename);
 }
 
 async function postX(text, mediaBase64) {
@@ -235,12 +348,7 @@ async function postX(text, mediaBase64) {
 
   let mediaId = null;
   const media = parseMediaBase64(mediaBase64);
-  if (media) {
-    if (!process.env.WS_X_API_KEY) {
-      throw new Error('X image upload requires OAuth1 keys (WS_X_API_KEY + secret + tokens).');
-    }
-    mediaId = await uploadXMedia(media.buffer, media.mime, media.filename);
-  }
+  if (media) mediaId = await uploadXMediaFromParsed(media);
 
   const body = { text: text.slice(0, 280) };
   if (mediaId) body.media = { media_ids: [mediaId] };
@@ -259,20 +367,30 @@ async function postX(text, mediaBase64) {
   return data;
 }
 
-function queueGbp(text, gbpOptions, hasMedia) {
+function queueGbp(text, gbpOptions, mediaBase64) {
+  const media = parseMediaBase64(mediaBase64);
+  const hasMedia = Boolean(media);
+  let message = 'GBP draft noted — paste into Google Business Profile.';
+  if (media?.kind === 'video') {
+    message = 'GBP queue saved — upload this video manually in Google Business Profile (API does not support video).';
+  } else if (media?.kind === 'gif') {
+    message = 'GBP queue saved — use a still image in Google (GIFs do not animate via API).';
+  } else if (hasMedia) {
+    message = 'GBP draft noted — copy text and upload photo in Google Business Profile (OAuth queue coming).';
+  }
+
   return {
     platform: 'gbp',
     label: 'Google Business Profile',
     status: 'queued_manual',
-    message: hasMedia
-      ? 'GBP draft noted — copy text and upload photo in Google Business Profile (OAuth queue coming).'
-      : 'GBP draft noted — paste into Google Business Profile.',
+    message,
     queue: {
       topicType: gbpOptions?.topicType || 'STANDARD',
       callToAction: gbpOptions?.callToAction || null,
       callToActionUrl: gbpOptions?.callToActionUrl || null,
       text: text.slice(0, 1500),
-      hasMedia: Boolean(hasMedia),
+      hasMedia,
+      mediaKind: media?.kind || null,
     },
   };
 }
@@ -301,12 +419,17 @@ async function handlePost(body) {
       }
       try {
         const data = await postFacebook(text, mediaBase64);
+        const media = parseMediaBase64(mediaBase64);
+        let fbMessage = data.mediaWarning || 'Posted via Graph API.';
+        if (media?.kind === 'gif') fbMessage = 'GIF posted via Facebook video API (loops on Page).';
+        else if (media?.kind === 'video') fbMessage = 'Video posted via Graph API.';
+        else if (media) fbMessage = data.mediaWarning || 'Photo posted via Graph API.';
         results.push({
           platform: 'facebook',
           label: 'Facebook',
           status: 'ok',
           postId: data.id,
-          message: data.mediaWarning || 'Posted via Graph API.',
+          message: fbMessage,
           demo: true,
         });
       } catch (err) {
@@ -319,12 +442,17 @@ async function handlePost(body) {
       try {
         const data = await postX(text, mediaBase64);
         const tweetId = data?.data?.id;
+        const media = parseMediaBase64(mediaBase64);
+        let xMessage = 'Posted via X API.';
+        if (media?.kind === 'gif') xMessage = 'Animated GIF posted via X API.';
+        else if (media?.kind === 'video') xMessage = 'Video posted via X API.';
+        else if (media) xMessage = 'Image posted via X API.';
         results.push({
           platform: 'x',
           label: 'X (Twitter)',
           status: 'ok',
           postId: tweetId,
-          message: 'Posted via X API.',
+          message: xMessage,
           demo: true,
         });
       } catch (err) {
