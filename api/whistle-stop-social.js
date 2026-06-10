@@ -3,17 +3,20 @@
 const lib = require('./_lib/whistle-stop-social');
 
 function routeSegment(req) {
-  const q = req.query.route;
-  if (typeof q === 'string' && q) return q.split('/')[0];
-  if (Array.isArray(q) && q[0]) return String(q[0]).split('/')[0];
-
   try {
     const url = new URL(req.url || '/', 'http://localhost');
     const parts = url.pathname.replace(/^\/api\/whistle-stop-social\/?/, '').split('/').filter(Boolean);
-    return parts[0] || 'health';
-  } catch (_) {
-    return 'health';
-  }
+    if (parts[0]) return parts[0];
+    const fromSearch = url.searchParams.get('route');
+    if (fromSearch) return fromSearch.split('/')[0];
+  } catch (_) {}
+
+  const query = req.query || {};
+  const q = query.route;
+  if (typeof q === 'string' && q) return q.split('/')[0];
+  if (Array.isArray(q) && q[0]) return String(q[0]).split('/')[0];
+
+  return 'health';
 }
 
 module.exports = async function handler(req, res) {
