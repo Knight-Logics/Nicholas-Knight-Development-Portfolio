@@ -60,12 +60,13 @@ module.exports = async function handler(req, res) {
       if (req.method !== 'POST') {
         return lib.sendJson(res, 405, { ok: false, error: 'Method not allowed' }, cors);
       }
-      const auth = lib.authorizePost(req);
-      if (!auth.ok) {
-        return lib.sendJson(res, 401, { ok: false, error: auth.error }, cors);
-      }
       try {
         const body = await lib.readJsonBody(req);
+        const auth = lib.authorizePost(req, body);
+        if (!auth.ok) {
+          return lib.sendJson(res, 401, { ok: false, error: auth.error }, cors);
+        }
+        delete body.adminPasswordHash;
         const payload = await lib.handlePost(body);
         return lib.sendJson(res, 200, payload, cors);
       } catch (err) {

@@ -164,7 +164,7 @@ async function readJsonBody(req) {
   }
 }
 
-function authorizePost(req) {
+function authorizePost(req, body = {}) {
   const apiKey = process.env.WS_SOCIAL_API_KEY;
   const headerKey = req.headers['x-ws-social-key'] || req.headers['X-WS-Social-Key'];
   if (apiKey && headerKey === apiKey) {
@@ -172,7 +172,10 @@ function authorizePost(req) {
   }
 
   const adminHashExpected = process.env.WS_ADMIN_PASSWORD_HASH;
-  const adminHash = req.headers['x-ws-admin-hash'] || req.headers['X-WS-Admin-Hash'];
+  const adminHash =
+    body.adminPasswordHash ||
+    req.headers['x-ws-admin-hash'] ||
+    req.headers['X-WS-Admin-Hash'];
   if (adminHashExpected && adminHash === adminHashExpected) {
     return { ok: true, method: 'admin-hash' };
   }
