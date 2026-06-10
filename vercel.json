@@ -299,6 +299,14 @@
   ],
   "rewrites": [
     {
+      "source": "/api/whistle-stop-social",
+      "destination": "/api/whistle-stop-social?route=health"
+    },
+    {
+      "source": "/api/whistle-stop-social/:route",
+      "destination": "/api/whistle-stop-social?route=:route"
+    },
+    {
       "source": "/ref/:partner",
       "destination": "/"
     },
