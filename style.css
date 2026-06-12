@@ -227,10 +227,39 @@ a:where(:not(.cta-button, .nav-link, .nav-brand-link, .nav-dropdown-toggle)):foc
     display: flex;
     align-items: center;
     gap: 10px;
+    position: relative;
     text-decoration: none;
     color: #eef7ff;
     cursor: pointer;
     transition: all 0.3s ease;
+    overflow: visible;
+}
+
+.nav-brand-link::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 4px;
+    width: calc(80px - 8px);
+    height: calc(80px - 8px);
+    border-radius: 50%;
+    background: linear-gradient(
+        115deg,
+        transparent 34%,
+        rgba(255, 236, 190, 0.12) 42%,
+        rgba(230, 198, 136, 0.82) 50%,
+        rgba(255, 236, 190, 0.12) 58%,
+        transparent 66%
+    );
+    opacity: 0;
+    mix-blend-mode: screen;
+    pointer-events: none;
+    animation: nav-logo-gold-glimmer 10s ease-in-out infinite;
+}
+
+.navbar.scrolled .nav-brand-link::after {
+    width: calc(65px - 8px);
+    height: calc(65px - 8px);
 }
 
 .nav-brand-link:visited,
@@ -246,8 +275,41 @@ a:where(:not(.cta-button, .nav-link, .nav-brand-link, .nav-dropdown-toggle)):foc
 .nav-logo {
     height: 80px;
     width: auto;
-    transition: all 0.3s ease;
+    transition: filter 0.3s ease, transform 0.3s ease;
     filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.nav-brand-link .nav-logo {
+    animation: nav-logo-gold-glow 10s ease-in-out infinite;
+}
+
+@keyframes nav-logo-gold-glimmer {
+    0%, 72%, 100% {
+        opacity: 0;
+        transform: translateX(-130%) skewX(-12deg);
+    }
+    78% {
+        opacity: 1;
+        transform: translateX(0) skewX(-12deg);
+    }
+    86% {
+        opacity: 0;
+        transform: translateX(130%) skewX(-12deg);
+    }
+}
+
+@keyframes nav-logo-gold-glow {
+    0%, 72%, 100% {
+        filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+    }
+    76%, 90% {
+        filter:
+            drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5))
+            drop-shadow(0 0 12px rgba(230, 198, 136, 1))
+            drop-shadow(0 0 26px rgba(230, 198, 136, 0.65))
+            brightness(1.12)
+            saturate(1.2);
+    }
 }
 
 .navbar.scrolled .nav-logo {
@@ -3617,21 +3679,26 @@ section::before {
     color: #fff;
 }
 
-.nav-actions .about-phone-number {
+#header-container .nav-actions .about-phone-number {
+    display: inline-block;
     animation: about-phone-glow-pulse 10s ease-in-out infinite;
+    will-change: text-shadow, filter;
 }
 
 @keyframes about-phone-glow-pulse {
-    0%, 82%, 100% {
+    0%, 72%, 100% {
         color: #fff;
         text-shadow: none;
+        filter: none;
     }
-    88%, 94% {
+    76%, 90% {
         color: #fff;
         text-shadow:
-            0 0 6px rgba(255, 255, 255, 0.95),
-            0 0 14px rgba(230, 198, 136, 0.85),
-            0 0 24px rgba(100, 255, 218, 0.55);
+            0 0 4px rgba(255, 255, 255, 1),
+            0 0 12px rgba(255, 255, 255, 1),
+            0 0 24px rgba(255, 255, 255, 0.95),
+            0 0 42px rgba(255, 255, 255, 0.75);
+        filter: brightness(1.2);
     }
 }
 
@@ -11457,9 +11524,15 @@ body.reduced-motion .kl-local-trust-parallax {
         color: #e6c688;
     }
 
-    .nav-actions .about-phone-number {
+    #header-container .nav-actions .about-phone-number {
         animation: none;
         text-shadow: none;
+        filter: none;
+    }
+
+    #header-container .nav-brand-link::after,
+    #header-container .nav-brand-link .nav-logo {
+        animation: none;
     }
 }
 

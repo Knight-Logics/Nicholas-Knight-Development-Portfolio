@@ -453,6 +453,42 @@
         }
         #header-container { min-height: 108px; background: transparent; }
         .navbar { min-height: 100px; }
+        #header-container .nav-actions .about-phone-number {
+            display: inline-block;
+            animation: about-phone-glow-pulse 10s ease-in-out infinite;
+        }
+        @keyframes about-phone-glow-pulse {
+            0%, 72%, 100% {
+                color: #fff;
+                text-shadow: none;
+                filter: none;
+            }
+            76%, 90% {
+                color: #fff;
+                text-shadow:
+                    0 0 4px rgba(255, 255, 255, 1),
+                    0 0 12px rgba(255, 255, 255, 1),
+                    0 0 24px rgba(255, 255, 255, 0.95),
+                    0 0 42px rgba(255, 255, 255, 0.75);
+                filter: brightness(1.2);
+            }
+        }
+        #header-container .nav-brand-link .nav-logo {
+            animation: nav-logo-gold-glow 10s ease-in-out infinite;
+        }
+        @keyframes nav-logo-gold-glow {
+            0%, 72%, 100% {
+                filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5));
+            }
+            76%, 90% {
+                filter:
+                    drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.5))
+                    drop-shadow(0 0 12px rgba(230, 198, 136, 1))
+                    drop-shadow(0 0 26px rgba(230, 198, 136, 0.65))
+                    brightness(1.12)
+                    saturate(1.2);
+            }
+        }
         .nav-brand { min-height: 80px; min-width: 280px; }
         .brand-text-wrap { min-height: 3.4rem; }
         #loading-screen {
@@ -1664,8 +1700,8 @@
             }
         }
     </style>
-    <link rel="preload" href="style.css?v=20260606grid1" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="style.css?v=20260606grid1"></noscript>
+    <link rel="preload" href="style.css?v=20260612nav2" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="style.css?v=20260612nav2"></noscript>
     <title>Tampa Bay Web Design & Local SEO | Knight Logics</title>
     <!-- Microsoft Clarity (deferred until after load to protect first paint) -->
     <script type="text/javascript">
