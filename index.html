@@ -928,19 +928,49 @@
         }
 
         .starter-packages-grid.starter-packages-grid--5 {
-            --kl-min: 220px;
+            display: grid;
+            gap: 16px;
+            align-items: start;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+        }
+
+        .starter-packages-grid.starter-packages-grid--5 > * {
+            flex: none;
+            max-width: none;
+            min-width: 0;
+        }
+
+        @media (max-width: 1399px) {
+            .starter-packages-grid.starter-packages-grid--5 {
+                grid-template-columns: repeat(6, minmax(0, 1fr));
+            }
+
+            .starter-packages-grid.starter-packages-grid--5 > :nth-child(-n+3) {
+                grid-column: span 2;
+            }
+
+            .starter-packages-grid.starter-packages-grid--5 > :nth-child(4) {
+                grid-column: 2 / span 2;
+            }
+
+            .starter-packages-grid.starter-packages-grid--5 > :nth-child(5) {
+                grid-column: 4 / span 2;
+            }
         }
 
         @media (max-width: 1024px) {
             .starter-packages-grid {
-                --kl-cols: 2;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .starter-packages-grid {
                 --kl-cols: 1;
                 --kl-min: 100%;
+            }
+
+            .starter-packages-grid.starter-packages-grid--5 {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 12px;
+            }
+
+            .starter-packages-grid.starter-packages-grid--5 > * {
+                grid-column: auto;
             }
         }
 
@@ -951,13 +981,97 @@
         .starter-package-card {
             display: flex;
             flex-direction: column;
-            gap: 18px;
-            padding: 28px;
-            border-radius: 24px;
+            gap: 14px;
+            padding: 18px 16px;
+            border-radius: 20px;
             border: 1px solid rgba(100, 255, 218, 0.16);
             background: rgba(255, 255, 255, 0.04);
             box-shadow: 0 18px 40px rgba(0, 0, 0, 0.22);
             backdrop-filter: blur(10px);
+            height: 100%;
+        }
+
+        .starter-packages-grid--5 .starter-package-head h3 {
+            font-size: 1.08rem;
+        }
+
+        .starter-packages-grid--5 .starter-package-price-value {
+            font-size: 1.22rem;
+        }
+
+        .starter-packages-grid--5 .starter-package-desc {
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        .starter-packages-grid--5 .starter-package-points {
+            gap: 6px;
+        }
+
+        .starter-packages-grid--5 .starter-package-points li {
+            font-size: 0.82rem;
+            line-height: 1.45;
+        }
+
+        .starter-packages-grid--5 .starter-package-card-note {
+            font-size: 0.8rem;
+            margin: 0;
+        }
+
+        .starter-package-details {
+            display: block;
+            margin: 0;
+        }
+
+        .starter-package-details-summary {
+            display: none;
+            list-style: none;
+            cursor: pointer;
+            margin: 0;
+            padding: 0.62rem 0.85rem;
+            border: 1px solid rgba(100, 255, 218, 0.22);
+            border-radius: 10px;
+            background: rgba(100, 255, 218, 0.06);
+            color: #64ffda;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            width: 100%;
+            box-sizing: border-box;
+            transition: background 0.2s ease, border-color 0.2s ease;
+        }
+
+        .starter-package-details-summary::after {
+            content: '▾';
+            float: right;
+            font-size: 0.95rem;
+            line-height: 1;
+            opacity: 0.85;
+            transition: transform 0.2s ease;
+        }
+
+        .starter-package-details[open] .starter-package-details-summary::after {
+            transform: rotate(180deg);
+        }
+
+        .starter-package-details-summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .starter-package-details-summary:hover {
+            background: rgba(100, 255, 218, 0.1);
+            border-color: rgba(100, 255, 218, 0.34);
+        }
+
+        .starter-package-details-body {
+            display: grid;
+            gap: 12px;
+            padding-top: 2px;
+        }
+
+        .starter-package-card .starter-package-cta {
+            margin-top: auto;
         }
 
         .starter-package-card--featured {
@@ -1622,27 +1736,110 @@
             min-width: 240px;
         }
 
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
             .starter-packages {
-                padding: 72px 0;
+                padding: 64px 0;
+            }
+
+            .starter-packages-intro {
+                max-width: none;
+                text-align: left;
+            }
+
+            .starter-packages-intro h2 {
+                font-size: clamp(1.65rem, 5.4vw, 2.2rem);
             }
 
             .starter-package-card {
-                padding: 24px;
+                gap: 10px;
+                padding: 14px 14px 12px;
+                border-radius: 16px;
+                box-shadow: 0 10px 24px rgba(0, 0, 0, 0.2);
+                height: auto;
+            }
+
+            .starter-package-card--featured {
+                box-shadow:
+                    0 10px 24px rgba(0, 0, 0, 0.2),
+                    inset 0 0 0 1px rgba(100, 255, 218, 0.2);
+            }
+
+            .starter-package-tag {
+                padding: 5px 10px;
+                font-size: 0.68rem;
+            }
+
+            .starter-package-head {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) auto;
+                align-items: end;
+                gap: 8px 12px;
+            }
+
+            .starter-packages-grid--5 .starter-package-head h3 {
+                grid-column: 1;
+                font-size: 1.05rem;
+                margin: 0;
+            }
+
+            .starter-package-price {
+                grid-column: 2;
+                grid-row: 1;
+                justify-self: end;
+                white-space: nowrap;
+            }
+
+            .starter-packages-grid--5 .starter-package-price-value {
+                font-size: 1.08rem;
+            }
+
+            .starter-package-details-summary {
+                display: block;
+            }
+
+            .starter-package-details:not([open]) .starter-package-details-body {
+                display: none;
+            }
+
+            .starter-package-details[open] .starter-package-details-summary {
+                margin-bottom: 8px;
+                border-color: rgba(100, 255, 218, 0.34);
+                background: rgba(100, 255, 218, 0.1);
+            }
+
+            .starter-package-details-body {
+                padding: 10px 0 2px;
+                border-top: 1px solid rgba(100, 255, 218, 0.1);
+            }
+
+            .starter-package-cta {
+                width: 100%;
+                min-height: 44px;
+                margin-top: 4px;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .starter-package-details-summary {
+                display: none !important;
+            }
+
+            .starter-package-details-body {
+                display: grid !important;
             }
         }
 
         @media (max-width: 480px) {
             .starter-packages {
-                padding: 60px 0;
+                padding: 52px 0;
             }
 
             .starter-package-card {
-                padding: 22px;
+                padding: 12px 12px 10px;
             }
 
-            .starter-package-cta {
-                width: 100%;
+            .starter-packages-intro h2 {
+                font-size: 1.55rem;
             }
         }
 
@@ -1700,8 +1897,8 @@
             }
         }
     </style>
-    <link rel="preload" href="style.css?v=20260612nav2" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="style.css?v=20260612nav2"></noscript>
+    <link rel="preload" href="style.css?v=20260612uniform1" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="style.css?v=20260612uniform1"></noscript>
     <title>Tampa Bay Web Design & Local SEO | Knight Logics</title>
     <!-- Microsoft Clarity (deferred until after load to protect first paint) -->
     <script type="text/javascript">
@@ -1927,7 +2124,7 @@
                         <h2 class="about-headline kl-proof-enter kl-proof-enter--left kl-proof-enter--d2">Websites engineered to <em>outrank</em> &amp; outsell the competition.</h2>
                         <a href="/" class="kl-proof-brand-mark" aria-label="Knight Logics home">
                             <span class="kl-proof-brand-logo-scene" aria-hidden="true">
-                                <img src="./images/KnightLogicsLogo2.png" srcset="./images/KnightLogicsLogo2.webp 128w, ./images/KnightLogicsLogo2.png 1024w" sizes="(max-width: 768px) 80px, 128px" alt="" class="nav-logo kl-proof-brand-logo" width="1024" height="1024" decoding="async">
+                                <img src="./images/KnightLogicsLogo2.png" srcset="./images/KnightLogicsLogo2.webp 128w, ./images/KnightLogicsLogo2.png 1024w" sizes="(max-width: 768px) 160px, 256px" alt="" class="nav-logo kl-proof-brand-logo" width="1024" height="1024" decoding="async">
                             </span>
                         </a>
                     </div>
@@ -1949,8 +2146,8 @@
                         <a href="/case-study-knight-group" class="kl-proof-thumb kl-proof-enter kl-proof-enter--down kl-proof-enter--d3">
                             <img src="./images/showcase/knight-group-showcase.webp" alt="Knight Group website" width="400" height="210" loading="lazy" decoding="async">
                         </a>
-                        <a href="/case-study-evidencedesk-ai" class="kl-proof-thumb kl-proof-enter kl-proof-enter--up kl-proof-enter--d4">
-                            <img src="./images/evidencedesk-showcase-800.webp" alt="EvidenceDesk AI product site" width="400" height="210" loading="lazy" decoding="async">
+                        <a href="/case-study-sals-painting" class="kl-proof-thumb kl-proof-enter kl-proof-enter--up kl-proof-enter--d4">
+                            <img src="https://salspaintingrenovation.com/SalsHeroImage.png" alt="Sal's Painting website" width="400" height="210" loading="lazy" decoding="async">
                         </a>
                     </div>
                     <div class="about-ctas">
@@ -1962,18 +2159,42 @@
                     </p>
                 </div>
 
-                <div class="kl-proof-showcase kl-proof-showcase--desktop" aria-label="Recent Knight Logics website work">
-                    <a href="/case-study-screen-team" class="kl-proof-card kl-proof-card--hero kl-proof-enter kl-proof-enter--left kl-proof-enter--d1">
-                        <img src="./images/screen-team-showcase-800.webp" alt="The Screen Team LLC website case study" width="800" height="450" loading="lazy" decoding="async">
-                        <span class="kl-proof-card-label">Website Case Study</span>
-                        <strong>The Screen Team LLC</strong>
+                <div class="kl-proof-showcase kl-proof-showcase--desktop kl-proof-showcase--uniform" aria-label="Recent Knight Logics website work">
+                    <a href="/case-study-screen-team" class="kl-proof-card kl-proof-card--video kl-proof-enter kl-proof-enter--left kl-proof-enter--d1" style="--kl-proof-video-poster: url('./images/screen-team-showcase-800.webp');">
+                        <video class="kl-proof-card-video" autoplay muted loop playsinline preload="metadata" poster="./images/screen-team-showcase-800.webp" aria-hidden="true" tabindex="-1">
+                            <source src="./images/ST-Update.mp4" type="video/mp4">
+                        </video>
+                        <span class="kl-proof-card-media-overlay" aria-hidden="true"></span>
+                        <span class="kl-proof-card-panel kl-proof-card-panel--front">
+                            <span class="kl-proof-card-label">Website Case Study</span>
+                            <strong>The Screen Team LLC</strong>
+                        </span>
+                        <span class="kl-proof-card-panel kl-proof-card-panel--hover">
+                            <strong class="kl-proof-card-hover-title">The Screen Team LLC</strong>
+                            <span class="kl-proof-card-hover-box">
+                                <span class="kl-proof-card-hover-detail">Pool enclosure growth site with CRM, email automation, social systems, and local directory groundwork behind the public website.</span>
+                                <span class="kl-proof-card-hover-cta">View case study</span>
+                            </span>
+                        </span>
                     </a>
-                    <a href="/case-study-moms-resin-tables" class="kl-proof-card kl-proof-enter kl-proof-enter--right kl-proof-enter--d2">
-                        <img src="./images/showcase/moms-resin-og-card.webp" alt="Mom's Resin Tables e-commerce case study" width="1200" height="630" loading="lazy" decoding="async">
-                        <span class="kl-proof-card-label">E-Commerce</span>
-                        <strong>Mom's Resin Tables</strong>
+                    <a href="/case-study-moms-resin-tables" class="kl-proof-card kl-proof-card--video kl-proof-enter kl-proof-enter--right kl-proof-enter--d2" style="--kl-proof-video-poster: url('./images/showcase/moms-resin-og-card.webp');">
+                        <video class="kl-proof-card-video" autoplay muted loop playsinline preload="metadata" poster="./images/showcase/moms-resin-og-card.webp" aria-hidden="true" tabindex="-1">
+                            <source src="./images/momsresintables-site.mp4" type="video/mp4">
+                        </video>
+                        <span class="kl-proof-card-media-overlay" aria-hidden="true"></span>
+                        <span class="kl-proof-card-panel kl-proof-card-panel--front">
+                            <span class="kl-proof-card-label">E-Commerce</span>
+                            <strong>Mom's Resin Tables</strong>
+                        </span>
+                        <span class="kl-proof-card-panel kl-proof-card-panel--hover">
+                            <strong class="kl-proof-card-hover-title">Mom's Resin Tables</strong>
+                            <span class="kl-proof-card-hover-box">
+                                <span class="kl-proof-card-hover-detail">Custom storefront with product builder, Stripe checkout, customer accounts, and order tracking for handmade resin furniture.</span>
+                                <span class="kl-proof-card-hover-cta">View case study</span>
+                            </span>
+                        </span>
                     </a>
-                    <a href="/case-study-knight-group" class="kl-proof-card kl-proof-card--video kl-proof-enter kl-proof-enter--down kl-proof-enter--d3">
+                    <a href="/case-study-knight-group" class="kl-proof-card kl-proof-card--video kl-proof-enter kl-proof-enter--down kl-proof-enter--d3" style="--kl-proof-video-poster: url('./images/showcase/knight-group-showcase.webp');">
                         <video class="kl-proof-card-video" autoplay muted loop playsinline preload="metadata" poster="./images/showcase/knight-group-showcase.webp" aria-hidden="true" tabindex="-1">
                             <source src="./images/Knight-Group-Website-Update.mp4" type="video/mp4">
                         </video>
@@ -1990,10 +2211,22 @@
                             </span>
                         </span>
                     </a>
-                    <a href="/case-study-evidencedesk-ai" class="kl-proof-card kl-proof-card--wide kl-proof-enter kl-proof-enter--up kl-proof-enter--d4">
-                        <img src="./images/evidencedesk-showcase-800.webp" alt="EvidenceDesk AI product case study" width="800" height="420" loading="lazy" decoding="async">
-                        <span class="kl-proof-card-label">Product Funnel</span>
-                        <strong>EvidenceDesk AI</strong>
+                    <a href="/case-study-sals-painting" class="kl-proof-card kl-proof-card--video kl-proof-enter kl-proof-enter--up kl-proof-enter--d4" style="--kl-proof-video-poster: url('https://salspaintingrenovation.com/SalsHeroImage.png');">
+                        <video class="kl-proof-card-video" autoplay muted loop playsinline preload="metadata" poster="https://salspaintingrenovation.com/SalsHeroImage.png" aria-hidden="true" tabindex="-1">
+                            <source src="./images/salspainting-upgrade.mp4" type="video/mp4">
+                        </video>
+                        <span class="kl-proof-card-media-overlay" aria-hidden="true"></span>
+                        <span class="kl-proof-card-panel kl-proof-card-panel--front">
+                            <span class="kl-proof-card-label">Search-Ready Starter</span>
+                            <strong>Sal's Painting</strong>
+                        </span>
+                        <span class="kl-proof-card-panel kl-proof-card-panel--hover">
+                            <strong class="kl-proof-card-hover-title">Sal's Painting</strong>
+                            <span class="kl-proof-card-hover-box">
+                                <span class="kl-proof-card-hover-detail">Contractor site with GA4, Clarity, Search Console, and core technical SEO — built for organic leads without platform bloat.</span>
+                                <span class="kl-proof-card-hover-cta">View case study</span>
+                            </span>
+                        </span>
                     </a>
                 </div>
             </div>
@@ -2462,13 +2695,18 @@
                             <h3>Demo Preview</h3>
                             <p class="starter-package-price"><span class="starter-package-price-prefix">flat</span><span class="starter-package-price-value">$200</span></p>
                         </div>
-                        <p class="starter-package-desc">One custom-coded demo page to validate layout, offer clarity, and conversion direction before you invest in a full build.</p>
-                        <ul class="starter-package-points">
-                            <li>Single-page demo on a GitHub Pages URL</li>
-                            <li>Hero, services snapshot, and contact CTA</li>
-                            <li>Fast turnaround for early sales conversations</li>
-                            <li>Credit applies toward a full launch package</li>
-                        </ul>
+                        <details class="starter-package-details" open>
+                            <summary class="starter-package-details-summary">View package details</summary>
+                            <div class="starter-package-details-body">
+                                <p class="starter-package-desc">One custom-coded demo page to validate layout, offer clarity, and conversion direction before you invest in a full build.</p>
+                                <ul class="starter-package-points">
+                                    <li>Single-page demo on a GitHub Pages URL</li>
+                                    <li>Hero, services snapshot, and contact CTA</li>
+                                    <li>Fast turnaround for early sales conversations</li>
+                                    <li>Credit applies toward a full launch package</li>
+                                </ul>
+                            </div>
+                        </details>
                         <button type="button" class="cta-button primary starter-package-cta" data-package-key="website-demo-preview">Start demo preview</button>
                     </article>
 
@@ -2479,13 +2717,18 @@
                             <h3>Preview Launch Site</h3>
                             <p class="starter-package-price"><span class="starter-package-price-prefix">from</span><span class="starter-package-price-value">$500</span></p>
                         </div>
-                        <p class="starter-package-desc">A professional multi-page preview to show customers fast before domain, search setup, or a larger live package.</p>
-                        <ul class="starter-package-points">
-                            <li>2–4 page preview structure</li>
-                            <li>Hosted on a GitHub Pages URL</li>
-                            <li>Good for proof-of-concept and early sales</li>
-                            <li>1 revision round</li>
-                        </ul>
+                        <details class="starter-package-details" open>
+                            <summary class="starter-package-details-summary">View package details</summary>
+                            <div class="starter-package-details-body">
+                                <p class="starter-package-desc">A professional multi-page preview to show customers fast before domain, search setup, or a larger live package.</p>
+                                <ul class="starter-package-points">
+                                    <li>2–4 page preview structure</li>
+                                    <li>Hosted on a GitHub Pages URL</li>
+                                    <li>Good for proof-of-concept and early sales</li>
+                                    <li>1 revision round</li>
+                                </ul>
+                            </div>
+                        </details>
                         <button type="button" class="cta-button primary starter-package-cta" data-package-key="website-preview-launch">Choose options</button>
                     </article>
 
@@ -2496,15 +2739,20 @@
                             <h3>Local Launch Site</h3>
                             <p class="starter-package-price"><span class="starter-package-price-prefix">from</span><span class="starter-package-price-value">$700</span></p>
                         </div>
-                        <p class="starter-package-desc">Premium local builds focused on design quality, motion, SEO depth, and GBP alignment — not just stacking pages.</p>
-                        <ul class="starter-package-points">
-                            <li>Up to 10 pages with stronger design + scroll polish</li>
-                            <li>Competitor SEO review and backlink direction</li>
-                            <li>Dynamic local SEO structure + GBP alignment</li>
-                            <li>Search Console, schema, analytics, and launch QA</li>
-                            <li>Configurator routes to the right flat tier before checkout</li>
-                        </ul>
-                        <p class="starter-package-card-note"><strong>Full local launch:</strong> Most businesses land at <strong>$1,997</strong> once search depth and page scope are confirmed.</p>
+                        <details class="starter-package-details" open>
+                            <summary class="starter-package-details-summary">View package details</summary>
+                            <div class="starter-package-details-body">
+                                <p class="starter-package-desc">Premium local builds focused on design quality, motion, SEO depth, and GBP alignment — not just stacking pages.</p>
+                                <ul class="starter-package-points">
+                                    <li>Up to 10 pages with stronger design + scroll polish</li>
+                                    <li>Competitor SEO review and backlink direction</li>
+                                    <li>Dynamic local SEO structure + GBP alignment</li>
+                                    <li>Search Console, schema, analytics, and launch QA</li>
+                                    <li>Configurator routes to the right flat tier before checkout</li>
+                                </ul>
+                                <p class="starter-package-card-note"><strong>Full local launch:</strong> Most businesses land at <strong>$1,997</strong> once search depth and page scope are confirmed.</p>
+                            </div>
+                        </details>
                         <button type="button" class="cta-button primary starter-package-cta" data-package-key="website-local-seo-starter">Build your package</button>
                     </article>
 
@@ -2515,15 +2763,20 @@
                             <h3>Storefront Packages</h3>
                             <p class="starter-package-price"><span class="starter-package-price-prefix">from</span><span class="starter-package-price-value">$750</span></p>
                         </div>
-                        <p class="starter-package-desc">Pick the selling flow you need first. The selector will separate a preview catalog, payment-link store, and full cart storefront before checkout.</p>
-                        <ul class="starter-package-points">
-                            <li>Storefront Preview  $750</li>
-                            <li>Payment-Link Store  $1,200</li>
-                            <li>E-Commerce Launch  $2,497</li>
-                            <li>E-Commerce Launch Plus  $3,497</li>
-                            <li>Cart, checkout, and automation only appear when the package supports them</li>
-                        </ul>
-                        <p class="starter-package-card-note"><strong>Example:</strong> <a href="https://momsresintables.com" target="_blank" rel="noopener noreferrer">Mom's Resin Tables</a>  custom product catalog, Stripe links, product pages.</p>
+                        <details class="starter-package-details" open>
+                            <summary class="starter-package-details-summary">View package details</summary>
+                            <div class="starter-package-details-body">
+                                <p class="starter-package-desc">Pick the selling flow you need first. The selector will separate a preview catalog, payment-link store, and full cart storefront before checkout.</p>
+                                <ul class="starter-package-points">
+                                    <li>Storefront Preview  $750</li>
+                                    <li>Payment-Link Store  $1,200</li>
+                                    <li>E-Commerce Launch  $2,497</li>
+                                    <li>E-Commerce Launch Plus  $3,497</li>
+                                    <li>Cart, checkout, and automation only appear when the package supports them</li>
+                                </ul>
+                                <p class="starter-package-card-note"><strong>Example:</strong> <a href="https://momsresintables.com" target="_blank" rel="noopener noreferrer">Mom's Resin Tables</a>  custom product catalog, Stripe links, product pages.</p>
+                            </div>
+                        </details>
                         <button type="button" class="cta-button primary starter-package-cta" data-package-key="ecommerce-preview-catalog">Choose store options</button>
                     </article>
 
@@ -2534,15 +2787,20 @@
                             <h3>Growth &amp; Automation System</h3>
                             <p class="starter-package-price"><span class="starter-package-price-prefix">from</span><span class="starter-package-price-value">$3,500 + $397/mo</span></p>
                         </div>
-                        <p class="starter-package-desc">The system behind the site: lead tracking, CRM, automated follow-up, reporting, and business workflow automation with monthly support after setup.</p>
-                        <ul class="starter-package-points">
-                            <li>Website + domain + full Google setup</li>
-                            <li>Lead tracker and source attribution</li>
-                            <li>CRM / job records system</li>
-                            <li>Automated email follow-up sequences</li>
-                            <li>Review request workflow</li>
-                            <li>Reporting dashboard + monthly upkeep</li>
-                        </ul>
+                        <details class="starter-package-details" open>
+                            <summary class="starter-package-details-summary">View package details</summary>
+                            <div class="starter-package-details-body">
+                                <p class="starter-package-desc">The system behind the site: lead tracking, CRM, automated follow-up, reporting, and business workflow automation with monthly support after setup.</p>
+                                <ul class="starter-package-points">
+                                    <li>Website + domain + full Google setup</li>
+                                    <li>Lead tracker and source attribution</li>
+                                    <li>CRM / job records system</li>
+                                    <li>Automated email follow-up sequences</li>
+                                    <li>Review request workflow</li>
+                                    <li>Reporting dashboard + monthly upkeep</li>
+                                </ul>
+                            </div>
+                        </details>
                         <button type="button" class="cta-button primary starter-package-cta" data-package-key="ops-growth-system-starter">Start growth checkout</button>
                     </article>
 
@@ -4258,6 +4516,47 @@
                     window.history.replaceState({}, document.title, nextUrl);
                 }
             }
+
+            const starterPackageDetails = Array.from(document.querySelectorAll('.starter-package-details'));
+            const starterPackageCompactMql = window.matchMedia('(max-width: 1024px)');
+
+            function syncStarterPackageDetailsState() {
+                starterPackageDetails.forEach((detailsEl) => {
+                    const summaryEl = detailsEl.querySelector('.starter-package-details-summary');
+                    if (starterPackageCompactMql.matches) {
+                        detailsEl.removeAttribute('open');
+                        if (summaryEl) summaryEl.textContent = 'View package details';
+                    } else {
+                        detailsEl.setAttribute('open', '');
+                        if (summaryEl) summaryEl.textContent = 'View package details';
+                    }
+                });
+            }
+
+            starterPackageDetails.forEach((detailsEl) => {
+                const summaryEl = detailsEl.querySelector('.starter-package-details-summary');
+                if (!summaryEl) return;
+                detailsEl.addEventListener('toggle', () => {
+                    if (starterPackageCompactMql.matches && detailsEl.open) {
+                        starterPackageDetails.forEach((otherEl) => {
+                            if (otherEl !== detailsEl && otherEl.open) {
+                                otherEl.removeAttribute('open');
+                                const otherSummary = otherEl.querySelector('.starter-package-details-summary');
+                                if (otherSummary) otherSummary.textContent = 'View package details';
+                            }
+                        });
+                    }
+                    summaryEl.textContent = detailsEl.open ? 'Hide package details' : 'View package details';
+                });
+            });
+
+            if (typeof starterPackageCompactMql.addEventListener === 'function') {
+                starterPackageCompactMql.addEventListener('change', syncStarterPackageDetailsState);
+            } else if (typeof starterPackageCompactMql.addListener === 'function') {
+                starterPackageCompactMql.addListener(syncStarterPackageDetailsState);
+            }
+
+            syncStarterPackageDetailsState();
 
             if (purchaseState === 'success') {
                 clearFeedback();
