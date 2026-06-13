@@ -349,6 +349,14 @@
   ],
   "rewrites": [
     {
+      "source": "/api/admin-auth",
+      "destination": "/api/admin"
+    },
+    {
+      "source": "/api/admin-health",
+      "destination": "/api/admin"
+    },
+    {
       "source": "/api/whistle-stop-social",
       "destination": "/api/whistle-stop-social?route=health"
     },

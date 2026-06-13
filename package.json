@@ -2,8 +2,8 @@
   "name": "knightlogics-site",
   "private": true,
   "scripts": {
-    "dev": "npx serve -l 4178 .",
-    "dev:local": "npx serve -l 4178 .",
+    "dev": "npx vercel dev --listen 4199",
+    "dev:static": "npx serve -l 4183 .",
     "qa:screenshots": "node scripts/qa-screenshot-matrix.js",
     "qa:screenshots:services": "node scripts/qa-screenshot-matrix.js --profile=knightlogics-services",
     "qa:screenshots:client-demo": "node scripts/qa-screenshot-matrix.js --profile=client-demo",

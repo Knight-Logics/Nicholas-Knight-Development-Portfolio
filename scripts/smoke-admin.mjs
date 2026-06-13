@@ -2,7 +2,7 @@
 /**
  * Smoke tests for Knight Command /admin shell and admin APIs.
  * Usage: node scripts/smoke-admin.mjs [baseUrl]
- * Default baseUrl: http://127.0.0.1:4183
+ * Default baseUrl: http://127.0.0.1:4199  (vercel dev — plain serve cannot run /api routes)
  */
 'use strict';
 
@@ -12,7 +12,7 @@ import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
-const base = (process.argv[2] || 'http://127.0.0.1:4183').replace(/\/$/, '');
+const base = (process.argv[2] || 'http://127.0.0.1:4199').replace(/\/$/, '');
 
 const results = [];
 
@@ -46,8 +46,7 @@ async function main() {
     console.log('Base URL:', base);
     console.log('---');
 
-    // Static file checks
-    for (const file of ['admin.html', 'admin/admin.js', 'admin/admin.css', 'api/admin-auth.js', 'api/admin-health.js', 'api/_lib/admin-auth.js']) {
+    for (const file of ['admin.html', 'admin/admin.js', 'admin/admin.css', 'api/admin.js', 'api/_lib/admin-auth.js']) {
         if (fs.existsSync(path.join(root, file))) pass(`file exists: ${file}`);
         else fail(`file exists: ${file}`);
     }
@@ -64,7 +63,6 @@ async function main() {
     if (robots.includes('Disallow: /admin')) pass('robots.txt blocks /admin');
     else fail('robots.txt blocks /admin');
 
-    // HTTP checks (optional when server running)
     try {
         const adminPage = await fetch(`${base}/admin`);
         if (adminPage.ok) pass('GET /admin', String(adminPage.status));
@@ -74,33 +72,33 @@ async function main() {
         if (html.includes('Knight Command') && html.includes('admin/admin.js')) pass('/admin HTML shell markers');
         else fail('/admin HTML shell markers');
 
-        const css = await fetch(`${base}/admin/admin.css?v=20260613admin1`);
+        const css = await fetch(`${base}/admin/admin.css?v=20260613admin2`);
         if (css.ok) pass('GET /admin/admin.css');
         else fail('GET /admin/admin.css', String(css.status));
 
-        const js = await fetch(`${base}/admin/admin.js?v=20260613admin1`);
+        const js = await fetch(`${base}/admin/admin.js?v=20260613admin2`);
         if (js.ok) pass('GET /admin/admin.js');
         else fail('GET /admin/admin.js', String(js.status));
 
-        const badLogin = await fetchJson(`${base}/api/admin-auth`, {
+        const badLogin = await fetchJson(`${base}/api/admin`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ secret: 'wrong-secret-smoke-test' }),
         });
-        if (badLogin.res.status === 403) pass('POST /api/admin-auth rejects bad secret');
-        else if (badLogin.res.status === 503) console.log('SKIP POST /api/admin-auth rejects bad secret — KL_ADMIN_SECRET not on server');
-        else if (badLogin.res.status === 404) console.log('SKIP POST /api/admin-auth — no API runtime (use vercel dev or production, not plain serve)');
-        else fail('POST /api/admin-auth rejects bad secret', `status ${badLogin.res.status}`);
+        if (badLogin.res.status === 403) pass('POST /api/admin rejects bad secret');
+        else if (badLogin.res.status === 503) console.log('SKIP POST /api/admin rejects bad secret — KL_ADMIN_SECRET not on server');
+        else if (badLogin.res.status === 404) console.log('SKIP POST /api/admin — no API runtime (use vercel dev or production, not plain serve)');
+        else fail('POST /api/admin rejects bad secret', `status ${badLogin.res.status}`);
 
-        const healthNoAuth = await fetchJson(`${base}/api/admin-health`, {
+        const healthNoAuth = await fetchJson(`${base}/api/admin`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({}),
+            body: JSON.stringify({ action: 'health' }),
         });
-        if (healthNoAuth.res.status === 403) pass('POST /api/admin-health requires auth');
-        else if (healthNoAuth.res.status === 503) console.log('SKIP POST /api/admin-health requires auth — KL_ADMIN_SECRET not on server');
-        else if (healthNoAuth.res.status === 404) console.log('SKIP POST /api/admin-health — no API runtime');
-        else fail('POST /api/admin-health requires auth', `status ${healthNoAuth.res.status}`);
+        if (healthNoAuth.res.status === 403) pass('POST /api/admin health requires auth');
+        else if (healthNoAuth.res.status === 503) console.log('SKIP POST /api/admin health — KL_ADMIN_SECRET not on server');
+        else if (healthNoAuth.res.status === 404) console.log('SKIP POST /api/admin — no API runtime');
+        else fail('POST /api/admin health requires auth', `status ${healthNoAuth.res.status}`);
 
         const embed = await fetch(`${base}/referral-dashboard?embed=1`);
         if (embed.ok) pass('GET /referral-dashboard?embed=1');
@@ -108,27 +106,27 @@ async function main() {
 
         const secret = process.env.KL_ADMIN_SECRET;
         if (secret) {
-            const login = await fetchJson(`${base}/api/admin-auth`, {
+            const login = await fetchJson(`${base}/api/admin`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ secret }),
             });
             if (login.res.status === 200 && login.data && login.data.token) {
-                pass('POST /api/admin-auth accepts KL_ADMIN_SECRET');
-                const health = await fetchJson(`${base}/api/admin-health`, {
+                pass('POST /api/admin accepts KL_ADMIN_SECRET');
+                const health = await fetchJson(`${base}/api/admin`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ token: login.data.token }),
+                    body: JSON.stringify({ action: 'health', token: login.data.token }),
                 });
                 if (health.res.status === 200 && health.data && health.data.ok) {
-                    pass('POST /api/admin-health with session token');
+                    pass('POST /api/admin health with session token');
                 } else {
-                    fail('POST /api/admin-health with session token', JSON.stringify(health.data));
+                    fail('POST /api/admin health with session token', JSON.stringify(health.data));
                 }
             } else if (login.res.status === 503 || login.res.status === 404) {
                 console.log('SKIP authenticated API checks — API not available or KL_ADMIN_SECRET missing on server');
             } else {
-                fail('POST /api/admin-auth accepts KL_ADMIN_SECRET', JSON.stringify(login.data));
+                fail('POST /api/admin accepts KL_ADMIN_SECRET', JSON.stringify(login.data));
             }
         } else {
             console.log('SKIP authenticated API checks — set KL_ADMIN_SECRET in shell for full API smoke');

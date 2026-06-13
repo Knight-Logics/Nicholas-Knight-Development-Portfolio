@@ -263,7 +263,7 @@
             grid.innerHTML = '<div class="kc-card"><h3>Status</h3><strong>Loading…</strong><p>Checking cloud modules.</p></div>';
         }
         try {
-            var health = await apiPost('/api/admin-health', {});
+            var health = await apiPost('/api/admin', { action: 'health' });
             state.health = health;
             renderOverview(health);
         } catch (err) {
@@ -323,7 +323,7 @@
         state.token = token;
         state.role = loadSessionRole();
         try {
-            var data = await apiPost('/api/admin-auth', { action: 'verify', token: token });
+            var data = await apiPost('/api/admin', { action: 'verify', token: token });
             state.role = data.role || state.role;
             applyRoleUi();
             showAuth(false);
@@ -338,7 +338,7 @@
     }
 
     async function login(secret) {
-        var data = await apiPost('/api/admin-auth', { secret: secret });
+        var data = await apiPost('/api/admin', { secret: secret });
         state.secret = secret;
         state.role = data.role || 'master';
         sessionStorage.setItem(SECRET_KEY, secret);
@@ -351,7 +351,7 @@
 
     async function loadForgotInfo() {
         try {
-            var data = await fetch(SITE + '/api/admin-auth', {
+            var data = await fetch(SITE + '/api/admin', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ action: 'forgot-info' }),
@@ -374,7 +374,7 @@
         if (state.role !== 'master') return;
         var statusEl = $('owner-status');
         try {
-            var data = await apiPost('/api/admin-auth', { action: 'owner-status' });
+            var data = await apiPost('/api/admin', { action: 'owner-status' });
             if (statusEl) {
                 statusEl.textContent = data.ownerConfigured
                     ? 'Owner password is configured.'
@@ -387,7 +387,7 @@
 
     async function saveOwnerPassword(password) {
         var msg = $('owner-password-msg');
-        await apiPost('/api/admin-auth', {
+        await apiPost('/api/admin', {
             action: 'set-owner-password',
             newPassword: password,
         });
