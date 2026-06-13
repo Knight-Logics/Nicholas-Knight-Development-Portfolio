@@ -505,6 +505,10 @@
       "destination": "/referral-dashboard.html"
     },
     {
+      "source": "/admin",
+      "destination": "/admin.html"
+    },
+    {
       "source": "/referral-verify",
       "destination": "/referral-verify.html"
     }
@@ -548,6 +552,24 @@
     },
     {
       "source": "/referral-dashboard.html",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive, nosnippet"
+        }
+      ]
+    },
+    {
+      "source": "/admin",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow, noarchive, nosnippet"
+        }
+      ]
+    },
+    {
+      "source": "/admin.html",
       "headers": [
         {
           "key": "X-Robots-Tag",

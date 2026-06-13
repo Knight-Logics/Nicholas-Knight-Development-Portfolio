@@ -18,6 +18,11 @@
 
 const { neon } = require('@neondatabase/serverless');
 const { mergeReferralPartners } = require('./_lib/referral-roster');
+const {
+    getAdminSecret,
+    authenticateRequest,
+    readJsonBody,
+} = require('./_lib/admin-auth');
 
 async function ensurePartnerTermsTable(sql) {
     await sql`
@@ -36,20 +41,36 @@ async function ensurePartnerTermsTable(sql) {
 
 module.exports = async function handler(req, res) {
     const json = (status, data) => {
-        res.writeHead(status, { 'Content-Type': 'application/json' });
+        res.writeHead(status, { 'Content-Type': 'application/json', 'Cache-Control': 'no-store' });
         res.end(JSON.stringify(data));
     };
 
-    if (req.method !== 'GET') return json(405, { error: 'Method not allowed.' });
+    if (req.method !== 'GET' && req.method !== 'POST') {
+        return json(405, { error: 'Method not allowed.' });
+    }
 
-    /* Auth */
-    const adminSecret = process.env.KL_ADMIN_SECRET;
+    const adminSecret = getAdminSecret();
     if (!adminSecret) return json(503, { error: 'Admin secret not configured.' });
+
+    let body = {};
+    if (req.method === 'POST') {
+        try {
+            body = await readJsonBody(req);
+        } catch (error) {
+            return json(400, { error: 'Invalid JSON body.' });
+        }
+    }
 
     const params = new URLSearchParams(
         (req.url || '').includes('?') ? req.url.split('?')[1] : ''
     );
-    if (params.get('secret') !== adminSecret) {
+
+    const auth = await authenticateRequest(req, {
+        ...body,
+        token: body.token || req.headers['x-kl-admin-token'] || params.get('token'),
+        secret: body.secret || params.get('secret'),
+    });
+    if (!auth.ok) {
         return json(403, { error: 'Forbidden.' });
     }
 
@@ -57,10 +78,10 @@ module.exports = async function handler(req, res) {
         return json(503, { error: 'Database not configured.' });
     }
 
-    const partner  = params.get('partner') || null;
-    const offer    = params.get('offer') || null;
-    const rawDays  = parseInt(params.get('days') || '30', 10);
-    const days     = Math.min(Math.max(rawDays || 30, 1), 365);
+    const partner = body.partner || params.get('partner') || null;
+    const offer = body.offer || params.get('offer') || null;
+    const rawDays = parseInt(body.days != null ? body.days : (params.get('days') || '30'), 10);
+    const days = Math.min(Math.max(rawDays || 30, 1), 365);
     const since    = new Date(Date.now() - days * 24 * 60 * 60 * 1000).toISOString();
 
     try {

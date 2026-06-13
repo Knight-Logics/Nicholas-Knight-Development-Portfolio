@@ -3,6 +3,10 @@
 const { neon } = require('@neondatabase/serverless');
 const crypto = require('crypto');
 const {
+    authenticateRequest,
+    requireMaster,
+} = require('./_lib/admin-auth');
+const {
     getStaticPartner,
     normalizeDisplayName,
     normalizeOffer,
@@ -94,8 +98,13 @@ module.exports = async function handler(req, res) {
         return sendJson(res, 400, { error: 'Invalid JSON body.' });
     }
 
-    if ((body && body.secret) !== adminSecret) {
+    const auth = await authenticateRequest(req, body);
+    if (!auth.ok) {
         return sendJson(res, 403, { error: 'Forbidden.' });
+    }
+
+    if (!requireMaster(auth)) {
+        return sendJson(res, 403, { error: 'Master access required for this action.' });
     }
 
     const action = normStr(body && body.action, 40);

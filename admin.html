@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Knight Command — Admin</title>
+    <link rel="icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/admin/admin.css?v=20260613admin2">
+</head>
+<body>
+
+<header class="kc-header">
+    <div class="kc-brand">
+        <img src="/images/KnightLogicsLogo2.webp" alt="" width="128" height="128" decoding="async">
+        <span>Knight Command</span>
+        <span class="kc-tag">Admin</span>
+    </div>
+    <div class="kc-header-actions">
+        <span class="kc-role-badge" id="role-badge" hidden></span>
+        <a href="/" class="kc-btn kc-btn-ghost">← Site</a>
+        <button type="button" class="kc-btn kc-btn-ghost" id="logout-btn">Log out</button>
+    </div>
+</header>
+
+<div class="kc-auth" id="auth-gate">
+    <div class="kc-auth-card">
+        <h1>Knight Command</h1>
+        <p>Unified operations dashboard for referrals, outreach, email, and social automation.</p>
+        <form class="kc-auth-form" id="auth-form">
+            <input type="password" id="secret-input" class="kc-input" placeholder="Master or owner password" autocomplete="current-password">
+            <button type="submit" class="kc-btn kc-btn-primary">Unlock</button>
+        </form>
+        <p class="kc-error" id="auth-error">Incorrect password.</p>
+        <p class="kc-auth-help"><button type="button" class="kc-link-btn" id="forgot-toggle">Forgot password?</button></p>
+        <div class="kc-forgot-panel" id="forgot-panel" hidden>
+            <p id="forgot-copy">Loading reset instructions…</p>
+        </div>
+        <p style="color:var(--muted);font-size:0.78rem;margin-top:14px;">Master access is retained by Knight Logics for maintenance. Owner passwords can be reset from Access settings.</p>
+    </div>
+</div>
+
+<div class="kc-shell" id="kc-shell">
+    <nav class="kc-tabs" aria-label="Knight Command modules">
+        <button type="button" class="kc-tab active" data-module="overview">Command Center</button>
+        <button type="button" class="kc-tab" data-module="referrals">Referrals</button>
+        <button type="button" class="kc-tab" data-module="outreach">Outreach CRM</button>
+        <button type="button" class="kc-tab" data-module="email">Email Agent</button>
+        <button type="button" class="kc-tab" data-module="social-ops">Social Ops</button>
+        <button type="button" class="kc-tab" data-module="social-poster">Social Poster</button>
+        <button type="button" class="kc-tab" data-module="logs">Logs</button>
+        <button type="button" class="kc-tab" data-module="access" id="tab-access" hidden>Access</button>
+    </nav>
+
+    <section class="kc-panel open" id="panel-overview">
+        <div class="kc-panel-inner">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:14px;flex-wrap:wrap;">
+                <div>
+                    <h2 style="font-size:1.15rem;margin-bottom:4px;">Command Center</h2>
+                    <p style="color:var(--muted);font-size:0.88rem;">Cloud health plus local tool status on this PC.</p>
+                </div>
+                <button type="button" class="kc-btn kc-btn-primary" id="refresh-overview-btn">Refresh status</button>
+            </div>
+            <div id="overview-notes"></div>
+            <div class="kc-grid" id="overview-grid"></div>
+            <div class="kc-card">
+                <h3>Quick open (local)</h3>
+                <p style="margin-bottom:10px;">If embeds stay blank, start services on this machine and open directly:</p>
+                <div style="display:flex;gap:8px;flex-wrap:wrap;">
+                    <button type="button" class="kc-btn kc-btn-ghost" data-open-local="http://127.0.0.1:5050/">Outreach :5050</button>
+                    <button type="button" class="kc-btn kc-btn-ghost" data-open-local="http://127.0.0.1:5100/">Email :5100</button>
+                    <button type="button" class="kc-btn kc-btn-ghost" data-open-local="http://127.0.0.1:8500/">Social Ops :8500</button>
+                    <button type="button" class="kc-btn kc-btn-ghost" data-open-local="http://127.0.0.1:8501/">Social Poster :8501</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="kc-panel kc-panel-inner--flush" id="panel-referrals">
+        <div class="kc-embed-wrap">
+            <iframe id="referrals-frame" title="Referral CRM" src="about:blank"></iframe>
+        </div>
+    </section>
+
+    <section class="kc-panel kc-panel-inner--flush" id="panel-outreach">
+        <div class="kc-embed-wrap">
+            <div class="kc-embed-status" id="embed-status-outreach">
+                <strong data-embed-title>Outreach CRM</strong>
+                <p data-embed-detail>Loading local Knight Command…</p>
+                <button type="button" class="kc-btn kc-btn-primary" data-open-local="http://127.0.0.1:5050/">Open :5050 ↗</button>
+            </div>
+            <iframe id="outreach-frame" title="Outreach CRM" src="about:blank"></iframe>
+        </div>
+    </section>
+
+    <section class="kc-panel kc-panel-inner--flush" id="panel-email">
+        <div class="kc-embed-wrap">
+            <div class="kc-embed-status" id="embed-status-email">
+                <strong data-embed-title>Email Agent</strong>
+                <p data-embed-detail>Loading Email Agent…</p>
+                <button type="button" class="kc-btn kc-btn-primary" data-open-local="http://127.0.0.1:5100/">Open :5100 ↗</button>
+            </div>
+            <iframe id="email-frame" title="Email Agent" src="about:blank"></iframe>
+        </div>
+    </section>
+
+    <section class="kc-panel kc-panel-inner--flush" id="panel-social-ops">
+        <div class="kc-embed-wrap">
+            <div class="kc-embed-status" id="embed-status-social-ops">
+                <strong data-embed-title>Social Ops</strong>
+                <p data-embed-detail>Loading Social Ops (engagement manager)…</p>
+                <button type="button" class="kc-btn kc-btn-primary" data-open-local="http://127.0.0.1:8500/">Open :8500 ↗</button>
+            </div>
+            <iframe id="social-ops-frame" title="Social Ops" src="about:blank"></iframe>
+        </div>
+    </section>
+
+    <section class="kc-panel kc-panel-inner--flush" id="panel-social-poster">
+        <div class="kc-embed-wrap">
+            <div class="kc-embed-status" id="embed-status-social-poster">
+                <strong data-embed-title>Social Poster</strong>
+                <p data-embed-detail>Loading Social Poster…</p>
+                <button type="button" class="kc-btn kc-btn-primary" data-open-local="http://127.0.0.1:8501/">Open :8501 ↗</button>
+            </div>
+            <iframe id="social-poster-frame" title="Social Poster" src="about:blank"></iframe>
+        </div>
+    </section>
+
+    <section class="kc-panel" id="panel-access">
+        <div class="kc-panel-inner">
+            <h2 style="font-size:1.15rem;margin-bottom:6px;">Access control</h2>
+            <p style="color:var(--muted);font-size:0.88rem;margin-bottom:16px;">Master access stays with Knight Logics for updates and support. Set a separate owner password when handing dashboard access to a site owner.</p>
+            <div class="kc-card" style="margin-bottom:14px;">
+                <h3>Owner password</h3>
+                <p id="owner-status" style="margin-bottom:12px;color:var(--muted);">Checking…</p>
+                <form id="owner-password-form" class="kc-auth-form" style="max-width:420px;">
+                    <input type="password" id="owner-password-input" class="kc-input" placeholder="New owner password (8+ chars)" autocomplete="new-password">
+                    <input type="password" id="owner-password-confirm" class="kc-input" placeholder="Confirm owner password" autocomplete="new-password">
+                    <button type="submit" class="kc-btn kc-btn-primary">Save owner password</button>
+                </form>
+                <p class="kc-note" id="owner-password-msg" style="display:none;margin-top:10px;"></p>
+            </div>
+            <div class="kc-card">
+                <h3>Forgot password (owner)</h3>
+                <p id="access-forgot-copy" style="color:var(--muted);">Owners who forget their password should contact Knight Logics. Master passwords are managed in Vercel environment variables.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="kc-panel" id="panel-logs">
+        <div class="kc-panel-inner">
+            <h2 style="font-size:1.15rem;margin-bottom:6px;">Troubleshooting logs</h2>
+            <p style="color:var(--muted);font-size:0.88rem;margin-bottom:12px;">Client-side session log for auth, health checks, embed loads, and local probes. Copy and send when debugging.</p>
+            <div class="kc-log-toolbar">
+                <button type="button" class="kc-btn kc-btn-ghost" id="copy-logs-btn">Copy logs</button>
+                <button type="button" class="kc-btn kc-btn-ghost" id="clear-logs-btn">Clear</button>
+            </div>
+            <ul class="kc-log-list" id="log-list"></ul>
+        </div>
+    </section>
+</div>
+
+<script src="/admin/admin.js?v=20260613admin2" defer></script>
+</body>
+</html>

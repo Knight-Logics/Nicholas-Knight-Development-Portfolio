@@ -71,6 +71,10 @@
         }
         .dash-header-back:hover { color: var(--text); }
 
+        body.embed-mode .dash-header { display: none; }
+        body.embed-mode #auth-gate { min-height: 50vh; }
+        body.embed-mode { padding-bottom: 24px; }
+
         /* ── Auth gate ── */
         #auth-gate {
             display: flex;
@@ -112,6 +116,31 @@
             transition: opacity 0.15s;
         }
         .auth-btn:hover, .filter-btn:hover, .refresh-btn:hover { opacity: 0.85; }
+        .auth-link-btn {
+            background: none;
+            border: 0;
+            color: var(--accent);
+            cursor: pointer;
+            font-size: 0.88rem;
+            text-decoration: underline;
+        }
+        #forgot-panel {
+            max-width: 42ch;
+            text-align: center;
+            color: var(--muted);
+            font-size: 0.88rem;
+            line-height: 1.55;
+        }
+        .role-pill {
+            font-size: 0.72rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: rgba(100,255,218,0.12);
+            color: var(--accent);
+        }
+        body.owner-mode .master-only { display: none !important; }
 
         /* ── Main dashboard ── */
         #dashboard { display: none; padding: 32px; max-width: 1200px; margin: 0 auto; }
@@ -462,12 +491,16 @@
 <!-- Auth gate -->
 <div id="auth-gate">
     <h2>Admin Access</h2>
-    <p>Enter your admin secret to view referral stats. This page is not indexed.</p>
+    <p>Enter your master or owner password to view referral stats. This page is not indexed.</p>
     <form class="auth-form" id="authForm">
-        <input type="password" id="secretInput" class="auth-input" placeholder="Admin secret" autocomplete="off">
+        <input type="password" id="secretInput" class="auth-input" placeholder="Password" autocomplete="current-password">
         <button type="submit" class="auth-btn">Unlock</button>
     </form>
-    <p id="authError" style="color:#ff6b6b;display:none;">Incorrect secret — check KL_ADMIN_SECRET.</p>
+    <p id="authError" style="color:#ff6b6b;display:none;">Incorrect password.</p>
+    <p><button type="button" class="auth-link-btn" id="forgotToggle">Forgot password?</button></p>
+    <div id="forgot-panel" hidden>
+        <p id="forgotCopy">Contact Knight Logics if you forgot your owner password. Master access is retained for site maintenance.</p>
+    </div>
 </div>
 
 <!-- Dashboard (shown after auth) -->
@@ -536,7 +569,7 @@
     </div>
 
     <!-- Partner link builder -->
-    <div class="link-builder">
+    <div class="link-builder master-only">
         <h3>Generate Partner Link</h3>
         <div class="link-builder-form">
             <div class="filter-group">
@@ -590,6 +623,7 @@
     </div>
 
     <!-- Partner roster -->
+    <div class="master-only">
     <p class="section-title">Partner Roster</p>
     <div class="table-wrap">
         <table>
@@ -605,6 +639,7 @@
             </thead>
             <tbody id="partnerRosterBody"><tr><td colspan="6" class="state-msg">Loading…</td></tr></tbody>
         </table>
+    </div>
     </div>
 
     <!-- By partner table -->
@@ -647,6 +682,7 @@
         </table>
     </div>
 
+    <div class="master-only">
     <p class="section-title">Payout Queue</p>
     <div class="table-wrap">
         <table>
@@ -666,6 +702,7 @@
             </thead>
             <tbody id="payoutBody"><tr><td colspan="10" class="state-msg">Loading…</td></tr></tbody>
         </table>
+    </div>
     </div>
 
     <!-- Recent events table -->
@@ -695,15 +732,86 @@
     'use strict';
 
     var secret = '';
+    var token = '';
+    var role = '';
     var SITE   = window.location.origin;
+    var EMBED  = /(?:^|[?&])embed=1(?:&|$)/.test(window.location.search);
+    var SESSION_KEY = 'kl_admin_session';
+    var ROLE_KEY = 'kl_admin_role';
+
+    function applyRoleMode() {
+        document.body.classList.toggle('owner-mode', role === 'owner');
+    }
+
+    function authPayload(extra) {
+        var payload = Object.assign({}, extra || {});
+        if (token) payload.token = token;
+        else if (secret) payload.secret = secret;
+        return payload;
+    }
+
+    function loginWithPassword(password) {
+        return fetch(SITE + '/api/admin-auth', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ secret: password }),
+        }).then(function (r) { return r.json().then(function (data) { return { ok: r.ok, data: data }; }); })
+            .then(function (result) {
+                if (!result.ok || !result.data.ok) {
+                    throw new Error((result.data && result.data.error) || 'Login failed');
+                }
+                secret = password;
+                token = result.data.token || '';
+                role = result.data.role || 'master';
+                sessionStorage.setItem('kl_admin_secret', secret);
+                if (token) sessionStorage.setItem(SESSION_KEY, token);
+                sessionStorage.setItem(ROLE_KEY, role);
+                applyRoleMode();
+                return result.data;
+            });
+    }
+
+    if (EMBED) {
+        document.body.classList.add('embed-mode');
+        token = sessionStorage.getItem(SESSION_KEY) || '';
+        role = sessionStorage.getItem(ROLE_KEY) || '';
+        secret = sessionStorage.getItem('kl_admin_secret') || '';
+        if (token || secret) {
+            applyRoleMode();
+            document.getElementById('auth-gate').style.display = 'none';
+            document.getElementById('dashboard').style.display = 'block';
+            loadStats();
+        }
+    }
+
+    document.getElementById('forgotToggle').addEventListener('click', function () {
+        var panel = document.getElementById('forgot-panel');
+        panel.hidden = !panel.hidden;
+    });
+
+    fetch(SITE + '/api/admin-auth', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'forgot-info' }),
+    }).then(function (r) { return r.json(); }).then(function (data) {
+        if (data.contact) {
+            document.getElementById('forgotCopy').textContent =
+                (data.contact.note || '') + ' Contact: ' + (data.contact.email || 'nknight@knightgroup.com') + '.';
+        }
+    }).catch(function () {});
 
     /* ── Auth ── */
     document.getElementById('authForm').addEventListener('submit', function (e) {
         e.preventDefault();
-        secret = document.getElementById('secretInput').value.trim();
-        if (!secret) return;
+        var password = document.getElementById('secretInput').value.trim();
+        if (!password) return;
         document.getElementById('authError').style.display = 'none';
-        loadStats();
+        loginWithPassword(password).then(function () {
+            loadStats();
+        }).catch(function (err) {
+            document.getElementById('authError').textContent = err.message || 'Incorrect password.';
+            document.getElementById('authError').style.display = 'block';
+        });
     });
 
     document.getElementById('refreshBtn').addEventListener('click', loadStats);
@@ -821,13 +929,12 @@
             var response = await fetch(SITE + '/api/referral-admin', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    secret: secret,
+                body: JSON.stringify(authPayload({
                     action: 'upsert_partner',
                     partnerSlug: partner,
                     partnerName: partnerName,
                     latestOffer: offer
-                })
+                }))
             });
             var payload = await response.json().catch(function () { return {}; });
             if (!response.ok || !payload.ok) {
@@ -861,11 +968,10 @@
         fetch(SITE + '/api/referral-admin', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                secret: secret,
+            body: JSON.stringify(authPayload({
                 action: 'generate_partner_verify_link',
                 partnerSlug: currentPartnerSlug
-            })
+            }))
         })
         .then(function (r) { return r.json().then(function (data) { return { ok: r.ok, data: data }; }); })
         .then(function (result) {
@@ -1060,11 +1166,15 @@
         var offer   = document.getElementById('filterOffer').value.trim();
         var days    = document.getElementById('filterDays').value;
 
-        var qs = '?secret=' + encodeURIComponent(secret) + '&days=' + days;
-        if (partner) qs += '&partner=' + encodeURIComponent(partner);
-        if (offer)   qs += '&offer='   + encodeURIComponent(offer);
-
-        fetch(SITE + '/api/referral-stats' + qs)
+        fetch(SITE + '/api/referral-stats', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(authPayload({
+                days: Number(days) || 30,
+                partner: partner || undefined,
+                offer: offer || undefined,
+            })),
+        })
             .then(function (r) { return r.json(); })
             .then(function (data) {
                 if (data.error) {
@@ -1272,7 +1382,7 @@
     }
 
     function setPartnerActive(slug, name, offer, isActive) {
-        if (!secret || !slug) return;
+        if ((!token && !secret) || !slug) return;
         var label = name || slug;
         if (!isActive && !window.confirm('Remove ' + label + ' from referral dropdowns? Historical events and payout records will stay intact.')) {
             return;
@@ -1281,14 +1391,13 @@
         fetch(SITE + '/api/referral-admin', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                secret: secret,
+            body: JSON.stringify(authPayload({
                 action: 'set_partner_active',
                 partnerSlug: slug,
                 partnerName: name || slug,
                 latestOffer: offer || '',
                 isActive: isActive
-            })
+            }))
         })
         .then(function (r) { return r.json().then(function (data) { return { ok: r.ok, data: data }; }); })
         .then(function (result) {
@@ -1304,7 +1413,7 @@
     }
 
     function markPayoutPaid(payoutId, amountCentsStr) {
-        if (!secret || !payoutId) return;
+        if ((!token && !secret) || !payoutId) return;
         var amountCents = parseInt(amountCentsStr || '0', 10);
         if (!Number.isInteger(amountCents) || amountCents < 0) {
             alert('Invalid payout amount. Refresh and try again.');
@@ -1337,15 +1446,14 @@
         fetch(SITE + '/api/referral-admin', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-                secret: secret,
+            body: JSON.stringify(authPayload({
                 action: 'mark_payout_paid',
                 payoutId: payoutId,
                 payoutNote: note,
                 payoutMethod: payoutMethod,
                 payoutReference: payoutReference,
                 confirmAmountCents: confirmAmountCents
-            })
+            }))
         })
         .then(function (r) { return r.json().then(function (data) { return { ok: r.ok, data: data }; }); })
         .then(function (result) {

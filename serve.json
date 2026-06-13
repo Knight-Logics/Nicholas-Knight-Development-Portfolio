@@ -47,6 +47,8 @@
     { "source": "/terms-of-service", "destination": "/terms-of-service.html" },
     { "source": "/cookie-policy", "destination": "/cookie-policy.html" },
     { "source": "/refund-policy", "destination": "/refund-policy.html" },
-    { "source": "/disclaimer", "destination": "/disclaimer.html" }
+    { "source": "/disclaimer", "destination": "/disclaimer.html" },
+    { "source": "/admin", "destination": "/admin.html" },
+    { "source": "/referral-dashboard", "destination": "/referral-dashboard.html" }
   ]
 }
