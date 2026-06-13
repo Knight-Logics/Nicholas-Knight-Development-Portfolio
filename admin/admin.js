@@ -15,13 +15,13 @@
         outreach: {
             label: 'Outreach CRM',
             panel: 'panel-outreach',
-            localUrl: 'http://127.0.0.1:5050/',
+            localUrl: 'http://127.0.0.1:5050/?embed=1&module=outreach',
             help: 'Run OutreachEngine: cd CRM\\OutreachEngine && python app.py',
         },
         email: {
             label: 'Email Agent',
             panel: 'panel-email',
-            localUrl: 'http://127.0.0.1:5100/',
+            localUrl: 'http://127.0.0.1:5100/?embed=1',
             help: 'Started automatically from Knight Command when reachable, or run Email-Agent\\web.py',
         },
         'social-ops': {
@@ -183,18 +183,22 @@
         }
     }
 
+    function syncAuthToEmbedStorage() {
+        if (state.secret) sessionStorage.setItem(SECRET_KEY, state.secret);
+        if (state.token) sessionStorage.setItem(SESSION_KEY, state.token);
+        if (state.role) sessionStorage.setItem(ROLE_KEY, state.role);
+    }
+
     function mountEmbed(prefix, src) {
         var frame = $(prefix + '-frame');
         if (!frame) return;
-        if (state.secret) {
-            sessionStorage.setItem(SECRET_KEY, state.secret);
+        syncAuthToEmbedStorage();
+
+        if (prefix === 'referrals') {
+            mountReferralsEmbed(frame, src);
+            return;
         }
-        if (state.token) {
-            sessionStorage.setItem(SESSION_KEY, state.token);
-        }
-        if (state.role) {
-            sessionStorage.setItem(ROLE_KEY, state.role);
-        }
+
         if (frame.dataset.loaded !== src) {
             frame.src = src;
             frame.dataset.loaded = src;
@@ -202,14 +206,110 @@
         }
     }
 
-    function mountLocalEmbed(prefix, url, help) {
+    function mountReferralsEmbed(frame, src) {
+        var wrap = frame.parentElement;
+        var fallback = $('referrals-fallback');
+        if (!fallback && wrap) {
+            fallback = document.createElement('div');
+            fallback.id = 'referrals-fallback';
+            fallback.className = 'kc-referrals-fallback';
+            fallback.innerHTML =
+                '<div class="kc-card" style="max-width:560px;margin:40px auto;text-align:center;padding:28px;">' +
+                '<h2 style="margin-bottom:8px;">Referral CRM</h2>' +
+                '<p style="color:var(--muted);margin-bottom:18px;">If the embedded view stays blank, open Referral CRM directly. Your admin session will carry over.</p>' +
+                '<a class="kc-btn kc-btn-primary" href="/referral-dashboard?embed=1&from=admin">Open Referral CRM</a>' +
+                '</div>';
+            wrap.appendChild(fallback);
+        }
+
+        function hideFallback() {
+            if (fallback) fallback.style.display = 'none';
+            frame.style.display = 'block';
+        }
+
+        function showFallback() {
+            if (fallback) fallback.style.display = 'block';
+            frame.style.display = 'none';
+        }
+
+        frame.onload = function () {
+            try {
+                frame.contentWindow.postMessage({
+                    type: 'kl-admin-auth',
+                    token: state.token,
+                    secret: state.secret,
+                    role: state.role,
+                }, window.location.origin);
+                hideFallback();
+                log('info', 'Referrals iframe loaded');
+            } catch (err) {
+                showFallback();
+                log('warn', 'Referrals iframe postMessage failed', { error: String(err.message) });
+            }
+        };
+
+        frame.onerror = function () {
+            showFallback();
+            log('warn', 'Referrals iframe error');
+        };
+
+        var nextSrc = src.indexOf('?') >= 0 ? src + '&from=admin' : src + '?from=admin';
+        if (frame.dataset.loaded !== nextSrc) {
+            showFallback();
+            frame.src = nextSrc;
+            frame.dataset.loaded = nextSrc;
+            log('info', 'Referrals embed loading', { src: nextSrc });
+            setTimeout(function () {
+                if (frame.style.display === 'none') return;
+                try {
+                    var doc = frame.contentDocument;
+                    if (!doc || !doc.body || !doc.body.innerHTML) showFallback();
+                } catch (err) {
+                    showFallback();
+                }
+            }, 4000);
+        }
+    }
+
+    window.addEventListener('message', function (event) {
+        if (event.origin !== window.location.origin) return;
+        if (!event.data || event.data.type !== 'kl-admin-auth-request') return;
+        var frame = $('referrals-frame');
+        if (!frame || !frame.contentWindow) return;
+        frame.contentWindow.postMessage({
+            type: 'kl-admin-auth',
+            token: state.token,
+            secret: state.secret,
+            role: state.role,
+        }, window.location.origin);
+    });
+
+    async function mountLocalEmbed(prefix, url, help) {
         var wrap = $('embed-status-' + prefix);
         var frame = $(prefix + '-frame');
         if (!frame) return;
+        var serviceMap = {
+            email: 'email_agent',
+            'social-ops': 'social_ops',
+            'social-poster': 'social_poster',
+        };
+        var serviceName = serviceMap[prefix];
         if (wrap) {
             wrap.classList.add('open');
             wrap.querySelector('[data-embed-title]').textContent = 'Connecting to local service…';
             wrap.querySelector('[data-embed-detail]').textContent = help || 'Service must run on this PC.';
+        }
+        if (serviceName) {
+            try {
+                await fetch('http://127.0.0.1:5050/api/services/ensure', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ services: [serviceName] }),
+                });
+                log('info', 'Requested local service start', { service: serviceName });
+            } catch (err) {
+                log('warn', 'Could not reach OutreachEngine on :5050 to auto-start service', { service: serviceName });
+            }
         }
         frame.onload = function () {
             if (wrap) wrap.classList.remove('open');

@@ -74,6 +74,24 @@
         body.embed-mode .dash-header { display: none; }
         body.embed-mode #auth-gate { min-height: 50vh; }
         body.embed-mode { padding-bottom: 24px; }
+        .embed-back-bar {
+            display: none;
+            align-items: center;
+            gap: 12px;
+            padding: 10px 16px;
+            background: var(--surface);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 30;
+        }
+        body.embed-mode .embed-back-bar { display: flex; }
+        .embed-back-bar a {
+            color: var(--accent);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.88rem;
+        }
 
         /* ── Auth gate ── */
         #auth-gate {
@@ -479,6 +497,11 @@
 </head>
 <body>
 
+<div class="embed-back-bar" id="embedBackBar">
+    <a href="/admin" id="embedBackLink">← Knight Command</a>
+    <span style="color:var(--muted);font-size:0.82rem;">Referral CRM</span>
+</div>
+
 <header class="dash-header">
     <a href="/" class="dash-header-brand">
         <img src="images/KnightLogicsLogo2.webp" onerror="this.style.display='none'" alt="Knight Logics">
@@ -773,6 +796,11 @@
 
     if (EMBED) {
         document.body.classList.add('embed-mode');
+        var fromAdmin = /(?:^|[?&])from=admin(?:&|$)/.test(window.location.search);
+        if (fromAdmin) {
+            var back = document.getElementById('embedBackLink');
+            if (back) back.href = '/admin';
+        }
         token = sessionStorage.getItem(SESSION_KEY) || '';
         role = sessionStorage.getItem(ROLE_KEY) || '';
         secret = sessionStorage.getItem('kl_admin_secret') || '';
@@ -781,8 +809,26 @@
             document.getElementById('auth-gate').style.display = 'none';
             document.getElementById('dashboard').style.display = 'block';
             loadStats();
+        } else if (window.parent && window.parent !== window) {
+            window.parent.postMessage({ type: 'kl-admin-auth-request' }, window.location.origin);
         }
     }
+
+    window.addEventListener('message', function (event) {
+        if (event.origin !== window.location.origin) return;
+        if (!event.data || event.data.type !== 'kl-admin-auth') return;
+        token = event.data.token || token;
+        secret = event.data.secret || secret;
+        role = event.data.role || role;
+        if (token) sessionStorage.setItem(SESSION_KEY, token);
+        if (secret) sessionStorage.setItem('kl_admin_secret', secret);
+        if (role) sessionStorage.setItem(ROLE_KEY, role);
+        applyRoleMode();
+        document.getElementById('authError').style.display = 'none';
+        document.getElementById('auth-gate').style.display = 'none';
+        document.getElementById('dashboard').style.display = 'block';
+        loadStats();
+    });
 
     document.getElementById('forgotToggle').addEventListener('click', function () {
         var panel = document.getElementById('forgot-panel');

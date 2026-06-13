@@ -274,7 +274,22 @@ body {
     z-index: 2;
 }
 
-.kc-embed-status.open { display: flex; }
+.kc-referrals-fallback {
+    position: absolute;
+    inset: 0;
+    z-index: 3;
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 48px;
+    background: rgba(5, 10, 20, 0.92);
+}
+
+.kc-referrals-fallback .kc-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+}
 .kc-embed-status p { color: var(--muted); max-width: 52ch; }
 
 .kc-log-toolbar {
